@@ -22,7 +22,9 @@
 <meta name="keywords" content="云技术,云安全" />
 
 
-<meta name="description" content="测试搜索张勃勃" />
+<meta name="description" content="一、前端1.使用的技术&quot;axios&quot;: &quot;^0.19.2&quot;,
+&quot;core-js&quot;: &quot;^3.4.4&quot;,
+&quot..." />
 
 
 <meta name="robots" content="all" />
@@ -33,7 +35,7 @@
 
 <title>
     
-    demo1 |
+    垃圾分析说明 |
     
     老陕小张
 </title>
@@ -129,18 +131,28 @@
                         </li>
                         
                         <li role="presentation" class="text-center">
-                            <a href="/categories/后端/"><i class="fa "></i>
-                                后端</a>
+                            <a href="/categories/编程教程/"><i class="fa "></i>
+                                编程教程</a>
                         </li>
                         
                         <li role="presentation" class="text-center">
-                            <a href="/categories/工具/"><i class="fa "></i>
-                                工具</a>
+                            <a href="/categories/常用工具/"><i class="fa "></i>
+                                常用工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/AI话题/"><i class="fa "></i>
+                                AI话题</a>
                         </li>
                         
                         <li role="presentation" class="text-center">
                             <a href="/archives/"><i class="fa "></i>
                                 时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/关于我们/"><i class="fa "></i>
+                                关于我们</a>
                         </li>
                         
                     </ul>
@@ -156,9 +168,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="demo1">
+        <h1 id="垃圾分析说明">
             
-            demo1
+            垃圾分析说明
             
         </h1>
         <div class="post-meta">
@@ -193,7 +205,220 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="测试搜索"><a href="#测试搜索" class="headerlink" title="测试搜索"></a>测试搜索</h1><h2 id="张勃勃"><a href="#张勃勃" class="headerlink" title="张勃勃"></a>张勃勃</h2>
+        <h1 id="一、前端"><a href="#一、前端" class="headerlink" title="一、前端"></a><strong>一、前端</strong></h1><h2 id="1-使用的技术"><a href="#1-使用的技术" class="headerlink" title="1.使用的技术"></a><strong>1.使用的技术</strong></h2><pre><code>&quot;axios&quot;: &quot;^0.19.2&quot;,
+&quot;core-js&quot;: &quot;^3.4.4&quot;,
+&quot;echarts&quot;: &quot;^4.6.0&quot;,
+&quot;element-ui&quot;: &quot;^2.13.0&quot;,
+&quot;js-md5&quot;: &quot;^0.7.3&quot;,
+&quot;print-js&quot;: &quot;^1.5.0&quot;,
+&quot;vue&quot;: &quot;^2.6.10&quot;,
+&quot;vue-quill-editor&quot;: &quot;^3.0.6&quot;,
+&quot;vue-amap&quot;: &quot;^0.5.10&quot;,
+&quot;vue-json-excel&quot;: &quot;^0.3.0&quot;,
+&quot;vue-router&quot;: &quot;^3.1.5&quot;
+# 查看package.json
+</code></pre>
+<h2 id="2-文件模块功能"><a href="#2-文件模块功能" class="headerlink" title="2.文件模块功能"></a><strong>2.文件模块功能</strong></h2><h3 id="2-1目录功能模块介绍"><a href="#2-1目录功能模块介绍" class="headerlink" title="2.1目录功能模块介绍"></a><strong>2.1目录功能模块介绍</strong></h3><p>​	Vue目录介绍</p>
+<ul>
+<li><code>src</code>目录：这是Vue项目的主要代码目录，包含了所有的Vue组件、路由、状态管理、静态资源等。其中，<code>main.js</code>是项目的入口文件，<code>App.vue</code>是项目的根组件，<code>router</code>目录是路由配置目录，<code>store</code>目录是状态管理目录，<code>assets</code>目录是存放静态资源的目录，<code>components</code>目录是存放Vue组件的目录。</li>
+<li><code>public</code>目录：这是存放静态资源的目录，如图片、字体等。在Vue项目中，可以使用相对路径引用这些静态资源，如<code>/img/logo.png</code>。</li>
+<li><code>node_modules</code>目录：这是存放项目依赖的第三方库的目录，如Vue、Vue Router、Vuex等。在使用这些库时，需要先通过<code>npm</code>或<code>yarn</code>安装。</li>
+<li><code>dist</code>目录：这是项目打包后生成的目录，包含了所有的静态资源和HTML文件。在开发过程中，这个目录通常是不需要手动操作的，而是通过构建工具自动生成的。</li>
+<li><code>babel.config.js</code>文件：这是Babel的配置文件，用于将ES6+的代码转换成ES5的代码，以便在不支持ES6+的浏览器上运行。</li>
+<li><code>package.json</code>文件：这是项目的配置文件，包含了项目的名称、版本、依赖等信息。在使用<code>npm</code>或<code>yarn</code>安装依赖、运行脚本等时，都需要通过这个文件进行配置。</li>
+<li><code>vue.config.js</code>文件：这是Vue的配置文件，用于配置一些项目的构建选项、开发服务器选项等。可以通过这个文件进行一些自定义配置，如修改端口号、配置代理等。</li>
+</ul>
+<p>​	Java后端对接前端目录介绍</p>
+<ul>
+<li>admin: 存放后台管理系统相关的代码和配置文件。</li>
+<li>front: 存放前端代码和配置文件。</li>
+<li>mapper: 存放MyBatis的Mapper接口和XML文件。</li>
+<li>static: 存放静态资源文件，如图片、CSS、JavaScript等。</li>
+<li>application.yml: 存放Spring Boot应用的配置文件，包括数据库连接、日志、缓存等配置信息。</li>
+</ul>
+<h3 id="2-2文件功能模块介绍"><a href="#2-2文件功能模块介绍" class="headerlink" title="2.2文件功能模块介绍"></a><strong>2.2文件功能模块介绍</strong></h3><pre><code class="vue">const routes = [&#123;
+    path: &#39;/index&#39;,
+    name: &#39;首页&#39;,
+    component: Index,
+    children: [&#123;
+      // 这里不设置值，是把main作为默认页面
+      path: &#39;/&#39;,
+      name: &#39;首页&#39;,
+      component: Home,
+      meta: &#123;icon:&#39;&#39;, title:&#39;center&#39;&#125;
+    &#125;, &#123;
+      path: &#39;/updatePassword&#39;,
+      name: &#39;修改密码&#39;,
+      component: UpdatePassword,
+      meta: &#123;icon:&#39;&#39;, title:&#39;updatePassword&#39;&#125;
+    &#125;, &#123;
+      path: &#39;/pay&#39;,
+      name: &#39;支付&#39;,
+      component: pay,
+      meta: &#123;icon:&#39;&#39;, title:&#39;pay&#39;&#125;
+    &#125;, &#123;
+      path: &#39;/center&#39;,
+      name: &#39;个人信息&#39;,
+      component: center,
+      meta: &#123;icon:&#39;&#39;, title:&#39;center&#39;&#125;
+    &#125;
+      ,&#123;
+    path: &#39;/news&#39;,
+        name: &#39;文章资讯&#39;,
+        component: news
+      &#125;
+      ,&#123;
+    path: &#39;/examfailrecord&#39;,
+        name: &#39;错题本&#39;,
+        component: examfailrecord
+      &#125;
+      ,&#123;
+    path: &#39;/yonghu&#39;,
+        name: &#39;用户&#39;,
+        component: yonghu
+      &#125;
+      ,&#123;
+        path: &#39;/discussgongyi&#39;,
+              name: &#39;视频信息评论&#39;,
+              component: discussgongyi
+            &#125;
+            ,&#123;
+              path: &#39;/forum&#39;,
+                    name: &#39;垃圾科普&#39;,
+                    component: forum
+                  &#125;
+            ,&#123;
+              path: &#39;/shangpinxinxi&#39;,
+                    name: &#39;商品信息&#39;,
+                    component: shangpinxinxi
+                  &#125;
+                  ,&#123;
+                    path: &#39;/orders/:status&#39;,
+                    name: &#39;订单管理&#39;,
+                    component: orders
+                  &#125;
+            ,&#123;
+              path: &#39;/messages&#39;,
+                    name: &#39;留言板&#39;,
+                    component: messages
+                  &#125;
+      ,&#123;
+    path: &#39;/examquestion&#39;,
+        name: &#39;试题管理&#39;,
+        component: examquestion
+      &#125;
+      ,&#123;
+    path: &#39;/exampaperlist&#39;,
+        name: &#39;考试测试列表&#39;,
+        component: exampaperlist
+      &#125;
+
+      ,&#123;
+        path: &#39;/fagui&#39;,
+              name: &#39;政策法规&#39;,
+              component: fagui
+            &#125;
+            
+      ,&#123;
+        path: &#39;/gongyi&#39;,
+              name: &#39;公益视频&#39;,
+              component: gongyi
+            &#125;
+            ,&#123;
+              path: &#39;/yiyi&#39;,
+                    name: &#39;历史与意义&#39;,
+                    component: yiyi
+                  &#125;
+      ,&#123;
+    path: &#39;/exampaper&#39;,
+        name: &#39;考试测试管理&#39;,
+        component: exampaper
+      &#125;
+      ,&#123;
+    path: &#39;/storeup&#39;,
+        name: &#39;我的收藏管理&#39;,
+        component: storeup
+      &#125;
+      ,&#123;
+    path: &#39;/kechengxinxi&#39;,
+        name: &#39;课程信息&#39;,
+        component: kechengxinxi
+      &#125;
+      ,&#123;
+    path: &#39;/config&#39;,
+        name: &#39;轮播图管理&#39;,
+        component: config
+      &#125;
+      ,&#123;
+    path: &#39;/examrecord&#39;,
+        name: &#39;考试记录&#39;,
+        component: examrecord
+      &#125;
+      ,&#123;
+    path: &#39;/kechengleixing&#39;,
+        name: &#39;课程类型&#39;,
+        component: kechengleixing
+      &#125;
+    ]
+  &#125;,
+  &#123;
+    path: &#39;/adminexam&#39;,
+    name: &#39;adminexam&#39;,
+    component: adminexam,
+    meta: &#123;icon:&#39;&#39;, title:&#39;adminexam&#39;&#125;
+  &#125;,
+  &#123;
+    path: &#39;/login&#39;,
+    name: &#39;login&#39;,
+    component: Login,
+    meta: &#123;icon:&#39;&#39;, title:&#39;login&#39;&#125;
+  &#125;,
+  &#123;
+    path: &#39;/register&#39;,
+    name: &#39;register&#39;,
+    component: register,
+    meta: &#123;icon:&#39;&#39;, title:&#39;register&#39;&#125;
+  &#125;,
+  &#123;
+    path: &#39;/&#39;,
+    name: &#39;首页&#39;,
+    redirect: &#39;/index&#39;
+  &#125;, /*默认跳转路由*/
+</code></pre>
+<h1 id="二、后端"><a href="#二、后端" class="headerlink" title="二、后端"></a><strong>二、后端</strong></h1><p><img src="/../images/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E7%99%BD%E8%89%B2%E7%89%88.png"></p>
+<h2 id="1-使用的技术-1"><a href="#1-使用的技术-1" class="headerlink" title="1.使用的技术"></a><strong>1.使用的技术</strong></h2><p>​	Java使用的库</p>
+<ul>
+<li><strong>Spring Boot：基于Spring框架的快速开发框架。</strong></li>
+<li><strong>MyBatis：ORM框架，用于操作数据库。</strong></li>
+<li>Shiro：安全框架，用于身份认证和授权。</li>
+<li><strong>MyBatis-Plus：MyBatis的增强工具，提供了更多的便捷功能。</strong></li>
+<li>Protobuf：Google开发的高效序列化框架。</li>
+<li>Commons Lang3：Apache开发的通用工具类库。</li>
+<li>Validation API：Java Bean验证框架。</li>
+<li>Commons IO：Apache开发的IO工具类库。</li>
+<li>Hutool：Java工具类库，提供了很多常用的工具类。</li>
+<li>FastJson：阿里巴巴开发的JSON序列化框架。</li>
+<li><strong>Microsoft SQL Server JDBC驱动：用于连接Microsoft SQL Server数据库。</strong></li>
+<li>百度人工智能：提供了人脸识别、语音识别等功能。</li>
+<li>Apache POI：Java操作Office文档的API。</li>
+</ul>
+<h2 id="2-文件模块功能-1"><a href="#2-文件模块功能-1" class="headerlink" title="2.文件模块功能"></a><strong>2.文件模块功能</strong></h2><h3 id="2-1目录功能模块介绍-1"><a href="#2-1目录功能模块介绍-1" class="headerlink" title="2.1目录功能模块介绍"></a><strong>2.1目录功能模块介绍</strong></h3><ul>
+<li>annotation: 存放自定义注解的代码。</li>
+<li>config: 存放Spring Boot应用的配置类，包括数据库连接、缓存、日志等配置信息。</li>
+<li>controller: 存放控制器类，用于处理HTTP请求和响应。</li>
+<li>dao: 存放数据访问对象类，用于实现数据库操作。</li>
+<li>entity: 存放实体类，用于映射数据库表结构。</li>
+<li>interceptor: 存放拦截器类，用于拦截HTTP请求并进行处理。</li>
+<li>service: 存放服务类，用于实现业务逻辑。</li>
+<li>utils: 存放工具类，用于提供一些常用的工具方法。</li>
+<li>springbootSchemaApplication.java: Spring Boot应用的入口类，用于启动应用并配置相关信息，如扫描包路径、配置数据源等。该类中包含main方法，用于启动Spring Boot应用。</li>
+</ul>
+<h3 id="2-2文件功能模块介绍-1"><a href="#2-2文件功能模块介绍-1" class="headerlink" title="2.2文件功能模块介绍"></a><strong>2.2文件功能模块介绍</strong></h3><p>查看controller里面的代码上面有注解</p>
+<h1 id="三、前后端联系"><a href="#三、前后端联系" class="headerlink" title="三、前后端联系"></a><strong>三、前后端联系</strong></h1><h2 id="1-关联技术"><a href="#1-关联技术" class="headerlink" title="1.关联技术"></a><strong>1.关联技术</strong></h2><p>springframework创建接口查看controller</p>
+<h2 id="2-关联的文件"><a href="#2-关联的文件" class="headerlink" title="2.关联的文件"></a><strong>2.关联的文件</strong></h2><h3 id="2-1-前端"><a href="#2-1-前端" class="headerlink" title="2.1 前端"></a><strong>2.1 前端</strong></h3><p>api.js文件中</p>
+<h3 id="2-2-后端"><a href="#2-2-后端" class="headerlink" title="2.2 后端"></a><strong>2.2 后端</strong></h3><p>controller里面的文件</p>
+<h1 id="四、数据库说明"><a href="#四、数据库说明" class="headerlink" title="四、数据库说明"></a><strong>四、数据库说明</strong></h1><p>基本都有注解</p>
+
     </div>
     
     <div class="reward" ontouchstart>
@@ -231,10 +456,10 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2023/02/25/demo2/" class="pre-post btn btn-default" title='demo2'>
+    <a href="/2023/02/25/demo3/" class="pre-post btn btn-default" title='demo3'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            demo2</span>
+            demo3</span>
     </a>
     
     
@@ -248,7 +473,7 @@
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%90%9C%E7%B4%A2"><span class="toc-text">测试搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%A0%E5%8B%83%E5%8B%83"><span class="toc-text">张勃勃</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E7%AB%AF"><span class="toc-text">一、前端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF"><span class="toc-text">1.使用的技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97%E5%8A%9F%E8%83%BD"><span class="toc-text">2.文件模块功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E7%9B%AE%E5%BD%95%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.1目录功能模块介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.2文件功能模块介绍</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%90%8E%E7%AB%AF"><span class="toc-text">二、后端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF-1"><span class="toc-text">1.使用的技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97%E5%8A%9F%E8%83%BD-1"><span class="toc-text">2.文件模块功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E7%9B%AE%E5%BD%95%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D-1"><span class="toc-text">2.1目录功能模块介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D-1"><span class="toc-text">2.2文件功能模块介绍</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E7%B3%BB"><span class="toc-text">三、前后端联系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%85%B3%E8%81%94%E6%8A%80%E6%9C%AF"><span class="toc-text">1.关联技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%85%B3%E8%81%94%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-text">2.关联的文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%89%8D%E7%AB%AF"><span class="toc-text">2.1 前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%90%8E%E7%AB%AF"><span class="toc-text">2.2 后端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%B4%E6%98%8E"><span class="toc-text">四、数据库说明</span></a></li></ol>
         
     </div>
 </aside>
