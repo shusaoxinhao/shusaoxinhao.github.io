@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title></title>
-      <link href="//404.html"/>
-      <url>//404.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="抱歉，页面未找到"><a href="#抱歉，页面未找到" class="headerlink" title="抱歉，页面未找到"></a>抱歉，页面未找到</h1><p>很抱歉，您所访问的页面不存在或已被删除。</p><p>请检查您输入的网址是否正确，或者返回<a href="/">主页</a>继续浏览其他内容。</p><p>如果您认为这是一个错误，请联系我们的网站管理员进行处理。</p><p>谢谢您的访问！</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ChatGPT使用</title>
       <link href="/2023/02/26/myChatGPT/"/>
       <url>/2023/02/26/myChatGPT/</url>
@@ -36,6 +23,19 @@
             <tag> ChatGPT </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="//404.html"/>
+      <url>//404.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="抱歉，页面未找到"><a href="#抱歉，页面未找到" class="headerlink" title="抱歉，页面未找到"></a>抱歉，页面未找到</h1><p>很抱歉，您所访问的页面不存在或已被删除。</p><p>请检查您输入的网址是否正确，或者返回<a href="/">主页</a>继续浏览其他内容。</p><p>如果您认为这是一个错误，请联系我们的网站管理员进行处理。</p><p>谢谢您的访问！</p>]]></content>
+      
+      
       
     </entry>
     
