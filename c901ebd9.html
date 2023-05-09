@@ -19,15 +19,10 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="ChatGPT" />
+<meta name="keywords" content="Linux" />
 
 
-<meta name="description" content="一、获取openAI 的key1.关注公众号
-2.输入关键字获取key​	在消息输入框回复关键词“小张我需要ChatGPT的key”
-
-二、使用方法​	点击设置里面填充openAI key
-
-三..." />
+<meta name="description" content="Linux内核中有一个md(multiple devices)模块在底层管理RAID设备，它会在应用层给我们提供一个应用程序的工具mdadm ，mdadm是linux下用于创建和管理软件RAID..." />
 
 
 <meta name="robots" content="all" />
@@ -38,7 +33,7 @@
 
 <title>
     
-    ChatGPT使用 |
+    Mdadm命令详解 |
     
     老陕小张
 </title>
@@ -166,16 +161,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="ChatGPT使用">
+        <h1 id="Mdadm命令详解">
             
-            ChatGPT使用
+            Mdadm命令详解
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/AI%E8%AF%9D%E9%A2%98/">AI话题</a>
+        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
     </span>
     
     
@@ -183,7 +178,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-none-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a>
+            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a>
             
         </span>
     </span>
@@ -193,7 +188,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2023/02/26</span>
+            2023/05/06</span>
     </span>
     
     
@@ -203,28 +198,157 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="一、获取openAI-的key"><a href="#一、获取openAI-的key" class="headerlink" title="一、获取openAI 的key"></a><strong>一、获取openAI 的key</strong></h1><h2 id="1-关注公众号"><a href="#1-关注公众号" class="headerlink" title="1.关注公众号"></a>1.关注公众号</h2><p><img src="/../images/pwxgz.jpg" alt="微信公众号"></p>
-<h2 id="2-输入关键字获取key"><a href="#2-输入关键字获取key" class="headerlink" title="2.输入关键字获取key"></a>2.输入关键字获取key</h2><p>​	在消息输入框回复关键词“小张我需要ChatGPT的key”</p>
-<p><img src="/../images/getkey.png" alt="获取密钥"></p>
-<h1 id="二、使用方法"><a href="#二、使用方法" class="headerlink" title="二、使用方法"></a><strong>二、使用方法</strong></h1><p>​	点击设置里面填充openAI key</p>
-<p><img src="/../images/openkey.jpg" alt="打开密钥.jpg"></p>
-<h1 id="三、测试结果"><a href="#三、测试结果" class="headerlink" title="三、测试结果"></a><strong>三、测试结果</strong></h1><p>再测点击设置，在对话框里面输入“你好”，有正常返回结果就可以了。</p>
-<p><img src="/../images/hi.jpg" alt="嗨.jpg"></p>
-<h1 id="四、网站使用方法"><a href="#四、网站使用方法" class="headerlink" title="四、网站使用方法"></a><strong>四、网站使用方法</strong></h1><h2 id="1-设置选项介绍"><a href="#1-设置选项介绍" class="headerlink" title="1.设置选项介绍"></a>1.设置选项介绍</h2><ul>
-<li>OpenAI API Key:  填写openAI的秘钥</li>
-<li>系统角色指令：发送系统指令的类型，可以不用填写</li>
-<li>思维发散程度： 根据自己需求自行调整</li>
-<li>记录对话内容，刷新不会消失： 保留会话记录</li>
-<li>开启连续对话，将加倍消耗Token: 作用是做到上下文内容联系</li>
-</ul>
-<p><img src="/../images/seting.jpg" alt="设置.jpg"></p>
-<h2 id="2-使用存在的问题介绍"><a href="#2-使用存在的问题介绍" class="headerlink" title="2.使用存在的问题介绍"></a>2.使用存在的问题介绍</h2><ul>
-<li>常见网站错误如下，解决办法刷新网页</li>
-</ul>
-<p>​				TypeError: Failed to fetch<br>​				error</p>
-<ul>
-<li>对话数据不要太长，网页上下文联系错误长出现error错误，需要刷新网页</li>
-</ul>
+        <p>Linux内核中有一个md(multiple devices)模块在底层管理RAID设备，它会在应用层给我们提供一个应用程序的工具mdadm ，mdadm是linux下用于创建和管理软件RAID的命令。</p>
+<h2 id="mdadm命令常见参数解释："><a href="#mdadm命令常见参数解释：" class="headerlink" title="mdadm命令常见参数解释："></a>mdadm命令常见参数解释：</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>检测设备名称，添加磁盘</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>指定设备数量</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>指定RAID级别</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>创建</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>显示过程</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>模拟设备损坏</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>移除设备</td>
+</tr>
+<tr>
+<td>-Q</td>
+<td>查看摘要信息</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>查看详细信息</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>停止RAID磁盘阵列</td>
+</tr>
+</tbody></table>
+<h2 id="搭建raid10阵列"><a href="#搭建raid10阵列" class="headerlink" title="搭建raid10阵列"></a>搭建raid10阵列</h2><ol>
+<li>新添加4块硬盘——在centos关机的情况下添加4块新的硬盘。</li>
+</ol>
+<pre><code># ls /dev/sd*
+</code></pre>
+<ol start="2">
+<li>下载mdadm</li>
+</ol>
+<pre><code># yum install mdadm -y
+</code></pre>
+<ol start="3">
+<li>创建RAID10阵列</li>
+</ol>
+<pre><code># mdadm -C -v /dev/md10 -l 10 -n 4 /dev/sd&#123;b,c,d,e&#125;
+</code></pre>
+<p>这里的选项是多个，对照上表查看。磁盘阵列名需要以md开头，这里创建的是md10。</p>
+<ol start="4">
+<li>查看阵列信息</li>
+</ol>
+<pre><code># mdadm -D /dev/md10
+</code></pre>
+<ol start="5">
+<li>格式化</li>
+</ol>
+<pre><code># mkfs.xfs /dev/md10
+</code></pre>
+<ol start="6">
+<li>挂载使用</li>
+</ol>
+<pre><code># mount /dev/md10 /ken
+</code></pre>
+<ol start="7">
+<li>写入到文件</li>
+</ol>
+<p>方法一、</p>
+<pre><code># echo “mount /dev/md10 /ken” &gt;&gt; /etc/rc.local
+</code></pre>
+<p>方法二、</p>
+<pre><code># echo “/dev/md10 /ken xfs defaults 0 0 ” &gt;&gt; /etc/fstab
+</code></pre>
+<h2 id="mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式"><a href="#mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式" class="headerlink" title="mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式"></a>mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式</h2><ol>
+<li>模拟损坏磁盘</li>
+</ol>
+<pre><code># mdadm /dev/md10 -f /dev/sdd
+</code></pre>
+<p>选项f是用于模拟磁盘损坏。</p>
+<pre><code># mdadm -D /dev/md10
+</code></pre>
+<p>查看详细信息，这时候已经显示磁盘损坏了。</p>
+<ol start="2">
+<li><p>重启</p>
+</li>
+<li><p>添加磁盘</p>
+</li>
+</ol>
+<pre><code># mdadm /dev/md10 -a /dev/sdd
+</code></pre>
+<p>选项a是用于添加磁盘。</p>
+<pre><code># mdadm -D /dev/md10
+</code></pre>
+<p>添加成功，然后照常使用。</p>
+<h2 id="mdadm创建RAID阵列–RAID5-热备盘"><a href="#mdadm创建RAID阵列–RAID5-热备盘" class="headerlink" title="mdadm创建RAID阵列–RAID5+热备盘"></a>mdadm创建RAID阵列–RAID5+热备盘</h2><ol>
+<li>添加四块磁盘并查看。</li>
+</ol>
+<pre><code># ls /dev/sd*
+</code></pre>
+<ol start="2">
+<li>创建磁盘阵列RAID5</li>
+</ol>
+<pre><code># mdadm -C /dev/md5 -l 5 -n 3 -x 1 /dev/sd&#123;b,c,d,e&#125;
+</code></pre>
+<ol start="3">
+<li>查看阵列信息</li>
+</ol>
+<pre><code># mdadm -D /dev/md5
+</code></pre>
+<ol start="4">
+<li>格式化</li>
+</ol>
+<pre><code># mkfs.xfs /dev/md5
+</code></pre>
+<ol start="5">
+<li>挂载</li>
+</ol>
+<pre><code># mkdir /ken
+# mount /dev/md5 /ken
+</code></pre>
+<ol start="6">
+<li>补充</li>
+</ol>
+<p>在使用mdadm命令创建RAID阵列时，需要先将磁盘分区并格式化，然后再将分区设备加入到RAID阵列中。如果RAID阵列中的磁盘出现故障，可以使用mdadm命令进行磁盘的移除和添加，以及磁盘阵列的重建。</p>
+<p>在创建RAID阵列时，需要注意以下几点：</p>
+<ol>
+<li><p>磁盘数量必须是偶数，且至少需要两个磁盘。</p>
+</li>
+<li><p>磁盘容量应该相同，否则会浪费磁盘空间。</p>
+</li>
+<li><p>RAID级别的选择应该根据实际需求进行，不同的RAID级别有不同的优缺点。</p>
+</li>
+<li><p>在创建RAID阵列时，可以使用-x选项指</p>
+</li>
+</ol>
 
     </div>
     
@@ -263,17 +387,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/c901ebd9.html" class="pre-post btn btn-default" title='Mdadm命令详解'>
+    <a href="/4f3a6d14.html" class="pre-post btn btn-default" title='入门Ansible'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            Mdadm命令详解</span>
+            入门Ansible</span>
     </a>
     
     
-    <a href="/404.html" class="next-post btn btn-default" title=''>
+    <a href="/36c4f4bb.html" class="next-post btn btn-default" title='ChatGPT使用'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            </span><i class="fa fa-angle-right fa-fw"></i>
+            ChatGPT使用</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -286,7 +410,7 @@
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%8E%B7%E5%8F%96openAI-%E7%9A%84key"><span class="toc-text">一、获取openAI 的key</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%85%B3%E6%B3%A8%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-text">1.关注公众号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BE%93%E5%85%A5%E5%85%B3%E9%94%AE%E5%AD%97%E8%8E%B7%E5%8F%96key"><span class="toc-text">2.输入关键字获取key</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">二、使用方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="toc-text">三、测试结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BD%91%E7%AB%99%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">四、网站使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%BE%E7%BD%AE%E9%80%89%E9%A1%B9%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.设置选项介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.使用存在的问题介绍</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mdadm%E5%91%BD%E4%BB%A4%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="toc-text">mdadm命令常见参数解释：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BAraid10%E9%98%B5%E5%88%97"><span class="toc-text">搭建raid10阵列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mdadm%E7%AE%A1%E7%90%86RAID10%E9%98%B5%E5%88%97%E2%80%93%E6%A8%A1%E6%8B%9F%E7%A3%81%E7%9B%98%E6%8D%9F%E5%9D%8F%E5%90%8E%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-text">mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mdadm%E5%88%9B%E5%BB%BARAID%E9%98%B5%E5%88%97%E2%80%93RAID5-%E7%83%AD%E5%A4%87%E7%9B%98"><span class="toc-text">mdadm创建RAID阵列–RAID5+热备盘</span></a></li></ol>
         
     </div>
 </aside>
