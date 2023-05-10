@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>Python基础环境安装教程</title>
+      <link href="/74b57a6d.html"/>
+      <url>/74b57a6d.html</url>
+      
+        <content type="html"><![CDATA[<p>好的，以下是使用Markdown方式写Python环境安装和Pycharm环境安装的教程，并附带图片，图片也使用Markdown方式进行显示。</p><h1 id="Python环境安装和Pycharm环境安装"><a href="#Python环境安装和Pycharm环境安装" class="headerlink" title="Python环境安装和Pycharm环境安装"></a>Python环境安装和Pycharm环境安装</h1><h2 id="Python环境安装"><a href="#Python环境安装" class="headerlink" title="Python环境安装"></a>Python环境安装</h2><ol><li>打开Python官网：<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></li><li>在下载页面中，选择适合你操作系统的Python版本，点击下载。<br><img src="/../images/pythonversion.jpg" alt="Python下载页面"></li><li>下载完成后，双击安装程序，按照提示进行安装。</li><li>在安装过程中，记得勾选“Add Python to PATH”选项，这样可以方便在命令行中使用Python。<br><img src="/../images/pythonpath.jpg" alt="Python安装页面"></li><li>安装完成后，打开命令行，输入<code>python</code>，如果出现以下信息，则说明Python环境已经安装成功。<pre><code>Python 3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)] on win32</code></pre></li></ol><h2 id="Pycharm环境安装"><a href="#Pycharm环境安装" class="headerlink" title="Pycharm环境安装"></a>Pycharm环境安装</h2><ol><li>打开Pycharm官网：<a href="https://www.jetbrains.com/pycharm/download/">https://www.jetbrains.com/pycharm/download/</a></li><li>在下载页面中，选择适合你操作系统的Pycharm版本，点击下载。<br><img src="/../images/pycharmd.png" alt="Pycharm下载页面"></li><li>下载完成后，双击安装程序，按照提示进行安装。</li><li>在安装过程中，可以选择安装的组件，也可以使用默认设置。<br><img src="/../images/pycharmpath.png" alt="Pycharm安装页面"></li><li>安装完成后，打开Pycharm，选择创建一个新项目，或者打开一个已有的项目。<br><img src="/../images/pythonpro.png" alt="Pycharm主界面"></li></ol><p>至此，Python环境和Pycharm环境已经安装完成。可以开始愉快的Python编程啦！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小爱音箱智能家居控制</title>
+      <link href="/4a08a452.html"/>
+      <url>/4a08a452.html</url>
+      
+        <content type="html"><![CDATA[<p>小爱音箱是一款智能音箱，可以通过语音控制智能家居设备。以下是小爱音箱智能家居控制的介绍：</p><h2 id="支持的智能家居设备"><a href="#支持的智能家居设备" class="headerlink" title="支持的智能家居设备"></a>支持的智能家居设备</h2><p>小爱音箱支持多种智能家居设备，包括但不限于：</p><ul><li>灯光设备：如智能灯泡、智能灯带等；</li><li>空调设备：如智能空调、智能风扇等；</li><li>家电设备：如智能电视、智能音响等；</li><li>安防设备：如智能门锁、智能摄像头等；</li><li>其他设备：如智能窗帘、智能插座等。<br><img src="/../images/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85.png" alt="image"></li></ul><h2 id="控制方式"><a href="#控制方式" class="headerlink" title="控制方式"></a>控制方式</h2><p>小爱音箱可以通过语音控制智能家居设备，也可以通过小爱同学App进行控制。以下是具体的控制方式：</p><h3 id="语音控制"><a href="#语音控制" class="headerlink" title="语音控制"></a>语音控制</h3><p>用户可以通过语音控制小爱音箱，例如：</p><ul><li>“小爱同学，打开卧室的灯。”</li><li>“小爱同学，关闭客厅的电视。”</li><li>“小爱同学，调高客厅的温度。”</li></ul><h3 id="小爱同学App控制"><a href="#小爱同学App控制" class="headerlink" title="小爱同学App控制"></a>小爱同学App控制</h3><p>用户可以通过小爱同学App进行智能家居设备的控制，例如：</p><ul><li>在App中添加智能家居设备；</li><li>在App中设置智能家居设备的定时开关；</li><li>在App中查看智能家居设备的使用记录。<br><img src="/../images/xiaomiapp.jpg" alt="image"></li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>小爱音箱是一款智能音箱，可以通过语音控制智能家居设备。用户可以通过语音控制或者小爱同学App进行控制，支持多种智能家居设备。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT科技 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 小米 </tag>
+            
+            <tag> 智能家居 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>frp内容穿透后台启动</title>
       <link href="/fe1704c8.html"/>
       <url>/fe1704c8.html</url>
