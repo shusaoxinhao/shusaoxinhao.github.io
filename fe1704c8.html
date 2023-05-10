@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="老陕小张">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.4.38">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://skillixx.com">
+    <!--SEO-->
+
+<meta name="keywords" content="Linux,frp,win" />
+
+
+<meta name="description" content="Frp后台自动启动的几个方法本文介绍了在Linux和Windows系统中实现Frp后台自动启动的几种方法。
+Linux系统方法一：使用nohup来启动使用nohup命令可以在后台启动Frp，具体..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    frp内容穿透后台启动 |
+    
+    老陕小张
+</title>
+
+<link rel="alternate" href="/atom.xml" title="老陕小张" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+
+
+
+    
+<meta name="baidu-site-verification" content="codeva-ncXCwmrnef" />
+
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /../img/bj.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='老陕小张'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive life-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                老陕小张学技术接地气
+            </h2>
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://skillixx.com">
+                        老陕小张</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/IT科技/"><i class="fa "></i>
+                                IT科技</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/编程教程/"><i class="fa "></i>
+                                编程教程</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/常用工具/"><i class="fa "></i>
+                                常用工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/AI话题/"><i class="fa "></i>
+                                AI话题</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/关于我们/"><i class="fa "></i>
+                                关于我们</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="frp内容穿透后台启动">
+            
+            frp内容穿透后台启动
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a> <a class="tag-none-link" href="/tags/frp/" rel="tag">frp</a> <a class="tag-none-link" href="/tags/win/" rel="tag">win</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2023/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Frp后台自动启动的几个方法"><a href="#Frp后台自动启动的几个方法" class="headerlink" title="Frp后台自动启动的几个方法"></a>Frp后台自动启动的几个方法</h1><p>本文介绍了在Linux和Windows系统中实现Frp后台自动启动的几种方法。</p>
+<h2 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h2><h3 id="方法一：使用nohup来启动"><a href="#方法一：使用nohup来启动" class="headerlink" title="方法一：使用nohup来启动"></a>方法一：使用nohup来启动</h3><p>使用nohup命令可以在后台启动Frp，具体步骤如下：</p>
+<ol>
+<li>打开终端，输入以下命令启动frps：</li>
+</ol>
+<pre><code>nohup /path/to/your/fprs -c-c /path/to/your/frps.ini &amp;
+</code></pre>
+<ol start="2">
+<li>如果要查看日志，可以使用以下命令：</li>
+</ol>
+<pre><code>cat nohup.out
+</code></pre>
+<ol start="3">
+<li>同样的，使用以下命令启动frpc：</li>
+</ol>
+<pre><code>nohup /path/to/your/fprc -c-c /path/to/your/frpc.ini &amp;
+</code></pre>
+<h3 id="方法二：使用systemctl来控制启动"><a href="#方法二：使用systemctl来控制启动" class="headerlink" title="方法二：使用systemctl来控制启动"></a>方法二：使用systemctl来控制启动</h3><p>使用systemctl命令可以方便地控制Frp的启动和停止，具体步骤如下：</p>
+<ol>
+<li>在<code>/lib/systemd/system/frps.service</code>文件中写入以下内容：</li>
+</ol>
+<pre><code>[Unit]
+Description=fraps service
+After=network.target syslog.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/your/path/frps -c /your/path/frps.ini
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<ol start="2">
+<li>启动frps：</li>
+</ol>
+<pre><code>sudo systemctl start frps
+</code></pre>
+<ol start="3">
+<li>打开自启动：</li>
+</ol>
+<pre><code>sudo systemctl enable frps
+</code></pre>
+<ol start="4">
+<li>重启应用：</li>
+</ol>
+<pre><code>sudo systemctl restart frps
+</code></pre>
+<ol start="5">
+<li>停止应用：</li>
+</ol>
+<pre><code>sudo systemctl stop frps
+</code></pre>
+<ol start="6">
+<li>查看应用的日志：</li>
+</ol>
+<pre><code>sudo systemctl status frps
+</code></pre>
+<h3 id="方法三：使用supervisor来控制"><a href="#方法三：使用supervisor来控制" class="headerlink" title="方法三：使用supervisor来控制"></a>方法三：使用supervisor来控制</h3><p>使用supervisor可以方便地控制Frp的启动和停止，具体步骤如下：</p>
+<ol>
+<li>安装supervisor：</li>
+</ol>
+<pre><code>sudo apt install supervisor
+</code></pre>
+<ol start="2">
+<li>在<code>/etc/supervisor/conf.d</code>目录下创建<code>frp.conf</code>文件，写入以下内容：</li>
+</ol>
+<pre><code>[program:frp]
+command = /your/path/frps -c /your/path/frps.ini
+autostart = true
+</code></pre>
+<ol start="3">
+<li>重新加载supervisor：</li>
+</ol>
+<pre><code>sudo systemctl restart supervisor
+</code></pre>
+<ol start="4">
+<li>查看supervisor运行状态：</li>
+</ol>
+<pre><code>sudo supervisorctl status
+</code></pre>
+<h2 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h2><h3 id="方法一：使用任务计划程序"><a href="#方法一：使用任务计划程序" class="headerlink" title="方法一：使用任务计划程序"></a>方法一：使用任务计划程序</h3><p>使用任务计划程序可以实现Frp开机自启，具体步骤如下：</p>
+<ol>
+<li>打开任务计划程序，点击“创建任务”按钮。</li>
+<li>输入任务名称，选择“使用最高权限运行”选项卡，然后选择“配置为Windows 7、Windows Server 2008 R2”。</li>
+<li>在“触发器”选项卡中，选择“开机时”作为触发器。</li>
+<li>在“操作”选项卡中，输入Frp的启动命令，比如：</li>
+</ol>
+<pre><code>C:\frp\frpc.exe -c C:\frp\frpc.ini
+</code></pre>
+<ol start="5">
+<li>点击“确定”按钮，保存任务。</li>
+</ol>
+<h3 id="方法二：使用注册表"><a href="#方法二：使用注册表" class="headerlink" title="方法二：使用注册表"></a>方法二：使用注册表</h3><p>使用注册表可以实现Frp开机自启，具体步骤如下：</p>
+<ol>
+<li>按下Win+R键，打开运行对话框，输入“regedit”打开注册表编辑器。</li>
+<li>找到以下路径：</li>
+</ol>
+<pre><code>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+</code></pre>
+<ol start="3">
+<li>在右侧窗口中，右键点击空白处，选择“新建”-&gt;“字符串值”。</li>
+<li>输入一个名称，比如“Frp”，然后双击该项，输入Frp的启动命令，比如：</li>
+</ol>
+<pre><code>C:\frp\frpc.exe -c C:\frp\frpc.ini
+</code></pre>
+<ol start="5">
+<li>关闭注册表编辑器，重启电脑，Frp客户端就会自动启动了。</li>
+</ol>
+<p>以上是在Linux和Windows系统中实现Frp后台自动启动的几种方法。</p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/../images/alypay.png"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/../images/wxpay.png"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://skillixxx.com" target="_blank">老陕小张</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/4f3a6d14.html" class="next-post btn btn-default" title='入门Ansible'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            入门Ansible</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Frp%E5%90%8E%E5%8F%B0%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E7%9A%84%E5%87%A0%E4%B8%AA%E6%96%B9%E6%B3%95"><span class="toc-text">Frp后台自动启动的几个方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%B3%BB%E7%BB%9F"><span class="toc-text">Linux系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8nohup%E6%9D%A5%E5%90%AF%E5%8A%A8"><span class="toc-text">方法一：使用nohup来启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8systemctl%E6%9D%A5%E6%8E%A7%E5%88%B6%E5%90%AF%E5%8A%A8"><span class="toc-text">方法二：使用systemctl来控制启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E4%BD%BF%E7%94%A8supervisor%E6%9D%A5%E6%8E%A7%E5%88%B6"><span class="toc-text">方法三：使用supervisor来控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E7%B3%BB%E7%BB%9F"><span class="toc-text">Windows系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E7%A8%8B%E5%BA%8F"><span class="toc-text">方法一：使用任务计划程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%B3%A8%E5%86%8C%E8%A1%A8"><span class="toc-text">方法二：使用注册表</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2020
+                    
+                </span> |
+                <span>
+                    Powered by <a href="" class="copyright-links" target="_blank" rel="nofollow">老陕小张</a>
+                </span> 
+                <!-- <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow"></a>
+                </span> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

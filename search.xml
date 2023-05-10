@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>frp内容穿透后台启动</title>
+      <link href="/fe1704c8.html"/>
+      <url>/fe1704c8.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="Frp后台自动启动的几个方法"><a href="#Frp后台自动启动的几个方法" class="headerlink" title="Frp后台自动启动的几个方法"></a>Frp后台自动启动的几个方法</h1><p>本文介绍了在Linux和Windows系统中实现Frp后台自动启动的几种方法。</p><h2 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h2><h3 id="方法一：使用nohup来启动"><a href="#方法一：使用nohup来启动" class="headerlink" title="方法一：使用nohup来启动"></a>方法一：使用nohup来启动</h3><p>使用nohup命令可以在后台启动Frp，具体步骤如下：</p><ol><li>打开终端，输入以下命令启动frps：</li></ol><pre><code>nohup /path/to/your/fprs -c-c /path/to/your/frps.ini &amp;</code></pre><ol start="2"><li>如果要查看日志，可以使用以下命令：</li></ol><pre><code>cat nohup.out</code></pre><ol start="3"><li>同样的，使用以下命令启动frpc：</li></ol><pre><code>nohup /path/to/your/fprc -c-c /path/to/your/frpc.ini &amp;</code></pre><h3 id="方法二：使用systemctl来控制启动"><a href="#方法二：使用systemctl来控制启动" class="headerlink" title="方法二：使用systemctl来控制启动"></a>方法二：使用systemctl来控制启动</h3><p>使用systemctl命令可以方便地控制Frp的启动和停止，具体步骤如下：</p><ol><li>在<code>/lib/systemd/system/frps.service</code>文件中写入以下内容：</li></ol><pre><code>[Unit]Description=fraps serviceAfter=network.target syslog.targetWants=network.target[Service]Type=simpleExecStart=/your/path/frps -c /your/path/frps.ini[Install]WantedBy=multi-user.target</code></pre><ol start="2"><li>启动frps：</li></ol><pre><code>sudo systemctl start frps</code></pre><ol start="3"><li>打开自启动：</li></ol><pre><code>sudo systemctl enable frps</code></pre><ol start="4"><li>重启应用：</li></ol><pre><code>sudo systemctl restart frps</code></pre><ol start="5"><li>停止应用：</li></ol><pre><code>sudo systemctl stop frps</code></pre><ol start="6"><li>查看应用的日志：</li></ol><pre><code>sudo systemctl status frps</code></pre><h3 id="方法三：使用supervisor来控制"><a href="#方法三：使用supervisor来控制" class="headerlink" title="方法三：使用supervisor来控制"></a>方法三：使用supervisor来控制</h3><p>使用supervisor可以方便地控制Frp的启动和停止，具体步骤如下：</p><ol><li>安装supervisor：</li></ol><pre><code>sudo apt install supervisor</code></pre><ol start="2"><li>在<code>/etc/supervisor/conf.d</code>目录下创建<code>frp.conf</code>文件，写入以下内容：</li></ol><pre><code>[program:frp]command = /your/path/frps -c /your/path/frps.iniautostart = true</code></pre><ol start="3"><li>重新加载supervisor：</li></ol><pre><code>sudo systemctl restart supervisor</code></pre><ol start="4"><li>查看supervisor运行状态：</li></ol><pre><code>sudo supervisorctl status</code></pre><h2 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h2><h3 id="方法一：使用任务计划程序"><a href="#方法一：使用任务计划程序" class="headerlink" title="方法一：使用任务计划程序"></a>方法一：使用任务计划程序</h3><p>使用任务计划程序可以实现Frp开机自启，具体步骤如下：</p><ol><li>打开任务计划程序，点击“创建任务”按钮。</li><li>输入任务名称，选择“使用最高权限运行”选项卡，然后选择“配置为Windows 7、Windows Server 2008 R2”。</li><li>在“触发器”选项卡中，选择“开机时”作为触发器。</li><li>在“操作”选项卡中，输入Frp的启动命令，比如：</li></ol><pre><code>C:\frp\frpc.exe -c C:\frp\frpc.ini</code></pre><ol start="5"><li>点击“确定”按钮，保存任务。</li></ol><h3 id="方法二：使用注册表"><a href="#方法二：使用注册表" class="headerlink" title="方法二：使用注册表"></a>方法二：使用注册表</h3><p>使用注册表可以实现Frp开机自启，具体步骤如下：</p><ol><li>按下Win+R键，打开运行对话框，输入“regedit”打开注册表编辑器。</li><li>找到以下路径：</li></ol><pre><code>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code></pre><ol start="3"><li>在右侧窗口中，右键点击空白处，选择“新建”-&gt;“字符串值”。</li><li>输入一个名称，比如“Frp”，然后双击该项，输入Frp的启动命令，比如：</li></ol><pre><code>C:\frp\frpc.exe -c C:\frp\frpc.ini</code></pre><ol start="5"><li>关闭注册表编辑器，重启电脑，Frp客户端就会自动启动了。</li></ol><p>以上是在Linux和Windows系统中实现Frp后台自动启动的几种方法。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常用工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> frp </tag>
+            
+            <tag> win </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>入门Ansible</title>
       <link href="/4f3a6d14.html"/>
       <url>/4f3a6d14.html</url>

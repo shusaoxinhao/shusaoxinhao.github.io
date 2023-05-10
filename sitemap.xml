@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://skillixx.com/fe1704c8.html</loc>
+    
+    <lastmod>2023-05-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://skillixx.com/4f3a6d14.html</loc>
     
     <lastmod>2023-05-09</lastmod>
@@ -40,7 +49,7 @@
 
   <url>
     <loc>https://skillixx.com/</loc>
-    <lastmod>2023-05-09</lastmod>
+    <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -48,21 +57,35 @@
   
   <url>
     <loc>https://skillixx.com/tags/Linux/</loc>
-    <lastmod>2023-05-09</lastmod>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://skillixx.com/tags/frp/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://skillixx.com/tags/win/</loc>
+    <lastmod>2023-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://skillixx.com/tags/ChatGPT/</loc>
-    <lastmod>2023-05-09</lastmod>
+    <lastmod>2023-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://skillixx.com/tags/Ansible/</loc>
-    <lastmod>2023-05-09</lastmod>
+    <lastmod>2023-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -71,14 +94,14 @@
   
   <url>
     <loc>https://skillixx.com/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2023-05-09</lastmod>
+    <lastmod>2023-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://skillixx.com/categories/AI%E8%AF%9D%E9%A2%98/</loc>
-    <lastmod>2023-05-09</lastmod>
+    <lastmod>2023-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
