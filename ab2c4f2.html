@@ -1,0 +1,534 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="老陕小张">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.4.38">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://skillixx.com">
+    <!--SEO-->
+
+<meta name="keywords" content="Linux,网络,DNS,window" />
+
+
+<meta name="description" content="一、环境介绍配置根据自己的电脑配置，设置
+
+
+
+系统说明
+服务器&#x2F;Linux
+测试客户端win
+
+
+
+系统版本
+Centos7.8
+window10专业版
+
+
+配置
+2G,4cpu
+4..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    DNS入门搭建 |
+    
+    老陕小张
+</title>
+
+<link rel="alternate" href="/atom.xml" title="老陕小张" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+
+
+
+    
+<meta name="baidu-site-verification" content="codeva-ncXCwmrnef" />
+
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /../img/bj.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='老陕小张'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive life-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                老陕小张学技术接地气
+            </h2>
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://skillixx.com">
+                        老陕小张</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/IT科技/"><i class="fa "></i>
+                                IT科技</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/编程教程/"><i class="fa "></i>
+                                编程教程</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/常用工具/"><i class="fa "></i>
+                                常用工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/AI话题/"><i class="fa "></i>
+                                AI话题</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/关于我们/"><i class="fa "></i>
+                                关于我们</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="DNS入门搭建">
+            
+            DNS入门搭建
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/DNS/" rel="tag">DNS</a> <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a> <a class="tag-none-link" href="/tags/window/" rel="tag">window</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2023/06/09</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、环境介绍"><a href="#一、环境介绍" class="headerlink" title="一、环境介绍"></a>一、环境介绍</h2><p>配置根据自己的电脑配置，设置</p>
+<table>
+<thead>
+<tr>
+<th>系统说明</th>
+<th align="center">服务器&#x2F;Linux</th>
+<th align="center">测试客户端win</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统版本</td>
+<td align="center">Centos7.8</td>
+<td align="center">window10专业版</td>
+</tr>
+<tr>
+<td>配置</td>
+<td align="center">2G,4cpu</td>
+<td align="center">4G,2 vcpu</td>
+</tr>
+</tbody></table>
+<h2 id="二、配置搭建环境"><a href="#二、配置搭建环境" class="headerlink" title="二、配置搭建环境"></a>二、配置搭建环境</h2><p>1.配置网络镜像源</p>
+<pre class=" language-shell"><code class="language-shell">//备份镜像源
+
+[root@xiaozhang ~]# mv /etc/yum.repos.d/CentOS-* /opt/
+
+//下载阿里云网络镜像源
+
+[root@xiaozhang ~]# curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+
+//清除缓存安装包
+
+[root@xiaozhang ~]# yum clena all
+
+//刷新网络镜像源
+
+[root@xiaozhang ~]# yum repolist
+</code></pre>
+<p>2.检查是否关闭Selinux</p>
+<p>检查关闭，如果没有关闭，请关闭Selinx</p>
+<pre class=" language-shell"><code class="language-shell">[root@xiaozhang ~]# getenforce
+Disabled
+</code></pre>
+<p>如何关闭Selinux</p>
+<pre class=" language-shell"><code class="language-shell">//更改配置文件
+
+[root@xiaozhang ~]# sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+
+//关机重启
+
+[root@xiaozhang ~]# reboot
+</code></pre>
+<p>3.放行DNS端口53</p>
+<pre class=" language-shell"><code class="language-shell">//查看防火墙是否启动
+[root@xiaozhang ~]# firewall-cmd --state
+running
+//如果不是防火墙没有启动，无需执行下面的的命令
+[root@xiaozhang ~]# firewall-cmd --zone=public --add-port=53/tcp --permanent
+success
+[root@xiaozhang ~]# firewall-cmd --zone=public --add-port=53/udp --permanent
+success
+[root@xiaozhang ~]# firewall-cmd --reload
+success
+[root@xiaozhang ~]# firewall-cmd --zone=public --list-ports
+53/tcp 53/udp
+</code></pre>
+<h2 id="三、搭建DNS服务"><a href="#三、搭建DNS服务" class="headerlink" title="三、搭建DNS服务"></a>三、搭建DNS服务</h2><p>1.安装DNS软件</p>
+<pre class=" language-shell"><code class="language-shell">[root@xiaozhang ~]# yum install bind-* -y
+</code></pre>
+<p>2.配置文件修改</p>
+<pre class=" language-shell"><code class="language-shell">//打开文件/etc/named.conf
+vim /etc/named.conf
+options &#123;
+        listen-on port 53 &#123; any; &#125;; //更改了监听的IP地址，any表示允许任何IP地址连接
+        listen-on-v6 port 53 &#123; ::1; &#125;;
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        recursing-file  "/var/named/data/named.recursing";
+        secroots-file   "/var/named/data/named.secroots";
+        allow-query     &#123; any; &#125;; //更改了允许查询的IP地址，any表示允许任何IP地址查询
+        recursion yes; //开启了递归查询
+        forwarders &#123;  
+        218.30.19.40;
+        61.134.1.4;
+        114.114.114.114;
+        223.5.5.5;
+        &#125;;  //增加转发域名DNS服务器
+        dnssec-enable no;  //禁用了DNSSEC功能
+        dnssec-validation no;  //禁用了DNSSEC验证
+        /* Path to ISC DLV key */
+        bindkeys-file "/etc/named.root.key";
+        managed-keys-directory "/var/named/dynamic";
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";
+&#125;;
+logging &#123;
+        channel default_debug &#123;
+                file "data/named.run";
+                severity dynamic;
+        &#125;;
+&#125;;
+
+zone "." IN &#123;
+        type hint;
+        file "named.ca";
+&#125;;
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+</code></pre>
+<p>3.配置解析的域名</p>
+<p>解析域名</p>
+<pre class=" language-shell"><code class="language-shell">vim /etc/named.rfc1912.zones
+……
+//正向解析
+zone "skillzhang.com" IN &#123;
+    type master;
+    file "skillzhang.com.zone";
+    allow-update &#123; none; &#125;;
+&#125;;
+//反向解析
+zone "127.168.192.in-addr.arpa" IN &#123;
+        type master;
+        file "192.168.127.arpa";
+        allow-update &#123; none; &#125;;
+&#125;;
+//正向解析文件
+vim skillzhang.com.zone
+$TTL 1D
+@    IN SOA    @ rname.invalid. (
+                    0    ; serial
+                    1D    ; refresh
+                    1H    ; retry
+                    1W    ; expire
+                    3H )    ; minimum
+    NS    @
+    A    192.168.127.100
+www IN A 192.168.127.100
+//反向解析文件
+vim 192.168.127.arpa
+$TTL 1D
+@    IN SOA    skillzhang.com. root (
+                    0    ; serial
+                    1D    ; refresh
+                    1H    ; retry
+                    1W    ; expire
+                    3H )    ; minimum
+    NS    skillzhang.com.
+    A     192.168.127.100
+100 IN PTR skillzhang.com. //100为ip地址
+//启动DNS服务
+[root@xiaozhang named]# systemctl  restart named
+[root@xiaozhang named]# systemctl  enable  named
+Created symlink from /etc/systemd/system/multi-user.target.wants/named.service to /usr/lib/systemd/system/named.service.
+</code></pre>
+<h2 id="四、检查验证服务"><a href="#四、检查验证服务" class="headerlink" title="四、检查验证服务"></a>四、检查验证服务</h2><p>1.Linux系统测试验证</p>
+<p>替换本地DNS服务器地址</p>
+<pre class=" language-shell"><code class="language-shell">//修改本地DNS
+[root@xiaozhang named]# vim /etc/sysconfig/network-scripts/ifcfg-ens33
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=none
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+UUID=94092393-3b2d-40c4-ac97-e406ba043ad9
+DEVICE=ens33
+ONBOOT=yes
+IPADDR=192.168.127.100
+PREFIX=24
+GATEWAY=192.168.127.2
+DNS1=192.168.127.100 //修改
+IPV6_PRIVACY=no
+ZONE=public
+//重新启动网络
+[root@xiaozhang ~]# systemctl  restart network
+</code></pre>
+<p>验证DNS服务解析</p>
+<pre><code>[root@xiaozhang named]# nslookup  //检查命令
+&gt; killbobo.com                     //域名正向解析检查
+Server:         192.168.127.100
+Address:        192.168.127.100#53
+
+** server can&#39;t find killbobo.com: NXDOMAIN
+&gt; 192.168.127.100                  //域名反向解析检查
+100.127.168.192.in-addr.arpa    name = skillzhang.com.
+&gt; baidu.com                        //域名缓存检查
+Server:         192.168.127.100
+Address:        192.168.127.100#53
+
+Non-authoritative answer:
+Name:   baidu.com
+Address: 39.156.66.10
+Name:   baidu.com
+Address: 110.242.68.66
+</code></pre>
+<p>2.Window系统验证</p>
+<p>更改DNS配置</p>
+<p><img src="/../images/winnetwork.png" alt="更改DNS配置"></p>
+<p>验证DNS服务，打开命令行窗口</p>
+<p><img src="/../images/wintest.png" alt="验证DNS服务"></p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/../images/alypay.png"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/../images/wxpay.png"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://skillixxx.com" target="_blank">老陕小张</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/336e2b35.html" class="next-post btn btn-default" title='Podman入门'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Podman入门</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%8E%AF%E5%A2%83%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、环境介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="toc-text">二、配置搭建环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%90%AD%E5%BB%BADNS%E6%9C%8D%E5%8A%A1"><span class="toc-text">三、搭建DNS服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%A3%80%E6%9F%A5%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1"><span class="toc-text">四、检查验证服务</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2020
+                    
+                </span> |
+                <span>
+                    Powered by <a href="" class="copyright-links" target="_blank" rel="nofollow">老陕小张</a>
+                </span> 
+                <!-- <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow"></a>
+                </span> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
