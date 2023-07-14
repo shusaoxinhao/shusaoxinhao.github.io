@@ -1,0 +1,1175 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="老陕小张">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.4.38">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://skillixx.com">
+    <!--SEO-->
+
+<meta name="keywords" content="Linux,云计算,Jenkins" />
+
+
+<meta name="description" content="一、DevOps介绍软件开发最开始是由两个团队组成:
+
+开发计划由开发团队从头开始设计和整体系统的构建。需要系统不停的迭代更新。
+运维团队将开发团队的Code进行测试后部署上线。希望系统稳定安全..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Jenkins从入门到实战 |
+    
+    老陕小张
+</title>
+
+<link rel="alternate" href="/atom.xml" title="老陕小张" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+
+
+
+    
+<meta name="baidu-site-verification" content="codeva-ncXCwmrnef" />
+
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /../img/bj.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='老陕小张'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive life-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                老陕小张学技术接地气
+            </h2>
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://skillixx.com">
+                        老陕小张</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/IT科技/"><i class="fa "></i>
+                                IT科技</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/编程教程/"><i class="fa "></i>
+                                编程教程</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/常用工具/"><i class="fa "></i>
+                                常用工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/AI话题/"><i class="fa "></i>
+                                AI话题</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/关于我们/"><i class="fa "></i>
+                                关于我们</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Jenkins从入门到实战">
+            
+            Jenkins从入门到实战
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Jenkins/" rel="tag">Jenkins</a> <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a> <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2023/07/14</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、DevOps介绍"><a href="#一、DevOps介绍" class="headerlink" title="一、DevOps介绍"></a>一、DevOps介绍</h2><p>软件开发最开始是由两个团队组成:</p>
+<ul>
+<li>开发计划由开发团队从头开始设计和整体系统的构建。需要系统不停的迭代更新。</li>
+<li>运维团队将开发团队的Code进行测试后部署上线。希望系统稳定安全运行。</li>
+</ul>
+<p>这看似两个目标不同的团队需要协同完成一个软件的开发。</p>
+<p>在开发团队指定好计划并完成coding后，需要提供到运维团队。</p>
+<p>运维团队向开发团队反馈需要修复的BUG以及一些需要返工的任务。</p>
+<p>这时开发团队需要经常等待运维团队的反馈。这无疑延长了事件并推迟了整个软件开发的周期。</p>
+<p>会有一种方式，在开发团队等待的时候，让开发团队转移到下一个项目中。等待运维团队为之前的代码提供反馈。</p>
+<p>可是这样就意味着一个完整的项目需要一个更长的周期才可以开发出最终代码。</p>
+<hr>
+<p>基于现在的互联网现状，更推崇敏捷式开发，这样就导致项目的迭代速度更快，但是由于开发团队与运维团队的沟通问题，会导致新版本上线的时间成本很高。</p>
+<p>这又违背的敏捷式开发的最初的目的。那么如果让开发团队和运维团队整合到成一个团队，协同应对一套软件呢?这就被称DevOps.DevOps，字面意思是Development &amp;Operations的缩写，也就是开发&amp;运维</p>
+<p>虽然字面意思只涉及到开发团队和运维团队，其实QA测试团队也是参与其中的。</p>
+<p>网上可以查看到DevOops的符合类似一个无穷大符合</p>
+<p><img src="/../images/devopspng.png"></p>
+<h2 id="二、Code阶段工具"><a href="#二、Code阶段工具" class="headerlink" title="二、Code阶段工具"></a>二、Code阶段工具</h2><h3 id="2-1-Git安装"><a href="#2-1-Git安装" class="headerlink" title="2.1 Git安装"></a>2.1 Git安装</h3><ul>
+<li><p>Linux安装</p>
+<pre class=" language-shell"><code class="language-shell">yum install -y git
+</code></pre>
+</li>
+<li><p>Window安装</p>
+</li>
+</ul>
+<h3 id="2-2-GitLab安装"><a href="#2-2-GitLab安装" class="headerlink" title="2.2 GitLab安装"></a>2.2 GitLab安装</h3><ul>
+<li><p>硬件配置必须大于4G内存</p>
+</li>
+<li><p>拉取GitLab镜像</p>
+<pre class=" language-shell"><code class="language-shell">docker pull gitlab/gitlab-ce
+</code></pre>
+</li>
+<li><p>准备docker-compose.yml</p>
+<pre class=" language-shell"><code class="language-shell">version: "3.1"
+services:
+  gitlab:
+    image: "gitlab/gitlab-ce:latest"
+    restart: always
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url "http://192.168.75.100:8929"
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+    ports:
+      - "8929:8929"
+      - "2224:2224"
+    volumes:
+      - "./config:/etc/gitlab"
+      - "./logs:/var/log/gitlab"
+      - "./data:/var/opt/gitlab"
+</code></pre>
+</li>
+<li><p>启动容器（需要稍微等一下）</p>
+<pre class=" language-shell"><code class="language-shell">docker-compose  up -d
+</code></pre>
+</li>
+<li><p>打开浏览器访问GitLab首页<a target="_blank" rel="noopener" href="http://192.168.75.100:8929/">http://192.168.75.100:8929/</a></p>
+<p><img src="/../images/gitlaburl.png"></p>
+</li>
+<li><p>登录GitLab</p>
+<p>用户：root</p>
+<p>密码在 initial_root_password文件中</p>
+<pre class=" language-shell"><code class="language-shell">cat config/initial_root_password
+</code></pre>
+</li>
+<li><p>创建新项目在gitlab中</p>
+</li>
+</ul>
+<p><img src="/../images/jsgitnew.png"></p>
+<p><img src="/../images/jsnew1.png"></p>
+<p><img src="/../images/jsnew2.png"></p>
+<ul>
+<li>将源代码上传到gitlab中，我这里使用window中git工具</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#进入项目代码文件夹
+cd demoHello
+#初始化git仓库
+git init
+#添加文件
+git add .
+#提交到本地
+git commit -m "代码v1"
+#配置远端仓库,点击gitlab项目中的clone查找项目仓库地址
+git remote add origin http://192.168.75.100:8929/root/demoHello.git
+#push到远程仓库某分支，完成代码上传
+git push -u origin "master"
+</code></pre>
+<ul>
+<li>查看代码上传结果</li>
+</ul>
+<p><img src="/../images/okgit.png"></p>
+<h2 id="三、Build阶段工具"><a href="#三、Build阶段工具" class="headerlink" title="三、Build阶段工具"></a>三、Build阶段工具</h2><p>构建Java项目的工具一般有二种选择，一个是Maven,一个是Gradle。</p>
+<p>这里我们选择Maven作为项目的编译工具。</p>
+<p>具体安装Maven流程不做阐述，但是需要确保配置好Maven仓库以及JDK编译版本。</p>
+<h2 id="四、Operate阶段工具"><a href="#四、Operate阶段工具" class="headerlink" title="四、Operate阶段工具"></a>四、Operate阶段工具</h2><p>!部署过程，会采用Docker进行部署，暂时只安装Docker即可，后续还需要安装kubenetes</p>
+<h3 id="4-1-Docker-安装"><a href="#4-1-Docker-安装" class="headerlink" title="4.1 Docker 安装"></a>4.1 Docker 安装</h3><ul>
+<li><p>准备测试环境&amp;生产环境</p>
+</li>
+<li><p>下载Docker依赖组件</p>
+<pre class=" language-shell"><code class="language-shell">yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+</code></pre>
+</li>
+<li><p>设置下载Docker的镜像源为阿里云</p>
+<pre class=" language-shell"><code class="language-shell">yum-config-manager \
+    --add-repo \
+    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+</code></pre>
+</li>
+<li><p>安装Docker服务</p>
+<pre class=" language-shell"><code class="language-shell">yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+</code></pre>
+</li>
+<li><p>安装成功后，启动Docker并设置开机自启</p>
+<pre class=" language-shell"><code class="language-shell">systemctl start docker
+systemctl enable docker
+</code></pre>
+</li>
+<li><p>测试安装</p>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# docker version
+Client: Docker Engine - Community
+ Version:           24.0.4
+ API version:       1.43
+ Go version:        go1.20.5
+ Git commit:        3713ee1
+ Built:             Fri Jul  7 14:54:21 2023
+ OS/Arch:           linux/amd64
+ Context:           default
+</code></pre>
+</li>
+</ul>
+<h3 id="4-2-Docker-Compose安装"><a href="#4-2-Docker-Compose安装" class="headerlink" title="4.2 Docker-Compose安装"></a>4.2 Docker-Compose安装</h3><pre class=" language-shell"><code class="language-shell">#访问下载地址
+https://github.com/docker/compose/tags
+#根据需要下载相应的版本
+wget https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-linux-x86_64 
+#将docker-compose-linux-x86_64 到/usr/local/bin
+mv docker-compose-linux-x86_64 /usr/local/bin
+#赋予执行取消
+chmod a+x /usr/local/bin/docker-compose
+#验证是否安装成功
+[root@jenkins ~]# docker-compose  version
+Docker Compose version v2.19.1
+</code></pre>
+<h2 id="五、Integrate工具"><a href="#五、Integrate工具" class="headerlink" title="五、Integrate工具"></a>五、Integrate工具</h2><p>持续集成、持续部署CI、CD的工具很多，其中Jenkins是一个开源的持续集成平台Jenkins涉及到将编写完毕的代码发布到测试环境和生产环境的任务，并且还涉及到了构建项目等任务。<br>Jenkins需要大量的插件保证工作，安装成本较高，下面会基于Docker搭建Jenkins。</p>
+<h3 id="5-1-Jenkins介绍"><a href="#5-1-Jenkins介绍" class="headerlink" title="5.1 Jenkins介绍"></a>5.1 Jenkins介绍</h3><p>Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具Jenkins应用广泛，大多数互联网公司都采用Jenkins配合GitLab、Docker、K8s作为实现DevOps的核心工具.Jenkins最强大的就在于插件，Jenkins官方提供了大量的插件库，来自动化CI&#x2F;CD过程中的各种琐碎功能。</p>
+<p>Jenkins最主要的工作就是将GitLab上可以构建的工程代码拉取并且进行构建，再根据流程可以选择发布到测试环境或是生产环境。</p>
+<p>一般是GitLab上的代码经过大量的测试后，确定发行版本，再发布到生产环境。</p>
+<p><img src="/../images/jenkins.png"></p>
+<p>CI&#x2F;CD可以理解为:</p>
+<ul>
+<li><p>CI过程即是通过Jenkins将代码拉取、构建、制作镜像交给测试人员测试。</p>
+<p>1.持续集成:让软件代码可以持续的集成到主干上，并自动构建和测试。</p>
+</li>
+<li><p>CD过程即是通过Jenkins将打好标签的发行版本代码拉取、构建、制作镜像交给运维人员部署</p>
+<p>1.持续交付:让经过持续集成的代码可以进行手动部署。</p>
+<p>2.持续部署:让可以持续交付的代码随时随地的自动化部署。</p>
+<p><img src="/../images/CICD.png"></p>
+</li>
+</ul>
+<h3 id="5-2-Jenkins安装"><a href="#5-2-Jenkins安装" class="headerlink" title="5.2 Jenkins安装"></a>5.2 Jenkins安装</h3><ul>
+<li>了解一下jenkins官网是jenkins.io</li>
+<li>拉取Jenkins镜像</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">docker pull jenkins/jenkins:2.413-jdk11
+</code></pre>
+<ul>
+<li>编写docker-compose.yml</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">version: "3.1"
+services:
+  jenkins:
+    image: jenkins/jenkins:2.413-jdk11
+    container_name: jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - ./data/:/var/jenkins_home/
+</code></pre>
+<ul>
+<li>启动Jenkins容器</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# docker-compose  up -d
+</code></pre>
+<ul>
+<li>日志报错修改</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell"># 查看日志
+[root@jenkins ~]# docker logs -f  jenkins
+touch: cannot touch '/var/jenkins_home/copy_reference_file.log': Permission denied
+Can not write to /var/jenkins_home/copy_reference_file.log. Wrong volume permissions?
+# 修改bug
+[root@jenkins ~]# chmod -R  777 data/
+# 重新启动容器
+[root@jenkins ~]# docker-compose  restart
+[+] Restarting 1/1
+ ✔ Container jenkins  Started 
+# 查看日志，如果显示密码，则服务正常
+[root@jenkins ~]# docker logs -f  jenkins
+</code></pre>
+<ul>
+<li>访问Jenkins服务在浏览器<a target="_blank" rel="noopener" href="http://192.168.75.101:8080/">http://192.168.75.101:8080</a></li>
+</ul>
+<p><img src="/../images/jenkinsurl.png"></p>
+<ul>
+<li><p>重新启动Jenkins容器后，由于Jenkins需要下载大量内容，但是由于默认下载地址下载速度较慢，需要重新设置下载地址为国内镜像站</p>
+</li>
+<li><p>解锁Jenkins,查看Jenkins密码,并把命名填充</p>
+</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# cat data/secrets/initialAdminPassword
+98ff1758a1c34e6aad615361b9975317
+</code></pre>
+<ul>
+<li>插件安装教学，选择插件来安装，最后选择安装，耐心等待，有可能安装失败，可以点击“继续”，可以进入Jenkins官网进行插件下载</li>
+</ul>
+<p><img src="/../images/jsan.png"></p>
+<ul>
+<li>创建管理员名，并选择默认访问路径</li>
+</ul>
+<p><img src="/../images/mg.png"></p>
+<ul>
+<li>安装完成，来到Jenkins管理界面</li>
+</ul>
+<p><img src="/../images/alerjs.png"></p>
+<ul>
+<li>安装本实验需要的插件，点击Manage Jenkins&#x2F;插件管理&#x2F;可选插件，依次安装本实验需要的基础插件git parameter，Publish Over SSH</li>
+</ul>
+<p><img src="/../images/jsdl.png"></p>
+<h3 id="5-3-Jenkins-入门配置"><a href="#5-3-Jenkins-入门配置" class="headerlink" title="5.3 Jenkins 入门配置"></a>5.3 Jenkins 入门配置</h3><h4 id="5-3-1-配置Maven-构建代码"><a href="#5-3-1-配置Maven-构建代码" class="headerlink" title="5.3.1 配置Maven 构建代码"></a>5.3.1 配置Maven 构建代码</h4><ul>
+<li>安装jdk</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#jdk文件下载官网
+https://www.oracle.com/java/technologies/downloads/
+#下载版本
+jdk-8u141-linux-x64.tar.gz
+</code></pre>
+<pre class=" language-shell"><code class="language-shell">tar -xvf jdk-8u141-linux-x64.tar.gz  -C /usr/local/ #解压文件
+</code></pre>
+<ul>
+<li>安装Maven</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#Maven文件下载官网
+https://maven.apache.org/download.cgi
+#下载版本
+apache-maven-3.5.4.zip
+</code></pre>
+<pre class=" language-shell"><code class="language-shell">unzip apache-maven-3.5.4.zip
+mv apache-maven-3.5.4 /usr/local/maven  #解压文件
+</code></pre>
+<ul>
+<li>配置maven国内源</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">vim /usr/local/maven/conf/settings.xml
+#159行添加国内源配置
+    <mirror>
+       <id>alimaven</id>
+       <name>aliyun maven</name>
+       <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+       <mirrorOf>central</mirrorOf>
+     </mirror>
+     </mirrors>
+</code></pre>
+<ul>
+<li>配置jdk编译选项</li>
+</ul>
+<pre><code>vim /usr/local/maven/conf/settings.xml
+# maven 默认使用 jdk1.8 版本，找到&lt;profiles&gt;标签，往其中添加：
+#253行添加
+
+&lt;profile&gt;
+    &lt;id&gt;jdk8&lt;/id&gt;
+    &lt;activation&gt;
+     &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+        &lt;jdk&gt;1.8&lt;/jdk&gt;
+    &lt;/activation&gt;
+    &lt;properties&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+        &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
+    &lt;/properties&gt;
+&lt;/profile&gt;
+</code></pre>
+<ul>
+<li>启动jdk8</li>
+</ul>
+<pre><code>vim /usr/local/maven/conf/settings.xml
+# 275行处添加
+  &lt;activeProfiles&gt;
+     &lt;activeProfile&gt;jdk8&lt;/activeProfile&gt;
+  &lt;/activeProfiles&gt;
+
+</code></pre>
+<ul>
+<li>将配置好的jdk和Maven配置到jenkins环境中</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# mv /usr/local/jdk/ data/
+[root@jenkins ~]# mv /usr/local/maven/ data/
+[root@jenkins ~]# chmod -R  777 data/
+</code></pre>
+<ul>
+<li>在jenkins全局配置中配置jdk和maven的环境</li>
+</ul>
+<p><img src="/../images/jsjdk.png"></p>
+<p><img src="/../images/jsmvn.png"></p>
+<h4 id="5-3-2配置Publish-发布-amp-远程操作"><a href="#5-3-2配置Publish-发布-amp-远程操作" class="headerlink" title="5.3.2配置Publish 发布&amp;远程操作"></a>5.3.2配置Publish 发布&amp;远程操作</h4><p>在系统管理中添加SSH servers配置</p>
+<p><img src="/../images/jsssh.png"></p>
+<p><img src="/../images/jsssh2.png"></p>
+<h2 id="六、CI、CD入门操作"><a href="#六、CI、CD入门操作" class="headerlink" title="六、CI、CD入门操作"></a>六、CI、CD入门操作</h2><h3 id="6-1-持续集成"><a href="#6-1-持续集成" class="headerlink" title="6.1 持续集成"></a>6.1 持续集成</h3><h4 id="6-1-1-构建任务"><a href="#6-1-1-构建任务" class="headerlink" title="6.1.1 构建任务"></a>6.1.1 构建任务</h4><ul>
+<li>选择项目任务</li>
+</ul>
+<p><img src="/../images/jsrw.png"></p>
+<ul>
+<li>配置git拉取仓库地址保存项目</li>
+</ul>
+<p><img src="/../images/%E9%85%8D%E7%BD%AEgit%E4%BB%93%E5%BA%93.png"></p>
+<ul>
+<li><p>执行构建任务并检查空调输出构建内容</p>
+<p><img src="/../images/%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C.png"></p>
+</li>
+</ul>
+<p><img src="/../images/%E6%9E%84%E5%BB%BA%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA.png"></p>
+<ul>
+<li>服务器查看git clone 的代码</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#内容存在，证明任务正确,也可以看执行任务的图标
+[root@jenkins ~]# ls data/workspace/demoHello/
+demoHello.iml  pom.xml  src
+</code></pre>
+<ul>
+<li>配置mave打包Jar包</li>
+</ul>
+<p><img src="/../images/mave%E6%89%93%E5%8C%85.png"></p>
+<ul>
+<li>重新构建任务，并验证打包结果，这次任务构建时间比较长，需要等待一下</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#查看打包任务
+[root@jenkins ~]# ls  data/workspace/demoHello/target/
+classes  demoHello-0.0.1.jar  demoHello-0.0.1.jar.original  generated-sources  generated-test-sources  maven-archiver  maven-status  test-classes
+</code></pre>
+<ul>
+<li>配置将生成的Jar包放到目标服务器上，并构建环境</li>
+</ul>
+<p><img src="/../images/%E5%B0%86jar%E5%A4%8D%E5%88%B6%E5%88%B0%E7%9B%AE%E6%A0%87%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A.png"></p>
+<ul>
+<li>查看工具中Jar包</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# ls /usr/local/test/target/
+demoHello-0.0.1.jar
+</code></pre>
+<p>准备Docker构建环境</p>
+<pre class=" language-shell"><code class="language-shell">#docker文件夹结构
+$ ls docker/
+Dockerfile  docker-compose.yml
+#文件Dockerfile
+FROM daocloud.io/library/java:8u40-jdk
+COPY demoHello-0.0.1.jar /usr/local
+WORKDIR /usr/local
+CMD java -jar demoHello-0.0.1.jar
+#docker-compose.yml
+version: "3.1"
+services:
+  demohello:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: demohello:v1.0.0
+    container_name: demohello
+    ports:
+      - 8081:8081
+#修改pox.xml
+    <build>
+    <finalName>demoHello</finalName> #增加内容，代表项目名称
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</code></pre>
+<ul>
+<li>将项目代码更新gitlab上</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">$ git add .
+$ git commit -m "docker"
+$ git push
+</code></pre>
+<ul>
+<li><p>构建配置环境</p>
+<p><img src="/../images/%E6%9B%B4%E6%94%B9%E9%85%8D%E7%BD%AEsshserver.png"></p>
+</li>
+<li><p>构建新的任务，并查看结果</p>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# docker  ps
+CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS                                                                                      NAMES
+c01978f0cd8c   demohello:v1.0.0              "/bin/sh -c 'java -j…"   56 seconds ago   Up 56 seconds   0.0.0.0:8081->8081/tcp, :::8081->8081/tcp                                                  demohello
+[root@jenkins ~]# docker images
+REPOSITORY                 TAG           IMAGE ID       CREATED          SIZE
+demohello                  v1.0.0        478867d8574e   52 minutes ago   846MB
+#可以通过Linux命令访问部署任务，也可以通过浏览器访问
+[root@jenkins docker]# curl  http://192.168.75.101:8081/hello
+Hello World v1.0.1
+</code></pre>
+</li>
+</ul>
+<h3 id="6-2-持续交付、部署"><a href="#6-2-持续交付、部署" class="headerlink" title="6.2 持续交付、部署"></a>6.2 持续交付、部署</h3><h4 id="6-2-1-通过标签控制版本信息"><a href="#6-2-1-通过标签控制版本信息" class="headerlink" title="6.2.1  通过标签控制版本信息"></a>6.2.1  通过标签控制版本信息</h4><ul>
+<li><p>配置构建环境</p>
+<p><img src="/../images/%E4%BB%BB%E5%8A%A1%E9%85%8D%E7%BD%AEtag.png"></p>
+</li>
+</ul>
+<p><img src="/../images/%E6%9B%BF%E6%8D%A2%E5%88%86%E6%94%AF.png"></p>
+<ul>
+<li>配置gitlab中的tag,首先给目前版本创建tag为v1</li>
+</ul>
+<p><img src="/../images/gitcreatetag.png"></p>
+<p><img src="/../images/v1create.png"></p>
+<ul>
+<li>更新代码并提交代码修增加tag为v2可以参考上面教程，提交代码和给代码提交版本</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#修改docker-compose.yml
+    image: demohello:v2.0.0
+#修改src/main/java/com/example/demohello/controller/HelloController.java
+ public String helloWorld() &#123;
+        return "Hello World v2.0.0";
+    &#125;
+</code></pre>
+<ul>
+<li><p>可以看到构建按钮可以动态选择</p>
+<p><img src="/../images/tag%E6%9E%84%E5%BB%BA%E5%8F%98%E5%8C%96.png"></p>
+</li>
+<li><p>执行构建任务并检查结果</p>
+</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins docker]# docker images
+REPOSITORY                 TAG           IMAGE ID       CREATED          SIZE
+demohello                  v2.0.0        a5158a6c4e1f   22 minutes ago   846MB
+demohello                  v1.0.0        9a623fcc1385   23 minutes ago   846MB
+[root@jenkins docker]# docker ps
+CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS                                                                                      NAMES
+014179370a24   demohello:v2.0.0              "/bin/sh -c 'java -j…"   22 minutes ago   Up 22 minutes   0.0.0.0:8081->8081/tcp, :::8081->8081/tcp                                                  demohello
+[root@jenkins docker]# curl  http://192.168.75.101:8081/hello
+Hello World v2.0.0
+</code></pre>
+<h2 id="七、集成Sonar-Qube"><a href="#七、集成Sonar-Qube" class="headerlink" title="七、集成Sonar Qube"></a>七、集成Sonar Qube</h2><h3 id="7-1-sonarQube-介绍"><a href="#7-1-sonarQube-介绍" class="headerlink" title="7.1 sonarQube 介绍"></a>7.1 sonarQube 介绍</h3><p>SonarQube是一个开源的代码质量管理平台，旨在帮助开发团队提高代码的可靠性、可维护性和可扩展性。它提供了一系列的静态代码分析工具，能够自动检测代码中的潜在问题和缺陷，比如代码冗余、代码复杂度、潜在的安全漏洞等。</p>
+<p>SonarQube不仅可以对多种编程语言进行分析，如Java、C#、C++、Python等，还支持与各种构建工具和持续集成平台集成，如Maven、Jenkins等。通过在代码开发过程中集成SonarQube，团队可以及早发现和修复潜在的问题，从而提高代码质量和开发效率。</p>
+<p>除了代码分析功能，SonarQube还提供了可视化的仪表板和报告，帮助开发团队监控代码质量的趋势和改进的进展。它还支持规则定制和自定义，可以根据团队或项目的特定需求进行配置和扩展。</p>
+<p>总的来说，SonarQube是一个功能强大、易于使用的工具，可以帮助开发团队不断提升代码质量，并促进持续的项目成功。</p>
+<h3 id="7-2-sonarQube-环境搭建"><a href="#7-2-sonarQube-环境搭建" class="headerlink" title="7.2 sonarQube 环境搭建"></a>7.2 sonarQube 环境搭建</h3><h3 id="7-2-1-sonarQube-安装"><a href="#7-2-1-sonarQube-安装" class="headerlink" title="7.2.1 sonarQube 安装"></a>7.2.1 sonarQube 安装</h3><ul>
+<li>通过docker-compose搭建sonarQube</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">version: "3.1"
+services:
+  db:
+    image: postgres
+    container_name: db
+    ports:
+      - 5432:5432
+    networks:
+      - sonarnet
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+  sonarqube:
+    image: sonarqube:lts-community
+    container_name: sonarqube
+    depends_on:
+      - db
+    ports:
+      - 9000:9000
+    networks:
+      - sonarnet
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+networks:
+  sonarnet:
+    driver: bridge
+</code></pre>
+<ul>
+<li>当执行docker-compose启动命令，看到sonarQube无法正常启动，修改bug的方法</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#查看sonarQube无法启动是否这个原因
+[root@jenkins sonarqube_docker]# docker ps -a
+CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS                     PORTS                                                                                      NAMES
+6e0930750723   sonarqube:lts-community       "bin/run.sh bin/sona…"   2 minutes ago    Exited (0) 2 minutes ago
+[root@jenkins sonarqube_docker]# docker restart 6e0930750723 |docker logs -f 6e0930750723
+ERROR: [1] bootstrap checks failed. You must address the points described in the following [1] lines before starting Elasticsearch.
+bootstrap check failure [1] of [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+ERROR: Elasticsearch did not exit normally - check the logs at /opt/sonarqube/logs/sonarqube.log
+#修改bug,在/etc/sysctl.conf参加vm.max_map_count=262144配置
+[root@jenkins sonarqube_docker]# vim /etc/sysctl.conf
+vm.max_map_count=262144
+#使配置生效
+[root@jenkins sonarqube_docker]# sysctl -p
+vm.max_map_count = 262144
+#重新启动sonarqube服务器，需要再sonarqube_docker目录
+[root@jenkins sonarqube_docker]# docker-compose  restart
+</code></pre>
+<ul>
+<li>访问<a href="http://192.168.75.101:9000网址，登陆">http://192.168.75.101:9000网址，登陆</a> sonarQube服务,初始化用户名和密码都是admin，服务器启动需要时间，需要耐心等待一会</li>
+</ul>
+<p><img src="/../images/sqok.png"></p>
+<ul>
+<li><p>sonarQube服务汉化，需要安装汉化插件</p>
+<p><img src="/../images/sonch.png"></p>
+</li>
+<li><p>安装插件需要重新启动服务，需要耐心等待一会</p>
+<p><img src="/../images/restartsq.png"></p>
+</li>
+</ul>
+<h3 id="7-2-2-sonarQube-使用"><a href="#7-2-2-sonarQube-使用" class="headerlink" title="7.2.2 sonarQube 使用"></a>7.2.2 sonarQube 使用</h3><h4 id="7-2-2-1-mave本地使用sonarQube服务"><a href="#7-2-2-1-mave本地使用sonarQube服务" class="headerlink" title="7.2.2.1 mave本地使用sonarQube服务"></a>7.2.2.1 mave本地使用sonarQube服务</h4><ul>
+<li>可以通过配置maven，使用sonarQube</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#在settings.xml配置和配置jdk的位置一样
+<profile>
+    <id>sonar</id>
+    <activation>
+        <activeByDefault>true</activeByDefault>
+    </activation>
+    <properties>
+      <sonar.login>admin</sonar.login>
+      <sonar.password>123456789</sonar.password>
+      <sonar.host.url>http://192.168.75.101:9000</sonar.host.url>
+    </properties>
+</profile> 
+    <activeProfile>sonar</activeProfile>
+</code></pre>
+<ul>
+<li>在idea的终端输入命令</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">mvn sonar:sonar
+</code></pre>
+<ul>
+<li>登陆sonarQube查看结果内容</li>
+</ul>
+<p><img src="/../images/resq.png"></p>
+<h4 id="7-2-2-2-sonar-scanner使用sonarQube服务"><a href="#7-2-2-2-sonar-scanner使用sonarQube服务" class="headerlink" title="7.2.2.2 sonar-scanner使用sonarQube服务"></a>7.2.2.2 sonar-scanner使用sonarQube服务</h4><ul>
+<li>下载sonar-scanner直接在百度搜索，获取下载地址：<a target="_blank" rel="noopener" href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner/">https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner/</a></li>
+</ul>
+<p><img src="/../images/scdl.png"></p>
+<ul>
+<li>将sonar-scanner压缩包解压，并配置环境</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#解压
+[root@jenkins ~]# unzip sonar-scanner-cli-4.8.0.2856-linux.zip
+#配置环境
+[root@jenkins ~]# mv sonar-scanner-cli-4.8.0.2856-linux ./data/sonar-scanner
+#配置sonar-scanner使用sonarQube的文件
+[root@jenkins ~]# vim data/sonar-scanner/conf/sonar-scanner.properties
+sonar.host.url=http://192.168.75.101:9000
+sonar.sourceEncoding=UTF-8
+</code></pre>
+<ul>
+<li>由于sonar-scanner连接sonarQube服务需要秘钥或者用户账号，为了后面的持续集成，我们需要用sonarQube生成一个秘钥给sonar-scanner用</li>
+</ul>
+<p><img src="/../images/%E7%94%9F%E6%88%90%E7%AD%BE%E5%90%8D.png"></p>
+<ul>
+<li>验证sonar-scanner使用sonarQube服务</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# cd data/workspace/demoHello/
+[root@jenkins demoHello]# /root/data/sonar-scanner/bin/sonar-scanner -Dsoanr.sources=./ -Dsonar.projectname=demoHello -Dsonar.login=a0277c64b7c5f6c1e03700fdd9f881eb48c98633 -Dsonar.projectKey=demoHello -Dsonar.java.binaries=./target/
+……………………
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 7.968s
+INFO: Final Memory: 17M/60M
+INFO: ------------------------------------------------------------------------
+#删除测试生成目录，方便后续为构建jenkins任务排除bug
+[root@jenkins demoHello]# rm -fr .scannerwork/
+</code></pre>
+<h4 id="7-2-2-3-Jenkins使用-sonar-scanner配置"><a href="#7-2-2-3-Jenkins使用-sonar-scanner配置" class="headerlink" title="7.2.2.3 Jenkins使用 sonar-scanner配置"></a>7.2.2.3 Jenkins使用 sonar-scanner配置</h4><ul>
+<li>需要给Jenkins安装sonarQube插件，我下面的图片是安装好的</li>
+</ul>
+<p><img src="/../images/%E5%AE%89%E8%A3%85sq%E6%8F%92%E4%BB%B6.png"></p>
+<ul>
+<li>配置sonarQube系统环境</li>
+</ul>
+<p><img src="/../images/%E7%A7%98%E9%92%A5%E9%85%8D%E7%BD%AE.png"></p>
+<p><img src="/../images/%E5%A1%AB%E5%86%99%E7%A7%98%E9%92%A5.png"></p>
+<ul>
+<li><p>安装sonar-scanner</p>
+<p><img src="/../images/sonar-scanner%E5%AE%89%E8%A3%85.png" alt=" "></p>
+</li>
+<li><p>7.2.2.4  任务使用 sonar-scanner配置</p>
+</li>
+</ul>
+<p><img src="/../images/%E4%BB%BB%E5%8A%A1%E9%85%8D%E7%BD%AEsq.png"></p>
+<ul>
+<li>执行任务并验证sonar-scanner</li>
+</ul>
+<p><img src="/../images/checksq.png"></p>
+<p><img src="/../images/sqsee.png"></p>
+<h2 id="八、集成harbor"><a href="#八、集成harbor" class="headerlink" title="八、集成harbor"></a>八、集成harbor</h2><h3 id="8-1-安装harbor"><a href="#8-1-安装harbor" class="headerlink" title="8.1 安装harbor"></a>8.1 安装harbor</h3><ul>
+<li><p>下载harbor安装包,在github网站上搜索harbor，回去下载链接</p>
+<pre class=" language-shell"><code class="language-shell">wget https://github.com/goharbor/harbor/releases/download/v2.8.2/harbor-offline-installer-v2.8.2.tgz
+</code></pre>
+</li>
+<li><p>修改harbor配置文件</p>
+<pre class=" language-shell"><code class="language-shell">#解压harbor
+tar -xvf harbor-offline-installer-v2.8.2.tgz -C /usr/local
+#进入harbor目录修改配置文件
+cd  /usr/local/harbor
+cp harbor.yml.tmpl harbor.yml
+vim harbor.yml
+hostname: 192.168.75.102 #修改服务器IP
+
+#https:
+#  # https port for harbor, default is 443  #注释无效配置
+#  port: 443
+#  # The path of cert and key files for nginx
+#  certificate: /your/certificate/path
+#  private_key: /your/private/key/path
+</code></pre>
+</li>
+<li><p>安装harbor，前提条件是服务器安装了docker和docker-compose</p>
+<pre class=" language-shell"><code class="language-shell">#需要耐心等待
+bash install.sh
+……………………
+
+✔ ----Harbor has been installed and started successfully.----
+</code></pre>
+</li>
+<li><p>验证harbor服务的，服务效果浏览器访问192.168.75.102，默认账号和密码是admin和Harbor12345</p>
+</li>
+</ul>
+<p><img src="/../images/hblogs.png"></p>
+<ul>
+<li><p>创建新仓库名称</p>
+<p><img src="/../images/createreg.png"></p>
+</li>
+<li><p>镜像上传harbor测试结果</p>
+</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#修改镜像仓库
+[root@jenkins ~]# vim  /etc/docker/daemon.json
+&#123;
+  "insecure-registries":["192.168.11.102:80"]
+&#125;
+#重新启动服务，在这里重新启动镜像后，其他容器需要重新启动
+[root@jenkins ~]# systemctl  restart docker
+#给镜像重新打上标签
+[root@jenkins ~]# docker tag 2ea870b320a0 192.168.75.102:80/jenkinstest/demohello:v1.0.0
+#查看结果
+[root@jenkins ~]# docker images
+REPOSITORY                                TAG             IMAGE ID       CREATED         SIZE
+192.168.75.102:80/jenkinstest/demohello   v1.0.0          2ea870b320a0   17 hours ago    846MB
+docker login -u admin --password Harbor12345 http://192.168.75.102:80
+#登陆harbor仓库
+[root@jenkins ~]#  docker login -u admin --password Harbor12345 http://192.168.75.102:80
+#上传镜像到harbor
+[root@jenkins ~]# docker push 192.168.75.102:80/jenkinstest/demohello:v1.0.0
+The push refers to repository [192.168.75.102:80/jenkinstest/demohello]
+</code></pre>
+<ul>
+<li><p>登陆harbor查看上传镜像结果</p>
+<p><img src="/../images/checkimages.png"></p>
+</li>
+</ul>
+<h3 id="8-2-Jenkins构建镜像推送到harbor"><a href="#8-2-Jenkins构建镜像推送到harbor" class="headerlink" title="8.2  Jenkins构建镜像推送到harbor"></a>8.2  Jenkins构建镜像推送到harbor</h3><ul>
+<li><p>配置Jenkins容器有docker功能</p>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# cd /var/run/
+[root@jenkins run]# ll docker.sock
+srw-rw---- 1 root docker 0 Jul 13 09:47 docker.sock
+[root@jenkins run]# chown  root:root docker.sock
+[root@jenkins run]# chmod  o+rw docker.sock
+[root@jenkins run]# ll docker.sock
+srw-rw-rw- 1 root root 0 Jul 13 09:47 docker.sock
+#更改关于jenkins的docker-compose文件
+version: "3.1"
+services:
+  jenkins:
+    image: jenkins/jenkins:2.413-jdk11
+    container_name: jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - ./data/:/var/jenkins_home/
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - /etc/docker/daemon.json:/etc/docker/daemon.json
+ #重新启动Jenkins容器
+ [root@jenkins ~]# docker-compose  up -d
+[+] Running 1/1
+ ✔ Container jenkins  Started 
+ #检查Jenkins容器里面是否有docker环境
+ [root@jenkins ~]# docker exec -it jenkins docker version
+Client: Docker Engine - Community
+ Version:           24.0.4
+……………………
+</code></pre>
+</li>
+<li><p>配置构建任务自动构建镜像并推送到harbor仓库，执行构建任务，并查看harbor仓库</p>
+</li>
+</ul>
+<p><img src="/../images/pushh.png"></p>
+<ul>
+<li>并查看harbor仓库</li>
+</ul>
+<p><img src="/../images/cathb.png"></p>
+<h3 id="8-3-服务部署"><a href="#8-3-服务部署" class="headerlink" title="8.3 服务部署"></a>8.3 服务部署</h3><ul>
+<li>在目标服务器编写部署代码</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# vim /usr/bin/deploy.sh
+#!/bin/bash
+horbar_addr=$1
+horbar_repo=$2
+project=$3
+version=$4
+port=$5
+imageName=$horbar_addr/$horbar_repo/$project:$version
+echo $imageName
+containerId=`docker ps -a |grep $&#123;project&#125;|awk '&#123;print $1&#125;'`
+echo $containerId
+if [ "$containerId" != "" ];then
+docker stop $containerId
+docker rm -f $containerId
+fi
+tag=`docker images |grep $&#123;project&#125; |awk '&#123;print $2&#125;'`
+echo $tag
+if [[ "$tag" =~ "$version" ]];then
+docker rmi -f $imageName
+fi
+docker login -u admin -p Harbor12345 $horbar_addr
+docker pull $imageName
+docker run -d -p $port:$port --name $project $imageName
+echo "SUCCESS"
+#给脚本赋予执行权限
+[root@jenkins ~]# chmod  a+x /usr/bin/deploy.sh
+</code></pre>
+<ul>
+<li>修改构建任务信息</li>
+</ul>
+<p><img src="/../images/%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2.png"></p>
+<h2 id="九、pipeline-集成构建任务"><a href="#九、pipeline-集成构建任务" class="headerlink" title="九、pipeline 集成构建任务"></a>九、pipeline 集成构建任务</h2><h3 id="9-1-初识pipeline"><a href="#9-1-初识pipeline" class="headerlink" title="9.1 初识pipeline"></a>9.1 初识pipeline</h3><ul>
+<li>创建流水线任务，并测试</li>
+</ul>
+<p><img src="/../images/pipline.png"></p>
+<p><img src="/../images/pipelinehello.png"></p>
+<ul>
+<li>执行构建任务</li>
+</ul>
+<p><img src="/../images/pipecres.png"></p>
+<ul>
+<li>编写Pipeline脚本，构建任务</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">//所有代码都放到pipeline
+pipeline &#123;
+    //指定任务在那个集群节点中执行
+    agent any
+    //声明全局变量，方便后面使用
+    environment &#123;
+        key = "value"
+    &#125;
+    stages &#123;
+        stage('拉取git仓库代码') &#123;
+            steps &#123;
+                echo '拉取git仓库代码 - SUCCESS'
+            &#125;
+        &#125;
+        stage('通过maven构建项目') &#123;
+            steps &#123;
+                echo '通过maven构建项目 - SUCCESS'
+            &#125;
+        &#125;
+        stage('通过SonarQube做代码质量检查') &#123;
+            steps &#123;
+                echo '通过SonarQube做代码质量检查 - SUCCESS'
+            &#125;
+        &#125;
+        stage('通过Docker制作自定义镜像') &#123;
+            steps &#123;
+                echo '通过Docker制作自定义镜像 - SUCCESS'
+            &#125;
+        &#125;
+        stage('将自定义镜像推送到Harbor') &#123;
+            steps &#123;
+                echo '将自定义镜像推送到Harbor - SUCCESS'
+            &#125;
+        &#125;
+        stage('通过Publish Over SSH通知目标服务器') &#123;
+            steps &#123;
+                echo '通过Publish Over SSH通知目标服务器 - SUCCESS'
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><img src="/../images/crlog.png"></p>
+<ul>
+<li><p>pipeline 集成构建任务编写语法</p>
+<p><img src="/../images/%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AF%AD%E6%B3%95.png"></p>
+</li>
+</ul>
+<p><img src="/../images/%E6%B5%81%E6%B0%B4%E7%BA%BF%E9%80%89%E9%A1%B9.png"></p>
+<h3 id="9-2-编写项目中的pipeline脚本"><a href="#9-2-编写项目中的pipeline脚本" class="headerlink" title="9.2 编写项目中的pipeline脚本"></a>9.2 编写项目中的pipeline脚本</h3><ul>
+<li>本项目使用scm编写pipeline文件</li>
+</ul>
+<p><img src="/../images/scmpipeline.png"></p>
+<p>在gitlab创建Jenkinsfile</p>
+<p><img src="/../images/pipetag.png"></p>
+<ul>
+<li><p>配置jenkins邮箱服务</p>
+<p><img src="/../images/em1.png"></p>
+<p><img src="/../images/em2.png"></p>
+</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">//所有代码都放到pipeline
+pipeline &#123;
+    //指定任务在那个集群节点中执行
+    agent any
+    //声明全局变量，方便后面使用
+    environment &#123;
+        harborUser = 'admin'
+        harborPasswd = 'Harbor12345'
+        harborAddress = '192.168.75.102:80'
+        harborRepo = 'jenkinstest'
+    &#125;
+    stages &#123;
+        stage('拉取git仓库代码') &#123;
+            steps &#123;
+               checkout scmGit(branches: [[name: '$&#123;tag&#125;']], extensions: [], userRemoteConfigs: [[url: 'http://192.168.75.100:8929/root/demoHello.git']])
+            &#125;
+        &#125;
+        stage('通过maven构建项目') &#123;
+            steps &#123;
+                sh '/var/jenkins_home/maven/bin/mvn clean package -DskipTests'
+                echo '通过maven构建项目 - SUCCESS'
+            &#125;
+        &#125;
+        stage('通过SonarQube做代码质量检查') &#123;
+            steps &#123;
+                sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner   -Dsonar.projectname=$&#123;JOB_NAME&#125;   -Dsonar.projectKey=$&#123;JOB_NAME&#125;  -Dsonar.source=./   -Dsonar.java.binaries=target -Dsonar.login=a0277c64b7c5f6c1e03700fdd9f881eb48c98633'
+                echo '通过SonarQube做代码质量检查 - SUCCESS'
+            &#125;
+        &#125;
+        stage('通过Docker制作自定义镜像') &#123;
+            steps &#123;
+                sh '''mv ./target/*.jar docker/
+docker build -t 192.168.75.102:80/jenkinstest/$&#123;JOB_NAME&#125;:$tag docker/
+docker image prune -f'''
+            &#125;
+        &#125;
+        stage('将自定义镜像推送到Harbor') &#123;
+            steps &#123;
+                sh '''docker login -u $&#123;harborUser&#125; -p $&#123;harborPasswd&#125; $&#123;harborAddress&#125;
+docker push $&#123;harborAddress&#125;/$&#123;harborRepo&#125;/$&#123;JOB_NAME&#125;:$tag'''
+            &#125;
+        &#125;
+        stage('通过Publish Over SSH通知目标服务器') &#123;
+            steps &#123;
+                //这边有个坑，默认生成的脚步命令是单引号需要改成双引号
+sshPublisher(publishers: [sshPublisherDesc(configName: 'test', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "deploy.sh  $&#123;harborAddress&#125;  $&#123;harborRepo&#125;  $&#123;JOB_NAME&#125;  $tag  $port", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+            &#125;
+        &#125;
+        &#125;
+        //需要配置jenkin邮箱服务
+    post&#123;
+        success &#123;
+            emailext body: '构建成功', subject: '构建成功', to: '1626395559@qq.com'
+        &#125;
+        failure&#123;
+            emailext body: '构建失败', subject: '构建失败', to: '1626395559@qq.com'
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/../images/alypay.png"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/../images/wxpay.png"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://skillixxx.com" target="_blank">老陕小张</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/9a299a77.html" class="next-post btn btn-default" title='磁盘优化工具spacesniffer'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            磁盘优化工具spacesniffer</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81DevOps%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、DevOps介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Code%E9%98%B6%E6%AE%B5%E5%B7%A5%E5%85%B7"><span class="toc-text">二、Code阶段工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Git%E5%AE%89%E8%A3%85"><span class="toc-text">2.1 Git安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-GitLab%E5%AE%89%E8%A3%85"><span class="toc-text">2.2 GitLab安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Build%E9%98%B6%E6%AE%B5%E5%B7%A5%E5%85%B7"><span class="toc-text">三、Build阶段工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Operate%E9%98%B6%E6%AE%B5%E5%B7%A5%E5%85%B7"><span class="toc-text">四、Operate阶段工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Docker-%E5%AE%89%E8%A3%85"><span class="toc-text">4.1 Docker 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Docker-Compose%E5%AE%89%E8%A3%85"><span class="toc-text">4.2 Docker-Compose安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Integrate%E5%B7%A5%E5%85%B7"><span class="toc-text">五、Integrate工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Jenkins%E4%BB%8B%E7%BB%8D"><span class="toc-text">5.1 Jenkins介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Jenkins%E5%AE%89%E8%A3%85"><span class="toc-text">5.2 Jenkins安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Jenkins-%E5%85%A5%E9%97%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">5.3 Jenkins 入门配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-1-%E9%85%8D%E7%BD%AEMaven-%E6%9E%84%E5%BB%BA%E4%BB%A3%E7%A0%81"><span class="toc-text">5.3.1 配置Maven 构建代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-2%E9%85%8D%E7%BD%AEPublish-%E5%8F%91%E5%B8%83-amp-%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="toc-text">5.3.2配置Publish 发布&amp;远程操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81CI%E3%80%81CD%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">六、CI、CD入门操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90"><span class="toc-text">6.1 持续集成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-1-%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1"><span class="toc-text">6.1.1 构建任务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98%E3%80%81%E9%83%A8%E7%BD%B2"><span class="toc-text">6.2 持续交付、部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-1-%E9%80%9A%E8%BF%87%E6%A0%87%E7%AD%BE%E6%8E%A7%E5%88%B6%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">6.2.1  通过标签控制版本信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%9B%86%E6%88%90Sonar-Qube"><span class="toc-text">七、集成Sonar Qube</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-sonarQube-%E4%BB%8B%E7%BB%8D"><span class="toc-text">7.1 sonarQube 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-sonarQube-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">7.2 sonarQube 环境搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-1-sonarQube-%E5%AE%89%E8%A3%85"><span class="toc-text">7.2.1 sonarQube 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-2-sonarQube-%E4%BD%BF%E7%94%A8"><span class="toc-text">7.2.2 sonarQube 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-2-1-mave%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8sonarQube%E6%9C%8D%E5%8A%A1"><span class="toc-text">7.2.2.1 mave本地使用sonarQube服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-2-2-sonar-scanner%E4%BD%BF%E7%94%A8sonarQube%E6%9C%8D%E5%8A%A1"><span class="toc-text">7.2.2.2 sonar-scanner使用sonarQube服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-2-3-Jenkins%E4%BD%BF%E7%94%A8-sonar-scanner%E9%85%8D%E7%BD%AE"><span class="toc-text">7.2.2.3 Jenkins使用 sonar-scanner配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E9%9B%86%E6%88%90harbor"><span class="toc-text">八、集成harbor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E5%AE%89%E8%A3%85harbor"><span class="toc-text">8.1 安装harbor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-Jenkins%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%8E%A8%E9%80%81%E5%88%B0harbor"><span class="toc-text">8.2  Jenkins构建镜像推送到harbor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2"><span class="toc-text">8.3 服务部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81pipeline-%E9%9B%86%E6%88%90%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1"><span class="toc-text">九、pipeline 集成构建任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-%E5%88%9D%E8%AF%86pipeline"><span class="toc-text">9.1 初识pipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-%E7%BC%96%E5%86%99%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84pipeline%E8%84%9A%E6%9C%AC"><span class="toc-text">9.2 编写项目中的pipeline脚本</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2020
+                    
+                </span> |
+                <span>
+                    Powered by <a href="" class="copyright-links" target="_blank" rel="nofollow">老陕小张</a>
+                </span> 
+                <!-- <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow"></a>
+                </span> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
