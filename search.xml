@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>Jenkins从入门到实战</title>
+      <title>Devops从入门到实战</title>
       <link href="/30edc0d5.html"/>
       <url>/30edc0d5.html</url>
       
@@ -24,7 +24,9 @@
             
             <tag> 云计算 </tag>
             
-            <tag> Jenkins </tag>
+            <tag> Devops </tag>
+            
+            <tag> Docker </tag>
             
         </tags>
       
@@ -109,9 +111,9 @@
             
             <tag> Linux </tag>
             
-            <tag> Podman </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> Podman </tag>
             
         </tags>
       
@@ -273,9 +275,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ansible </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
