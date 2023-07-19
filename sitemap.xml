@@ -137,28 +137,7 @@
 
   
   <url>
-    <loc>https://skillixx.com/tags/Ansible/</loc>
-    <lastmod>2023-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://skillixx.com/tags/Linux/</loc>
-    <lastmod>2023-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://skillixx.com/tags/frp/</loc>
-    <lastmod>2023-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://skillixx.com/tags/win/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -186,6 +165,20 @@
   </url>
   
   <url>
+    <loc>https://skillixx.com/tags/frp/</loc>
+    <lastmod>2023-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://skillixx.com/tags/win/</loc>
+    <lastmod>2023-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://skillixx.com/tags/%E7%94%B5%E8%84%91%E7%A1%AC%E4%BB%B6/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -207,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://skillixx.com/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC/</loc>
+    <loc>https://skillixx.com/tags/Ansible/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -228,7 +221,7 @@
   </url>
   
   <url>
-    <loc>https://skillixx.com/tags/Python/</loc>
+    <loc>https://skillixx.com/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -250,6 +243,13 @@
   
   <url>
     <loc>https://skillixx.com/tags/Window/</loc>
+    <lastmod>2023-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://skillixx.com/tags/Python/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
