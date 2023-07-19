@@ -217,7 +217,7 @@ Playbook变量、tags、handler..." />
 <li>Ansible Roles</li>
 </ul>
 <h3 id="运维自动化发展历程及技术应用"><a href="#运维自动化发展历程及技术应用" class="headerlink" title="运维自动化发展历程及技术应用"></a>运维自动化发展历程及技术应用</h3><p><img src="/../images/%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="image"></p>
-<h3 id="企业实际应用场景分析"><a href="#企业实际应用场景分析" class="headerlink" title="企业实际应用场景分析"></a>企业实际应用场景分析</h3><pre><code>Dev开发环境
+<h3 id="企业实际应用场景分析"><a href="#企业实际应用场景分析" class="headerlink" title="企业实际应用场景分析"></a>企业实际应用场景分析</h3><pre class="language-none"><code class="language-none">Dev开发环境
     使用者：程序员
     功能：程序员开发软件，测试BUG的环境
     管理者：程序员
@@ -252,9 +252,9 @@ Playbook变量、tags、handler..." />
     案例：共100台生产服务器，先发布其中的10台服务器，这10台服务器就是灰度服务器
     管理者：运维
     灰度环境：往往该版本功能变更较大，为保险起见特意先让一部分用户优化体验该功能，
-              待这部分用户使用没有重大问题的时候，再全量发布至所有服务器
-</code></pre>
-<h3 id="程序发布"><a href="#程序发布" class="headerlink" title="程序发布"></a>程序发布</h3><pre><code>程序发布要求：
+              待这部分用户使用没有重大问题的时候，再全量发布至所有服务器</code></pre>
+
+<h3 id="程序发布"><a href="#程序发布" class="headerlink" title="程序发布"></a>程序发布</h3><pre class="language-none"><code class="language-none">程序发布要求：
     不能导致系统故障或造成系统完全不可用
     不能影响用户体验
 预发布验证：
@@ -262,42 +262,41 @@ Playbook变量、tags、handler..." />
 灰度发布：
     基于主机，用户，业务
 发布路径：
-    /webapp/tuangou
-    /webapp/tuangou-1.1
-    /webapp/tuangou-1.2
+    &#x2F;webapp&#x2F;tuangou
+    &#x2F;webapp&#x2F;tuangou-1.1
+    &#x2F;webapp&#x2F;tuangou-1.2
 发布过程：在调度器上下线一批主机(标记为maintanance状态) --&gt; 关闭服务 --&gt;
           部署新版本的应用程序 --&gt; 启动服务 --&gt; 在调度器上启用这一批服务器
-自动化灰度发布：脚本、发布平台
-</code></pre>
+自动化灰度发布：脚本、发布平台</code></pre>
+
 <h3 id="运维自动化发展历程及技术应用-1"><a href="#运维自动化发展历程及技术应用-1" class="headerlink" title="运维自动化发展历程及技术应用"></a>运维自动化发展历程及技术应用</h3><p><img src="/../images/skill.png" alt="image"></p>
-<h3 id="自动化运维应用场景"><a href="#自动化运维应用场景" class="headerlink" title="自动化运维应用场景"></a>自动化运维应用场景</h3><pre><code>文件传输
+<h3 id="自动化运维应用场景"><a href="#自动化运维应用场景" class="headerlink" title="自动化运维应用场景"></a>自动化运维应用场景</h3><pre class="language-none"><code class="language-none">文件传输
 应用部署
 配置管理
-任务流编排
-</code></pre>
-<h3 id="常用自动化运维工具"><a href="#常用自动化运维工具" class="headerlink" title="常用自动化运维工具"></a>常用自动化运维工具</h3><pre><code>Ansible：python，Agentless，中小型应用环境
+任务流编排</code></pre>
+
+<h3 id="常用自动化运维工具"><a href="#常用自动化运维工具" class="headerlink" title="常用自动化运维工具"></a>常用自动化运维工具</h3><pre class="language-none"><code class="language-none">Ansible：python，Agentless，中小型应用环境
 Saltstack：python，一般需部署agent，执行效率更高
 Puppet：ruby, 功能强大，配置复杂，重型,适合大型环境
 Fabric：python，agentless
 Chef：ruby，国内应用少
 Cfengine
-func
-</code></pre>
-<h3 id="企业级自动化运维工具应用实战ansible"><a href="#企业级自动化运维工具应用实战ansible" class="headerlink" title="企业级自动化运维工具应用实战ansible"></a>企业级自动化运维工具应用实战ansible</h3><pre><code>公司计划在年底做一次大型市场促销活动，全面冲刺下交易额，为明年的上市做准备。
+func</code></pre>
+
+<h3 id="企业级自动化运维工具应用实战ansible"><a href="#企业级自动化运维工具应用实战ansible" class="headerlink" title="企业级自动化运维工具应用实战ansible"></a>企业级自动化运维工具应用实战ansible</h3><pre class="language-none"><code class="language-none">公司计划在年底做一次大型市场促销活动，全面冲刺下交易额，为明年的上市做准备。
 公司要求各业务组对年底大促做准备，运维部要求所有业务容量进行三倍的扩容，
 并搭建出多套环境可以共开发和测试人员做测试，运维老大为了在年底有所表现，
-要求运维部门同学尽快实现，当你接到这个任务时，有没有更快的解决方案？
-</code></pre>
-<h3 id="Ansible发展史"><a href="#Ansible发展史" class="headerlink" title="Ansible发展史"></a>Ansible发展史</h3><pre><code>Ansible
+要求运维部门同学尽快实现，当你接到这个任务时，有没有更快的解决方案？</code></pre>
+
+<h3 id="Ansible发展史"><a href="#Ansible发展史" class="headerlink" title="Ansible发展史"></a>Ansible发展史</h3><pre class="language-none"><code class="language-none">Ansible
 Michael DeHaan（ Cobbler 与 Func 作者）
 名称来自《安德的游戏》中跨越时空的即时通信工具
 2012-03-09，发布0.0.1版，2015-10-17，Red Hat宣布收购
-官网：https://www.ansible.com/
-官方文档：https://docs.ansible.com/
-同类自动化工具GitHub关注程度（2016-07-10）
-</code></pre>
+官网：https:&#x2F;&#x2F;www.ansible.com&#x2F;
+官方文档：https:&#x2F;&#x2F;docs.ansible.com&#x2F;
+同类自动化工具GitHub关注程度（2016-07-10）</code></pre>
 <p><img src="/../images/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7.png" alt="image"></p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><pre><code>1&gt; 模块化：调用特定的模块，完成特定任务
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><pre class="language-none"><code class="language-none">1&gt; 模块化：调用特定的模块，完成特定任务
 2&gt; Paramiko（python对ssh的实现），PyYAML，Jinja2（模板语言）三个关键模块
 3&gt; 支持自定义模块
 4&gt; 基于Python语言实现
@@ -308,10 +307,10 @@ Michael DeHaan（ Cobbler 与 Func 作者）
 9&gt; 无需代理不依赖PKI（无需ssl）
 10&gt; 可使用任何编程语言写模块
 11&gt; YAML格式，编排任务，支持丰富的数据结构
-12&gt; 较强大的多层解决方案
-</code></pre>
+12&gt; 较强大的多层解决方案</code></pre>
+
 <h3 id="Ansible架构"><a href="#Ansible架构" class="headerlink" title="Ansible架构"></a>Ansible架构</h3><p><img src="/../images/Ansible%E6%9E%B6%E6%9E%84.png" alt="image"></p>
-<pre><code>ansible的作用以及工作结构
+<pre class="language-none"><code class="language-none">ansible的作用以及工作结构
 1、ansible简介：
 ansible是新出现的自动化运维工具，基于Python开发，
 集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，
@@ -325,28 +324,25 @@ ansible是基于模块工作的，本身没有批量部署的能力。
     (4)、借助于插件完成记录日志邮件等功能；
     (5)、playbook：剧本执行多个任务时，非必需可以让节点一次性运行多个任务。
 
-2、ansible的架构：连接其他主机默认使用ssh协议	
-</code></pre>
+2、ansible的架构：连接其他主机默认使用ssh协议	</code></pre>
 <h3 id="Ansible工作原理"><a href="#Ansible工作原理" class="headerlink" title="Ansible工作原理"></a>Ansible工作原理</h3><p><img src="/../images/Ansible%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="image"></p>
-<h3 id="Ansible主要组成部分"><a href="#Ansible主要组成部分" class="headerlink" title="Ansible主要组成部分"></a>Ansible主要组成部分</h3><pre><code>ANSIBLE PLAYBOOKS：任务剧本（任务集），编排定义Ansible任务集的配置文件，
+<h3 id="Ansible主要组成部分"><a href="#Ansible主要组成部分" class="headerlink" title="Ansible主要组成部分"></a>Ansible主要组成部分</h3><pre class="language-none"><code class="language-none">ANSIBLE PLAYBOOKS：任务剧本（任务集），编排定义Ansible任务集的配置文件，
                    由Ansible顺序依次执行，通常是JSON格式的YML文件
-INVENTORY：Ansible管理主机的清单  /etc/anaible/hosts
+INVENTORY：Ansible管理主机的清单  &#x2F;etc&#x2F;anaible&#x2F;hosts
 MODULES：  Ansible执行命令的功能模块，多数为内置核心模块，也可自定义
 PLUGINS：  模块功能的补充，如连接类型插件、循环插件、变量插件、过滤插件等，该功能不常用
 API：      供第三方程序调用的应用程序编程接口 
-ANSIBLE：  组合INVENTORY、API、MODULES、PLUGINS的绿框，可以理解为是ansible命令工具，其为核心执行工具
-</code></pre>
-<pre><code>Ansible命令执行来源：
+ANSIBLE：  组合INVENTORY、API、MODULES、PLUGINS的绿框，可以理解为是ansible命令工具，其为核心执行工具</code></pre>
+<pre class="language-none"><code class="language-none">Ansible命令执行来源：
     1&gt; USER，普通用户，即SYSTEM ADMINISTRATOR
     2&gt; CMDB（配置管理数据库） API 调用
-    3&gt; PUBLIC/PRIVATE CLOUD API调用  (公有私有云的API接口调用)
+    3&gt; PUBLIC&#x2F;PRIVATE CLOUD API调用  (公有私有云的API接口调用)
     4&gt; USER-&gt; Ansible Playbook -&gt; Ansibile
 
 利用ansible实现管理的方式：
     1&gt; Ad-Hoc 即ansible单条命令，主要用于临时命令使用场景
-    2&gt; Ansible-playbook 主要用于长期规划好的，大型项目的场景，需要有前期的规划过程
-</code></pre>
-<pre><code>Ansible-playbook（剧本）执行过程
+    2&gt; Ansible-playbook 主要用于长期规划好的，大型项目的场景，需要有前期的规划过程</code></pre>
+<pre class="language-none"><code class="language-none">Ansible-playbook（剧本）执行过程
     将已有编排好的任务集写入Ansible-Playbook
     通过ansible-playbook命令分拆任务集至逐条ansible命令，按预定规则逐条执行
 
@@ -360,9 +356,8 @@ Ansible主要操作对象
    被控端Python版本小于2.4需要安装python-simplejson
    被控端如开启SELinux需要安装libselinux-python
    windows不能做为主控端
-   ansible不是服务,不会一直启动,只是需要的时候启动
-</code></pre>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>rpm包安装: EPEL源
+   ansible不是服务,不会一直启动,只是需要的时候启动</code></pre>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="language-none"><code class="language-none">rpm包安装: EPEL源
     yum install ansible
 
 编译安装:
@@ -372,14 +367,14 @@ Ansible主要操作对象
     cd ansible-1.5.4
     python setup.py build
     python setup.py install
-    mkdir /etc/ansible
-    cp -r examples/* /etc/ansible
+    mkdir &#x2F;etc&#x2F;ansible
+    cp -r examples&#x2F;* &#x2F;etc&#x2F;ansible
 
 
 Git方式:
-    git clone git://github.com/ansible/ansible.git --recursive
-    cd ./ansible
-    source ./hacking/env-setup
+    git clone git:&#x2F;&#x2F;github.com&#x2F;ansible&#x2F;ansible.git --recursive
+    cd .&#x2F;ansible
+    source .&#x2F;hacking&#x2F;env-setup
 
 pip安装： pip是安装Python包的管理器，类似yum
     yum install python-pip python-devel
@@ -388,28 +383,28 @@ pip安装： pip是安装Python包的管理器，类似yum
     pip install ansible --upgrade
 
 确认安装：
-    ansible --version
-</code></pre>
-<h3 id="相关文件"><a href="#相关文件" class="headerlink" title="相关文件"></a>相关文件</h3><pre><code>配置文件
-    /etc/ansible/ansible.cfg  主配置文件,配置ansible工作特性(一般无需修改)
-    /etc/ansible/hosts        主机清单(将被管理的主机放到此文件)
-    /etc/ansible/roles/       存放角色的目录
+    ansible --version</code></pre>
+
+
+<h3 id="相关文件"><a href="#相关文件" class="headerlink" title="相关文件"></a>相关文件</h3><pre class="language-none"><code class="language-none">配置文件
+    &#x2F;etc&#x2F;ansible&#x2F;ansible.cfg  主配置文件,配置ansible工作特性(一般无需修改)
+    &#x2F;etc&#x2F;ansible&#x2F;hosts        主机清单(将被管理的主机放到此文件)
+    &#x2F;etc&#x2F;ansible&#x2F;roles&#x2F;       存放角色的目录
 
 程序
-    /usr/bin/ansible          主程序，临时命令执行工具
-    /usr/bin/ansible-doc      查看配置文档，模块功能查看工具
-    /usr/bin/ansible-galaxy   下载/上传优秀代码或Roles模块的官网平台
-    /usr/bin/ansible-playbook 定制自动化任务，编排剧本工具
-    /usr/bin/ansible-pull     远程执行命令的工具
-    /usr/bin/ansible-vault    文件加密工具
-    /usr/bin/ansible-console  基于Console界面与用户交互的执行工具
-</code></pre>
-<h3 id="主机清单inventory"><a href="#主机清单inventory" class="headerlink" title="主机清单inventory"></a>主机清单inventory</h3><pre><code>Inventory 主机清单
+    &#x2F;usr&#x2F;bin&#x2F;ansible          主程序，临时命令执行工具
+    &#x2F;usr&#x2F;bin&#x2F;ansible-doc      查看配置文档，模块功能查看工具
+    &#x2F;usr&#x2F;bin&#x2F;ansible-galaxy   下载&#x2F;上传优秀代码或Roles模块的官网平台
+    &#x2F;usr&#x2F;bin&#x2F;ansible-playbook 定制自动化任务，编排剧本工具
+    &#x2F;usr&#x2F;bin&#x2F;ansible-pull     远程执行命令的工具
+    &#x2F;usr&#x2F;bin&#x2F;ansible-vault    文件加密工具
+    &#x2F;usr&#x2F;bin&#x2F;ansible-console  基于Console界面与用户交互的执行工具</code></pre>
+<h3 id="主机清单inventory"><a href="#主机清单inventory" class="headerlink" title="主机清单inventory"></a>主机清单inventory</h3><pre class="language-none"><code class="language-none">Inventory 主机清单
 1&gt; ansible的主要功用在于批量主机操作，为了便捷地使用其中的部分主机，可以在inventory file中将其分组命名 
-2&gt; 默认的inventory file为/etc/ansible/hosts
+2&gt; 默认的inventory file为&#x2F;etc&#x2F;ansible&#x2F;hosts
 3&gt; inventory file可以有多个，且也可以通过Dynamic Inventory来动态生成
 
-/etc/ansible/hosts文件格式
+&#x2F;etc&#x2F;ansible&#x2F;hosts文件格式
 inventory文件遵循INI文件风格，中括号中的字符为组名。
 可以将同一个主机同时归并到多个不同的组中；
 此外，当如若目标主机使用了非默认的SSH端口，还可以在主机名称之后使用冒号加端口号来标明
@@ -430,29 +425,28 @@ inventory文件遵循INI文件风格，中括号中的字符为组名。
     www[1:100].example.com   ip: 1-100
     
     [dbsrvs]
-    db-[a:f].example.com     dba-dbff
-</code></pre>
-<h3 id="ansible-配置文件"><a href="#ansible-配置文件" class="headerlink" title="ansible 配置文件"></a>ansible 配置文件</h3><pre><code>Ansible 配置文件/etc/ansible/ansible.cfg （一般保持默认）
+    db-[a:f].example.com     dba-dbff</code></pre>
+<h3 id="ansible-配置文件"><a href="#ansible-配置文件" class="headerlink" title="ansible 配置文件"></a>ansible 配置文件</h3><pre class="language-none"><code class="language-none">Ansible 配置文件&#x2F;etc&#x2F;ansible&#x2F;ansible.cfg （一般保持默认）
 
-vim /etc/ansible/ansible.cfg
+vim &#x2F;etc&#x2F;ansible&#x2F;ansible.cfg
 
 [defaults]
-#inventory     = /etc/ansible/hosts      # 主机列表配置文件
-#library       = /usr/share/my_modules/  # 库文件存放目录
-#remote_tmp    = $HOME/.ansible/tmp      # 临时py命令文件存放在远程主机目录
-#local_tmp     = $HOME/.ansible/tmp      # 本机的临时命令执行目录  
-#forks         = 5                       # 默认并发数,同时可以执行5次
-#sudo_user     = root                    # 默认sudo 用户
-#ask_sudo_pass = True                    # 每次执行ansible命令是否询问ssh密码
-#ask_pass      = True                    # 每次执行ansible命令是否询问ssh口令
-#remote_port   = 22                      # 远程主机的端口号(默认22)
+#inventory     &#x3D; &#x2F;etc&#x2F;ansible&#x2F;hosts      # 主机列表配置文件
+#library       &#x3D; &#x2F;usr&#x2F;share&#x2F;my_modules&#x2F;  # 库文件存放目录
+#remote_tmp    &#x3D; $HOME&#x2F;.ansible&#x2F;tmp      # 临时py命令文件存放在远程主机目录
+#local_tmp     &#x3D; $HOME&#x2F;.ansible&#x2F;tmp      # 本机的临时命令执行目录  
+#forks         &#x3D; 5                       # 默认并发数,同时可以执行5次
+#sudo_user     &#x3D; root                    # 默认sudo 用户
+#ask_sudo_pass &#x3D; True                    # 每次执行ansible命令是否询问ssh密码
+#ask_pass      &#x3D; True                    # 每次执行ansible命令是否询问ssh口令
+#remote_port   &#x3D; 22                      # 远程主机的端口号(默认22)
 
 建议优化项： 
-host_key_checking = False               # 检查对应服务器的host_key，建议取消注释
-log_path=/var/log/ansible.log           # 日志文件,建议取消注释
-module_name   = command                 # 默认模块
-</code></pre>
-<h3 id="ansible系列命令"><a href="#ansible系列命令" class="headerlink" title="ansible系列命令"></a>ansible系列命令</h3><pre><code>Ansible系列命令
+host_key_checking &#x3D; False               # 检查对应服务器的host_key，建议取消注释
+log_path&#x3D;&#x2F;var&#x2F;log&#x2F;ansible.log           # 日志文件,建议取消注释
+module_name   &#x3D; command                 # 默认模块</code></pre>
+
+<h3 id="ansible系列命令"><a href="#ansible系列命令" class="headerlink" title="ansible系列命令"></a>ansible系列命令</h3><pre class="language-none"><code class="language-none">Ansible系列命令
     ansible ansible-doc ansible-playbook ansible-vault ansible-console
     ansible-galaxy ansible-pull
 
@@ -465,9 +459,8 @@ ansible-doc: 显示模块帮助
 示例：
     ansible-doc -l      列出所有模块
     ansible-doc ping    查看指定模块帮助用法
-    ansible-doc -s ping 查看指定模块帮助用法
-</code></pre>
-<h3 id="ansible"><a href="#ansible" class="headerlink" title="ansible"></a>ansible</h3><pre><code>ansible通过ssh实现配置管理、应用部署、任务执行等功能，
+    ansible-doc -s ping 查看指定模块帮助用法</code></pre>
+<h3 id="ansible"><a href="#ansible" class="headerlink" title="ansible"></a>ansible</h3><pre class="language-none"><code class="language-none">ansible通过ssh实现配置管理、应用部署、任务执行等功能，
 建议配置ansible端能基于密钥认证的方式联系各被管理节点
 
 ansible &lt;host-pattern&gt; [-m module_name] [-a args]
@@ -478,13 +471,12 @@ ansible +被管理的主机(ALL) +模块  +参数
     --list-hosts           显示主机列表，可简写 --list
     -k, --ask-pass         提示输入ssh连接密码,默认Key验证
     -C, --check            检查，并不执行
-    -T, --timeout=TIMEOUT  执行命令的超时时间,默认10s
-    -u, --user=REMOTE_USER 执行远程执行的用户
+    -T, --timeout&#x3D;TIMEOUT  执行命令的超时时间,默认10s
+    -u, --user&#x3D;REMOTE_USER 执行远程执行的用户
     -b, --become           代替旧版的sudo切换
-        --become-user=USERNAME 指定sudo的runas用户,默认为root
-    -K, --ask-become-pass  提示输入sudo时的口令
-</code></pre>
-<pre><code>ansible all --list  列出所有主机
+        --become-user&#x3D;USERNAME 指定sudo的runas用户,默认为root
+    -K, --ask-become-pass  提示输入sudo时的口令</code></pre>
+<pre class="language-none"><code class="language-none">ansible all --list  列出所有主机
 ping模块: 探测网络中被管理主机是否能够正常使用  走ssh协议
           如果对方主机网络正常,返回pong
 ansible-doc -s ping   查看ping模块的语法 
@@ -495,9 +487,8 @@ ansible-doc -s ping   查看ping模块的语法
     ansible all -m ping -k
 
 2&gt; 或者实现基于key验证 将公钥ssh-copy-id到被管理的主机上 , 实现免密登录
-   ansible all -m ping
-</code></pre>
-<h3 id="ansible的Host-pattern"><a href="#ansible的Host-pattern" class="headerlink" title="ansible的Host-pattern"></a>ansible的Host-pattern</h3><pre><code>ansible的Host-pattern
+   ansible all -m ping</code></pre>
+<h3 id="ansible的Host-pattern"><a href="#ansible的Host-pattern" class="headerlink" title="ansible的Host-pattern"></a>ansible的Host-pattern</h3><pre class="language-none"><code class="language-none">ansible的Host-pattern
 匹配主机的列表
     All ：表示所有Inventory中的所有主机
         ansible all –m ping
@@ -519,13 +510,13 @@ ansible-doc -s ping   查看ping模块的语法
         ansible &#39;websrvs:dbsrvs:&amp;appsrvs:!ftpsrvs&#39; –m ping
     正则表达式
         ansible &quot;websrvs:&amp;dbsrvs&quot; –m ping
-        ansible &quot;~(web|db).*\.magedu\.com&quot; –m ping
-</code></pre>
-<h3 id="ansible命令执行过程"><a href="#ansible命令执行过程" class="headerlink" title="ansible命令执行过程"></a>ansible命令执行过程</h3><pre><code>ansible命令执行过程
-    1. 加载自己的配置文件 默认/etc/ansible/ansible.cfg
+        ansible &quot;~(web|db).*\.magedu\.com&quot; –m ping</code></pre>
+
+<h3 id="ansible命令执行过程"><a href="#ansible命令执行过程" class="headerlink" title="ansible命令执行过程"></a>ansible命令执行过程</h3><pre class="language-none"><code class="language-none">ansible命令执行过程
+    1. 加载自己的配置文件 默认&#x2F;etc&#x2F;ansible&#x2F;ansible.cfg
     2. 加载自己对应的模块文件，如command
     3. 通过ansible将模块或命令生成对应的临时py文件，
-       并将该文件传输至远程服务器的对应执行用户$HOME/.ansible/tmp/ansible-tmp-数字/XXX.PY文件
+       并将该文件传输至远程服务器的对应执行用户$HOME&#x2F;.ansible&#x2F;tmp&#x2F;ansible-tmp-数字&#x2F;XXX.PY文件
     4. 给文件+x执行
     5. 执行并返回结果
     6. 删除临时py文件，sleep 0退出
@@ -533,22 +524,20 @@ ansible-doc -s ping   查看ping模块的语法
 执行状态：
     绿色：执行成功并且不需要做改变的操作
     黄色：执行成功并且对目标主机做变更
-    红色：执行失败
-</code></pre>
-<h3 id="ansible使用示例"><a href="#ansible使用示例" class="headerlink" title="ansible使用示例"></a>ansible使用示例</h3><pre><code>示例
+    红色：执行失败</code></pre>
+<h3 id="ansible使用示例"><a href="#ansible使用示例" class="headerlink" title="ansible使用示例"></a>ansible使用示例</h3><pre class="language-none"><code class="language-none">示例
     以wang用户执行ping存活检测
         ansible all -m ping -u wang -k
     以wang sudo至root执行ping存活检测
         ansible all -m ping -u wang -k -b
     以wang sudo至mage用户执行ping存活检测
-        ansible all -m ping -u wang -k -b --become-user=mage
+        ansible all -m ping -u wang -k -b --become-user&#x3D;mage
     以wang sudo至root用户执行ls
-        ansible all -m command -u wang -a &#39;ls /root&#39; -b --become-user=root -k -K
+        ansible all -m command -u wang -a &#39;ls &#x2F;root&#39; -b --become-user&#x3D;root -k -K
 
 ansible ping模块测试连接
-    ansible 192.168.38.126,192.168.38.127 -m ping -k 
-</code></pre>
-<h3 id="ansible常用模块"><a href="#ansible常用模块" class="headerlink" title="ansible常用模块"></a>ansible常用模块</h3><pre><code>模块文档：https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+    ansible 192.168.38.126,192.168.38.127 -m ping -k </code></pre>
+<h3 id="ansible常用模块"><a href="#ansible常用模块" class="headerlink" title="ansible常用模块"></a>ansible常用模块</h3><pre class="language-none"><code class="language-none">模块文档：https:&#x2F;&#x2F;docs.ansible.com&#x2F;ansible&#x2F;latest&#x2F;modules&#x2F;modules_by_category.html
 
 Command：在远程主机执行命令，默认模块，可忽略-m选项
     &gt; ansible srvs -m command -a &#39;service vsftpd start&#39;
@@ -557,78 +546,78 @@ Command：在远程主机执行命令，默认模块，可忽略-m选项
 
     chdir:   进入到被管理主机目录
     creates: 如果有一个目录是存在的,步骤将不会运行Command命令
-    ansible websrvs -a &#39;chdir=/data/ ls&#39;
+    ansible websrvs -a &#39;chdir&#x3D;&#x2F;data&#x2F; ls&#39;
 
 Shell：和command相似，用shell执行命令
     &gt; ansible all -m shell  -a &#39;getenforce&#39;  查看SELINUX状态
-    &gt;  ansible all -m shell  -a &quot;sed -i &#39;s/SELINUX=.*/SELINUX=disabled&#39; /etc/selinux/config&quot;
+    &gt;  ansible all -m shell  -a &quot;sed -i &#39;s&#x2F;SELINUX&#x3D;.*&#x2F;SELINUX&#x3D;disabled&#39; &#x2F;etc&#x2F;selinux&#x2F;config&quot;
     &gt; ansible srv -m shell -a &#39;echo magedu |passwd –stdin wang&#39;
       
-    调用bash执行命令 类似 cat /tmp/stanley.md | awk -F&#39;|&#39; &#39;&#123;print $1,$2&#125;&#39; &amp;&gt; /tmp/example.txt     
+    调用bash执行命令 类似 cat &#x2F;tmp&#x2F;stanley.md | awk -F&#39;|&#39; &#39;&#123;print $1,$2&#125;&#39; &amp;&gt; &#x2F;tmp&#x2F;example.txt     
     这些复杂命令，即使使用shell也可能会失败，
     解决办法：写到脚本时，copy到远程执行，再把需要的结果拉回执行命令的机器
 
     修改配置文件,使shell作为默认模块    
-        vim /etc/ansible/ansible.cfg
-        module_name = shell
+        vim &#x2F;etc&#x2F;ansible&#x2F;ansible.cfg
+        module_name &#x3D; shell
 
 Script：在远程主机上运行ansible服务器上的脚本
-    &gt; -a &quot;/PATH/TO/SCRIPT_FILE&quot;
-    &gt; ansible websrvs -m script -a /data/test.sh
+    &gt; -a &quot;&#x2F;PATH&#x2F;TO&#x2F;SCRIPT_FILE&quot;
+    &gt; ansible websrvs -m script -a &#x2F;data&#x2F;test.sh
 
 Copy：从主控端复制文件到远程主机
-      src : 源文件  指定拷贝文件的本地路径  (如果有/ 则拷贝目录内容,比拷贝目录本身)
+      src : 源文件  指定拷贝文件的本地路径  (如果有&#x2F; 则拷贝目录内容,比拷贝目录本身)
       dest: 指定目标路径
       mode: 设置权限
       backup: 备份源文件
       content: 代替src  指定本机文件内容,生成目标主机文件
       
-      &gt; ansible websrvs -m copy -a &quot;src=/root/test1.sh dest=/tmp/test2.showner=wang mode=600 backup=yes&quot;
+      &gt; ansible websrvs -m copy -a &quot;src&#x3D;&#x2F;root&#x2F;test1.sh dest&#x3D;&#x2F;tmp&#x2F;test2.showner&#x3D;wang mode&#x3D;600 backup&#x3D;yes&quot;
         如果目标存在，默认覆盖，此处指定先备份
-      &gt; ansible websrvs -m copy -a &quot;content=&#39;test content\nxxx&#39; dest=/tmp/test.txt&quot;
+      &gt; ansible websrvs -m copy -a &quot;content&#x3D;&#39;test content\nxxx&#39; dest&#x3D;&#x2F;tmp&#x2F;test.txt&quot;
         指定内容，直接生成目标文件
 
 Fetch：从远程主机提取文件至主控端，copy相反，目前不支持目录,可以先打包,再提取文件
-     &gt; ansible websrvs -m fetch -a &#39;src=/root/test.sh dest=/data/scripts&#39;
+     &gt; ansible websrvs -m fetch -a &#39;src&#x3D;&#x2F;root&#x2F;test.sh dest&#x3D;&#x2F;data&#x2F;scripts&#39;
      会生成每个被管理主机不同编号的目录,不会发生文件名冲突
      
-     &gt; ansible all -m shell -a &#39;tar jxvf test.tar.gz /root/test.sh&#39;
-     &gt; ansible all -m fetch -a &#39;src=/root/test.tar.gz dest=/data/&#39;
+     &gt; ansible all -m shell -a &#39;tar jxvf test.tar.gz &#x2F;root&#x2F;test.sh&#39;
+     &gt; ansible all -m fetch -a &#39;src&#x3D;&#x2F;root&#x2F;test.tar.gz dest&#x3D;&#x2F;data&#x2F;&#39;
 
 File：设置文件属性
     path: 要管理的文件路径 (强制添加)
     recurse: 递归,文件夹要用递归
-    src:  创建硬链接,软链接时,指定源目标,配合&#39;state=link&#39; &#39;state=hard&#39; 设置软链接,硬链接
+    src:  创建硬链接,软链接时,指定源目标,配合&#39;state&#x3D;link&#39; &#39;state&#x3D;hard&#39; 设置软链接,硬链接
     state: 状态
           absent 缺席,删除
           
-    &gt; ansible websrvs -m file -a &#39;path=/app/test.txt state=touch&#39;       创建文件
-    &gt; ansible websrvs -m file -a &quot;path=/data/testdir state=directory&quot;   创建目录    
-    &gt; ansible websrvs -m file -a &quot;path=/root/test.sh owner=wang mode=755&quot;  设置权限755
-    &gt; ansible websrvs -m file -a &#39;src=/data/testfile dest=/data/testfile-link state=link&#39; 创建软链接
+    &gt; ansible websrvs -m file -a &#39;path&#x3D;&#x2F;app&#x2F;test.txt state&#x3D;touch&#39;       创建文件
+    &gt; ansible websrvs -m file -a &quot;path&#x3D;&#x2F;data&#x2F;testdir state&#x3D;directory&quot;   创建目录    
+    &gt; ansible websrvs -m file -a &quot;path&#x3D;&#x2F;root&#x2F;test.sh owner&#x3D;wang mode&#x3D;755&quot;  设置权限755
+    &gt; ansible websrvs -m file -a &#39;src&#x3D;&#x2F;data&#x2F;testfile dest&#x3D;&#x2F;data&#x2F;testfile-link state&#x3D;link&#39; 创建软链接
     
     
 unarchive：解包解压缩，有两种用法：
-    1、将ansible主机上的压缩包传到远程主机后解压缩至特定目录，设置copy=yes.
-    2、将远程主机上的某个压缩包解压缩到指定路径下，设置copy=no
+    1、将ansible主机上的压缩包传到远程主机后解压缩至特定目录，设置copy&#x3D;yes.
+    2、将远程主机上的某个压缩包解压缩到指定路径下，设置copy&#x3D;no
 
     常见参数：
-        copy：默认为yes，当copy=yes，拷贝的文件是从ansible主机复制到远程主机上，
-              如果设置为copy=no，会在远程主机上寻找src源文件
+        copy：默认为yes，当copy&#x3D;yes，拷贝的文件是从ansible主机复制到远程主机上，
+              如果设置为copy&#x3D;no，会在远程主机上寻找src源文件
         src： 源路径，可以是ansible主机上的路径，也可以是远程主机上的路径，
-              如果是远程主机上的路径，则需要设置copy=no
+              如果是远程主机上的路径，则需要设置copy&#x3D;no
         dest：远程主机上的目标路径
         mode：设置解压缩后的文件权限
     
     示例：
-        ansible websrvs -m unarchive -a &#39;src=foo.tgz dest=/var/lib/foo&#39;  
+        ansible websrvs -m unarchive -a &#39;src&#x3D;foo.tgz dest&#x3D;&#x2F;var&#x2F;lib&#x2F;foo&#39;  
           #默认copy为yes ,将本机目录文件解压到目标主机对应目录下
-        ansible websrvs -m unarchive -a &#39;src=/tmp/foo.zip dest=/data copy=no mode=0777&#39;
+        ansible websrvs -m unarchive -a &#39;src&#x3D;&#x2F;tmp&#x2F;foo.zip dest&#x3D;&#x2F;data copy&#x3D;no mode&#x3D;0777&#39;
           # 解压被管理主机的foo.zip到data目录下, 并设置权限777
-        ansible websrvs -m unarchive -a &#39;src=https://example.com/example.zip dest=/data copy=no&#39;
+        ansible websrvs -m unarchive -a &#39;src&#x3D;https:&#x2F;&#x2F;example.com&#x2F;example.zip dest&#x3D;&#x2F;data copy&#x3D;no&#39;
 
 Archive：打包压缩
-    &gt; ansible all -m archive -a &#39;path=/etc/sysconfig dest=/data/sysconfig.tar.bz2 format=bz2 owner=wang mode=0777&#39;
+    &gt; ansible all -m archive -a &#39;path&#x3D;&#x2F;etc&#x2F;sysconfig dest&#x3D;&#x2F;data&#x2F;sysconfig.tar.bz2 format&#x3D;bz2 owner&#x3D;wang mode&#x3D;0777&#39;
     将远程主机目录打包 
         path:   指定路径
         dest:   指定目标文件
@@ -637,30 +626,30 @@ Archive：打包压缩
         mode:   设置权限
 
 Hostname：管理主机名
-    ansible appsrvs -m hostname -a &quot;name=app.adong.com&quot;  更改一组的主机名
-    ansible 192.168.38.103 -m hostname -a &quot;name=app2.adong.com&quot; 更改单个主机名
+    ansible appsrvs -m hostname -a &quot;name&#x3D;app.adong.com&quot;  更改一组的主机名
+    ansible 192.168.38.103 -m hostname -a &quot;name&#x3D;app2.adong.com&quot; 更改单个主机名
 
 Cron：计划任务
     支持时间：minute,hour,day,month,weekday
-    &gt; ansible websrvs -m cron -a &quot;minute=*/5 job=&#39;/usr/sbin/ntpdate 172.16.0.1 &amp;&gt;/dev/null&#39; name=Synctime&quot; 
+    &gt; ansible websrvs -m cron -a &quot;minute&#x3D;*&#x2F;5 job&#x3D;&#39;&#x2F;usr&#x2F;sbin&#x2F;ntpdate 172.16.0.1 &amp;&gt;&#x2F;dev&#x2F;null&#39; name&#x3D;Synctime&quot; 
     创建任务
-    &gt; ansible websrvs -m cron -a &#39;state=absent name=Synctime&#39; 
+    &gt; ansible websrvs -m cron -a &#39;state&#x3D;absent name&#x3D;Synctime&#39; 
     删除任务
-    &gt; ansible websrvs -m cron -a &#39;minute=*/10 job=&#39;/usr/sbin/ntpdate 172.30.0.100&quot; name=synctime disabled=yes&#39;
+    &gt; ansible websrvs -m cron -a &#39;minute&#x3D;*&#x2F;10 job&#x3D;&#39;&#x2F;usr&#x2F;sbin&#x2F;ntpdate 172.30.0.100&quot; name&#x3D;synctime disabled&#x3D;yes&#39;
     注释任务,不在生效
 
 Yum：管理包
-    ansible websrvs -m yum -a &#39;list=httpd&#39;  查看程序列表
+    ansible websrvs -m yum -a &#39;list&#x3D;httpd&#39;  查看程序列表
     
-    ansible websrvs -m yum -a &#39;name=httpd state=present&#39; 安装
-    ansible websrvs -m yum -a &#39;name=httpd state=absent&#39;  删除
+    ansible websrvs -m yum -a &#39;name&#x3D;httpd state&#x3D;present&#39; 安装
+    ansible websrvs -m yum -a &#39;name&#x3D;httpd state&#x3D;absent&#39;  删除
     可以同时安装多个程序包
     
 Service：管理服务
-    ansible srv -m service -a &#39;name=httpd state=stopped&#39;  停止服务
-    ansible srv -m service -a &#39;name=httpd state=started enabled=yes&#39; 启动服务,并设为开机自启
-    ansible srv -m service -a &#39;name=httpd state=reloaded&#39;  重新加载
-    ansible srv -m service -a &#39;name=httpd state=restarted&#39; 重启服务
+    ansible srv -m service -a &#39;name&#x3D;httpd state&#x3D;stopped&#39;  停止服务
+    ansible srv -m service -a &#39;name&#x3D;httpd state&#x3D;started enabled&#x3D;yes&#39; 启动服务,并设为开机自启
+    ansible srv -m service -a &#39;name&#x3D;httpd state&#x3D;reloaded&#39;  重新加载
+    ansible srv -m service -a &#39;name&#x3D;httpd state&#x3D;restarted&#39; 重启服务
 
 User：管理用户
     home   指定家目录路径
@@ -669,11 +658,11 @@ User：管理用户
     remove 清除账户
     shell  指定shell类型
     
-    ansible websrvs -m user -a &#39;name=user1 comment=&quot;test user&quot; uid=2048 home=/app/user1 group=root&#39;
-    ansible websrvs -m user -a &#39;name=sysuser1 system=yes home=/app/sysuser1&#39;
-    ansible websrvs -m user -a &#39;name=user1 state=absent remove=yes&#39;  清空用户所有数据
-    ansible websrvs -m user -a &#39;name=app uid=88 system=yes home=/app groups=root shell=/sbin/nologin password=&quot;$1$zfVojmPy$ZILcvxnXljvTI2PhP2Iqv1&quot;&#39;  创建用户
-    ansible websrvs -m user -a &#39;name=app state=absent&#39;  不会删除家目录
+    ansible websrvs -m user -a &#39;name&#x3D;user1 comment&#x3D;&quot;test user&quot; uid&#x3D;2048 home&#x3D;&#x2F;app&#x2F;user1 group&#x3D;root&#39;
+    ansible websrvs -m user -a &#39;name&#x3D;sysuser1 system&#x3D;yes home&#x3D;&#x2F;app&#x2F;sysuser1&#39;
+    ansible websrvs -m user -a &#39;name&#x3D;user1 state&#x3D;absent remove&#x3D;yes&#39;  清空用户所有数据
+    ansible websrvs -m user -a &#39;name&#x3D;app uid&#x3D;88 system&#x3D;yes home&#x3D;&#x2F;app groups&#x3D;root shell&#x3D;&#x2F;sbin&#x2F;nologin password&#x3D;&quot;$1$zfVojmPy$ZILcvxnXljvTI2PhP2Iqv1&quot;&#39;  创建用户
+    ansible websrvs -m user -a &#39;name&#x3D;app state&#x3D;absent&#39;  不会删除家目录
     
     安装mkpasswd 
     yum insatll expect 
@@ -683,12 +672,11 @@ User：管理用户
 
 删除用户及家目录等数据
     Group：管理组
-        ansible srv -m group -a &quot;name=testgroup system=yes&quot;   创建组
-        ansible srv -m group -a &quot;name=testgroup state=absent&quot; 删除组
-</code></pre>
-<h3 id="ansible系列命令-1"><a href="#ansible系列命令-1" class="headerlink" title="ansible系列命令"></a>ansible系列命令</h3><pre><code>可以通过网上写好的
+        ansible srv -m group -a &quot;name&#x3D;testgroup system&#x3D;yes&quot;   创建组
+        ansible srv -m group -a &quot;name&#x3D;testgroup state&#x3D;absent&quot; 删除组</code></pre>
+<h3 id="ansible系列命令-1"><a href="#ansible系列命令-1" class="headerlink" title="ansible系列命令"></a>ansible系列命令</h3><pre class="language-none"><code class="language-none">可以通过网上写好的
 ansible-galaxy
-    &gt; 连接 https://galaxy.ansible.com 
+    &gt; 连接 https:&#x2F;&#x2F;galaxy.ansible.com 
       下载相应的roles(角色)
     
     &gt; 列出所有已安装的galaxy
@@ -713,7 +701,7 @@ ansible-playbook  可以引用按照标准的yml语言写的脚本
           remote_user: root
           tasks:
             - name: hello world
-              command: /usr/bin/wall hello world
+              command: &#x2F;usr&#x2F;bin&#x2F;wall hello world
 
 ansible-vault  (了解)
 功能：管理加密解密yml文件
@@ -739,21 +727,18 @@ Ansible-console：2.0+新增，可交互执行命令，支持tab  (了解)
         root@all (2)[f:5]$ list
         root@all (2)[f:5]$ cd appsrvs
         root@appsrvs (2)[f:5]$ list
-        root@appsrvs (2)[f:5]$ yum name=httpd state=present
-        root@appsrvs (2)[f:5]$ service name=httpd state=started
-</code></pre>
-<h3 id="playbook"><a href="#playbook" class="headerlink" title="playbook"></a>playbook</h3><pre><code>&gt; playbook是由一个或多个&quot;play&quot;组成的列表
+        root@appsrvs (2)[f:5]$ yum name&#x3D;httpd state&#x3D;present
+        root@appsrvs (2)[f:5]$ service name&#x3D;httpd state&#x3D;started</code></pre>
+<h3 id="playbook"><a href="#playbook" class="headerlink" title="playbook"></a>playbook</h3><pre class="language-none"><code class="language-none">&gt; playbook是由一个或多个&quot;play&quot;组成的列表
 &gt; play的主要功能在于将预定义的一组主机，装扮成事先通过ansible中的task定义好的角色。
   Task实际是调用ansible的一个module，将多个play组织在一个playbook中，
   即可以让它们联合起来，按事先编排的机制执行预定义的动作
-&gt; Playbook采用YAML语言编写
-</code></pre>
+&gt; Playbook采用YAML语言编写</code></pre>
 <h3 id="playbook图解"><a href="#playbook图解" class="headerlink" title="playbook图解"></a>playbook图解</h3><p><img src="/../images/playbook%E5%9B%BE%E8%A7%A3.png" alt="image">  </p>
-<pre><code>用户通过ansible命令直接调用yml语言写好的playbook,playbook由多条play组成
+<pre class="language-none"><code class="language-none">用户通过ansible命令直接调用yml语言写好的playbook,playbook由多条play组成
 每条play都有一个任务(task)相对应的操作,然后调用模块modules，应用在主机清单上,通过ssh远程连接
-从而控制远程主机或者网络设备
-</code></pre>
-<h3 id="YAML介绍"><a href="#YAML介绍" class="headerlink" title="YAML介绍"></a>YAML介绍</h3><pre><code>YAML是一个可读性高的用来表达资料序列的格式。
+从而控制远程主机或者网络设备</code></pre>
+<h3 id="YAML介绍"><a href="#YAML介绍" class="headerlink" title="YAML介绍"></a>YAML介绍</h3><pre class="language-none"><code class="language-none">YAML是一个可读性高的用来表达资料序列的格式。
     YAML参考了其他多种语言，包括：XML、C语言、Python、Perl以及电子邮件格式RFC2822等。
     Clark Evans在2001年在首次发表了这种语言，另外Ingy döt Net与Oren Ben-Kiki也是这语言的共同设计者
 
@@ -769,22 +754,21 @@ YAML Ain&#39;t Markup Language，即YAML不是XML。
     YAML可以基于流来处理
     YAML表达能力强，扩展性好
 
-更多的内容及规范参见：http://www.yaml.org
-</code></pre>
-<h3 id="YAML语法简介"><a href="#YAML语法简介" class="headerlink" title="YAML语法简介"></a>YAML语法简介</h3><pre><code>&gt; 在单一档案中，可用连续三个连字号(——)区分多个档案。
+更多的内容及规范参见：http:&#x2F;&#x2F;www.yaml.org</code></pre>
+<h3 id="YAML语法简介"><a href="#YAML语法简介" class="headerlink" title="YAML语法简介"></a>YAML语法简介</h3><pre class="language-none"><code class="language-none">&gt; 在单一档案中，可用连续三个连字号(——)区分多个档案。
   另外，还有选择性的连续三个点号( ... )用来表示档案结尾
 &gt; 次行开始正常写Playbook的内容，一般建议写明该Playbook的功能
 &gt; 使用#号注释代码
 &gt; 缩进必须是统一的，不能空格和tab混用
 &gt; 缩进的级别也必须是一致的，同样的缩进代表同样的级别，程序判别配置的级别是通过缩进结合换行来实现的
-&gt; YAML文件内容是区别大小写的，k/v的值均需大小写敏感
-&gt; 多个k/v可同行写也可换行写，同行使用:分隔
+&gt; YAML文件内容是区别大小写的，k&#x2F;v的值均需大小写敏感
+&gt; 多个k&#x2F;v可同行写也可换行写，同行使用:分隔
 &gt; v可是个字符串，也可是另一个列表[]
 &gt; 一个完整的代码块功能需最少元素需包括 name 和 task
 &gt; 一个name只能包括一个task
-&gt; YAML文件扩展名通常为yml或yaml
-</code></pre>
-<h3 id="YAML语法简介-1"><a href="#YAML语法简介-1" class="headerlink" title="YAML语法简介"></a>YAML语法简介</h3><pre><code>List：列表，其所有元素均使用“-”打头
+&gt; YAML文件扩展名通常为yml或yaml</code></pre>
+
+<h3 id="YAML语法简介-1"><a href="#YAML语法简介-1" class="headerlink" title="YAML语法简介"></a>YAML语法简介</h3><pre class="language-none"><code class="language-none">List：列表，其所有元素均使用“-”打头
       列表代表同一类型的元素
 示例：
 # A list of tasty fruits
@@ -805,9 +789,8 @@ skill: Elite
 示例：
 ---
 # An employee record
-&#123;name: Example Developer, job: Developer, skill: Elite&#125;  有空格
-</code></pre>
-<h3 id="YAML语法"><a href="#YAML语法" class="headerlink" title="YAML语法"></a>YAML语法</h3><pre><code>YAML的语法和其他高阶语言类似，并且可以简单表达清单、散列表、标量等数据结构。
+&#123;name: Example Developer, job: Developer, skill: Elite&#125;  有空格</code></pre>
+<h3 id="YAML语法"><a href="#YAML语法" class="headerlink" title="YAML语法"></a>YAML语法</h3><pre class="language-none"><code class="language-none">YAML的语法和其他高阶语言类似，并且可以简单表达清单、散列表、标量等数据结构。
 其结构（Structure）通过空格来展示，序列（Sequence）里的项用&quot;-&quot;来代表，Map里的键值对用&quot;:&quot;分隔
 示例
     name: John Smith
@@ -823,10 +806,9 @@ skill: Elite
         gender: Male
       - name: Jenny Smith
         age 13
-        gender: Female
-</code></pre>
+        gender: Female</code></pre>
 <h3 id="三种常见的数据交换格式"><a href="#三种常见的数据交换格式" class="headerlink" title="三种常见的数据交换格式"></a>三种常见的数据交换格式</h3><p><img src="/../images/threedata.png" alt="image"></p>
-<h3 id="Playbook核心元素"><a href="#Playbook核心元素" class="headerlink" title="Playbook核心元素"></a>Playbook核心元素</h3><pre><code>Hosts          执行的远程主机列表(应用在哪些主机上)
+<h3 id="Playbook核心元素"><a href="#Playbook核心元素" class="headerlink" title="Playbook核心元素"></a>Playbook核心元素</h3><pre class="language-none"><code class="language-none">Hosts          执行的远程主机列表(应用在哪些主机上)
 
 Tasks          任务集
 
@@ -840,9 +822,8 @@ tags标签       指定某条任务执行，用于选择运行playbook中的部�
                 ansible具有幂等性，因此会自动跳过没有变化的部分，
                 即便如此，有些代码为测试其确实没有发生变化的时间依然会非常地长。
                 此时，如果确信其没有变化，就可以通过tags跳过此些代码片断
-                ansible-playbook -t tagsname useradd.yml
-</code></pre>
-<h3 id="playbook基础组件"><a href="#playbook基础组件" class="headerlink" title="playbook基础组件"></a>playbook基础组件</h3><pre><code>Hosts：
+                ansible-playbook -t tagsname useradd.yml</code></pre>
+<h3 id="playbook基础组件"><a href="#playbook基础组件" class="headerlink" title="playbook基础组件"></a>playbook基础组件</h3><pre class="language-none"><code class="language-none">Hosts：
     &gt; playbook中的每一个play的目的都是为了让特定主机以某个指定的用户身份执行任务。
       hosts用于指定要执行指定任务的主机，须事先定义在主机清单中
 
@@ -878,13 +859,12 @@ task列表和action
        模块执行是幂等的，这意味着多次执行是安全的，因为其结果均一致
 
     3&gt; 每个task都应该有其name，用于playbook的执行结果输出，建议其内容能清晰地描述任务执行步骤。
-       如果未提供name，则action的结果将用于输出
-</code></pre>
-<pre><code>tasks：任务列表
+       如果未提供name，则action的结果将用于输出</code></pre>
+<pre class="language-none"><code class="language-none">tasks：任务列表
 两种格式：
     (1) action: module arguments
     (2) module: arguments 建议使用  模块: 参数
-    注意：shell和command模块后面跟命令，而非key=value
+    注意：shell和command模块后面跟命令，而非key&#x3D;value
 
 某任务的状态在运行后为changed时，可通过&quot;notify&quot;通知给相应的handlers
 
@@ -892,21 +872,20 @@ task列表和action
 示例：
 tasks:
   - name: disable selinux   描述
-    command: /sbin/setenforce 0   模块名: 模块对应的参数
+    command: &#x2F;sbin&#x2F;setenforce 0   模块名: 模块对应的参数
 </code></pre>
-<pre><code>如果命令或脚本的退出码不为零，可以使用如下方式替代
+<pre class="language-none"><code class="language-none">如果命令或脚本的退出码不为零，可以使用如下方式替代
 tasks:
   - name: run this command and ignore the result
-    shell: /usr/bin/somecommand || /bin/true  
+    shell: &#x2F;usr&#x2F;bin&#x2F;somecommand || &#x2F;bin&#x2F;true  
     转错为正  如果命令失败则执行 true
 
 或者使用ignore_errors来忽略错误信息
 tasks:
   - name: run this command and ignore the result
-    shell: /usr/bin/somecommand
-    ignore_errors: True  忽略错误
-</code></pre>
-<h3 id="运行playbook"><a href="#运行playbook" class="headerlink" title="运行playbook"></a>运行playbook</h3><pre><code>运行playbook的方式
+    shell: &#x2F;usr&#x2F;bin&#x2F;somecommand
+    ignore_errors: True  忽略错误</code></pre>
+<h3 id="运行playbook"><a href="#运行playbook" class="headerlink" title="运行playbook"></a>运行playbook</h3><pre class="language-none"><code class="language-none">运行playbook的方式
     ansible-playbook &lt;filename.yml&gt; ... [options]
 
 常见选项
@@ -922,96 +901,89 @@ tasks:
 示例
     ansible-playbook hello.yml --check 只检测
     ansible-playbook hello.yml --list-hosts  显示运行任务的主机
-    ansible-playbook hello.yml --limit websrvs  限制主机
-</code></pre>
+    ansible-playbook hello.yml --limit websrvs  限制主机</code></pre>
 <h3 id="Playbook-VS-ShellScripts"><a href="#Playbook-VS-ShellScripts" class="headerlink" title="Playbook VS ShellScripts"></a>Playbook VS ShellScripts</h3><p>安装httpd</p>
-<pre><code>SHELL脚本
-#!/bin/bash
+<pre class="language-none"><code class="language-none">SHELL脚本
+#!&#x2F;bin&#x2F;bash
 # 安装Apache
 yum install --quiet -y httpd
 # 复制配置文件
-cp /tmp/httpd.conf /etc/httpd/conf/httpd.conf
-cp/tmp/vhosts.conf /etc/httpd/conf.d/
+cp &#x2F;tmp&#x2F;httpd.conf &#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf
+cp&#x2F;tmp&#x2F;vhosts.conf &#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;
 # 启动Apache，并设置开机启动
 service httpd start
-chkconfig httpd on
-</code></pre>
-<pre><code>Playbook定义
+chkconfig httpd on</code></pre>
+
+<pre class="language-none"><code class="language-none">Playbook定义
 ---
 - hosts: all
   remote_user: root
   
   tasks:
     - name: &quot;安装Apache&quot;
-      yum: name=httpd       yum模块:安装httpd
+      yum: name&#x3D;httpd       yum模块:安装httpd
     - name: &quot;复制配置文件&quot;
-      copy: src=/tmp/httpd.conf dest=/etc/httpd/conf/  copy模块: 拷贝文件
+      copy: src&#x3D;&#x2F;tmp&#x2F;httpd.conf dest&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;  copy模块: 拷贝文件
     - name: &quot;复制配置文件&quot;
-      copy: src=/tmp/vhosts.conf dest=/etc/httpd/conf.d/  
+      copy: src&#x3D;&#x2F;tmp&#x2F;vhosts.conf dest&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;  
     - name: &quot;启动Apache，并设置开机启动&quot;
-      service: name=httpd state=started enabled=yes   service模块: 启动服务 
-</code></pre>
-<h3 id="示例-Playbook-创建用户"><a href="#示例-Playbook-创建用户" class="headerlink" title="示例:Playbook 创建用户"></a>示例:Playbook 创建用户</h3><pre><code>示例：sysuser.yml
+      service: name&#x3D;httpd state&#x3D;started enabled&#x3D;yes   service模块: 启动服务 </code></pre>
+<h3 id="示例-Playbook-创建用户"><a href="#示例-Playbook-创建用户" class="headerlink" title="示例:Playbook 创建用户"></a>示例:Playbook 创建用户</h3><pre class="language-none"><code class="language-none">示例：sysuser.yml
 ---
 - hosts: all
   remote_user: root
 
   tasks:
     - name: create mysql user
-      user: name=mysql system=yes uid=36
+      user: name&#x3D;mysql system&#x3D;yes uid&#x3D;36
     - name: create a group
-      group: name=httpd system=yes
-</code></pre>
-<h3 id="Playbook示例-安装httpd服务"><a href="#Playbook示例-安装httpd服务" class="headerlink" title="Playbook示例  安装httpd服务"></a>Playbook示例  安装httpd服务</h3><pre><code>示例：httpd.yml
+      group: name&#x3D;httpd system&#x3D;yes</code></pre>
+<h3 id="Playbook示例-安装httpd服务"><a href="#Playbook示例-安装httpd服务" class="headerlink" title="Playbook示例  安装httpd服务"></a>Playbook示例  安装httpd服务</h3><pre class="language-none"><code class="language-none">示例：httpd.yml
 - hosts: websrvs
   remote_user: root
 
   tasks:
     - name: Install httpd
-      yum: name=httpd state=present
+      yum: name&#x3D;httpd state&#x3D;present
     - name: Install configure file
-      copy: src=files/httpd.conf dest=/etc/httpd/conf/
+      copy: src&#x3D;files&#x2F;httpd.conf dest&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;
     - name: start service
-      service: name=httpd state=started enabled=yes
-</code></pre>
-<h3 id="Playbook示例-安装nginx服务"><a href="#Playbook示例-安装nginx服务" class="headerlink" title="Playbook示例  安装nginx服务"></a>Playbook示例  安装nginx服务</h3><pre><code>示例 nginx.yml
+      service: name&#x3D;httpd state&#x3D;started enabled&#x3D;yes</code></pre>
+<h3 id="Playbook示例-安装nginx服务"><a href="#Playbook示例-安装nginx服务" class="headerlink" title="Playbook示例  安装nginx服务"></a>Playbook示例  安装nginx服务</h3><pre class="language-none"><code class="language-none">示例 nginx.yml
 - hosts: all
   remote_user: root
 
   tasks:
     - name: add group nginx
-      user: name=nginx state=present
+      user: name&#x3D;nginx state&#x3D;present
     - name: add user nginx
-      user: name=nginx state=present group=nginx
+      user: name&#x3D;nginx state&#x3D;present group&#x3D;nginx
     - name: Install Nginx
-      yum: name=nginx state=present
+      yum: name&#x3D;nginx state&#x3D;present
     - name: Start Nginx
-      service: name=nginx state=started enabled=yes
-</code></pre>
-<h3 id="handlers和notify结合使用触发条件"><a href="#handlers和notify结合使用触发条件" class="headerlink" title="handlers和notify结合使用触发条件"></a>handlers和notify结合使用触发条件</h3><pre><code>Handlers 实际上就是一个触发器
+      service: name&#x3D;nginx state&#x3D;started enabled&#x3D;yes</code></pre>
+<h3 id="handlers和notify结合使用触发条件"><a href="#handlers和notify结合使用触发条件" class="headerlink" title="handlers和notify结合使用触发条件"></a>handlers和notify结合使用触发条件</h3><pre class="language-none"><code class="language-none">Handlers 实际上就是一个触发器
 是task列表，这些task与前述的task并没有本质上的不同,用于当关注的资源发生变化时，才会采取一定的操作
 
 Notify此action可用于在每个play的最后被触发，
 这样可避免多次有改变发生时每次都执行指定的操作，仅在所有的变化发生完成后一次性地执行指定操作。
-在notify中列出的操作称为handler，也即notify中调用handler中定义的操作
-</code></pre>
-<h3 id="Playbook中handlers使用"><a href="#Playbook中handlers使用" class="headerlink" title="Playbook中handlers使用"></a>Playbook中handlers使用</h3><pre><code>- hosts: websrvs
+在notify中列出的操作称为handler，也即notify中调用handler中定义的操作</code></pre>
+<h3 id="Playbook中handlers使用"><a href="#Playbook中handlers使用" class="headerlink" title="Playbook中handlers使用"></a>Playbook中handlers使用</h3><pre class="language-none"><code class="language-none">- hosts: websrvs
   remote_user: root
 
   tasks:
     - name: Install httpd
-      yum: name=httpd state=present
+      yum: name&#x3D;httpd state&#x3D;present
     - name: Install configure file
-      copy: src=files/httpd.conf dest=/etc/httpd/conf/
+      copy: src&#x3D;files&#x2F;httpd.conf dest&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;
       notify: restart httpd
     - name: ensure apache is running
-      service: name=httpd state=started enabled=yes
+      service: name&#x3D;httpd state&#x3D;started enabled&#x3D;yes
   
   handlers:
     - name: restart httpd
-      service: name=httpd state=restarted
-</code></pre>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><pre><code>- hosts: webnodes
+      service: name&#x3D;httpd state&#x3D;restarted</code></pre>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><pre class="language-none"><code class="language-none">- hosts: webnodes
   vars:
     http_port: 80
     max_clients: 256
@@ -1019,41 +991,39 @@ Notify此action可用于在每个play的最后被触发，
   
   tasks:
     - name: ensure apache is at the latest version
-      yum: name=httpd state=latest
+      yum: name&#x3D;httpd state&#x3D;latest
     - name: ensure apache is running
-      service: name=httpd state=started
+      service: name&#x3D;httpd state&#x3D;started
     - name: Install configure file
-      copy: src=files/httpd.conf dest=/etc/httpd/conf/
+      copy: src&#x3D;files&#x2F;httpd.conf dest&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;
       notify: restart httpd
   
   handlers:
       - name: restart httpd 
-        service: name=httpd state=restarted
-</code></pre>
-<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><pre><code>- hosts: websrvs
+        service: name&#x3D;httpd state&#x3D;restarted</code></pre>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><pre class="language-none"><code class="language-none">- hosts: websrvs
   remote_user: root
   
   tasks:
     - name: add group nginx
       tags: user
-      user: name=nginx state=present
+      user: name&#x3D;nginx state&#x3D;present
     - name: add user nginx
-      user: name=nginx state=present group=nginx
+      user: name&#x3D;nginx state&#x3D;present group&#x3D;nginx
     - name: Install Nginx
-      yum: name=nginx state=present
+      yum: name&#x3D;nginx state&#x3D;present
     - name: config
-      copy: src=/root/config.txt dest=/etc/nginx/nginx.conf
+      copy: src&#x3D;&#x2F;root&#x2F;config.txt dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
       notify:
         - Restart Nginx
         - Check Nginx Process
   
   handlers:
     - name: Restart Nginx
-      service: name=nginx state=restarted enabled=yes
+      service: name&#x3D;nginx state&#x3D;restarted enabled&#x3D;yes
     - name: Check Nginx process
-      shell: killall -0 nginx &gt; /tmp/nginx.log
-</code></pre>
-<h3 id="Playbook中tags使用"><a href="#Playbook中tags使用" class="headerlink" title="Playbook中tags使用"></a>Playbook中tags使用</h3><pre><code>tage: 添加标签 
+      shell: killall -0 nginx &gt; &#x2F;tmp&#x2F;nginx.log</code></pre>
+<h3 id="Playbook中tags使用"><a href="#Playbook中tags使用" class="headerlink" title="Playbook中tags使用"></a>Playbook中tags使用</h3><pre class="language-none"><code class="language-none">tage: 添加标签 
 可以指定某一个任务添加一个标签,添加标签以后,想执行某个动作可以做出挑选来执行
 多个动作可以使用同一个标签
 
@@ -1063,70 +1033,67 @@ Notify此action可用于在每个play的最后被触发，
   
   tasks:
     - name: Install httpd
-      yum: name=httpd state=present
+      yum: name&#x3D;httpd state&#x3D;present
       tage: install 
     - name: Install configure file
-      copy: src=files/httpd.conf dest=/etc/httpd/conf/
+      copy: src&#x3D;files&#x2F;httpd.conf dest&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;
       tags: conf
     - name: start httpd service
       tags: service
-      service: name=httpd state=started enabled=yes
+      service: name&#x3D;httpd state&#x3D;started enabled&#x3D;yes
 
-ansible-playbook –t install,conf httpd.yml   指定执行install,conf 两个标签
-</code></pre>
-<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><pre><code>//heartbeat.yaml
+ansible-playbook –t install,conf httpd.yml   指定执行install,conf 两个标签</code></pre>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><pre class="language-none"><code class="language-none">&#x2F;&#x2F;heartbeat.yaml
 - hosts: hbhosts
   remote_user: root
   
   tasks:
     - name: ensure heartbeat latest version
-      yum: name=heartbeat state=present
+      yum: name&#x3D;heartbeat state&#x3D;present
     - name: authkeys configure file
-      copy: src=/root/hb_conf/authkeys dest=/etc/ha.d/authkeys
+      copy: src&#x3D;&#x2F;root&#x2F;hb_conf&#x2F;authkeys dest&#x3D;&#x2F;etc&#x2F;ha.d&#x2F;authkeys
     - name: authkeys mode 600
-      file: path=/etc/ha.d/authkeys mode=600
+      file: path&#x3D;&#x2F;etc&#x2F;ha.d&#x2F;authkeys mode&#x3D;600
       notify:
         - restart heartbeat
     - name: ha.cf configure file
-      copy: src=/root/hb_conf/ha.cf dest=/etc/ha.d/ha.cf
+      copy: src&#x3D;&#x2F;root&#x2F;hb_conf&#x2F;ha.cf dest&#x3D;&#x2F;etc&#x2F;ha.d&#x2F;ha.cf
       notify:
         - restart heartbeat
   handlers:
     - name: restart heartbeat
-      service: name=heartbeat state=restarted
-</code></pre>
-<h3 id="Playbook中tags使用-1"><a href="#Playbook中tags使用-1" class="headerlink" title="Playbook中tags使用"></a>Playbook中tags使用</h3><pre><code>- hosts: testsrv
+      service: name&#x3D;heartbeat state&#x3D;restarted</code></pre>
+<h3 id="Playbook中tags使用-1"><a href="#Playbook中tags使用-1" class="headerlink" title="Playbook中tags使用"></a>Playbook中tags使用</h3><pre class="language-none"><code class="language-none">- hosts: testsrv
   remote_user: root
   tags: inshttpd   针对整个playbook添加tage
   tasks:
     - name: Install httpd
-      yum: name=httpd state=present
+      yum: name&#x3D;httpd state&#x3D;present
     - name: Install configure file
-      copy: src=files/httpd.conf dest=/etc/httpd/conf/
+      copy: src&#x3D;files&#x2F;httpd.conf dest&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;
       tags: rshttpd
       notify: restart httpd
   handlers:
     - name: restart httpd
-      service: name=httpd status=restarted
+      service: name&#x3D;httpd status&#x3D;restarted
      
-ansible-playbook –t rshttpd httpd2.yml
-</code></pre>
-<h3 id="Playbook中变量的使用"><a href="#Playbook中变量的使用" class="headerlink" title="Playbook中变量的使用"></a>Playbook中变量的使用</h3><pre><code>变量名：仅能由字母、数字和下划线组成，且只能以字母开头
+ansible-playbook –t rshttpd httpd2.yml</code></pre>
+<h3 id="Playbook中变量的使用"><a href="#Playbook中变量的使用" class="headerlink" title="Playbook中变量的使用"></a>Playbook中变量的使用</h3><pre class="language-none"><code class="language-none">变量名：仅能由字母、数字和下划线组成，且只能以字母开头
 变量来源：
     1&gt; ansible setup facts 远程主机的所有变量都可直接调用 (系统自带变量)
        setup模块可以实现系统中很多系统信息的显示
                 可以返回每个主机的系统信息包括:版本、主机名、cpu、内存
-       ansible all -m setup -a &#39;filter=&quot;ansible_nodename&quot;&#39;     查询主机名
-       ansible all -m setup -a &#39;filter=&quot;ansible_memtotal_mb&quot;&#39;  查询主机内存大小
-       ansible all -m setup -a &#39;filter=&quot;ansible_distribution_major_version&quot;&#39;  查询系统版本
-       ansible all -m setup -a &#39;filter=&quot;ansible_processor_vcpus&quot;&#39; 查询主机cpu个数
+       ansible all -m setup -a &#39;filter&#x3D;&quot;ansible_nodename&quot;&#39;     查询主机名
+       ansible all -m setup -a &#39;filter&#x3D;&quot;ansible_memtotal_mb&quot;&#39;  查询主机内存大小
+       ansible all -m setup -a &#39;filter&#x3D;&quot;ansible_distribution_major_version&quot;&#39;  查询系统版本
+       ansible all -m setup -a &#39;filter&#x3D;&quot;ansible_processor_vcpus&quot;&#39; 查询主机cpu个数
     
-    2&gt; 在/etc/ansible/hosts(主机清单)中定义变量
+    2&gt; 在&#x2F;etc&#x2F;ansible&#x2F;hosts(主机清单)中定义变量
         普通变量：主机组中主机单独定义，优先级高于公共变量(单个主机 )
         公共(组)变量：针对主机组中所有主机定义统一变量(一组主机的同一类别)
     
     3&gt; 通过命令行指定变量，优先级最高
-       ansible-playbook –e varname=value
+       ansible-playbook –e varname&#x3D;value
     
     4&gt; 在playbook中定义
        vars:
@@ -1140,31 +1107,30 @@ ansible-playbook –t rshttpd httpd2.yml
 变量命名:
     变量名仅能由字母、数字和下划线组成，且只能以字母开头
 
-变量定义：key=value
-    示例：http_port=80
+变量定义：key&#x3D;value
+    示例：http_port&#x3D;80
 
 变量调用方式：
     1&gt; 通过&#123;&#123; variable_name &#125;&#125; 调用变量，且变量名前后必须有空格，有时用“&#123;&#123; variable_name &#125;&#125;”才生效
 
     2&gt; ansible-playbook –e 选项指定
-       ansible-playbook test.yml -e &quot;hosts=www user=magedu&quot;
-</code></pre>
-<pre><code>在主机清单中定义变量,在ansible中使用变量
-vim /etc/ansible/hosts
+       ansible-playbook test.yml -e &quot;hosts&#x3D;www user&#x3D;magedu&quot;</code></pre>
+<pre class="language-none"><code class="language-none">在主机清单中定义变量,在ansible中使用变量
+vim &#x2F;etc&#x2F;ansible&#x2F;hosts
 [appsrvs]
-192.168.38.17 http_port=817 name=www
-192.168.38.27 http_port=827 name=web
+192.168.38.17 http_port&#x3D;817 name&#x3D;www
+192.168.38.27 http_port&#x3D;827 name&#x3D;web
 
 调用变量
-ansible appsrvs -m hostname -a&#39;name=&#123;&#123;name&#125;&#125;&#39;  更改主机名为各自被定义的变量 
+ansible appsrvs -m hostname -a&#39;name&#x3D;&#123;&#123;name&#125;&#125;&#39;  更改主机名为各自被定义的变量 
 
 针对一组设置变量
 [appsrvs:vars]
-make=&quot;-&quot;
+make&#x3D;&quot;-&quot;
 
-ansible appsrvs -m hostname -a &#39;name=&#123;&#123;name&#125;&#125;&#123;&#123;mark&#125;&#125;&#123;&#123;http_port&#125;&#125;&#39;  ansible调用变量
+ansible appsrvs -m hostname -a &#39;name&#x3D;&#123;&#123;name&#125;&#125;&#123;&#123;mark&#125;&#125;&#123;&#123;http_port&#125;&#125;&#39;  ansible调用变量
 </code></pre>
-<pre><code>将变量写进单独的配置文件中引用
+<pre class="language-none"><code class="language-none">将变量写进单独的配置文件中引用
 vim vars.yml
 pack: vsftpd
 service: vsftpd
@@ -1172,45 +1138,41 @@ service: vsftpd
 引用变量文件
 vars_files:
   - vars.yml 
-    
-</code></pre>
-<h3 id="Ansible基础元素"><a href="#Ansible基础元素" class="headerlink" title="Ansible基础元素"></a>Ansible基础元素</h3><pre><code>Facts：是由正在通信的远程目标主机发回的信息，这些信息被保存在ansible变量中。
+    </code></pre>
+<h3 id="Ansible基础元素"><a href="#Ansible基础元素" class="headerlink" title="Ansible基础元素"></a>Ansible基础元素</h3><pre class="language-none"><code class="language-none">Facts：是由正在通信的远程目标主机发回的信息，这些信息被保存在ansible变量中。
        要获取指定的远程主机所支持的所有facts，可使用如下命令进行
        ansible websrvs -m setup
 
 通过命令行传递变量
     在运行playbook的时候也可以传递一些变量供playbook使用
     示例：
-        ansible-playbook test.yml -e &quot;hosts=www user=magedu&quot;
+        ansible-playbook test.yml -e &quot;hosts&#x3D;www user&#x3D;magedu&quot;
         
 register
 把任务的输出定义为变量，然后用于其他任务
 
 示例:
 tasks:
-- shell: /usr/bin/foo
+- shell: &#x2F;usr&#x2F;bin&#x2F;foo
   register: foo_result
-  ignore_errors: True
-</code></pre>
-<h3 id="示例：使用setup变量"><a href="#示例：使用setup变量" class="headerlink" title="示例：使用setup变量"></a>示例：使用setup变量</h3><pre><code>示例：var.yml
+  ignore_errors: True</code></pre>
+<h3 id="示例：使用setup变量"><a href="#示例：使用setup变量" class="headerlink" title="示例：使用setup变量"></a>示例：使用setup变量</h3><pre class="language-none"><code class="language-none">示例：var.yml
 - hosts: websrvs
   remote_user: root
   tasks:
     - name: create log file
-      file: name=/var/log/ &#123;&#123; ansible_fqdn &#125;&#125; state=touch
+      file: name&#x3D;&#x2F;var&#x2F;log&#x2F; &#123;&#123; ansible_fqdn &#125;&#125; state&#x3D;touch
 
-ansible-playbook var.yml
-</code></pre>
-<h3 id="示例：变量"><a href="#示例：变量" class="headerlink" title="示例：变量"></a>示例：变量</h3><pre><code>示例：var.yml
+ansible-playbook var.yml</code></pre>
+<h3 id="示例：变量"><a href="#示例：变量" class="headerlink" title="示例：变量"></a>示例：变量</h3><pre class="language-none"><code class="language-none">示例：var.yml
 - hosts: websrvs
   remote_user: root
   tasks:
     - name: install package
-      yum: name=&#123;&#123; pkname &#125;&#125; state=present
+      yum: name&#x3D;&#123;&#123; pkname &#125;&#125; state&#x3D;present
       
-ansible-playbook –e pkname=httpd var.yml
-</code></pre>
-<h3 id="示例：变量-1"><a href="#示例：变量-1" class="headerlink" title="示例：变量"></a>示例：变量</h3><pre><code>示例：var.yml
+ansible-playbook –e pkname&#x3D;httpd var.yml</code></pre>
+<h3 id="示例：变量-1"><a href="#示例：变量-1" class="headerlink" title="示例：变量"></a>示例：变量</h3><pre class="language-none"><code class="language-none">示例：var.yml
 - hosts: websrvs
   remote_user: root
 vars:
@@ -1218,20 +1180,20 @@ vars:
   - groupname: group1
 tasks:
   - name: create group
-    group: name=&#123;&#123; groupname &#125;&#125; state=present
+    group: name&#x3D;&#123;&#123; groupname &#125;&#125; state&#x3D;present
   - name: create user
-    user: name=&#123;&#123; username &#125;&#125; state=present
+    user: name&#x3D;&#123;&#123; username &#125;&#125; state&#x3D;present
 
 ansible-playbook var.yml
-ansible-playbook -e &quot;username=user2 groupname=group2” var2.yml
+ansible-playbook -e &quot;username&#x3D;user2 groupname&#x3D;group2” var2.yml
 </code></pre>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><pre><code>主机变量
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><pre class="language-none"><code class="language-none">主机变量
 可以在inventory中定义主机时为其添加主机变量以便于在playbook中使用
 
 示例：
 [websrvs]
-www1.magedu.com http_port=80 maxRequestsPerChild=808
-www2.magedu.com http_port=8080 maxRequestsPerChild=909
+www1.magedu.com http_port&#x3D;80 maxRequestsPerChild&#x3D;808
+www2.magedu.com http_port&#x3D;8080 maxRequestsPerChild&#x3D;909
 
 组变量
 组变量是指赋予给指定组内所有主机上的在playbook中可用的变量
@@ -1242,27 +1204,25 @@ www2.magedu.com http_port=8080 maxRequestsPerChild=909
     www2.magedu.com
 
     [websrvs:vars]
-    ntp_server=ntp.magedu.com
-    nfs_server=nfs.magedu.com
-</code></pre>
-<h3 id="示例：变量-2"><a href="#示例：变量-2" class="headerlink" title="示例：变量"></a>示例：变量</h3><pre><code>普通变量
+    ntp_server&#x3D;ntp.magedu.com
+    nfs_server&#x3D;nfs.magedu.com</code></pre>
+<h3 id="示例：变量-2"><a href="#示例：变量-2" class="headerlink" title="示例：变量"></a>示例：变量</h3><pre class="language-none"><code class="language-none">普通变量
     [websrvs]
-    192.168.99.101 http_port=8080 hname=www1
-    192.168.99.102 http_port=80 hname=www2
+    192.168.99.101 http_port&#x3D;8080 hname&#x3D;www1
+    192.168.99.102 http_port&#x3D;80 hname&#x3D;www2
 
 公共（组）变量
     [websvrs:vars]
-    http_port=808
-    mark=&quot;_&quot;
+    http_port&#x3D;808
+    mark&#x3D;&quot;_&quot;
     [websrvs]
-    192.168.99.101 http_port=8080 hname=www1
-    192.168.99.102 http_port=80 hname=www2
-    ansible websvrs –m hostname –a ‘name=&#123;&#123; hname &#125;&#125;&#123;&#123; mark &#125;&#125;&#123;&#123; http_port &#125;&#125;’
+    192.168.99.101 http_port&#x3D;8080 hname&#x3D;www1
+    192.168.99.102 http_port&#x3D;80 hname&#x3D;www2
+    ansible websvrs –m hostname –a ‘name&#x3D;&#123;&#123; hname &#125;&#125;&#123;&#123; mark &#125;&#125;&#123;&#123; http_port &#125;&#125;’
 
 命令行指定变量：
-    ansible websvrs –e http_port=8000 –m hostname –a&#39;name=&#123;&#123; hname &#125;&#125;&#123;&#123; mark &#125;&#125;&#123;&#123; http_port &#125;&#125;&#39;
-</code></pre>
-<h3 id="使用变量文件"><a href="#使用变量文件" class="headerlink" title="使用变量文件"></a>使用变量文件</h3><pre><code>cat vars.yml
+    ansible websvrs –e http_port&#x3D;8000 –m hostname –a&#39;name&#x3D;&#123;&#123; hname &#125;&#125;&#123;&#123; mark &#125;&#125;&#123;&#123; http_port &#125;&#125;&#39;</code></pre>
+<h3 id="使用变量文件"><a href="#使用变量文件" class="headerlink" title="使用变量文件"></a>使用变量文件</h3><pre class="language-none"><code class="language-none">cat vars.yml
 var1: httpd
 var2: nginx
 
@@ -1273,14 +1233,13 @@ cat var.yml
     - vars.yml
   tasks:
     - name: create httpd log
-      file: name=/app/&#123;&#123; var1 &#125;&#125;.log state=touch
+      file: name&#x3D;&#x2F;app&#x2F;&#123;&#123; var1 &#125;&#125;.log state&#x3D;touch
     - name: create nginx log
-      file: name=/app/&#123;&#123; var2 &#125;&#125;.log state=touch
+      file: name&#x3D;&#x2F;app&#x2F;&#123;&#123; var2 &#125;&#125;.log state&#x3D;touch
       
 hostname app_81.magedu.com  hostname 不支持&quot;_&quot;,认为&quot;_&quot;是非法字符
-hostnamectl set-hostname app_80.magedu.com  可以更改主机名
-</code></pre>
-<h3 id="变量-1"><a href="#变量-1" class="headerlink" title="变量"></a>变量</h3><pre><code>组嵌套
+hostnamectl set-hostname app_80.magedu.com  可以更改主机名</code></pre>
+<h3 id="变量-1"><a href="#变量-1" class="headerlink" title="变量"></a>变量</h3><pre class="language-none"><code class="language-none">组嵌套
 inventory中，组还可以包含其它的组，并且也可以向组中的主机指定变量。
 这些变量只能在ansible-playbook中使用，而ansible命令不支持
 
@@ -1298,9 +1257,8 @@ inventory中，组还可以包含其它的组，并且也可以向组中的主�
     nginx
     
     [webservers:vars]
-    ntp_server=ntp.magedu.com
-</code></pre>
-<h3 id="invertory参数"><a href="#invertory参数" class="headerlink" title="invertory参数"></a>invertory参数</h3><pre><code>invertory参数：用于定义ansible远程连接目标主机时使用的参数，而非传递给playbook的变量
+    ntp_server&#x3D;ntp.magedu.com</code></pre>
+<h3 id="invertory参数"><a href="#invertory参数" class="headerlink" title="invertory参数"></a>invertory参数</h3><pre class="language-none"><code class="language-none">invertory参数：用于定义ansible远程连接目标主机时使用的参数，而非传递给playbook的变量
     ansible_ssh_host
     ansible_ssh_port
     ansible_ssh_user
@@ -1308,12 +1266,11 @@ inventory中，组还可以包含其它的组，并且也可以向组中的主�
     ansbile_sudo_pass
 
 示例：
-    cat /etc/ansible/hosts
+    cat &#x2F;etc&#x2F;ansible&#x2F;hosts
     [websrvs]
-    192.168.0.1 ansible_ssh_user=root ansible_ssh_pass=magedu
-    192.168.0.2 ansible_ssh_user=root ansible_ssh_pass=magedu
-</code></pre>
-<h3 id="invertory参数-1"><a href="#invertory参数-1" class="headerlink" title="invertory参数"></a>invertory参数</h3><pre><code>inventory参数
+    192.168.0.1 ansible_ssh_user&#x3D;root ansible_ssh_pass&#x3D;magedu
+    192.168.0.2 ansible_ssh_user&#x3D;root ansible_ssh_pass&#x3D;magedu</code></pre>
+<h3 id="invertory参数-1"><a href="#invertory参数-1" class="headerlink" title="invertory参数"></a>invertory参数</h3><pre class="language-none"><code class="language-none">inventory参数
 ansible基于ssh连接inventory中指定的远程主机时，还可以通过参数指定其交互方式；
 这些参数如下所示：
 ansible_ssh_host
@@ -1347,9 +1304,9 @@ commands executed on target systems to follow those shell&#39;s syntax instead.
 
 ansible_python_interpreter
 The target host python path. This is useful for systems with more
-than one Python or not located at &quot;/usr/bin/python&quot; such as \*BSD, or where /usr/bin/python
+than one Python or not located at &quot;&#x2F;usr&#x2F;bin&#x2F;python&quot; such as \*BSD, or where &#x2F;usr&#x2F;bin&#x2F;python
 
-is not a 2.X series Python. We do not use the &quot;/usr/bin/env&quot; mechanism as that requires the remote user&#39;s
+is not a 2.X series Python. We do not use the &quot;&#x2F;usr&#x2F;bin&#x2F;env&quot; mechanism as that requires the remote user&#39;s
 
 path to be set right and also assumes the &quot;python&quot; executable is named python,where the executable might
 
@@ -1358,48 +1315,44 @@ ansible\_\*\_interpreter
 
 Works for anything such as ruby or perl and works just like ansible_python_interpreter.
 
-This replaces shebang of modules which will run on that host.
-</code></pre>
-<h3 id="模板templates"><a href="#模板templates" class="headerlink" title="模板templates"></a>模板templates</h3><pre><code>文本文件，嵌套有脚本（使用模板编程语言编写） 借助模板生成真正的文件
+This replaces shebang of modules which will run on that host.</code></pre>
+<h3 id="模板templates"><a href="#模板templates" class="headerlink" title="模板templates"></a>模板templates</h3><pre class="language-none"><code class="language-none">文本文件，嵌套有脚本（使用模板编程语言编写） 借助模板生成真正的文件
 Jinja2语言，使用字面量，有下面形式
     字符串：使用单引号或双引号
     数字：整数，浮点数
     列表：[item1, item2, ...]
     元组：(item1, item2, ...)
     字典：&#123;key1:value1, key2:value2, ...&#125;
-    布尔型：true/false
-算术运算：+, -, *, /, //, %, **
-比较操作：==, !=, &gt;, &gt;=, &lt;, &lt;=
+    布尔型：true&#x2F;false
+算术运算：+, -, *, &#x2F;, &#x2F;&#x2F;, %, **
+比较操作：&#x3D;&#x3D;, !&#x3D;, &gt;, &gt;&#x3D;, &lt;, &lt;&#x3D;
 逻辑运算：and，or，not
-流表达式：For，If，When
-</code></pre>
-<h3 id="Jinja2相关"><a href="#Jinja2相关" class="headerlink" title="Jinja2相关"></a>Jinja2相关</h3><pre><code>字面量
+流表达式：For，If，When</code></pre>
+<h3 id="Jinja2相关"><a href="#Jinja2相关" class="headerlink" title="Jinja2相关"></a>Jinja2相关</h3><pre class="language-none"><code class="language-none">字面量
     1&gt; 表达式最简单的形式就是字面量。字面量表示诸如字符串和数值的 Python对象。如“Hello World”
     双引号或单引号中间的一切都是字符串。
     2&gt; 无论何时你需要在模板中使用一个字符串（比如函数调用、过滤器或只是包含或继承一个模板的参数），如4242.23
-    3&gt; 数值可以为整数和浮点数。如果有小数点，则为浮点数，否则为整数。在Python 里， 42 和 42.0 是不一样的
-</code></pre>
-<h3 id="Jinja2-算术运算"><a href="#Jinja2-算术运算" class="headerlink" title="Jinja2:算术运算"></a>Jinja2:算术运算</h3><pre><code>算术运算
+    3&gt; 数值可以为整数和浮点数。如果有小数点，则为浮点数，否则为整数。在Python 里， 42 和 42.0 是不一样的</code></pre>
+<h3 id="Jinja2-算术运算"><a href="#Jinja2-算术运算" class="headerlink" title="Jinja2:算术运算"></a>Jinja2:算术运算</h3><pre class="language-none"><code class="language-none">算术运算
 Jinja 允许你用计算值。这在模板中很少用到，但为了完整性允许其存在
 支持下面的运算符
     +：把两个对象加到一起。
        通常对象是素质，但是如果两者是字符串或列表，你可以用这 种方式来衔接它们。
        无论如何这不是首选的连接字符串的方式！连接字符串见 ~ 运算符。 &#123;&#123; 1 + 1 &#125;&#125; 等于 2
     -：用第一个数减去第二个数。 &#123;&#123; 3 - 2 &#125;&#125; 等于 1
-    /：对两个数做除法。返回值会是一个浮点数。 &#123;&#123; 1 / 2 &#125;&#125; 等于 &#123;&#123; 0.5 &#125;&#125;
-    //：对两个数做除法，返回整数商。 &#123;&#123; 20 // 7 &#125;&#125; 等于 2
+    &#x2F;：对两个数做除法。返回值会是一个浮点数。 &#123;&#123; 1 &#x2F; 2 &#125;&#125; 等于 &#123;&#123; 0.5 &#125;&#125;
+    &#x2F;&#x2F;：对两个数做除法，返回整数商。 &#123;&#123; 20 &#x2F;&#x2F; 7 &#125;&#125; 等于 2
     %：计算整数除法的余数。 &#123;&#123; 11 % 7 &#125;&#125; 等于 4
     *：用右边的数乘左边的操作数。 &#123;&#123; 2 * 2 &#125;&#125; 会返回 4 。
-       也可以用于重 复一个字符串多次。&#123;&#123; ‘=’ * 80 &#125;&#125; 会打印 80 个等号的横条
-    **：取左操作数的右操作数次幂。 &#123;&#123; 2**3 &#125;&#125; 会返回 8
-</code></pre>
-<h3 id="Jinja2"><a href="#Jinja2" class="headerlink" title="Jinja2"></a>Jinja2</h3><pre><code>比较操作符
-== 比较两个对象是否相等
-!= 比较两个对象是否不等
+       也可以用于重 复一个字符串多次。&#123;&#123; ‘&#x3D;’ * 80 &#125;&#125; 会打印 80 个等号的横条
+    **：取左操作数的右操作数次幂。 &#123;&#123; 2**3 &#125;&#125; 会返回 8</code></pre>
+<h3 id="Jinja2"><a href="#Jinja2" class="headerlink" title="Jinja2"></a>Jinja2</h3><pre class="language-none"><code class="language-none">比较操作符
+&#x3D;&#x3D; 比较两个对象是否相等
+!&#x3D; 比较两个对象是否不等
 &gt; 如果左边大于右边，返回 true
-&gt;= 如果左边大于等于右边，返回 true
+&gt;&#x3D; 如果左边大于等于右边，返回 true
 &lt; 如果左边小于右边，返回 true
-&lt;= 如果左边小于等于右边，返回 true
+&lt;&#x3D; 如果左边小于等于右边，返回 true
 
 逻辑运算符
 对于 if 语句，在 for 过滤或 if 表达式中，它可以用于联合多个表达式
@@ -1416,11 +1369,11 @@ not
 一对中括号括起来的东西是一个列表。列表用于存储和迭代序列化的数据。
 例如 你可以容易地在 for循环中用列表和元组创建一个链接的列表
     &lt;ul&gt;
-    &#123;% for href, caption in [('index.html', 'Index'), ('about.html', 'About'), ('downloads.html',
-'Downloads')] %&#125;
-     <li> <a href="&#123;&#123; href &#125;&#125;"> &#123;&#123; caption &#125;&#125; </a>   </li>
+    &#123;% for href, caption in [(&#39;index.html&#39;, &#39;Index&#39;), (&#39;about.html&#39;, &#39;About&#39;), (&#39;downloads.html&#39;,
+&#39;Downloads&#39;)] %&#125;
+     &lt;li&gt; &lt;a href&#x3D;&quot;&#123;&#123; href &#125;&#125;&quot;&gt; &#123;&#123; caption &#125;&#125; &lt;&#x2F;a&gt;   &lt;&#x2F;li&gt;
     &#123;% endfor %&#125;
-    &lt;/ul&gt;
+    &lt;&#x2F;ul&gt;
     (&#39;tuple&#39;, &#39;of&#39;, &#39;values&#39;):
 
 元组与列表类似，只是你不能修改元组。
@@ -1431,30 +1384,27 @@ not
 Python 中的字典是一种关联键和值的结构。
 键必须是唯一的，并且键必须只有一个 值。
 字典在模板中很少使用，罕用于诸如 xmlattr() 过滤器之类
-    true / false:
-    true 永远是 true ，而 false 始终是 false
-</code></pre>
-<h3 id="template-的使用"><a href="#template-的使用" class="headerlink" title="template 的使用"></a>template 的使用</h3><pre><code>template功能：根据模块文件动态生成对应的配置文件
+    true &#x2F; false:
+    true 永远是 true ，而 false 始终是 false</code></pre>
+<h3 id="template-的使用"><a href="#template-的使用" class="headerlink" title="template 的使用"></a>template 的使用</h3><pre class="language-none"><code class="language-none">template功能：根据模块文件动态生成对应的配置文件
    &gt; template文件必须存放于templates目录下，且命名为 .j2 结尾
-   &gt; yaml/yml 文件需和templates目录平级，目录结构如下：
-    ./
+   &gt; yaml&#x2F;yml 文件需和templates目录平级，目录结构如下：
+    .&#x2F;
      ├── temnginx.yml
      └── templates
-        └── nginx.conf.j2
-</code></pre>
-<h3 id="template示例"><a href="#template示例" class="headerlink" title="template示例"></a>template示例</h3><pre><code>示例：利用template 同步nginx配置文件
-准备templates/nginx.conf.j2文件
+        └── nginx.conf.j2</code></pre>
+<h3 id="template示例"><a href="#template示例" class="headerlink" title="template示例"></a>template示例</h3><pre class="language-none"><code class="language-none">示例：利用template 同步nginx配置文件
+准备templates&#x2F;nginx.conf.j2文件
 vim temnginx.yml
 - hosts: websrvs
   remote_user: root
   
   tasks:
     - name: template config to remote hosts
-      template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+      template: src&#x3D;nginx.conf.j2 dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
 
-ansible-playbook temnginx.yml
-</code></pre>
-<h3 id="Playbook中template变更替换"><a href="#Playbook中template变更替换" class="headerlink" title="Playbook中template变更替换"></a>Playbook中template变更替换</h3><pre><code>修改文件nginx.conf.j2 下面行为
+ansible-playbook temnginx.yml</code></pre>
+<h3 id="Playbook中template变更替换"><a href="#Playbook中template变更替换" class="headerlink" title="Playbook中template变更替换"></a>Playbook中template变更替换</h3><pre class="language-none"><code class="language-none">修改文件nginx.conf.j2 下面行为
 worker_processes &#123;&#123; ansible_processor_vcpus &#125;&#125;;
 
 cat temnginx2.yml
@@ -1462,17 +1412,15 @@ cat temnginx2.yml
   remote_user: root
   tasks:
     - name: template config to remote hosts
-      template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+      template: src&#x3D;nginx.conf.j2 dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
 
-ansible-playbook temnginx2.yml
-</code></pre>
-<h3 id="Playbook中template算术运算"><a href="#Playbook中template算术运算" class="headerlink" title="Playbook中template算术运算"></a>Playbook中template算术运算</h3><pre><code>算法运算：
+ansible-playbook temnginx2.yml</code></pre>
+<h3 id="Playbook中template算术运算"><a href="#Playbook中template算术运算" class="headerlink" title="Playbook中template算术运算"></a>Playbook中template算术运算</h3><pre class="language-none"><code class="language-none">算法运算：
 示例：
     vim nginx.conf.j2
     worker_processes &#123;&#123; ansible_processor_vcpus**2 &#125;&#125;;
-    worker_processes &#123;&#123; ansible_processor_vcpus+2 &#125;&#125;;
-</code></pre>
-<h3 id="when-实现条件判断"><a href="#when-实现条件判断" class="headerlink" title="when  实现条件判断"></a>when  实现条件判断</h3><pre><code>条件测试:如果需要根据变量、facts或此前任务的执行结果来做为某task执行与否的前提时要用到条件测试,
+    worker_processes &#123;&#123; ansible_processor_vcpus+2 &#125;&#125;;</code></pre>
+<h3 id="when-实现条件判断"><a href="#when-实现条件判断" class="headerlink" title="when  实现条件判断"></a>when  实现条件判断</h3><pre class="language-none"><code class="language-none">条件测试:如果需要根据变量、facts或此前任务的执行结果来做为某task执行与否的前提时要用到条件测试,
 通过when语句实现，在task中使用，jinja2的语法格式
 
 when语句
@@ -1480,155 +1428,146 @@ when语句
 示例：
 tasks:
   - name: &quot;shutdown RedHat flavored systems&quot;
-    command: /sbin/shutdown -h now
-    when: ansible_os_family == &quot;RedHat&quot;  当系统属于红帽系列,执行command模块 
+    command: &#x2F;sbin&#x2F;shutdown -h now
+    when: ansible_os_family &#x3D;&#x3D; &quot;RedHat&quot;  当系统属于红帽系列,执行command模块 
  
 when语句中还可以使用Jinja2的大多&quot;filter&quot;，
 例如要忽略此前某语句的错误并基于其结果(failed或者success)运行后面指定的语句，
 可使用类似如下形式：
 tasks:
-  - command: /bin/false
+  - command: &#x2F;bin&#x2F;false
     register: result
     ignore_errors: True
-  - command: /bin/something
+  - command: &#x2F;bin&#x2F;something
     when: result|failed
-  - command: /bin/something_else
+  - command: &#x2F;bin&#x2F;something_else
     when: result|success
-  - command: /bin/still/something_else
+  - command: &#x2F;bin&#x2F;still&#x2F;something_else
     when: result|skipped
 
-此外，when语句中还可以使用facts或playbook中定义的变量
-</code></pre>
-<h3 id="示例：when条件判断"><a href="#示例：when条件判断" class="headerlink" title="示例：when条件判断"></a>示例：when条件判断</h3><pre><code>- hosts: websrvs
+此外，when语句中还可以使用facts或playbook中定义的变量</code></pre>
+<h3 id="示例：when条件判断"><a href="#示例：when条件判断" class="headerlink" title="示例：when条件判断"></a>示例：when条件判断</h3><pre class="language-none"><code class="language-none">- hosts: websrvs
   remote_user: root
   tasks:
     - name: add group nginx
       tags: user
-      user: name=nginx state=present
+      user: name&#x3D;nginx state&#x3D;present
     - name: add user nginx
-      user: name=nginx state=present group=nginx
+      user: name&#x3D;nginx state&#x3D;present group&#x3D;nginx
     - name: Install Nginx
-      yum: name=nginx state=present
+      yum: name&#x3D;nginx state&#x3D;present
     - name: restart Nginx
-      service: name=nginx state=restarted
-      when: ansible_distribution_major_version == &quot;6&quot;
-</code></pre>
-<h3 id="示例：when条件判断-1"><a href="#示例：when条件判断-1" class="headerlink" title="示例：when条件判断"></a>示例：when条件判断</h3><pre><code>示例：
+      service: name&#x3D;nginx state&#x3D;restarted
+      when: ansible_distribution_major_version &#x3D;&#x3D; &quot;6&quot;</code></pre>
+<h3 id="示例：when条件判断-1"><a href="#示例：when条件判断-1" class="headerlink" title="示例：when条件判断"></a>示例：when条件判断</h3><pre class="language-none"><code class="language-none">示例：
 tasks:
   - name: install conf file to centos7
-    template: src=nginx.conf.c7.j2 dest=/etc/nginx/nginx.conf
-    when: ansible_distribution_major_version == &quot;7&quot;
+    template: src&#x3D;nginx.conf.c7.j2 dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
+    when: ansible_distribution_major_version &#x3D;&#x3D; &quot;7&quot;
   - name: install conf file to centos6
-    template: src=nginx.conf.c6.j2 dest=/etc/nginx/nginx.conf
-    when: ansible_distribution_major_version == &quot;6&quot;
-</code></pre>
-<h3 id="Playbook中when条件判断"><a href="#Playbook中when条件判断" class="headerlink" title="Playbook中when条件判断"></a>Playbook中when条件判断</h3><pre><code>---
+    template: src&#x3D;nginx.conf.c6.j2 dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
+    when: ansible_distribution_major_version &#x3D;&#x3D; &quot;6&quot;</code></pre>
+<h3 id="Playbook中when条件判断"><a href="#Playbook中when条件判断" class="headerlink" title="Playbook中when条件判断"></a>Playbook中when条件判断</h3><pre class="language-none"><code class="language-none">---
 - hosts: srv120
   remote_user: root
   tasks:
     - name:
-      template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
-      when: ansible_distribution_major_version == &quot;7&quot;
-</code></pre>
+      template: src&#x3D;nginx.conf.j2 dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
+      when: ansible_distribution_major_version &#x3D;&#x3D; &quot;7&quot;</code></pre>
 <p><img src="/../images/whenplaybook.png" alt="image"></p>
-<h3 id="迭代：with-items"><a href="#迭代：with-items" class="headerlink" title="迭代：with_items"></a>迭代：with_items</h3><pre><code>迭代：当有需要重复性执行的任务时，可以使用迭代机制
+<h3 id="迭代：with-items"><a href="#迭代：with-items" class="headerlink" title="迭代：with_items"></a>迭代：with_items</h3><pre class="language-none"><code class="language-none">迭代：当有需要重复性执行的任务时，可以使用迭代机制
     &gt; 对迭代项的引用，固定变量名为&quot;item&quot;
     &gt; 要在task中使用with_items给定要迭代的元素列表
     &gt; 列表格式：
          字符串
-         字典
-</code></pre>
-<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><pre><code>示例： 创建用户
+         字典</code></pre>
+<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><pre class="language-none"><code class="language-none">示例： 创建用户
 - name: add several users
-  user: name=&#123;&#123; item &#125;&#125; state=present groups=wheel   #&#123;&#123; item &#125;&#125; 系统自定义变量
+  user: name&#x3D;&#123;&#123; item &#125;&#125; state&#x3D;present groups&#x3D;wheel   #&#123;&#123; item &#125;&#125; 系统自定义变量
   with_items:       # 定义&#123;&#123; item &#125;&#125; 的值和个数
     - testuser1
     - testuser2
 
 上面语句的功能等同于下面的语句：
 - name: add user testuser1
-  user: name=testuser1 state=present groups=wheel
+  user: name&#x3D;testuser1 state&#x3D;present groups&#x3D;wheel
 - name: add user testuser2
-  user: name=testuser2 state=present groups=wheel
+  user: name&#x3D;testuser2 state&#x3D;present groups&#x3D;wheel
   
 with_items中可以使用元素还可为hashes
 示例：
 - name: add several users
-  user: name=&#123;&#123; item.name &#125;&#125; state=present groups=&#123;&#123; item.groups &#125;&#125;
+  user: name&#x3D;&#123;&#123; item.name &#125;&#125; state&#x3D;present groups&#x3D;&#123;&#123; item.groups &#125;&#125;
   with_items:
     - &#123; name: &#39;testuser1&#39;, groups: &#39;wheel&#39; &#125;
     - &#123; name: &#39;testuser2&#39;, groups: &#39;root&#39; &#125;
 
 ansible的循环机制还有更多的高级功能，具体请参见官方文档
-http://docs.ansible.com/playbooks_loops.html
-</code></pre>
-<h3 id="示例：迭代"><a href="#示例：迭代" class="headerlink" title="示例：迭代"></a>示例：迭代</h3><pre><code>示例：将多个文件进行copy到被控端
+http:&#x2F;&#x2F;docs.ansible.com&#x2F;playbooks_loops.html</code></pre>
+<h3 id="示例：迭代"><a href="#示例：迭代" class="headerlink" title="示例：迭代"></a>示例：迭代</h3><pre class="language-none"><code class="language-none">示例：将多个文件进行copy到被控端
 ---
 - hosts: testsrv
   remote_user: root
   tasks
   - name: Create rsyncd config
-    copy: src=&#123;&#123; item &#125;&#125; dest=/etc/&#123;&#123; item &#125;&#125;
+    copy: src&#x3D;&#123;&#123; item &#125;&#125; dest&#x3D;&#x2F;etc&#x2F;&#123;&#123; item &#125;&#125;
     with_items:
   - rsyncd.secrets
-  - rsyncd.conf
-</code></pre>
-<h3 id="示例：迭代-1"><a href="#示例：迭代-1" class="headerlink" title="示例：迭代"></a>示例：迭代</h3><pre><code>- hosts: websrvs
+  - rsyncd.conf</code></pre>
+<h3 id="示例：迭代-1"><a href="#示例：迭代-1" class="headerlink" title="示例：迭代"></a>示例：迭代</h3><pre class="language-none"><code class="language-none">- hosts: websrvs
   remote_user: root
   tasks:
     - name: copy file
-      copy: src=&#123;&#123; item &#125;&#125; dest=/tmp/&#123;&#123; item &#125;&#125;
+      copy: src&#x3D;&#123;&#123; item &#125;&#125; dest&#x3D;&#x2F;tmp&#x2F;&#123;&#123; item &#125;&#125;
       with_items:
     - file1
     - file2
     - file3
 - name: yum install httpd
-  yum: name=&#123;&#123; item &#125;&#125; state=present
+  yum: name&#x3D;&#123;&#123; item &#125;&#125; state&#x3D;present
   with_items:
     - apr
     - apr-util
-    - httpd
-</code></pre>
-<h3 id="示例：迭代-2"><a href="#示例：迭代-2" class="headerlink" title="示例：迭代"></a>示例：迭代</h3><pre><code>- hosts：websrvs
+    - httpd</code></pre>
+<h3 id="示例：迭代-2"><a href="#示例：迭代-2" class="headerlink" title="示例：迭代"></a>示例：迭代</h3><pre class="language-none"><code class="language-none">- hosts：websrvs
   remote_user: root
   tasks
     - name: install some packages
-      yum: name=&#123;&#123; item &#125;&#125; state=present
+      yum: name&#x3D;&#123;&#123; item &#125;&#125; state&#x3D;present
       with_items:
         - nginx
         - memcached
-        - php-fpm
-</code></pre>
-<h3 id="示例：迭代嵌套子变量"><a href="#示例：迭代嵌套子变量" class="headerlink" title="示例：迭代嵌套子变量"></a>示例：迭代嵌套子变量</h3><pre><code>- hosts：websrvs
+        - php-fpm</code></pre>
+
+<h3 id="示例：迭代嵌套子变量"><a href="#示例：迭代嵌套子变量" class="headerlink" title="示例：迭代嵌套子变量"></a>示例：迭代嵌套子变量</h3><pre class="language-none"><code class="language-none">- hosts：websrvs
   remote_user: root
   
   tasks:
     - name: add some groups
-      group: name=&#123;&#123; item &#125;&#125; state=present
+      group: name&#x3D;&#123;&#123; item &#125;&#125; state&#x3D;present
       with_items:
         - group1
         - group2
         - group3
     - name: add some users
-      user: name=&#123;&#123; item.name &#125;&#125; group=&#123;&#123; item.group &#125;&#125; state=present
+      user: name&#x3D;&#123;&#123; item.name &#125;&#125; group&#x3D;&#123;&#123; item.group &#125;&#125; state&#x3D;present
       with_items:
         - &#123; name: &#39;user1&#39;, group: &#39;group1&#39; &#125;
         - &#123; name: &#39;user2&#39;, group: &#39;group2&#39; &#125;
-        - &#123; name: &#39;user3&#39;, group: &#39;group3&#39; &#125;
-</code></pre>
-<h3 id="with-itmes-嵌套子变量"><a href="#with-itmes-嵌套子变量" class="headerlink" title="with_itmes 嵌套子变量"></a>with_itmes 嵌套子变量</h3><pre><code>with_itmes 嵌套子变量
+        - &#123; name: &#39;user3&#39;, group: &#39;group3&#39; &#125;</code></pre>
+<h3 id="with-itmes-嵌套子变量"><a href="#with-itmes-嵌套子变量" class="headerlink" title="with_itmes 嵌套子变量"></a>with_itmes 嵌套子变量</h3><pre class="language-none"><code class="language-none">with_itmes 嵌套子变量
 示例
 ---
 - hosts: testweb
   remote_user: root
   tasks:
     - name: add several users
-      user: name=&#123;&#123; item.name &#125;&#125; state=present groups=&#123;&#123; item.groups &#125;&#125;
+      user: name&#x3D;&#123;&#123; item.name &#125;&#125; state&#x3D;present groups&#x3D;&#123;&#123; item.groups &#125;&#125;
       with_items:
     - &#123; name: &#39;testuser1&#39; , groups: &#39;wheel&#39;&#125;
-    - &#123; name: &#39;testuser2&#39; , groups: &#39;root&#39;&#125;
-</code></pre>
-<h3 id="Playbook字典-with-items"><a href="#Playbook字典-with-items" class="headerlink" title="Playbook字典 with_items"></a>Playbook字典 with_items</h3><pre><code>- name: 使用ufw模块来管理哪些端口需要开启
+    - &#123; name: &#39;testuser2&#39; , groups: &#39;root&#39;&#125;</code></pre>
+
+<h3 id="Playbook字典-with-items"><a href="#Playbook字典-with-items" class="headerlink" title="Playbook字典 with_items"></a>Playbook字典 with_items</h3><pre class="language-none"><code class="language-none">- name: 使用ufw模块来管理哪些端口需要开启
   ufw:
   rule: “&#123;&#123; item.rule &#125;&#125;”
   port: “&#123;&#123; item.port &#125;&#125;”
@@ -1645,12 +1584,11 @@ http://docs.ansible.com/playbooks_loops.html
   state: enabled
   with_items:
     - &#123; direction: outgoing, policy: allow &#125;
-    - &#123; direction: incoming, policy: deny &#125;
-</code></pre>
-<h3 id="Playbook中template-for-if-when循环"><a href="#Playbook中template-for-if-when循环" class="headerlink" title="Playbook中template for if  when循环"></a>Playbook中template for if  when循环</h3><pre><code>&#123;% for vhost in nginx_vhosts %&#125;
+    - &#123; direction: incoming, policy: deny &#125;</code></pre>
+<h3 id="Playbook中template-for-if-when循环"><a href="#Playbook中template-for-if-when循环" class="headerlink" title="Playbook中template for if  when循环"></a>Playbook中template for if  when循环</h3><pre class="language-none"><code class="language-none">&#123;% for vhost in nginx_vhosts %&#125;
 
 server &#123;    #重复执行server代码
-listen &#123;&#123; vhost.listen | default('80 default_server') &#125;&#125;;
+listen &#123;&#123; vhost.listen | default(&#39;80 default_server&#39;) &#125;&#125;;
 
 &#123;% if vhost.server_name is defined %&#125;
 server_name &#123;&#123; vhost.server_name &#125;&#125;;
@@ -1660,9 +1598,8 @@ server_name &#123;&#123; vhost.server_name &#125;&#125;;
 root &#123;&#123; vhost.root &#125;&#125;;
 &#123;% endif %&#125;
 
-&#123;% endfor %&#125;
-</code></pre>
-<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><pre><code>// temnginx.yml
+&#123;% endfor %&#125;</code></pre>
+<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><pre class="language-none"><code class="language-none">&#x2F;&#x2F; temnginx.yml
 ---
 - hosts: testweb
   remote_user: root
@@ -1671,7 +1608,7 @@ root &#123;&#123; vhost.root &#125;&#125;;
       - listen: 8080  #列表 键值对
 
 
-//templates/nginx.conf.j2
+&#x2F;&#x2F;templates&#x2F;nginx.conf.j2
 &#123;% for vhost in nginx_vhosts %&#125;  
 server &#123;
   listen &#123;&#123; vhost.listen &#125;&#125;
@@ -1681,9 +1618,9 @@ server &#123;
 生成的结果
 server &#123;
   listen 8080
-&#125;
-</code></pre>
-<h3 id="示例-5"><a href="#示例-5" class="headerlink" title="示例"></a>示例</h3><pre><code>// temnginx.yml
+&#125;</code></pre>
+
+<h3 id="示例-5"><a href="#示例-5" class="headerlink" title="示例"></a>示例</h3><pre class="language-none"><code class="language-none">&#x2F;&#x2F; temnginx.yml
 ---
 - hosts: mageduweb
   remote_user: root
@@ -1694,9 +1631,9 @@ server &#123;
       - web3
   tasks:
     - name: template config
-      template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+      template: src&#x3D;nginx.conf.j2 dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
 
-// templates/nginx.conf.j2
+&#x2F;&#x2F; templates&#x2F;nginx.conf.j2
 &#123;% for vhost in nginx_vhosts %&#125;
 server &#123;
     listen &#123;&#123; vhost &#125;&#125;
@@ -1712,9 +1649,8 @@ server &#123;
 &#125;
 server &#123;
     listen web3
-&#125;
-</code></pre>
-<h3 id="roles"><a href="#roles" class="headerlink" title="roles"></a>roles</h3><pre><code>roles
+&#125;</code></pre>
+<h3 id="roles"><a href="#roles" class="headerlink" title="roles"></a>roles</h3><pre class="language-none"><code class="language-none">roles
     ansible自1.2版本引入的新特性，用于层次性、结构化地组织playbook。
     roles能够根据层次型结构自动装载变量文件、tasks以及handlers等。
     要使用roles只需要在playbook中使用include指令即可。
@@ -1725,46 +1661,44 @@ server &#123;
 复杂场景：建议使用roles，代码复用度高
     变更指定主机或主机组
     如命名不规范维护和传承成本大
-    某些功能需多个Playbook，通过includes即可实现
-</code></pre>
-<h3 id="Roles"><a href="#Roles" class="headerlink" title="Roles"></a>Roles</h3><pre><code>角色(roles)：角色集合
-roles/
-    mysql/
-    httpd/
-    nginx/
-    memcached/
+    某些功能需多个Playbook，通过includes即可实现</code></pre>
+
+<h3 id="Roles"><a href="#Roles" class="headerlink" title="Roles"></a>Roles</h3><pre class="language-none"><code class="language-none">角色(roles)：角色集合
+roles&#x2F;
+    mysql&#x2F;
+    httpd&#x2F;
+    nginx&#x2F;
+    memcached&#x2F;
     
-可以互相调用
-</code></pre>
+可以互相调用</code></pre>
 <h3 id="Ansible-Roles目录编排"><a href="#Ansible-Roles目录编排" class="headerlink" title="Ansible Roles目录编排"></a>Ansible Roles目录编排</h3><p><img src="/../images/roles.png" alt="image"> </p>
-<h3 id="roles目录结构"><a href="#roles目录结构" class="headerlink" title="roles目录结构"></a>roles目录结构</h3><pre><code>每个角色，以特定的层级目录结构进行组织
+<h3 id="roles目录结构"><a href="#roles目录结构" class="headerlink" title="roles目录结构"></a>roles目录结构</h3><pre class="language-none"><code class="language-none">每个角色，以特定的层级目录结构进行组织
 roles目录结构：
 
 playbook.yml  调用角色
-roles/
-  project/ (角色名称)
-    tasks/
-    files/
-    vars/
-    templates/
-    handlers/
-    default/ 不常用
-    meta/    不常用
-</code></pre>
-<h3 id="Roles各目录作用"><a href="#Roles各目录作用" class="headerlink" title="Roles各目录作用"></a>Roles各目录作用</h3><pre><code>/roles/project/ :项目名称,有以下子目录
-    files/ ：存放由copy或script模块等调用的文件
-    templates/：template模块查找所需要模板文件的目录
-    tasks/：定义task,role的基本元素，至少应该包含一个名为main.yml的文件；
+roles&#x2F;
+  project&#x2F; (角色名称)
+    tasks&#x2F;
+    files&#x2F;
+    vars&#x2F;
+    templates&#x2F;
+    handlers&#x2F;
+    default&#x2F; 不常用
+    meta&#x2F;    不常用</code></pre>
+<h3 id="Roles各目录作用"><a href="#Roles各目录作用" class="headerlink" title="Roles各目录作用"></a>Roles各目录作用</h3><pre class="language-none"><code class="language-none">&#x2F;roles&#x2F;project&#x2F; :项目名称,有以下子目录
+    files&#x2F; ：存放由copy或script模块等调用的文件
+    templates&#x2F;：template模块查找所需要模板文件的目录
+    tasks&#x2F;：定义task,role的基本元素，至少应该包含一个名为main.yml的文件；
             其它的文件需要在此文件中通过include进行包含
-    handlers/：至少应该包含一个名为main.yml的文件；
+    handlers&#x2F;：至少应该包含一个名为main.yml的文件；
                其它的文件需要在此文件中通过include进行包含
-    vars/：定义变量，至少应该包含一个名为main.yml的文件；
+    vars&#x2F;：定义变量，至少应该包含一个名为main.yml的文件；
            其它的文件需要在此文件中通过include进行包含
-    meta/：定义当前角色的特殊设定及其依赖关系,至少应该包含一个名为main.yml的文件，
+    meta&#x2F;：定义当前角色的特殊设定及其依赖关系,至少应该包含一个名为main.yml的文件，
            其它文件需在此文件中通过include进行包含
-    default/：设定默认变量时使用此目录中的main.yml文件
+    default&#x2F;：设定默认变量时使用此目录中的main.yml文件
     
-roles/appname 目录结构
+roles&#x2F;appname 目录结构
     tasks目录：至少应该包含一个名为main.yml的文件，其定义了此角色的任务列表；
                此文件可以使用include包含其它的位于此目录中的task文件
     files目录：存放由copy或script等模块调用的文件；
@@ -1776,27 +1710,27 @@ roles/appname 目录结构
               ansible1.3及其以后的版本才支持；
     default目录：为当前角色设定默认变量时使用此目录；应当包含一个main.yml文件
 
-roles/example_role/files/             所有文件，都将可存放在这里
-roles/example_role/templates/         所有模板都存放在这里
-roles/example_role/tasks/main.yml：   主函数，包括在其中的所有任务将被执行
-roles/example_role/handlers/main.yml：所有包括其中的 handlers 将被执行
-roles/example_role/vars/main.yml：    所有包括在其中的变量将在roles中生效
-roles/example_role/meta/main.yml：    roles所有依赖将被正常登入
+roles&#x2F;example_role&#x2F;files&#x2F;             所有文件，都将可存放在这里
+roles&#x2F;example_role&#x2F;templates&#x2F;         所有模板都存放在这里
+roles&#x2F;example_role&#x2F;tasks&#x2F;main.yml：   主函数，包括在其中的所有任务将被执行
+roles&#x2F;example_role&#x2F;handlers&#x2F;main.yml：所有包括其中的 handlers 将被执行
+roles&#x2F;example_role&#x2F;vars&#x2F;main.yml：    所有包括在其中的变量将在roles中生效
+roles&#x2F;example_role&#x2F;meta&#x2F;main.yml：    roles所有依赖将被正常登入
 </code></pre>
-<h3 id="创建role"><a href="#创建role" class="headerlink" title="创建role"></a>创建role</h3><pre><code>创建role的步骤
+<h3 id="创建role"><a href="#创建role" class="headerlink" title="创建role"></a>创建role</h3><pre class="language-none"><code class="language-none">创建role的步骤
 (1) 创建以roles命名的目录
 (2) 在roles目录中分别创建以各角色名称命名的目录，如webservers等
 (3) 在每个角色命名的目录中分别创建files、handlers、meta、tasks、templates和vars目录；
     用不到的目录可以创建为空目录，也可以不创建
-(4) 在playbook文件中，调用各角色
-</code></pre>
-<h3 id="实验-创建httpd角色"><a href="#实验-创建httpd角色" class="headerlink" title="实验: 创建httpd角色"></a>实验: 创建httpd角色</h3><pre><code>1&gt; 创建roles目录
-   mkdir roles/&#123;httpd,mysql,redis&#125;/tasks -pv
-   mkdir  roles/httpd/&#123;handlers,files&#125;
+(4) 在playbook文件中，调用各角色</code></pre>
+
+<h3 id="实验-创建httpd角色"><a href="#实验-创建httpd角色" class="headerlink" title="实验: 创建httpd角色"></a>实验: 创建httpd角色</h3><pre class="language-none"><code class="language-none">1&gt; 创建roles目录
+   mkdir roles&#x2F;&#123;httpd,mysql,redis&#125;&#x2F;tasks -pv
+   mkdir  roles&#x2F;httpd&#x2F;&#123;handlers,files&#125;
 
 查看目录结构
-tree roles/
-    roles/
+tree roles&#x2F;
+    roles&#x2F;
     ├── httpd
     │   ├── files
     │   ├── handlers
@@ -1807,20 +1741,20 @@ tree roles/
         └── tasks
 
 2&gt; 创建目标文件
-   cd roles/httpd/tasks/
+   cd roles&#x2F;httpd&#x2F;tasks&#x2F;
    touch install.yml config.yml service.yml
 
 3&gt; vim install.yml
    - name: install httpd package
-     yum: name=httpd
+     yum: name&#x3D;httpd
      
    vim config.yml
    - name: config file  
-     copy: src=httpd.conf dest=/etc/httpd/conf/ backup=yes 
+     copy: src&#x3D;httpd.conf dest&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F; backup&#x3D;yes 
    
    vim service.yml
    - name: start service 
-     service: name=httpd state=started enabled=yes
+     service: name&#x3D;httpd state&#x3D;started enabled&#x3D;yes
      
 4&gt; 创建main.yml主控文件,调用以上单独的yml文件,
    main.yml定义了谁先执行谁后执行的顺序
@@ -1830,16 +1764,16 @@ tree roles/
    - include: service.yml
    
 5&gt; 准备httpd.conf文件,放到httpd单独的文件目录下
-   cp /app/ansible/flies/httpd.conf ../files/
+   cp &#x2F;app&#x2F;ansible&#x2F;flies&#x2F;httpd.conf ..&#x2F;files&#x2F;
    
 6&gt; 创建一个网页
-   vim flies/index.html
+   vim flies&#x2F;index.html
    &lt;h1&gt; welcome to weixiaodong home &lt;\h1&gt;
 
 7&gt; 创建网页的yml文件
-   vim tasks/index.yml
+   vim tasks&#x2F;index.yml
    - name: index.html
-     copy: src=index.html dest=/var/www/html 
+     copy: src&#x3D;index.html dest&#x3D;&#x2F;var&#x2F;www&#x2F;html 
 
 8&gt; 将网页的yml文件写进mian.yml文件中
    vim mian.yml
@@ -1849,12 +1783,12 @@ tree roles/
    - include: service.yml
 
 9&gt; 在handlers目录下创建handler文件mian.yml
-   vim handlers/main.yml
+   vim handlers&#x2F;main.yml
    - name: restart service httpd
-     service: name=httpd state=restarted
+     service: name&#x3D;httpd state&#x3D;restarted
 
 10&gt; 创建文件调用httpd角色
-    cd /app/ansidle/roles
+    cd &#x2F;app&#x2F;ansidle&#x2F;roles
     vim role_httpd.yml
     ---
     # httpd role
@@ -1880,23 +1814,22 @@ tree roles/
         ├── main.yml
         └── service.yml
 
-12&gt; ansible-playbook role_httpd.yml
-</code></pre>
-<h3 id="针对大型项目使用Roles进行编排"><a href="#针对大型项目使用Roles进行编排" class="headerlink" title="针对大型项目使用Roles进行编排"></a>针对大型项目使用Roles进行编排</h3><pre><code>roles目录结构：
+12&gt; ansible-playbook role_httpd.yml</code></pre>
+<h3 id="针对大型项目使用Roles进行编排"><a href="#针对大型项目使用Roles进行编排" class="headerlink" title="针对大型项目使用Roles进行编排"></a>针对大型项目使用Roles进行编排</h3><pre class="language-none"><code class="language-none">roles目录结构：
 playbook.yml
-roles/
-  project/
-    tasks/
-    files/
-    vars/
-    templates/
-    handlers/
-    default/ # 不经常用
-    meta/    # 不经常用
+roles&#x2F;
+  project&#x2F;
+    tasks&#x2F;
+    files&#x2F;
+    vars&#x2F;
+    templates&#x2F;
+    handlers&#x2F;
+    default&#x2F; # 不经常用
+    meta&#x2F;    # 不经常用
 
 示例：
 nginx-role.yml
-roles/
+roles&#x2F;
 └── nginx
     ├── files
     │ └── main.yml
@@ -1907,35 +1840,33 @@ roles/
     │ ├── restart.yml
     │ └── useradd.yml
     └── vars
-        └── main.yml
-</code></pre>
-<h3 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h3><pre><code>roles的示例如下所示：
+        └── main.yml</code></pre>
+<h3 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h3><pre class="language-none"><code class="language-none">roles的示例如下所示：
 site.yml
 webservers.yml
 dbservers.yml
-roles/
-  common/
-    files/
-    templates/
-    tasks/
-    handlers/
-    vars/
-    meta/
-  webservers/
-    files/
-    templates/
-    tasks/
-  handlers/
-    vars/
-    meta/
-</code></pre>
-<h3 id="实验：-创建一个nginx角色"><a href="#实验：-创建一个nginx角色" class="headerlink" title="实验： 创建一个nginx角色"></a>实验： 创建一个nginx角色</h3><pre><code>建立nginx角色在多台主机上来部署nginx需要安装 创建账号
+roles&#x2F;
+  common&#x2F;
+    files&#x2F;
+    templates&#x2F;
+    tasks&#x2F;
+    handlers&#x2F;
+    vars&#x2F;
+    meta&#x2F;
+  webservers&#x2F;
+    files&#x2F;
+    templates&#x2F;
+    tasks&#x2F;
+  handlers&#x2F;
+    vars&#x2F;
+    meta&#x2F;</code></pre>
+<h3 id="实验：-创建一个nginx角色"><a href="#实验：-创建一个nginx角色" class="headerlink" title="实验： 创建一个nginx角色"></a>实验： 创建一个nginx角色</h3><pre class="language-none"><code class="language-none">建立nginx角色在多台主机上来部署nginx需要安装 创建账号
 1&gt; 创建nginx角色目录
-     cd /app/ansible/role
+     cd &#x2F;app&#x2F;ansible&#x2F;role
      mkdir nginx&#123;tesks,templates,hanslers&#125; -pv
 
 2&gt; 创建任务目录
-     cd tasks/
+     cd tasks&#x2F;
      touch insatll.yml config.yml service.yml file.yml user.yml
    创建main.yml文件定义任务执行顺序
      vim main.yml
@@ -1947,40 +1878,40 @@ roles/
 
   
 3&gt; 准备配置文件(centos7、8)
-   ll /app/ansible/role/nginx/templates/
+   ll &#x2F;app&#x2F;ansible&#x2F;role&#x2F;nginx&#x2F;templates&#x2F;
    nginx7.conf.j2
    nginx8.conf.j2
 
 
 4&gt; 定义任务
-   vim tasks/install.yml
+   vim tasks&#x2F;install.yml
    - name: install
-     yum: name=nginx
+     yum: name&#x3D;nginx
      
-   vim tasks/config.yml
+   vim tasks&#x2F;config.yml
     - name: config file
-      template: src=nginx7.conf.j2 dest=/etc/nginx/nginx.conf
-      when: ansible_distribution_major_version==&quot;7&quot;
+      template: src&#x3D;nginx7.conf.j2 dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
+      when: ansible_distribution_major_version&#x3D;&#x3D;&quot;7&quot;
       notify: restrat
       
     - name: config file
-      template: src=nginx8.conf.j2 dest=/etc/nginx/nginx.conf
-      when: ansible_distribution_major_version==&quot;8&quot;
+      template: src&#x3D;nginx8.conf.j2 dest&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf
+      when: ansible_distribution_major_version&#x3D;&#x3D;&quot;8&quot;
       notify: restrat
       
-    vim tasks/file.yml   跨角色调用file.yum文件,实现文件复用
+    vim tasks&#x2F;file.yml   跨角色调用file.yum文件,实现文件复用
     - name: index.html
-      copy: src=roles/httpd/files/index.html dest=/usr/share/nginx/html/ 
+      copy: src&#x3D;roles&#x2F;httpd&#x2F;files&#x2F;index.html dest&#x3D;&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&#x2F; 
    
-    vim tasks/service.yml
+    vim tasks&#x2F;service.yml
     - nmae: start service
-      service: name=nginx state=started enabled=yes
+      service: name&#x3D;nginx state&#x3D;started enabled&#x3D;yes
       
-    vim handlers/main.yml
+    vim handlers&#x2F;main.yml
     - name: restrat
-      service: name=nginx state=restarted
+      service: name&#x3D;nginx state&#x3D;restarted
       
-    vim roles/role_nginix.yml
+    vim roles&#x2F;role_nginix.yml
     --- 
     #test rcle
     - hosts: appsrvs
@@ -1989,11 +1920,10 @@ roles/
         - role: nginx
         
 5&gt; 测试安装
-   ansible-playbook role_nginx.yml
-</code></pre>
+   ansible-playbook role_nginx.yml</code></pre>
 <h3 id="Roles案例"><a href="#Roles案例" class="headerlink" title="Roles案例"></a>Roles案例</h3><p>Roles目录编排<br><img src="/../images/roles1.png" alt="image"></p>
 <p>Playbook中调用<br><img src="/../images/roles2.png" alt="image"></p>
-<h3 id="playbook调用角色"><a href="#playbook调用角色" class="headerlink" title="playbook调用角色"></a>playbook调用角色</h3><pre><code>调用角色方法1：
+<h3 id="playbook调用角色"><a href="#playbook调用角色" class="headerlink" title="playbook调用角色"></a>playbook调用角色</h3><pre class="language-none"><code class="language-none">调用角色方法1：
 - hosts: websrvs
   remote_user: root
   
@@ -2010,21 +1940,20 @@ roles/
     - mysql
     - &#123; role: nginx, username: nginx &#125;   #不同的角色调用不同的变量  
     键role用于指定角色名称
-    后续的k/v用于传递变量给角色
+    后续的k&#x2F;v用于传递变量给角色
 
 调用角色方法3：还可基于条件测试实现角色调用
 roles:
-  - &#123; role: nginx, username: nginx, when: ansible_distribution_major_version == &#39;7&#39; &#125;
-</code></pre>
-<h3 id="通过roles传递变量"><a href="#通过roles传递变量" class="headerlink" title="通过roles传递变量"></a>通过roles传递变量</h3><pre><code>通过roles传递变量
+  - &#123; role: nginx, username: nginx, when: ansible_distribution_major_version &#x3D;&#x3D; &#39;7&#39; &#125;</code></pre>
+
+<h3 id="通过roles传递变量"><a href="#通过roles传递变量" class="headerlink" title="通过roles传递变量"></a>通过roles传递变量</h3><pre class="language-none"><code class="language-none">通过roles传递变量
 当给一个主机应用角色的时候可以传递变量，然后在角色内使用这些变量
 示例：
 - hosts: webservers
   roles:
     - common
-    - &#123; role: foo_app_instance, dir: &#39;/web/htdocs/a.com&#39;, port: 8080 &#125;
-</code></pre>
-<h3 id="向roles传递参数"><a href="#向roles传递参数" class="headerlink" title="向roles传递参数"></a>向roles传递参数</h3><pre><code>而在playbook中，可以这样使用roles：
+    - &#123; role: foo_app_instance, dir: &#39;&#x2F;web&#x2F;htdocs&#x2F;a.com&#39;, port: 8080 &#125;</code></pre>
+<h3 id="向roles传递参数"><a href="#向roles传递参数" class="headerlink" title="向roles传递参数"></a>向roles传递参数</h3><pre class="language-none"><code class="language-none">而在playbook中，可以这样使用roles：
 ---
 - hosts: webservers
   roles:
@@ -2037,27 +1966,25 @@ roles:
 - hosts: webservers
   roles:
     - common
-    - &#123; role: foo_app_instance, dir: &#39;/opt/a&#39;, port: 5000 &#125;
-    - &#123; role: foo_app_instance, dir: &#39;/opt/b&#39;, port: 5001 &#125;
-</code></pre>
-<h3 id="条件式地使用roles"><a href="#条件式地使用roles" class="headerlink" title="条件式地使用roles"></a>条件式地使用roles</h3><pre><code>甚至也可以条件式地使用roles
+    - &#123; role: foo_app_instance, dir: &#39;&#x2F;opt&#x2F;a&#39;, port: 5000 &#125;
+    - &#123; role: foo_app_instance, dir: &#39;&#x2F;opt&#x2F;b&#39;, port: 5001 &#125;</code></pre>
+
+<h3 id="条件式地使用roles"><a href="#条件式地使用roles" class="headerlink" title="条件式地使用roles"></a>条件式地使用roles</h3><pre class="language-none"><code class="language-none">甚至也可以条件式地使用roles
 示例：
 ---
 - hosts: webservers
   roles:
-    - &#123; role: some_role, when: &quot;ansible_os_family == &#39;RedHat&#39;&quot; &#125;
-</code></pre>
-<h3 id="Roles条件及变量等案例"><a href="#Roles条件及变量等案例" class="headerlink" title="Roles条件及变量等案例"></a>Roles条件及变量等案例</h3><pre><code>When条件
+    - &#123; role: some_role, when: &quot;ansible_os_family &#x3D;&#x3D; &#39;RedHat&#39;&quot; &#125;</code></pre>
+<h3 id="Roles条件及变量等案例"><a href="#Roles条件及变量等案例" class="headerlink" title="Roles条件及变量等案例"></a>Roles条件及变量等案例</h3><pre class="language-none"><code class="language-none">When条件
     roles:
-      - &#123;role: nginx, when: &quot;ansible_distribution_major_version == &#39;7&#39; &quot; ,username: nginx &#125;
+      - &#123;role: nginx, when: &quot;ansible_distribution_major_version &#x3D;&#x3D; &#39;7&#39; &quot; ,username: nginx &#125;
 变量调用
 - hosts: zabbix-proxy
   sudo: yes
   roles:
     - &#123; role: geerlingguy.php-mysql &#125;
-    - &#123; role: dj-wasabi.zabbix-proxy, zabbix_server_host: 192.168.37.167 &#125;
-</code></pre>
-<h3 id="完整的roles架构"><a href="#完整的roles架构" class="headerlink" title="完整的roles架构"></a>完整的roles架构</h3><pre><code>// nginx-role.yml 顶层任务调用yml文件
+    - &#123; role: dj-wasabi.zabbix-proxy, zabbix_server_host: 192.168.37.167 &#125;</code></pre>
+<h3 id="完整的roles架构"><a href="#完整的roles架构" class="headerlink" title="完整的roles架构"></a>完整的roles架构</h3><pre class="language-none"><code class="language-none">&#x2F;&#x2F; nginx-role.yml 顶层任务调用yml文件
 ---
 - hosts: testweb
   remote_user: root
@@ -2065,7 +1992,7 @@ roles:
     - role: nginx
     - role: httpd 可执行多个role
 
-cat roles/nginx/tasks/main.yml
+cat roles&#x2F;nginx&#x2F;tasks&#x2F;main.yml
 ---
 - include: groupadd.yml
 - include: useradd.yml
@@ -2073,56 +2000,54 @@ cat roles/nginx/tasks/main.yml
 - include: restart.yml
 - include: filecp.yml
 
-// roles/nginx/tasks/groupadd.yml
+&#x2F;&#x2F; roles&#x2F;nginx&#x2F;tasks&#x2F;groupadd.yml
 ---
 - name: add group nginx
-  user: name=nginx state=present
+  user: name&#x3D;nginx state&#x3D;present
 
-cat roles/nginx/tasks/filecp.yml
+cat roles&#x2F;nginx&#x2F;tasks&#x2F;filecp.yml
 ---
 - name: file copy
-  copy: src=tom.conf dest=/tmp/tom.conf
+  copy: src&#x3D;tom.conf dest&#x3D;&#x2F;tmp&#x2F;tom.conf
 
 以下文件格式类似：
 useradd.yml,install.yml,restart.yml
 
-ls roles/nginx/files/
-tom.conf
-</code></pre>
-<h3 id="roles-playbook-tags使用"><a href="#roles-playbook-tags使用" class="headerlink" title="roles playbook tags使用"></a>roles playbook tags使用</h3><pre><code>roles playbook tags使用
-    ansible-playbook --tags=&quot;nginx,httpd,mysql&quot; nginx-role.yml  对标签进行挑选执行
+ls roles&#x2F;nginx&#x2F;files&#x2F;
+tom.conf</code></pre>
+<h3 id="roles-playbook-tags使用"><a href="#roles-playbook-tags使用" class="headerlink" title="roles playbook tags使用"></a>roles playbook tags使用</h3><pre class="language-none"><code class="language-none">roles playbook tags使用
+    ansible-playbook --tags&#x3D;&quot;nginx,httpd,mysql&quot; nginx-role.yml  对标签进行挑选执行
 
-// nginx-role.yml
+&#x2F;&#x2F; nginx-role.yml
 ---
 - hosts: testweb
   remote_user: root
   roles:
-    - &#123; role: nginx ,tags: [ &#39;nginx&#39;, &#39;web&#39; ] ,when: ansible_distribution_major_version == &quot;6“ &#125;
+    - &#123; role: nginx ,tags: [ &#39;nginx&#39;, &#39;web&#39; ] ,when: ansible_distribution_major_version &#x3D;&#x3D; &quot;6“ &#125;
     - &#123; role: httpd ,tags: [ &#39;httpd&#39;, &#39;web&#39; ] &#125;
     - &#123; role: mysql ,tags: [ &#39;mysql&#39;, &#39;db&#39; ] &#125;
     - &#123; role: marridb ,tags: [ &#39;mysql&#39;, &#39;db&#39; ] &#125;
-    - &#123; role: php &#125;
-</code></pre>
-<h3 id="实验-创建角色memcached"><a href="#实验-创建角色memcached" class="headerlink" title="实验: 创建角色memcached"></a>实验: 创建角色memcached</h3><pre><code>memcacched 当做缓存用,会在内存中开启一块空间充当缓存
-cat /etc/sysconfig/memcached 
-    PORT=&quot;11211&quot;
-    USER=&quot;memcached&quot;
-    MAXCONN=&quot;1024&quot;
-    CACHESIZE=&quot;64&quot;    # 缓存空间默认64M 
-    OPTIONS=&quot;&quot;
+    - &#123; role: php &#125;</code></pre>
+<h3 id="实验-创建角色memcached"><a href="#实验-创建角色memcached" class="headerlink" title="实验: 创建角色memcached"></a>实验: 创建角色memcached</h3><pre class="language-none"><code class="language-none">memcacched 当做缓存用,会在内存中开启一块空间充当缓存
+cat &#x2F;etc&#x2F;sysconfig&#x2F;memcached 
+    PORT&#x3D;&quot;11211&quot;
+    USER&#x3D;&quot;memcached&quot;
+    MAXCONN&#x3D;&quot;1024&quot;
+    CACHESIZE&#x3D;&quot;64&quot;    # 缓存空间默认64M 
+    OPTIONS&#x3D;&quot;&quot;
 
 
 1&gt; 创建对用目录
-   cd /app/ansible
-   mkdir roles/memcached/&#123;tasks,templates&#125; -pv
+   cd &#x2F;app&#x2F;ansible
+   mkdir roles&#x2F;memcached&#x2F;&#123;tasks,templates&#125; -pv
    
 2&gt; 拷贝memcached配置文件模板
-   cp /etc/sysconfig/memcached  templates/memcached.j2
-   vim templates/memcached.j2
-   CACHESIZE=&quot;&#123;&#123;ansible_memtotal_mb//4&#125;&#125;&quot;   #物理内存的1/4用做缓存
+   cp &#x2F;etc&#x2F;sysconfig&#x2F;memcached  templates&#x2F;memcached.j2
+   vim templates&#x2F;memcached.j2
+   CACHESIZE&#x3D;&quot;&#123;&#123;ansible_memtotal_mb&#x2F;&#x2F;4&#125;&#125;&quot;   #物理内存的1&#x2F;4用做缓存
    
 3&gt; 创建对应yml文件,并做相应配置
-   cd tasks/
+   cd tasks&#x2F;
    touch install.yml config.yml service.yml
    创建main.yml文件定义任务执行顺序
    vim main.yml
@@ -2132,18 +2057,18 @@ cat /etc/sysconfig/memcached
    
    vim install.yml
    - name: install 
-     yum: name=memcached
+     yum: name&#x3D;memcached
      
    vim config.yml
    - name: config file
-     template: src=memcached.j2 dets=/etc/sysconfig/memcached
+     template: src&#x3D;memcached.j2 dets&#x3D;&#x2F;etc&#x2F;sysconfig&#x2F;memcached
 
    vim service.yml
    - name: service
-     service: name=memcached state=started enabled=yes
+     service: name&#x3D;memcached state&#x3D;started enabled&#x3D;yes
 
 4&gt; 创建调用角色文件
-   cd /app/ansible/roles/
+   cd &#x2F;app&#x2F;ansible&#x2F;roles&#x2F;
    vim role_memcached.yml
     ---
     - hosts: appsrvs
@@ -2153,9 +2078,8 @@ cat /etc/sysconfig/memcached
 
 5&gt; 安装
    ansible-playbook  role_memcached.yml 
-   memcached端口号11211
-</code></pre>
-<h3 id="其它功能"><a href="#其它功能" class="headerlink" title="其它功能"></a>其它功能</h3><pre><code>委任（指定某一台机器做某一个task）
+   memcached端口号11211</code></pre>
+<h3 id="其它功能"><a href="#其它功能" class="headerlink" title="其它功能"></a>其它功能</h3><pre class="language-none"><code class="language-none">委任（指定某一台机器做某一个task）
     delegate_to
     local_action (专指针对ansible命令执行的机器做的变更操作)
 交互提示
@@ -2163,31 +2087,29 @@ cat /etc/sysconfig/memcached
 *暂停（java）
     wait_for
 Debug
-    debug: msg=&quot;This always executes.&quot;
+    debug: msg&#x3D;&quot;This always executes.&quot;
 Include
 Template 多值合并
-Template 动态变量配置
-</code></pre>
-<h3 id="Ansible-Roles"><a href="#Ansible-Roles" class="headerlink" title="Ansible Roles"></a>Ansible Roles</h3><pre><code>委任
+Template 动态变量配置</code></pre>
+<h3 id="Ansible-Roles"><a href="#Ansible-Roles" class="headerlink" title="Ansible Roles"></a>Ansible Roles</h3><pre class="language-none"><code class="language-none">委任
     delegate_to
 交互提示
     prompt
 暂停
     wait_for
 Debug
-    debug: msg=&quot;This always executes.&quot;
+    debug: msg&#x3D;&quot;This always executes.&quot;
 Include
 Template 多值合并
-Template 动态变量配置
-</code></pre>
-<h3 id="推荐资料"><a href="#推荐资料" class="headerlink" title="推荐资料"></a>推荐资料</h3><pre><code>http://galaxy.ansible.com
-https://galaxy.ansible.com/explore#/
-http://github.com/
-http://ansible.com.cn/
-https://github.com/ansible/ansible
-https://github.com/ansible/ansible-examples
-</code></pre>
-<h3 id="实验-实现二进制安装mysql的卸载"><a href="#实验-实现二进制安装mysql的卸载" class="headerlink" title="实验: 实现二进制安装mysql的卸载"></a>实验: 实现二进制安装mysql的卸载</h3><pre><code>cat remove_mysql.yml 
+Template 动态变量配置</code></pre>
+<h3 id="推荐资料"><a href="#推荐资料" class="headerlink" title="推荐资料"></a>推荐资料</h3><pre class="language-none"><code class="language-none">http:&#x2F;&#x2F;galaxy.ansible.com
+https:&#x2F;&#x2F;galaxy.ansible.com&#x2F;explore#&#x2F;
+http:&#x2F;&#x2F;github.com&#x2F;
+http:&#x2F;&#x2F;ansible.com.cn&#x2F;
+https:&#x2F;&#x2F;github.com&#x2F;ansible&#x2F;ansible
+https:&#x2F;&#x2F;github.com&#x2F;ansible&#x2F;ansible-examples</code></pre>
+
+<h3 id="实验-实现二进制安装mysql的卸载"><a href="#实验-实现二进制安装mysql的卸载" class="headerlink" title="实验: 实现二进制安装mysql的卸载"></a>实验: 实现二进制安装mysql的卸载</h3><pre class="language-none"><code class="language-none">cat remove_mysql.yml 
 ---
 # install mariadb server 
 - hosts: appsrvs:!192.168.38.108
@@ -2195,22 +2117,20 @@ https://github.com/ansible/ansible-examples
 
   tasks:
     - name: stop service 
-      shell: /etc/init.d/mysqld stop
+      shell: &#x2F;etc&#x2F;init.d&#x2F;mysqld stop
     - name: delete user 
-      user: name=mysql state=absent remove=yes
+      user: name&#x3D;mysql state&#x3D;absent remove&#x3D;yes
     - name: delete
-      file: path=&#123;&#123;item&#125;&#125; state=absent
+      file: path&#x3D;&#123;&#123;item&#125;&#125; state&#x3D;absent
       with_items: 
-        - /usr/local/mysql
-        - /usr/local/mariadb-10.2.27-linux-x86_64
-        - /etc/init.d/mysqld
-        - /etc/profile.d/mysql.sh
-        - /etc/my.cnf
-        - /data/mysql
+        - &#x2F;usr&#x2F;local&#x2F;mysql
+        - &#x2F;usr&#x2F;local&#x2F;mariadb-10.2.27-linux-x86_64
+        - &#x2F;etc&#x2F;init.d&#x2F;mysqld
+        - &#x2F;etc&#x2F;profile.d&#x2F;mysql.sh
+        - &#x2F;etc&#x2F;my.cnf
+        - &#x2F;data&#x2F;mysql
 
-ansible-playbook  remove_mysql.yml
-</code></pre>
-
+ansible-playbook  remove_mysql.yml</code></pre>
     </div>
     
     <div class="reward" ontouchstart>

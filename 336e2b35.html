@@ -225,7 +225,7 @@ Podman 是一个开源的容器运行时项目，可在大多数 Linux 平台上
 <p>在系统构建者方面，用podman的默认软件，与docker的区别不大，只是在进程模型、进程关系方面有所区别。如果习惯了docker几个关联进程的调试方法，在podman中则需要适应。可以通过pstree命令查看进程的树状结构。总体来看，podman比docker要简单。由于podman比docker少了一层daemon，因此重启的机制也就不同了。</p>
 <p>在使用者方面，podman与docker的命令基本兼容，都包括容器运行时（run&#x2F;start&#x2F;kill&#x2F;ps&#x2F;inspect），本地镜像（images&#x2F;rmi&#x2F;build）、镜像仓库（login&#x2F;pull&#x2F;push）等几个方面。因此podman的命令行工具与docker类似，比如构建镜像、启停容器等。甚至可以通过alias</p>
 <p>docker&#x3D;podman可以进行替换。因此，即便使用了podman，仍然可以使用docker.io作为镜像仓库，这也是兼容性最关键的部分。</p>
-<h2 id="Podman常用命令"><a href="#Podman常用命令" class="headerlink" title="Podman常用命令"></a><strong>Podman常用命令</strong></h2><h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a><strong>容器</strong></h3><pre class=" language-shell"><code class="language-shell">podman run           创建并启动容器
+<h2 id="Podman常用命令"><a href="#Podman常用命令" class="headerlink" title="Podman常用命令"></a><strong>Podman常用命令</strong></h2><h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a><strong>容器</strong></h3><pre class="language-bash" data-language="bash"><code class="language-bash">podman run           创建并启动容器
 podman start         启动容器
 podman ps            查看容器
 podman stop          终止容器
@@ -235,9 +235,11 @@ podman exec          进入容器
 podman export        导出容器
 podman import        导入容器快照
 podman rm            删除容器
-podman logs          查看日志
-</code></pre>
-<h3 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a><strong>镜像</strong></h3><pre class=" language-shell"><code class="language-shell">podman search        检索镜像
+podman logs          查看日志</code></pre>
+
+
+
+<h3 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a><strong>镜像</strong></h3><pre class="language-bash" data-language="bash"><code class="language-bash">podman search        检索镜像
 podman pull         获取镜像
 podman images        列出镜像
 podman image Is       列出镜像
@@ -253,34 +255,36 @@ podmanfile          定制镜像（三个）
     ADD         高级复制
     CMD         容器启动命令
     ENV         环境变量
-    EXPOSE        暴露端口
-</code></pre>
-<h3 id="部署-Podman"><a href="#部署-Podman" class="headerlink" title="部署 Podman"></a><strong>部署 Podman</strong></h3><pre class=" language-shell"><code class="language-shell">//安装podman
-[root@localhost ~]# yum -y install podman
-</code></pre>
+    EXPOSE        暴露端口</code></pre>
+
+
+
+<h3 id="部署-Podman"><a href="#部署-Podman" class="headerlink" title="部署 Podman"></a><strong>部署 Podman</strong></h3><pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;安装podman
+[root@localhost ~]# yum -y install podman</code></pre>
+
 <h3 id="Podman-加速器"><a href="#Podman-加速器" class="headerlink" title="Podman 加速器"></a><strong>Podman 加速器</strong></h3><p>版本7配置加速器</p>
-<pre class=" language-shell"><code class="language-shell">//仓库配置
-[root@localhost ~]*# vim /etc/containers/registries.conf*
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;仓库配置
+[root@localhost ~]*# vim &#x2F;etc&#x2F;containers&#x2F;registries.conf*
 [registries.search]
-*#registries = ["registry.access.redhat.com", "registry.redhat.io", "docker.io"] #这个是查找，从这三个地方查找*
+*#registries &#x3D; [&quot;registry.access.redhat.com&quot;, &quot;registry.redhat.io&quot;, &quot;docker.io&quot;] #这个是查找，从这三个地方查找*
 
-registries = ["docker.io"] *#如果只留一个，则只在一个源里查找*
+registries &#x3D; [&quot;docker.io&quot;] *#如果只留一个，则只在一个源里查找*
 [[docker.io]]
-location="j3m2itm3.mirror.aliyuncs.com"
-</code></pre>
-<p>版本8配置加速器</p>
-<pre class=" language-shell"><code class="language-shell">*#unqualified-search-registries = ["registry.fedoraproject.org", "registry.access.redhat.com", "registry.centos.org", "docker.io"]  #直接注释掉*
-unqualified-search-registries = ["docker.io"] *#添加一个docker.io*
-[[registry]]
-prefix = "docker.io"
-location = "j3m2itm3.mirror.aliyuncs.com" （不用加https:// 直接加地址）
+location&#x3D;&quot;j3m2itm3.mirror.aliyuncs.com&quot;</code></pre>
 
-### **使用 Podman**
-</code></pre>
+<p>版本8配置加速器</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">*#unqualified-search-registries &#x3D; [&quot;registry.fedoraproject.org&quot;, &quot;registry.access.redhat.com&quot;, &quot;registry.centos.org&quot;, &quot;docker.io&quot;]  #直接注释掉*
+unqualified-search-registries &#x3D; [&quot;docker.io&quot;] *#添加一个docker.io*
+[[registry]]
+prefix &#x3D; &quot;docker.io&quot;
+location &#x3D; &quot;j3m2itm3.mirror.aliyuncs.com&quot; （不用加https:&#x2F;&#x2F; 直接加地址）
+
+### **使用 Podman**</code></pre>
+
 <p>使用 Podman 非常的简单，Podman 的指令跟 Docker 大多数都是相同的。下面我们来看几个常用的例子：</p>
 <p>运行一个容器</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# podman run -d --name httpd docker.io/library/httpd
-Trying to pull docker.io/library/httpd...
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# podman run -d --name httpd docker.io&#x2F;library&#x2F;httpd
+Trying to pull docker.io&#x2F;library&#x2F;httpd...
 Getting image source signatures
 Copying blob e5ae68f74026 done  
 Copying blob d3576f2b6317 done  
@@ -292,84 +296,84 @@ Writing manifest to image destination
 Storing signatures
 0492e405b9ecb05e6e6be1fec0ac1a8b6ba3ff949df259b45146037b5f355035
 
-//查看镜像
+&#x2F;&#x2F;查看镜像
 [root@localhost ~]# podman images
 REPOSITORY                  TAG      IMAGE ID       CREATED       SIZE
-docker.io/library/httpd     latest   ea28e1b82f31   11 days ago   148 MB
-</code></pre>
+docker.io&#x2F;library&#x2F;httpd     latest   ea28e1b82f31   11 days ago   148 MB</code></pre>
+
 <p>列出运行的容器</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# podman ps
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# podman ps
 CONTAINER ID  IMAGE                             COMMAND           CREATED             STATUS                 PORTS  NAMES
-0492e405b9ec  docker.io/library/httpd:latest    httpd-foreground  About a minute ago  Up About a minute ago         httpd
-</code></pre>
+0492e405b9ec  docker.io&#x2F;library&#x2F;httpd:latest    httpd-foreground  About a minute ago  Up About a minute ago         httpd</code></pre>
+
 <p>注意：如果在ps命令中添加-a，Podman 将显示所有容器。</p>
 <p>检查正在运行的容器</p>
 <p>您可以“检查”正在运行的容器的元数据和有关其自身的详细信息。我们甚至可以使用 inspect 子命令查看分配给容器的 IP 地址。由于容器以无根模式运行，因此未分配 IP 地址，并且该值将在检查的输出中列为“无”。</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# podman inspect -l | grep IPAddress\": 
-            "SecondaryIPAddresses": null, 
-            "IPAddress": "10.88.0.5",
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# podman inspect -l | grep IPAddress\&quot;: 
+            &quot;SecondaryIPAddresses&quot;: null, 
+            &quot;IPAddress&quot;: &quot;10.88.0.5&quot;,
 
 [root@localhost ~]# curl 10.88.0.5
-It works!
-</code></pre>
+It works!</code></pre>
+
 <p>注意：-l 是最新容器的便利参数。您还可以使用容器的 ID 代替 -l。</p>
 <p>查看一个运行中容器的日志</p>
-<pre class=" language-shell"><code class="language-shell">选项
+<pre class="language-bash" data-language="bash"><code class="language-bash">选项
  --latest  #最近的
  
 [root@localhost ~]# podman logs --latest
-AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 10.88.0.5. Set the 'ServerName' directive globally to suppress this message
-AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 10.88.0.5. Set the 'ServerName' directive globally to suppress this message
-[Mon Dec 13 15:17:53.690844 2021] [mpm_event:notice] [pid 1:tid 140665160166720] AH00489: Apache/2.4.51 (Unix) configured -- resuming normal operations
-[Mon Dec 13 15:17:53.690946 2021] [core:notice] [pid 1:tid 140665160166720] AH00094: Command line: 'httpd -D FOREGROUND'
-10.88.0.1 - - [13/Dec/2021:15:19:48 +0000] "GET / HTTP/1.1" 200 45
-10.88.0.1 - - [13/Dec/2021:15:20:47 +0000] "GET / HTTP/1.1" 200 45
-</code></pre>
+AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using 10.88.0.5. Set the &#39;ServerName&#39; directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using 10.88.0.5. Set the &#39;ServerName&#39; directive globally to suppress this message
+[Mon Dec 13 15:17:53.690844 2021] [mpm_event:notice] [pid 1:tid 140665160166720] AH00489: Apache&#x2F;2.4.51 (Unix) configured -- resuming normal operations
+[Mon Dec 13 15:17:53.690946 2021] [core:notice] [pid 1:tid 140665160166720] AH00094: Command line: &#39;httpd -D FOREGROUND&#39;
+10.88.0.1 - - [13&#x2F;Dec&#x2F;2021:15:19:48 +0000] &quot;GET &#x2F; HTTP&#x2F;1.1&quot; 200 45
+10.88.0.1 - - [13&#x2F;Dec&#x2F;2021:15:20:47 +0000] &quot;GET &#x2F; HTTP&#x2F;1.1&quot; 200 45</code></pre>
+
 <p>查看一个运行容器中的进程资源使用情况，可以使用top观察容器中的 nginx pid</p>
-<pre class=" language-shell"><code class="language-shell">语法：
- podman top <container_id>  
+<pre class="language-bash" data-language="bash"><code class="language-bash">语法：
+ podman top &lt;container_id&gt;  
  
 [root@localhost ~]# podman top httpd
 USER       PID   PPID   %CPU    ELAPSED            TTY   TIME   COMMAND
 root       1     0      0.000   15m38.599711321s   ?     0s     httpd -DFOREGROUND 
 www-data   7     1      0.000   15m38.599783256s   ?     0s     httpd -DFOREGROUND 
 www-data   8     1      0.000   15m38.599845342s   ?     0s     httpd -DFOREGROUND 
-www-data   9     1      0.000   15m38.599880444s   ?     0s     httpd -DFOREGROUND 
-</code></pre>
+www-data   9     1      0.000   15m38.599880444s   ?     0s     httpd -DFOREGROUND </code></pre>
+
 <p>停止一个运行中的容器</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# podman stop --latest
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# podman stop --latest
 2f3edf712621d3a41e03fa8c7f6a5cdba56fbbad43a7a59ede26cc88f31006c4
 [root@localhost ~]# podman ps
-CONTAINER ID  IMAGE  COMMAND  CREATED  STATUS  PORTS  NAMES
-</code></pre>
+CONTAINER ID  IMAGE  COMMAND  CREATED  STATUS  PORTS  NAMES</code></pre>
+
 <p>删除一个容器</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# podman rm --latest
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# podman rm --latest
 2f3edf712621d3a41e03fa8c7f6a5cdba56fbbad43a7a59ede26cc88f31006c4
 [root@localhost ~]# podman ps -a
-CONTAINER ID  IMAGE  COMMAND  CREATED  STATUS  PORTS  NAMES
-</code></pre>
+CONTAINER ID  IMAGE  COMMAND  CREATED  STATUS  PORTS  NAMES</code></pre>
+
 <p>以上这些特性基本上都和 Docker 一样，Podman 除了兼容这些特性外，还支持了一些新的特性。</p>
 <p>上传镜像</p>
 <p>例如，如果我们想在 docker.io 上分享我们新建的 Nginx 容器镜像，这很容易。首先登录码头：</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost nginx]# tree 
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost nginx]# tree 
 .
 ├── Dockerfile
 └── files
     └── nginx-1.20.1.tar.gz
 
 [root@localhost nginx]# cat Dockerfile 
-FROM docker.io/library/centos
+FROM docker.io&#x2F;library&#x2F;centos
 
-ENV PATH /usr/local/nginx/sbin:$PATH
-ADD files/nginx-1.20.1.tar.gz /usr/src
-RUN useradd -r -M -s /sbin/nologin nginx && \
-    yum -y install pcre-devel openssl openssl-devel gd-devel gcc gcc-c++ make && \
-    mkdir -p /var/log/nginx && \
-    cd /usr/src/nginx-1.20.1 && \
-    ./configure \
-    --prefix=/usr/local/nginx \
-    --user=nginx \
-    --group=nginx \
+ENV PATH &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH
+ADD files&#x2F;nginx-1.20.1.tar.gz &#x2F;usr&#x2F;src
+RUN useradd -r -M -s &#x2F;sbin&#x2F;nologin nginx &amp;&amp; \
+    yum -y install pcre-devel openssl openssl-devel gd-devel gcc gcc-c++ make &amp;&amp; \
+    mkdir -p &#x2F;var&#x2F;log&#x2F;nginx &amp;&amp; \
+    cd &#x2F;usr&#x2F;src&#x2F;nginx-1.20.1 &amp;&amp; \
+    .&#x2F;configure \
+    --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx \
+    --user&#x3D;nginx \
+    --group&#x3D;nginx \
     --with-debug \
     --with-http_ssl_module \
     --with-http_realip_module \
@@ -377,24 +381,24 @@ RUN useradd -r -M -s /sbin/nologin nginx && \
     --with-http_gunzip_module \
     --with-http_gzip_static_module \
     --with-http_stub_status_module \
-    --http-log-path=/var/log/nginx/access.log \
-    --error-log-path=/var/log/nginx/error.log && \
-  make && make install
+    --http-log-path&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log \
+    --error-log-path&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log &amp;&amp; \
+  make &amp;&amp; make install
 
-CMD ["nginx","-g","daemon off"]
+CMD [&quot;nginx&quot;,&quot;-g&quot;,&quot;daemon off&quot;]
 [root@localhost nginx]# podman build -t nginx .
 
-// 修改镜像名
- [root@localhost ~]# podman tag docker.io/library/nginx:latest docker.io/1314444/test:latest
+&#x2F;&#x2F; 修改镜像名
+ [root@localhost ~]# podman tag docker.io&#x2F;library&#x2F;nginx:latest docker.io&#x2F;1314444&#x2F;test:latest
 
-// 登录并上传镜像
-[root@localhost ~]# podman login docker.io // 需要告诉其要登录到docker仓库
+&#x2F;&#x2F; 登录并上传镜像
+[root@localhost ~]# podman login docker.io &#x2F;&#x2F; 需要告诉其要登录到docker仓库
 [root@localhost ~]# podman login docker.io
 Username: 1314444  #账户
 Password: ********  #密码
 Login Succeeded!
 
-[root@localhost nginx]# podman push docker.io/1314444/test:latest  //上传镜像
+[root@localhost nginx]# podman push docker.io&#x2F;1314444&#x2F;test:latest  &#x2F;&#x2F;上传镜像
 Getting image source signatures
 Copying blob 38c40d6c2c85 done
 Copying blob fee76a531659 done
@@ -406,213 +410,213 @@ Writing manifest to image destination
 Storing signatures
 
 
-//请注意，我们将四层推送到我们的注册表，现在可供其他人共享。快速浏览一下：
-[root@localhost ~]# podman inspect 1314444/test:nginx
-//输出：
+&#x2F;&#x2F;请注意，我们将四层推送到我们的注册表，现在可供其他人共享。快速浏览一下：
+[root@localhost ~]# podman inspect 1314444&#x2F;test:nginx
+&#x2F;&#x2F;输出：
 [
     &#123;
-        "Id": "7f3589c0b8849a9e1ff52ceb0fcea2390e2731db9d1a7358c2f5fad216a48263",
-        "Digest": "sha256:7822b5ba4c2eaabdd0ff3812277cfafa8a25527d1e234be028ed381a43ad5498",
-        "RepoTags": [
-            "docker.io/1314444/test:nginx",
-  ......
-</code></pre>
+        &quot;Id&quot;: &quot;7f3589c0b8849a9e1ff52ceb0fcea2390e2731db9d1a7358c2f5fad216a48263&quot;,
+        &quot;Digest&quot;: &quot;sha256:7822b5ba4c2eaabdd0ff3812277cfafa8a25527d1e234be028ed381a43ad5498&quot;,
+        &quot;RepoTags&quot;: [
+            &quot;docker.io&#x2F;1314444&#x2F;test:nginx&quot;,
+  ......</code></pre>
+
 <p>总而言之，Podman 使查找、运行、构建和共享容器变得容易。</p>
 <p>配置别名</p>
 <p>如果习惯了使用 Docker 命令，可以直接给 Podman 配置一个别名来实现无缝转移。你只需要在 .bashrc 下加入以下行内容即可：</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# echo "alias docker=podman" >> .bashrc
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# echo &quot;alias docker&#x3D;podman&quot; &gt;&gt; .bashrc
 source .bashrc
 [root@localhost ~]# alias
-alias cp='cp -i'
-alias docker='podman'
-.......
-</code></pre>
+alias cp&#x3D;&#39;cp -i&#39;
+alias docker&#x3D;&#39;podman&#39;
+.......</code></pre>
+
 <h3 id="用户操作"><a href="#用户操作" class="headerlink" title="用户操作"></a><strong>用户操作</strong></h3><p>在允许没有root特权的用户运行Podman之前，管理员必须安装或构建Podman并完成以下配置</p>
 <p>cgroup V2Linux内核功能允许用户限制普通用户容器可以使用的资源，如果使用cgroupV2启用了运行Podman的Linux发行版，则可能需要更改默认的OCI运行时。某些较旧的版本runc不适用于cgroupV2，必须切换到备用OCI运行时crun。</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# yum -y install crun     //centos8系统自带
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# yum -y install crun     &#x2F;&#x2F;centos8系统自带
 
-[root@localhost ~]# vi /usr/share/containers/containers.conf 
+[root@localhost ~]# vi &#x2F;usr&#x2F;share&#x2F;containers&#x2F;containers.conf 
     446 # Default OCI runtime
     447 # 
-    448 runtime = "crun"      //取消注释并将runc改为crun
+    448 runtime &#x3D; &quot;crun&quot;      &#x2F;&#x2F;取消注释并将runc改为crun
 
-[root@localhost ~]# podman run -d --name web -p 80:80 docker.io/library/nginx
+[root@localhost ~]# podman run -d --name web -p 80:80 docker.io&#x2F;library&#x2F;nginx
 c8664d2e43c872e1e5219f82d41f63048ed3a5ed4fb6259c225a14d6c243677f
 
 [root@localhost ~]# podman inspect web | grep crun
-        "OCIRuntime": "crun",
-            "crun",
-</code></pre>
+        &quot;OCIRuntime&quot;: &quot;crun&quot;,
+            &quot;crun&quot;,</code></pre>
+
 <p>安装slirp4netns和fuse-overlayfs</p>
 <p>在普通用户环境中使用Podman时，建议使用fuse-overlayfs而不是VFS文件系统，至少需要版本0.7.6。现在新版本默认就是了。</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# yum -y install slirp4netns
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# yum -y install slirp4netns
 
 [root@localhost ~]# yum -y install fuse-overlayfs
-[root@localhost ~]# vi /etc/containers/storage.conf
-77 mount_program = "/usr/bin/fuse-overlayfs"     //取消注释
-</code></pre>
+[root@localhost ~]# vi &#x2F;etc&#x2F;containers&#x2F;storage.conf
+77 mount_program &#x3D; &quot;&#x2F;usr&#x2F;bin&#x2F;fuse-overlayfs&quot;     &#x2F;&#x2F;取消注释</code></pre>
+
 <p>&#x2F; etc &#x2F; subuid和&#x2F; etc &#x2F; subgid配置</p>
 <p>Podman要求运行它的用户在&#x2F; etc &#x2F; subuid和&#x2F; etc &#x2F; subgid文件中列出一系列UID,shadow-utils或newuid包提供这些文件</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# yum -y install shadow-utils
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# yum -y install shadow-utils
 
-可以在/ etc / subuid和/ etc / subgid查看，每个用户的值必须唯一且没有任何重叠。
+可以在&#x2F; etc &#x2F; subuid和&#x2F; etc &#x2F; subgid查看，每个用户的值必须唯一且没有任何重叠。
 
 [root@localhost ~]# useradd zz
-[root@localhost ~]# cat /etc/subuid
+[root@localhost ~]# cat &#x2F;etc&#x2F;subuid
 zz:100000:65536
-[root@localhost ~]# cat /etc/subgid
+[root@localhost ~]# cat &#x2F;etc&#x2F;subgid
 zz:100000:65536
 
-// 启动非特权ping 
-[root@localhost ~]# sysctl -w "net.ipv4.ping_group_range=0 200000" //大于100000这个就表示tom可以操作podman
-net.ipv4.ping_group_range = 0 200000
-</code></pre>
+&#x2F;&#x2F; 启动非特权ping 
+[root@localhost ~]# sysctl -w &quot;net.ipv4.ping_group_range&#x3D;0 200000&quot; &#x2F;&#x2F;大于100000这个就表示tom可以操作podman
+net.ipv4.ping_group_range &#x3D; 0 200000</code></pre>
+
 <p>这个文件的格式是 USERNAME:UID:RANGE中&#x2F;etc&#x2F;passwd或输出中列出的用户名getpwent。</p>
 <ul>
 <li>为用户分配的初始 UID。</li>
 <li>为用户分配的 UID 范围的大小。</li>
 </ul>
 <p>该usermod程序可用于为用户分配 UID 和 GID，而不是直接更新文件。</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# usermod --add-subuids 200000-201000 --add-subgids 200000-201000 hh
-grep hh /etc/subuid /etc/subgid
-/etc/subuid:hh:200000:1001
-/etc/subgid:hh:200000:1001
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# usermod --add-subuids 200000-201000 --add-subgids 200000-201000 hh
+grep hh &#x2F;etc&#x2F;subuid &#x2F;etc&#x2F;subgid
+&#x2F;etc&#x2F;subuid:hh:200000:1001
+&#x2F;etc&#x2F;subgid:hh:200000:1001</code></pre>
+
 <p>用户配置文件</p>
 <p>三个主要的配置文件是<strong>container.conf</strong> 、<strong>storage.conf</strong> 和<strong>r</strong> <strong>egistries.conf</strong> 。用户可以根据需要修改这些文件。</p>
 <p>container.conf</p>
-<pre class=" language-shell"><code class="language-shell">// 用户配置文件
-[root@localhost ~]*# cat /usr/share/containers/containers.conf*
-[root@localhost ~]*# cat /etc/containers/containers.conf*
-[root@localhost ~]*# cat ~/.config/containers/containers.conf //优先级最高*
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F; 用户配置文件
+[root@localhost ~]*# cat &#x2F;usr&#x2F;share&#x2F;containers&#x2F;containers.conf*
+[root@localhost ~]*# cat &#x2F;etc&#x2F;containers&#x2F;containers.conf*
+[root@localhost ~]*# cat ~&#x2F;.config&#x2F;containers&#x2F;containers.conf &#x2F;&#x2F;优先级最高*</code></pre>
+
 <p>如果它们以该顺序存在。每个文件都可以覆盖特定字段的前一个文件。</p>
 <p>配置storage.conf文件</p>
-<pre class=" language-shell"><code class="language-shell">1./etc/containers/storage.conf
-2.$HOME/.config/containers/storage.conf
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">1.&#x2F;etc&#x2F;containers&#x2F;storage.conf
+2.$HOME&#x2F;.config&#x2F;containers&#x2F;storage.conf</code></pre>
+
 <p>在普通用户中**&#x2F;etc&#x2F;containers&#x2F;storage.conf** 的一些字段将被忽略</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]#  vi /etc/containers/storage.conf
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]#  vi &#x2F;etc&#x2F;containers&#x2F;storage.conf
 [storage]
 
 
-> 推荐下自己做的 Spring Cloud 的实战项目：
->
-> <https://github.com/YunaiV/onemall>
+&gt; 推荐下自己做的 Spring Cloud 的实战项目：
+&gt;
+&gt; &lt;https:&#x2F;&#x2F;github.com&#x2F;YunaiV&#x2F;onemall&gt;
 
 # Default Storage Driver, Must be set for proper operation.
-driver = "overlay"  #此处改为overlay
+driver &#x3D; &quot;overlay&quot;  #此处改为overlay
 .......
-mount_program = "/usr/bin/fuse-overlayfs"  #取消注释
+mount_program &#x3D; &quot;&#x2F;usr&#x2F;bin&#x2F;fuse-overlayfs&quot;  #取消注释
 
-[root@localhost ~]# sysctl user.max_user_namespaces=15000  #如果版本为8以下，则需要做以下操作：
-</code></pre>
+[root@localhost ~]# sysctl user.max_user_namespaces&#x3D;15000  #如果版本为8以下，则需要做以下操作：</code></pre>
+
 <p>在普通用户中这些字段默认</p>
-<pre class=" language-shell"><code class="language-shell">graphroot="$HOME/.local/share/containers/storage"
-runroot="$XDG_RUNTIME_DIR/containers"
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">graphroot&#x3D;&quot;$HOME&#x2F;.local&#x2F;share&#x2F;containers&#x2F;storage&quot;
+runroot&#x3D;&quot;$XDG_RUNTIME_DIR&#x2F;containers&quot;</code></pre>
+
 <p>registries.conf</p>
 <p>配置按此顺序读入,这些文件不是默认创建的,可以从&#x2F;usr&#x2F;share&#x2F;containers 或复制文件&#x2F;etc&#x2F;containers并进行修改。</p>
-<pre class=" language-shell"><code class="language-shell">1./etc/containers/registries.conf
-2./etc/containers/registries.d/*
-3.HOME/.config/containers/registries.conf
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">1.&#x2F;etc&#x2F;containers&#x2F;registries.conf
+2.&#x2F;etc&#x2F;containers&#x2F;registries.d&#x2F;*
+3.HOME&#x2F;.config&#x2F;containers&#x2F;registries.conf</code></pre>
+
 <p>授权文件</p>
 <p>此文件里面写了docker账号的密码，以加密方式显示</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# podman login
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# podman login
 Username: 1314444
 Password: 
 Login Succeeded!
-[root@localhost ~]# cat /run/user/0/containers/auth.json 
+[root@localhost ~]# cat &#x2F;run&#x2F;user&#x2F;0&#x2F;containers&#x2F;auth.json 
 &#123;
-        "auths": &#123;
-                "registry.fedoraproject.org": &#123;
-                        "auth": "MTMxNDQ0NDpIMjAxNy0xOA=="
+        &quot;auths&quot;: &#123;
+                &quot;registry.fedoraproject.org&quot;: &#123;
+                        &quot;auth&quot;: &quot;MTMxNDQ0NDpIMjAxNy0xOA&#x3D;&#x3D;&quot;
                 &#125;
         &#125;
-&#125;
-</code></pre>
+&#125;</code></pre>
+
 <p>普通用户是无法看见root用户的镜像的</p>
-<pre class=" language-shell"><code class="language-shell">//root用户
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;root用户
 [root@localhost ~]# podman images
 REPOSITORY                  TAG      IMAGE ID       CREATED       SIZE
-docker.io/library/httpd     latest   ea28e1b82f31   11 days ago   146 MB
+docker.io&#x2F;library&#x2F;httpd     latest   ea28e1b82f31   11 days ago   146 MB
 
-//普通用户
+&#x2F;&#x2F;普通用户
 [root@localhost ~]# su - zz
 [zz@localhost ~]$ podman images
-REPOSITORY  TAG         IMAGE ID    CREATED     SIZE
-</code></pre>
+REPOSITORY  TAG         IMAGE ID    CREATED     SIZE</code></pre>
+
 <h3 id="卷"><a href="#卷" class="headerlink" title="卷"></a><strong>卷</strong></h3><ul>
 <li>容器与root用户一起运行，则root容器中的用户实际上就是主机上的用户。</li>
 <li>UID GID是在&#x2F;etc&#x2F;subuid和&#x2F;etc&#x2F;subgid等中用户映射中指定的第一个UID GID。</li>
 <li>如果普通用户的身份从主机目录挂载到容器中，并在该目录中以根用户身份创建文件，则会看到它实际上是你的用户在主机上拥有的。</li>
 </ul>
 <p>使用卷</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# su - zz
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# su - zz
 [zz@localhost ~]$ pwd
-/home/zz
-[zz@localhost ~]$ mkdir /home/zz/data
+&#x2F;home&#x2F;zz
+[zz@localhost ~]$ mkdir &#x2F;home&#x2F;zz&#x2F;data
 
-[zz@localhost ~]$ podman run -it -v "$(pwd)"/data:/data docker.io/library/busybox /bin/sh
-Trying to pull docker.io/library/busybox:latest...
+[zz@localhost ~]$ podman run -it -v &quot;$(pwd)&quot;&#x2F;data:&#x2F;data docker.io&#x2F;library&#x2F;busybox &#x2F;bin&#x2F;sh
+Trying to pull docker.io&#x2F;library&#x2F;busybox:latest...
 Getting image source signatures
 Copying blob 3cb635b06aa2 done  
 Copying config ffe9d497c3 done  
 Writing manifest to image destination
 Storing signatures
-/ # ls
+&#x2F; # ls
 bin   data  dev   etc   home  proc  root  run   sys   tmp   usr   var
-/ # cd data/
-/data # ls
-/data # touch 123
-/data # ls -l
+&#x2F; # cd data&#x2F;
+&#x2F;data # ls
+&#x2F;data # touch 123
+&#x2F;data # ls -l
 total 0
--rw-r--r--    1 root     root             0 Dec 13 00:17 123
-</code></pre>
+-rw-r--r--    1 root     root             0 Dec 13 00:17 123</code></pre>
+
 <p>在主机上查看</p>
-<pre class=" language-shell"><code class="language-shell">[zz@localhost ~]$ ll data/
+<pre class="language-bash" data-language="bash"><code class="language-bash">[zz@localhost ~]$ ll data&#x2F;
 总用量 0
 -rw-r--r-- 1 zz zz 0 12月 13 00:17 123
 
-//写入文件
-[zz@localhost ~]$ echo "hell world" >> 123
+&#x2F;&#x2F;写入文件
+[zz@localhost ~]$ echo &quot;hell world&quot; &gt;&gt; 123
 [zz@localhost ~]$ cat 123
-hell world
-</code></pre>
+hell world</code></pre>
+
 <p>容器里查看</p>
-<pre class=" language-shell"><code class="language-shell">/data # cat 123
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;data # cat 123
 hell world
 
-//我们可以发现在容器里面的文件的属主和属组都属于root，那么如何才能让其属于tom用户呢？下面告诉你答案
-/data # ls -l
+&#x2F;&#x2F;我们可以发现在容器里面的文件的属主和属组都属于root，那么如何才能让其属于tom用户呢？下面告诉你答案
+&#x2F;data # ls -l
 total 4
 -rw-rw-r--    1 root     root            12 Dec 13 00:20 123
 
-//只要在运行容器的时候加上一个--userns=keep-id即可。
-[zz@localhost ~]$ podman run -it --name test -v "$(pwd)"/data:/data --userns=keep-id docker.io/library/busybox /bin/sh
-~ $ cd data/
-/data $ ls -l
+&#x2F;&#x2F;只要在运行容器的时候加上一个--userns&#x3D;keep-id即可。
+[zz@localhost ~]$ podman run -it --name test -v &quot;$(pwd)&quot;&#x2F;data:&#x2F;data --userns&#x3D;keep-id docker.io&#x2F;library&#x2F;busybox &#x2F;bin&#x2F;sh
+~ $ cd data&#x2F;
+&#x2F;data $ ls -l
 total 4
--rw-r--r--    1 zz       zz              11 Dec 13 00:21 123
-</code></pre>
+-rw-r--r--    1 zz       zz              11 Dec 13 00:21 123</code></pre>
+
 <p>使用普通用户映射容器端口时会报“ permission denied”的错误</p>
-<pre class=" language-shell"><code class="language-shell">[zz@localhost ~]$ podman run  -d -p 80:80 httpd
-Error: rootlessport cannot expose privileged port 80, you can add 'net.ipv4.ip_unprivileged_port_start=80' to /etc/sysctl.conf (currently 1024), or choose a larger port number (>= 1024): listen tcp 0.0.0.0:80: bind: permission denied
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[zz@localhost ~]$ podman run  -d -p 80:80 httpd
+Error: rootlessport cannot expose privileged port 80, you can add &#39;net.ipv4.ip_unprivileged_port_start&#x3D;80&#39; to &#x2F;etc&#x2F;sysctl.conf (currently 1024), or choose a larger port number (&gt;&#x3D; 1024): listen tcp 0.0.0.0:80: bind: permission denied</code></pre>
+
 <p>普通用户可以映射&gt;&#x3D; 1024的端口</p>
-<pre class=" language-shell"><code class="language-shell">[zz@localhost ~]$ podman run  -d -p 1024:80 httpd
+<pre class="language-bash" data-language="bash"><code class="language-bash">[zz@localhost ~]$ podman run  -d -p 1024:80 httpd
 58613a6bdc70d4d4f9f624583f795a62a610596d166f0873bdff8fb26aa15092
 [zz@localhost ~]$ ss -anlt
 State       Recv-Q      Send-Q           Local Address:Port           Peer Address:Port      Process      
 LISTEN      0           128                    0.0.0.0:22                  0.0.0.0:*                      
 LISTEN      0           128                          *:1024                      *:*                      
-LISTEN      0           128                       [::]:22                     [::]:* 
-</code></pre>
+LISTEN      0           128                       [::]:22                     [::]:* </code></pre>
+
 <p>配置echo ‘net.ipv4.ip_unprivileged_port_start&#x3D;80’ &gt;&gt; &#x2F;etc&#x2F;sysctl.conf后可以映射大于等于80的端口</p>
-<pre class=" language-shell"><code class="language-shell">[root@localhost ~]# echo  'net.ipv4.ip_unprivileged_port_start=80'  >> /etc/sysctl.conf
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# echo  &#39;net.ipv4.ip_unprivileged_port_start&#x3D;80&#39;  &gt;&gt; &#x2F;etc&#x2F;sysctl.conf
 [root@localhost ~]# sysctl -p
-net.ipv4.ip_unprivileged_port_start = 80
+net.ipv4.ip_unprivileged_port_start &#x3D; 80
 
 [zz@localhost ~]$ podman run -d -p 80:80 httpd
 1215455a0c300d78e7bf6afaefc9873f818c6b0f26affeee4e2bc17954e72d8e
@@ -621,22 +625,22 @@ State       Recv-Q      Send-Q           Local Address:Port           Peer Addre
 LISTEN      0           128                    0.0.0.0:22                  0.0.0.0:*                      
 LISTEN      0           128                          *:1024                      *:*                      
 LISTEN      0           128                          *:80                        *:*                      
-LISTEN      0           128                       [::]:22                     [::]:*  
-</code></pre>
+LISTEN      0           128                       [::]:22                     [::]:*  </code></pre>
+
 <h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p>Podman网络操作与Docker类似，但也有一些不同之处。以下是一些常见的Podman网络操作：</p>
 <p>创建网络：可以使用<code>podman network create</code>命令创建一个新的网络。例如，创建一个名为<code>my-network</code>的桥接网络：</p>
-<pre class=" language-shell"><code class="language-shell">podman network create my-network --driver bridge
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">podman network create my-network --driver bridge</code></pre>
+
 <p>查看网络：可以使用<code>podman network ls</code>命令查看所有可用的网络。</p>
 <p>连接容器到网络：可以使用<code>--network</code>选项将容器连接到指定的网络。例如，将名为<code>my-container</code>的容器连接到<code>my-network</code>网络：</p>
-<pre class=" language-shell"><code class="language-shell">podman run --name my-container --network my-network -d my-image
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">podman run --name my-container --network my-network -d my-image</code></pre>
+
 <p>断开容器与网络的连接：可以使用<code>podman network disconnect</code>命令将容器与网络断开连接。例如，将名为<code>my-container</code>的容器与<code>my-network</code>网络断开连接：</p>
-<pre class=" language-shell"><code class="language-shell">podman network disconnect my-network my-container
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">podman network disconnect my-network my-container</code></pre>
+
 <p>删除网络：可以使用<code>podman network rm</code>命令删除指定的网络。例如，删除名为<code>my-network</code>的网络：</p>
-<pre class=" language-shell"><code class="language-shell">podman network rm my-network
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">podman network rm my-network</code></pre>
+
 <p>这些是一些常见的Podman网络操作，您可以根据您的具体需求和环境来使用它们。</p>
 
     </div>

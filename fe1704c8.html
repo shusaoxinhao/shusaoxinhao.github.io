@@ -19,7 +19,7 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="Linux,frp,win" />
+<meta name="keywords" content="frp,Linux,win" />
 
 
 <meta name="description" content="Frp后台自动启动的几个方法本文介绍了在Linux和Windows系统中实现Frp后台自动启动的几种方法。
@@ -204,82 +204,82 @@ Linux系统方法一：使用nohup来启动使用nohup命令可以在后台启�
 <ol>
 <li>打开终端，输入以下命令启动frps：</li>
 </ol>
-<pre><code>nohup /path/to/your/fprs -c-c /path/to/your/frps.ini &amp;
-</code></pre>
+<pre class="language-none"><code class="language-none">nohup &#x2F;path&#x2F;to&#x2F;your&#x2F;fprs -c-c &#x2F;path&#x2F;to&#x2F;your&#x2F;frps.ini &amp;</code></pre>
+
 <ol start="2">
 <li>如果要查看日志，可以使用以下命令：</li>
 </ol>
-<pre><code>cat nohup.out
-</code></pre>
+<pre class="language-none"><code class="language-none">cat nohup.out</code></pre>
+
 <ol start="3">
 <li>同样的，使用以下命令启动frpc：</li>
 </ol>
-<pre><code>nohup /path/to/your/fprc -c-c /path/to/your/frpc.ini &amp;
-</code></pre>
+<pre class="language-none"><code class="language-none">nohup &#x2F;path&#x2F;to&#x2F;your&#x2F;fprc -c-c &#x2F;path&#x2F;to&#x2F;your&#x2F;frpc.ini &amp;</code></pre>
+
 <h3 id="方法二：使用systemctl来控制启动"><a href="#方法二：使用systemctl来控制启动" class="headerlink" title="方法二：使用systemctl来控制启动"></a>方法二：使用systemctl来控制启动</h3><p>使用systemctl命令可以方便地控制Frp的启动和停止，具体步骤如下：</p>
 <ol>
 <li>在<code>/lib/systemd/system/frps.service</code>文件中写入以下内容：</li>
 </ol>
-<pre><code>[Unit]
-Description=fraps service
-After=network.target syslog.target
-Wants=network.target
+<pre class="language-none"><code class="language-none">[Unit]
+Description&#x3D;fraps service
+After&#x3D;network.target syslog.target
+Wants&#x3D;network.target
 
 [Service]
-Type=simple
-ExecStart=/your/path/frps -c /your/path/frps.ini
+Type&#x3D;simple
+ExecStart&#x3D;&#x2F;your&#x2F;path&#x2F;frps -c &#x2F;your&#x2F;path&#x2F;frps.ini
 
 [Install]
-WantedBy=multi-user.target
-</code></pre>
+WantedBy&#x3D;multi-user.target</code></pre>
+
 <ol start="2">
 <li>启动frps：</li>
 </ol>
-<pre><code>sudo systemctl start frps
-</code></pre>
+<pre class="language-none"><code class="language-none">sudo systemctl start frps</code></pre>
+
 <ol start="3">
 <li>打开自启动：</li>
 </ol>
-<pre><code>sudo systemctl enable frps
-</code></pre>
+<pre class="language-none"><code class="language-none">sudo systemctl enable frps</code></pre>
+
 <ol start="4">
 <li>重启应用：</li>
 </ol>
-<pre><code>sudo systemctl restart frps
-</code></pre>
+<pre class="language-none"><code class="language-none">sudo systemctl restart frps</code></pre>
+
 <ol start="5">
 <li>停止应用：</li>
 </ol>
-<pre><code>sudo systemctl stop frps
-</code></pre>
+<pre class="language-none"><code class="language-none">sudo systemctl stop frps</code></pre>
+
 <ol start="6">
 <li>查看应用的日志：</li>
 </ol>
-<pre><code>sudo systemctl status frps
-</code></pre>
+<pre class="language-none"><code class="language-none">sudo systemctl status frps</code></pre>
+
 <h3 id="方法三：使用supervisor来控制"><a href="#方法三：使用supervisor来控制" class="headerlink" title="方法三：使用supervisor来控制"></a>方法三：使用supervisor来控制</h3><p>使用supervisor可以方便地控制Frp的启动和停止，具体步骤如下：</p>
 <ol>
 <li>安装supervisor：</li>
 </ol>
-<pre><code>sudo apt install supervisor
-</code></pre>
+<pre class="language-none"><code class="language-none">sudo apt install supervisor</code></pre>
+
 <ol start="2">
 <li>在<code>/etc/supervisor/conf.d</code>目录下创建<code>frp.conf</code>文件，写入以下内容：</li>
 </ol>
-<pre><code>[program:frp]
-command = /your/path/frps -c /your/path/frps.ini
-autostart = true
-</code></pre>
+<pre class="language-none"><code class="language-none">[program:frp]
+command &#x3D; &#x2F;your&#x2F;path&#x2F;frps -c &#x2F;your&#x2F;path&#x2F;frps.ini
+autostart &#x3D; true</code></pre>
+
 <ol start="3">
 <li>重新加载supervisor：</li>
 </ol>
-<pre><code>sudo systemctl restart supervisor
-</code></pre>
+<pre class="language-none"><code class="language-none">sudo systemctl restart supervisor</code></pre>
+
 <ol start="4">
 <li>查看supervisor运行状态：</li>
 </ol>
-<pre><code>sudo supervisorctl status
-</code></pre>
+<pre class="language-none"><code class="language-none">sudo supervisorctl status</code></pre>
+
 <h2 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h2><h3 id="方法一：使用任务计划程序"><a href="#方法一：使用任务计划程序" class="headerlink" title="方法一：使用任务计划程序"></a>方法一：使用任务计划程序</h3><p>使用任务计划程序可以实现Frp开机自启，具体步骤如下：</p>
 <ol>
 <li>打开任务计划程序，点击“创建任务”按钮。</li>
@@ -287,8 +287,8 @@ autostart = true
 <li>在“触发器”选项卡中，选择“开机时”作为触发器。</li>
 <li>在“操作”选项卡中，输入Frp的启动命令，比如：</li>
 </ol>
-<pre><code>C:\frp\frpc.exe -c C:\frp\frpc.ini
-</code></pre>
+<pre class="language-none"><code class="language-none">C:\frp\frpc.exe -c C:\frp\frpc.ini</code></pre>
+
 <ol start="5">
 <li>点击“确定”按钮，保存任务。</li>
 </ol>
@@ -297,14 +297,14 @@ autostart = true
 <li>按下Win+R键，打开运行对话框，输入“regedit”打开注册表编辑器。</li>
 <li>找到以下路径：</li>
 </ol>
-<pre><code>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
-</code></pre>
+<pre class="language-none"><code class="language-none">HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code></pre>
+
 <ol start="3">
 <li>在右侧窗口中，右键点击空白处，选择“新建”-&gt;“字符串值”。</li>
 <li>输入一个名称，比如“Frp”，然后双击该项，输入Frp的启动命令，比如：</li>
 </ol>
-<pre><code>C:\frp\frpc.exe -c C:\frp\frpc.ini
-</code></pre>
+<pre class="language-none"><code class="language-none">C:\frp\frpc.exe -c C:\frp\frpc.ini</code></pre>
+
 <ol start="5">
 <li>关闭注册表编辑器，重启电脑，Frp客户端就会自动启动了。</li>
 </ol>

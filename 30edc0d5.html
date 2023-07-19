@@ -277,55 +277,48 @@ jenkins
 <li><p>准备测试环境&amp;生产环境</p>
 </li>
 <li><p>下载Docker依赖组件</p>
-<pre class=" language-shell"><code class="language-shell">yum install -y yum-utils \
+<pre class="language-bash" data-language="bash"><code class="language-bash">yum install -y yum-utils \
   device-mapper-persistent-data \
-  lvm2
-</code></pre>
+  lvm2</code></pre>
 </li>
 <li><p>设置下载Docker的镜像源为阿里云</p>
-<pre class=" language-shell"><code class="language-shell">yum-config-manager \
+<pre class="language-bash" data-language="bash"><code class="language-bash">yum-config-manager \
     --add-repo \
-    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-</code></pre>
+    http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;docker-ce&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</code></pre>
 </li>
 <li><p>安装Docker服务</p>
-<pre class=" language-shell"><code class="language-shell">yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin</code></pre>
 </li>
 <li><p>安装成功后，启动Docker并设置开机自启</p>
-<pre class=" language-shell"><code class="language-shell">systemctl start docker
-systemctl enable docker
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">systemctl start docker
+systemctl enable docker</code></pre>
 </li>
 <li><p>测试安装</p>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# docker version
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# docker version
 Client: Docker Engine - Community
  Version:           24.0.4
  API version:       1.43
  Go version:        go1.20.5
  Git commit:        3713ee1
  Built:             Fri Jul  7 14:54:21 2023
- OS/Arch:           linux/amd64
- Context:           default
-</code></pre>
-</li>
+ OS&#x2F;Arch:           linux&#x2F;amd64
+ Context:           default</code></pre></li>
 </ul>
-<h3 id="2-2-Docker-Compose安装"><a href="#2-2-Docker-Compose安装" class="headerlink" title="2.2 Docker-Compose安装"></a>2.2 Docker-Compose安装</h3><pre class=" language-shell"><code class="language-shell">#访问下载地址
-https://github.com/docker/compose/tags
+<h3 id="2-2-Docker-Compose安装"><a href="#2-2-Docker-Compose安装" class="headerlink" title="2.2 Docker-Compose安装"></a>2.2 Docker-Compose安装</h3><pre class="language-bash" data-language="bash"><code class="language-bash">#访问下载地址
+https:&#x2F;&#x2F;github.com&#x2F;docker&#x2F;compose&#x2F;tags
 #根据需要下载相应的版本
-wget https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-linux-x86_64 
-#将docker-compose-linux-x86_64 到/usr/local/bin
-mv docker-compose-linux-x86_64 /usr/local/bin
+wget https:&#x2F;&#x2F;github.com&#x2F;docker&#x2F;compose&#x2F;releases&#x2F;download&#x2F;v2.19.1&#x2F;docker-compose-linux-x86_64 
+#将docker-compose-linux-x86_64 到&#x2F;usr&#x2F;local&#x2F;bin
+mv docker-compose-linux-x86_64 &#x2F;usr&#x2F;local&#x2F;bin
 #赋予执行取消
-chmod a+x /usr/local/bin/docker-compose
+chmod a+x &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose
 #验证是否安装成功
 [root@jenkins ~]# docker-compose  version
-Docker Compose version v2.19.1
-</code></pre>
+Docker Compose version v2.19.1</code></pre>
+
 <h2 id="三、Code阶段工具"><a href="#三、Code阶段工具" class="headerlink" title="三、Code阶段工具"></a>三、Code阶段工具</h2><h3 id="3-1-Git安装"><a href="#3-1-Git安装" class="headerlink" title="3.1 Git安装"></a>3.1 Git安装</h3><ul>
 <li><p>Linux安装</p>
-<pre class=" language-shell"><code class="language-shell">yum install -y git
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">yum install -y git</code></pre>
 </li>
 <li><p>Window安装</p>
 </li>
@@ -334,31 +327,28 @@ Docker Compose version v2.19.1
 <li><p>硬件配置必须大于4G内存</p>
 </li>
 <li><p>拉取GitLab镜像</p>
-<pre class=" language-shell"><code class="language-shell">docker pull gitlab/gitlab-ce
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">docker pull gitlab&#x2F;gitlab-ce</code></pre>
 </li>
 <li><p>准备docker-compose.yml</p>
-<pre class=" language-shell"><code class="language-shell">version: "3.1"
+<pre class="language-bash" data-language="bash"><code class="language-bash">version: &quot;3.1&quot;
 services:
   gitlab:
-    image: "gitlab/gitlab-ce:latest"
+    image: &quot;gitlab&#x2F;gitlab-ce:latest&quot;
     restart: always
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url "http://192.168.75.100:8929"
-        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        external_url &quot;http:&#x2F;&#x2F;192.168.75.100:8929&quot;
+        gitlab_rails[&#39;gitlab_shell_ssh_port&#39;] &#x3D; 2224
     ports:
-      - "8929:8929"
-      - "2224:2224"
+      - &quot;8929:8929&quot;
+      - &quot;2224:2224&quot;
     volumes:
-      - "./config:/etc/gitlab"
-      - "./logs:/var/log/gitlab"
-      - "./data:/var/opt/gitlab"
-</code></pre>
+      - &quot;.&#x2F;config:&#x2F;etc&#x2F;gitlab&quot;
+      - &quot;.&#x2F;logs:&#x2F;var&#x2F;log&#x2F;gitlab&quot;
+      - &quot;.&#x2F;data:&#x2F;var&#x2F;opt&#x2F;gitlab&quot;</code></pre>
 </li>
 <li><p>启动容器（需要稍微等一下）</p>
-<pre class=" language-shell"><code class="language-shell">docker-compose  up -d
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">docker-compose  up -d</code></pre>
 </li>
 <li><p>打开浏览器访问GitLab首页<a target="_blank" rel="noopener" href="http://192.168.75.100:8929/">http://192.168.75.100:8929/</a></p>
 <p><img src="/../images/gitlaburl.png"></p>
@@ -366,8 +356,7 @@ services:
 <li><p>登录GitLab</p>
 <p>用户：root</p>
 <p>密码在 initial_root_password文件中</p>
-<pre class=" language-shell"><code class="language-shell">cat config/initial_root_password
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">cat config&#x2F;initial_root_password</code></pre>
 </li>
 <li><p>创建新项目在gitlab中</p>
 </li>
@@ -378,19 +367,19 @@ services:
 <ul>
 <li>将源代码上传到gitlab中，我这里使用window中git工具</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#进入项目代码文件夹
+<pre class="language-bash" data-language="bash"><code class="language-bash">#进入项目代码文件夹
 cd demoHello
 #初始化git仓库
 git init
 #添加文件
 git add .
 #提交到本地
-git commit -m "代码v1"
+git commit -m &quot;代码v1&quot;
 #配置远端仓库,点击gitlab项目中的clone查找项目仓库地址
-git remote add origin http://192.168.75.100:8929/root/demoHello.git
+git remote add origin http:&#x2F;&#x2F;192.168.75.100:8929&#x2F;root&#x2F;demoHello.git
 #push到远程仓库某分支，完成代码上传
-git push -u origin "master"
-</code></pre>
+git push -u origin &quot;master&quot;</code></pre>
+
 <ul>
 <li>查看代码上传结果</li>
 </ul>
@@ -418,43 +407,43 @@ git push -u origin "master"
 <li>了解一下jenkins官网是jenkins.io</li>
 <li>拉取Jenkins镜像</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">docker pull jenkins/jenkins:2.413-jdk11
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">docker pull jenkins&#x2F;jenkins:2.413-jdk11</code></pre>
+
 <ul>
 <li>编写docker-compose.yml</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">version: "3.1"
+<pre class="language-bash" data-language="bash"><code class="language-bash">version: &quot;3.1&quot;
 services:
   jenkins:
-    image: jenkins/jenkins:2.413-jdk11
+    image: jenkins&#x2F;jenkins:2.413-jdk11
     container_name: jenkins
     ports:
       - 8080:8080
       - 50000:50000
     volumes:
-      - ./data/:/var/jenkins_home/
-</code></pre>
+      - .&#x2F;data&#x2F;:&#x2F;var&#x2F;jenkins_home&#x2F;</code></pre>
+
 <ul>
 <li>启动Jenkins容器</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# docker-compose  up -d
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# docker-compose  up -d</code></pre>
+
 <ul>
 <li>日志报错修改</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell"># 查看日志
+<pre class="language-bash" data-language="bash"><code class="language-bash"># 查看日志
 [root@jenkins ~]# docker logs -f  jenkins
-touch: cannot touch '/var/jenkins_home/copy_reference_file.log': Permission denied
-Can not write to /var/jenkins_home/copy_reference_file.log. Wrong volume permissions?
+touch: cannot touch &#39;&#x2F;var&#x2F;jenkins_home&#x2F;copy_reference_file.log&#39;: Permission denied
+Can not write to &#x2F;var&#x2F;jenkins_home&#x2F;copy_reference_file.log. Wrong volume permissions?
 # 修改bug
-[root@jenkins ~]# chmod -R  777 data/
+[root@jenkins ~]# chmod -R  777 data&#x2F;
 # 重新启动容器
 [root@jenkins ~]# docker-compose  restart
-[+] Restarting 1/1
+[+] Restarting 1&#x2F;1
  ✔ Container jenkins  Started 
 # 查看日志，如果显示密码，则服务正常
-[root@jenkins ~]# docker logs -f  jenkins
-</code></pre>
+[root@jenkins ~]# docker logs -f  jenkins</code></pre>
+
 <ul>
 <li><p>访问Jenkins服务在浏览器<a target="_blank" rel="noopener" href="http://192.168.75.101:8080/">http://192.168.75.101:8080</a><br><img src="/../images/jenkinsurl.png"></p>
 </li>
@@ -463,9 +452,9 @@ Can not write to /var/jenkins_home/copy_reference_file.log. Wrong volume permiss
 <li><p>解锁Jenkins,查看Jenkins密码,并把命名填充</p>
 </li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# cat data/secrets/initialAdminPassword
-98ff1758a1c34e6aad615361b9975317
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# cat data&#x2F;secrets&#x2F;initialAdminPassword
+98ff1758a1c34e6aad615361b9975317</code></pre>
+
 <ul>
 <li>插件安装教学，选择插件来安装，最后选择安装，耐心等待，有可能安装失败，可以点击“继续”，可以进入Jenkins官网进行插件下载</li>
 </ul>
@@ -485,72 +474,76 @@ Can not write to /var/jenkins_home/copy_reference_file.log. Wrong volume permiss
 <h3 id="5-3-Jenkins-入门配置"><a href="#5-3-Jenkins-入门配置" class="headerlink" title="5.3 Jenkins 入门配置"></a>5.3 Jenkins 入门配置</h3><h4 id="5-3-1-配置Maven-构建代码"><a href="#5-3-1-配置Maven-构建代码" class="headerlink" title="5.3.1 配置Maven 构建代码"></a>5.3.1 配置Maven 构建代码</h4><ul>
 <li>安装jdk</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#jdk文件下载官网
-https://www.oracle.com/java/technologies/downloads/
+<pre class="language-bash" data-language="bash"><code class="language-bash">#jdk文件下载官网
+https:&#x2F;&#x2F;www.oracle.com&#x2F;java&#x2F;technologies&#x2F;downloads&#x2F;
 #下载版本
-jdk-8u141-linux-x64.tar.gz
+jdk-8u141-linux-x64.tar.gz</code></pre>
+
+<pre class="language-bash" data-language="bash"><code class="language-bash">tar -xvf jdk-8u141-linux-x64.tar.gz  -C &#x2F;usr&#x2F;local&#x2F; #解压文件
 </code></pre>
-<pre class=" language-shell"><code class="language-shell">tar -xvf jdk-8u141-linux-x64.tar.gz  -C /usr/local/ #解压文件
-</code></pre>
+
+
+
 <ul>
 <li>安装Maven</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#Maven文件下载官网
-https://maven.apache.org/download.cgi
+<pre class="language-bash" data-language="bash"><code class="language-bash">#Maven文件下载官网
+https:&#x2F;&#x2F;maven.apache.org&#x2F;download.cgi
 #下载版本
-apache-maven-3.5.4.zip
-</code></pre>
-<pre class=" language-shell"><code class="language-shell">unzip apache-maven-3.5.4.zip
-mv apache-maven-3.5.4 /usr/local/maven  #解压文件
-</code></pre>
+apache-maven-3.5.4.zip</code></pre>
+
+<pre class="language-bash" data-language="bash"><code class="language-bash">unzip apache-maven-3.5.4.zip
+mv apache-maven-3.5.4 &#x2F;usr&#x2F;local&#x2F;maven  #解压文件</code></pre>
+
 <ul>
 <li>配置maven国内源</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">vim /usr/local/maven/conf/settings.xml
+<pre class="language-bash" data-language="bash"><code class="language-bash">vim &#x2F;usr&#x2F;local&#x2F;maven&#x2F;conf&#x2F;settings.xml
 #159行添加国内源配置
-    <mirror>
-       <id>alimaven</id>
-       <name>aliyun maven</name>
-       <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-       <mirrorOf>central</mirrorOf>
-     </mirror>
-     </mirrors>
-</code></pre>
+    &lt;mirror&gt;
+       &lt;id&gt;alimaven&lt;&#x2F;id&gt;
+       &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;
+       &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;
+       &lt;mirrorOf&gt;central&lt;&#x2F;mirrorOf&gt;
+     &lt;&#x2F;mirror&gt;
+     &lt;&#x2F;mirrors&gt;</code></pre>
+
 <ul>
 <li>配置jdk编译选项</li>
 </ul>
-<pre><code>vim /usr/local/maven/conf/settings.xml
+<pre class="language-none"><code class="language-none">vim &#x2F;usr&#x2F;local&#x2F;maven&#x2F;conf&#x2F;settings.xml
 # maven 默认使用 jdk1.8 版本，找到&lt;profiles&gt;标签，往其中添加：
 #253行添加
 &lt;profile&gt;
-    &lt;id&gt;jdk8&lt;/id&gt;
+    &lt;id&gt;jdk8&lt;&#x2F;id&gt;
     &lt;activation&gt;
-        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
-        &lt;jdk&gt;1.8&lt;/jdk&gt;
-    &lt;/activation&gt;
+        &lt;activeByDefault&gt;true&lt;&#x2F;activeByDefault&gt;
+        &lt;jdk&gt;1.8&lt;&#x2F;jdk&gt;
+    &lt;&#x2F;activation&gt;
     &lt;properties&gt;
-        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
-        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
-        &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
-    &lt;/properties&gt;
-&lt;/profile&gt;
-</code></pre>
+        &lt;maven.compiler.source&gt;1.8&lt;&#x2F;maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;&#x2F;maven.compiler.target&gt;
+        &lt;maven.compiler.compilerVersion&gt;1.8&lt;&#x2F;maven.compiler.compilerVersion&gt;
+    &lt;&#x2F;properties&gt;
+&lt;&#x2F;profile&gt;</code></pre>
+
 <ul>
 <li>启动jdk8</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">vim /usr/local/maven/conf/settings.xml
+<pre class="language-bash" data-language="bash"><code class="language-bash">vim &#x2F;usr&#x2F;local&#x2F;maven&#x2F;conf&#x2F;settings.xml
 # 275行处添加
-  <activeProfiles>
-     <activeProfile>jdk8</activeProfile>
-  </activeProfiles>
+  &lt;activeProfiles&gt;
+     &lt;activeProfile&gt;jdk8&lt;&#x2F;activeProfile&gt;
+  &lt;&#x2F;activeProfiles&gt;
 </code></pre>
+
 <ul>
 <li>将配置好的jdk和Maven配置到jenkins环境中</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# mv /usr/local/jdk/ data/
-[root@jenkins ~]# mv /usr/local/maven/ data/
-[root@jenkins ~]# chmod -R  777 data/
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# mv &#x2F;usr&#x2F;local&#x2F;jdk&#x2F; data&#x2F;
+[root@jenkins ~]# mv &#x2F;usr&#x2F;local&#x2F;maven&#x2F; data&#x2F;
+[root@jenkins ~]# chmod -R  777 data&#x2F;</code></pre>
+
 <ul>
 <li>在jenkins全局配置中配置jdk和maven的环境</li>
 </ul>
@@ -576,10 +569,10 @@ mv apache-maven-3.5.4 /usr/local/maven  #解压文件
 <ul>
 <li>服务器查看git clone 的代码</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#内容存在，证明任务正确,也可以看执行任务的图标
-[root@jenkins ~]# ls data/workspace/demoHello/
-demoHello.iml  pom.xml  src
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">#内容存在，证明任务正确,也可以看执行任务的图标
+[root@jenkins ~]# ls data&#x2F;workspace&#x2F;demoHello&#x2F;
+demoHello.iml  pom.xml  src</code></pre>
+
 <ul>
 <li>配置mave打包Jar包</li>
 </ul>
@@ -587,10 +580,10 @@ demoHello.iml  pom.xml  src
 <ul>
 <li>重新构建任务，并验证打包结果，这次任务构建时间比较长，需要等待一下</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#查看打包任务
-[root@jenkins ~]# ls  data/workspace/demoHello/target/
-classes  demoHello-0.0.1.jar  demoHello-0.0.1.jar.original  generated-sources  generated-test-sources  maven-archiver  maven-status  test-classes
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">#查看打包任务
+[root@jenkins ~]# ls  data&#x2F;workspace&#x2F;demoHello&#x2F;target&#x2F;
+classes  demoHello-0.0.1.jar  demoHello-0.0.1.jar.original  generated-sources  generated-test-sources  maven-archiver  maven-status  test-classes</code></pre>
+
 <ul>
 <li>配置将生成的Jar包放到目标服务器上，并构建环境</li>
 </ul>
@@ -598,63 +591,61 @@ classes  demoHello-0.0.1.jar  demoHello-0.0.1.jar.original  generated-sources  g
 <ul>
 <li>查看工具中Jar包</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# ls /usr/local/test/target/
-demoHello-0.0.1.jar
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# ls &#x2F;usr&#x2F;local&#x2F;test&#x2F;target&#x2F;
+demoHello-0.0.1.jar</code></pre>
+
 <p>准备Docker构建环境</p>
-<pre class=" language-shell"><code class="language-shell">#docker文件夹结构
-$ ls docker/
+<pre class="language-bash" data-language="bash"><code class="language-bash">#docker文件夹结构
+$ ls docker&#x2F;
 Dockerfile  docker-compose.yml
 #文件Dockerfile
-FROM daocloud.io/library/java:8u40-jdk
-COPY demoHello-0.0.1.jar /usr/local
-WORKDIR /usr/local
+FROM daocloud.io&#x2F;library&#x2F;java:8u40-jdk
+COPY demoHello-0.0.1.jar &#x2F;usr&#x2F;local
+WORKDIR &#x2F;usr&#x2F;local
 CMD java -jar demoHello-0.0.1.jar
 #docker-compose.yml
-version: "3.1"
+version: &quot;3.1&quot;
 services:
   demohello:
     build:
-      context: ./
+      context: .&#x2F;
       dockerfile: Dockerfile
     image: demohello:v1.0.0
     container_name: demohello
     ports:
       - 8081:8081
 #修改pox.xml
-    <build>
-    <finalName>demoHello</finalName> #增加内容，代表项目名称
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-</code></pre>
+    &lt;build&gt;
+    &lt;finalName&gt;demoHello&lt;&#x2F;finalName&gt; #增加内容，代表项目名称
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;&#x2F;artifactId&gt;
+            &lt;&#x2F;plugin&gt;
+        &lt;&#x2F;plugins&gt;
+    &lt;&#x2F;build&gt;</code></pre>
+
 <ul>
 <li>将项目代码更新gitlab上</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">$ git add .
-$ git commit -m "docker"
-$ git push
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ git add .
+$ git commit -m &quot;docker&quot;
+$ git push</code></pre>
+
 <ul>
 <li><p>构建配置环境</p>
 <p><img src="/../images/%E6%9B%B4%E6%94%B9%E9%85%8D%E7%BD%AEsshserver.png"></p>
 </li>
 <li><p>构建新的任务，并查看结果</p>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# docker  ps
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# docker  ps
 CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS                                                                                      NAMES
-c01978f0cd8c   demohello:v1.0.0              "/bin/sh -c 'java -j…"   56 seconds ago   Up 56 seconds   0.0.0.0:8081->8081/tcp, :::8081->8081/tcp                                                  demohello
+c01978f0cd8c   demohello:v1.0.0              &quot;&#x2F;bin&#x2F;sh -c &#39;java -j…&quot;   56 seconds ago   Up 56 seconds   0.0.0.0:8081-&gt;8081&#x2F;tcp, :::8081-&gt;8081&#x2F;tcp                                                  demohello
 [root@jenkins ~]# docker images
 REPOSITORY                 TAG           IMAGE ID       CREATED          SIZE
 demohello                  v1.0.0        478867d8574e   52 minutes ago   846MB
 #可以通过Linux命令访问部署任务，也可以通过浏览器访问
-[root@jenkins docker]# curl  http://192.168.75.101:8081/hello
-Hello World v1.0.1
-</code></pre>
-</li>
+[root@jenkins docker]# curl  http:&#x2F;&#x2F;192.168.75.101:8081&#x2F;hello
+Hello World v1.0.1</code></pre></li>
 </ul>
 <h3 id="6-2-持续交付、部署"><a href="#6-2-持续交付、部署" class="headerlink" title="6.2 持续交付、部署"></a>6.2 持续交付、部署</h3><h4 id="6-2-1-通过标签控制版本信息"><a href="#6-2-1-通过标签控制版本信息" class="headerlink" title="6.2.1  通过标签控制版本信息"></a>6.2.1  通过标签控制版本信息</h4><ul>
 <li><p>配置构建环境</p>
@@ -670,13 +661,13 @@ Hello World v1.0.1
 <ul>
 <li>更新代码并提交代码修增加tag为v2可以参考上面教程，提交代码和给代码提交版本</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#修改docker-compose.yml
+<pre class="language-bash" data-language="bash"><code class="language-bash">#修改docker-compose.yml
     image: demohello:v2.0.0
-#修改src/main/java/com/example/demohello/controller/HelloController.java
+#修改src&#x2F;main&#x2F;java&#x2F;com&#x2F;example&#x2F;demohello&#x2F;controller&#x2F;HelloController.java
  public String helloWorld() &#123;
-        return "Hello World v2.0.0";
-    &#125;
-</code></pre>
+        return &quot;Hello World v2.0.0&quot;;
+    &#125;</code></pre>
+
 <ul>
 <li><p>可以看到构建按钮可以动态选择</p>
 <p><img src="/../images/tag%E6%9E%84%E5%BB%BA%E5%8F%98%E5%8C%96.png"></p>
@@ -684,16 +675,16 @@ Hello World v1.0.1
 <li><p>执行构建任务并检查结果</p>
 </li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins docker]# docker images
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins docker]# docker images
 REPOSITORY                 TAG           IMAGE ID       CREATED          SIZE
 demohello                  v2.0.0        a5158a6c4e1f   22 minutes ago   846MB
 demohello                  v1.0.0        9a623fcc1385   23 minutes ago   846MB
 [root@jenkins docker]# docker ps
 CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS                                                                                      NAMES
-014179370a24   demohello:v2.0.0              "/bin/sh -c 'java -j…"   22 minutes ago   Up 22 minutes   0.0.0.0:8081->8081/tcp, :::8081->8081/tcp                                                  demohello
-[root@jenkins docker]# curl  http://192.168.75.101:8081/hello
-Hello World v2.0.0
-</code></pre>
+014179370a24   demohello:v2.0.0              &quot;&#x2F;bin&#x2F;sh -c &#39;java -j…&quot;   22 minutes ago   Up 22 minutes   0.0.0.0:8081-&gt;8081&#x2F;tcp, :::8081-&gt;8081&#x2F;tcp                                                  demohello
+[root@jenkins docker]# curl  http:&#x2F;&#x2F;192.168.75.101:8081&#x2F;hello
+Hello World v2.0.0</code></pre>
+
 <h2 id="七、集成Sonar-Qube"><a href="#七、集成Sonar-Qube" class="headerlink" title="七、集成Sonar Qube"></a>七、集成Sonar Qube</h2><h3 id="7-1-sonarQube-介绍"><a href="#7-1-sonarQube-介绍" class="headerlink" title="7.1 sonarQube 介绍"></a>7.1 sonarQube 介绍</h3><p>SonarQube是一个开源的代码质量管理平台，旨在帮助开发团队提高代码的可靠性、可维护性和可扩展性。它提供了一系列的静态代码分析工具，能够自动检测代码中的潜在问题和缺陷，比如代码冗余、代码复杂度、潜在的安全漏洞等。</p>
 <p>SonarQube不仅可以对多种编程语言进行分析，如Java、C#、C++、Python等，还支持与各种构建工具和持续集成平台集成，如Maven、Jenkins等。通过在代码开发过程中集成SonarQube，团队可以及早发现和修复潜在的问题，从而提高代码质量和开发效率。</p>
 <p>除了代码分析功能，SonarQube还提供了可视化的仪表板和报告，帮助开发团队监控代码质量的趋势和改进的进展。它还支持规则定制和自定义，可以根据团队或项目的特定需求进行配置和扩展。</p>
@@ -701,7 +692,7 @@ Hello World v2.0.0
 <h3 id="7-2-sonarQube-环境搭建"><a href="#7-2-sonarQube-环境搭建" class="headerlink" title="7.2 sonarQube 环境搭建"></a>7.2 sonarQube 环境搭建</h3><h3 id="7-2-1-sonarQube-安装"><a href="#7-2-1-sonarQube-安装" class="headerlink" title="7.2.1 sonarQube 安装"></a>7.2.1 sonarQube 安装</h3><ul>
 <li>通过docker-compose搭建sonarQube</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">version: "3.1"
+<pre class="language-bash" data-language="bash"><code class="language-bash">version: &quot;3.1&quot;
 services:
   db:
     image: postgres
@@ -723,33 +714,33 @@ services:
     networks:
       - sonarnet
     environment:
-      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONAR_JDBC_URL: jdbc:postgresql:&#x2F;&#x2F;db:5432&#x2F;sonar
       SONAR_JDBC_USERNAME: sonar
       SONAR_JDBC_PASSWORD: sonar
 networks:
   sonarnet:
-    driver: bridge
-</code></pre>
+    driver: bridge</code></pre>
+
 <ul>
 <li>当执行docker-compose启动命令，看到sonarQube无法正常启动，修改bug的方法</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#查看sonarQube无法启动是否这个原因
+<pre class="language-bash" data-language="bash"><code class="language-bash">#查看sonarQube无法启动是否这个原因
 [root@jenkins sonarqube_docker]# docker ps -a
 CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS                     PORTS                                                                                      NAMES
-6e0930750723   sonarqube:lts-community       "bin/run.sh bin/sona…"   2 minutes ago    Exited (0) 2 minutes ago
+6e0930750723   sonarqube:lts-community       &quot;bin&#x2F;run.sh bin&#x2F;sona…&quot;   2 minutes ago    Exited (0) 2 minutes ago
 [root@jenkins sonarqube_docker]# docker restart 6e0930750723 |docker logs -f 6e0930750723
 ERROR: [1] bootstrap checks failed. You must address the points described in the following [1] lines before starting Elasticsearch.
 bootstrap check failure [1] of [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
-ERROR: Elasticsearch did not exit normally - check the logs at /opt/sonarqube/logs/sonarqube.log
-#修改bug,在/etc/sysctl.conf参加vm.max_map_count=262144配置
-[root@jenkins sonarqube_docker]# vim /etc/sysctl.conf
-vm.max_map_count=262144
+ERROR: Elasticsearch did not exit normally - check the logs at &#x2F;opt&#x2F;sonarqube&#x2F;logs&#x2F;sonarqube.log
+#修改bug,在&#x2F;etc&#x2F;sysctl.conf参加vm.max_map_count&#x3D;262144配置
+[root@jenkins sonarqube_docker]# vim &#x2F;etc&#x2F;sysctl.conf
+vm.max_map_count&#x3D;262144
 #使配置生效
 [root@jenkins sonarqube_docker]# sysctl -p
-vm.max_map_count = 262144
+vm.max_map_count &#x3D; 262144
 #重新启动sonarqube服务器，需要再sonarqube_docker目录
-[root@jenkins sonarqube_docker]# docker-compose  restart
-</code></pre>
+[root@jenkins sonarqube_docker]# docker-compose  restart</code></pre>
+
 <ul>
 <li>访问<a href="http://192.168.75.101:9000网址，登陆">http://192.168.75.101:9000网址，登陆</a> sonarQube服务,初始化用户名和密码都是admin，服务器启动需要时间，需要耐心等待一会</li>
 </ul>
@@ -765,25 +756,25 @@ vm.max_map_count = 262144
 <h3 id="7-2-2-sonarQube-使用"><a href="#7-2-2-sonarQube-使用" class="headerlink" title="7.2.2 sonarQube 使用"></a>7.2.2 sonarQube 使用</h3><h4 id="7-2-2-1-mave本地使用sonarQube服务"><a href="#7-2-2-1-mave本地使用sonarQube服务" class="headerlink" title="7.2.2.1 mave本地使用sonarQube服务"></a>7.2.2.1 mave本地使用sonarQube服务</h4><ul>
 <li>可以通过配置maven，使用sonarQube</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#在settings.xml配置和配置jdk的位置一样
-<profile>
-    <id>sonar</id>
-    <activation>
-        <activeByDefault>true</activeByDefault>
-    </activation>
-    <properties>
-      <sonar.login>admin</sonar.login>
-      <sonar.password>123456789</sonar.password>
-      <sonar.host.url>http://192.168.75.101:9000</sonar.host.url>
-    </properties>
-</profile> 
-    <activeProfile>sonar</activeProfile>
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">#在settings.xml配置和配置jdk的位置一样
+&lt;profile&gt;
+    &lt;id&gt;sonar&lt;&#x2F;id&gt;
+    &lt;activation&gt;
+        &lt;activeByDefault&gt;true&lt;&#x2F;activeByDefault&gt;
+    &lt;&#x2F;activation&gt;
+    &lt;properties&gt;
+      &lt;sonar.login&gt;admin&lt;&#x2F;sonar.login&gt;
+      &lt;sonar.password&gt;123456789&lt;&#x2F;sonar.password&gt;
+      &lt;sonar.host.url&gt;http:&#x2F;&#x2F;192.168.75.101:9000&lt;&#x2F;sonar.host.url&gt;
+    &lt;&#x2F;properties&gt;
+&lt;&#x2F;profile&gt; 
+    &lt;activeProfile&gt;sonar&lt;&#x2F;activeProfile&gt;</code></pre>
+
 <ul>
 <li>在idea的终端输入命令</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">mvn sonar:sonar
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">mvn sonar:sonar</code></pre>
+
 <ul>
 <li>登陆sonarQube查看结果内容</li>
 </ul>
@@ -795,15 +786,15 @@ vm.max_map_count = 262144
 <ul>
 <li>将sonar-scanner压缩包解压，并配置环境</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#解压
+<pre class="language-bash" data-language="bash"><code class="language-bash">#解压
 [root@jenkins ~]# unzip sonar-scanner-cli-4.8.0.2856-linux.zip
 #配置环境
-[root@jenkins ~]# mv sonar-scanner-cli-4.8.0.2856-linux ./data/sonar-scanner
+[root@jenkins ~]# mv sonar-scanner-cli-4.8.0.2856-linux .&#x2F;data&#x2F;sonar-scanner
 #配置sonar-scanner使用sonarQube的文件
-[root@jenkins ~]# vim data/sonar-scanner/conf/sonar-scanner.properties
-sonar.host.url=http://192.168.75.101:9000
-sonar.sourceEncoding=UTF-8
-</code></pre>
+[root@jenkins ~]# vim data&#x2F;sonar-scanner&#x2F;conf&#x2F;sonar-scanner.properties
+sonar.host.url&#x3D;http:&#x2F;&#x2F;192.168.75.101:9000
+sonar.sourceEncoding&#x3D;UTF-8</code></pre>
+
 <ul>
 <li>由于sonar-scanner连接sonarQube服务需要秘钥或者用户账号，为了后面的持续集成，我们需要用sonarQube生成一个秘钥给sonar-scanner用</li>
 </ul>
@@ -811,18 +802,18 @@ sonar.sourceEncoding=UTF-8
 <ul>
 <li>验证sonar-scanner使用sonarQube服务</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# cd data/workspace/demoHello/
-[root@jenkins demoHello]# /root/data/sonar-scanner/bin/sonar-scanner -Dsoanr.sources=./ -Dsonar.projectname=demoHello -Dsonar.login=a0277c64b7c5f6c1e03700fdd9f881eb48c98633 -Dsonar.projectKey=demoHello -Dsonar.java.binaries=./target/
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# cd data&#x2F;workspace&#x2F;demoHello&#x2F;
+[root@jenkins demoHello]# &#x2F;root&#x2F;data&#x2F;sonar-scanner&#x2F;bin&#x2F;sonar-scanner -Dsoanr.sources&#x3D;.&#x2F; -Dsonar.projectname&#x3D;demoHello -Dsonar.login&#x3D;a0277c64b7c5f6c1e03700fdd9f881eb48c98633 -Dsonar.projectKey&#x3D;demoHello -Dsonar.java.binaries&#x3D;.&#x2F;target&#x2F;
 ……………………
 INFO: ------------------------------------------------------------------------
 INFO: EXECUTION SUCCESS
 INFO: ------------------------------------------------------------------------
 INFO: Total time: 7.968s
-INFO: Final Memory: 17M/60M
+INFO: Final Memory: 17M&#x2F;60M
 INFO: ------------------------------------------------------------------------
 #删除测试生成目录，方便后续为构建jenkins任务排除bug
-[root@jenkins demoHello]# rm -fr .scannerwork/
-</code></pre>
+[root@jenkins demoHello]# rm -fr .scannerwork&#x2F;</code></pre>
+
 <h4 id="7-2-2-3-Jenkins使用-sonar-scanner配置"><a href="#7-2-2-3-Jenkins使用-sonar-scanner配置" class="headerlink" title="7.2.2.3 Jenkins使用 sonar-scanner配置"></a>7.2.2.3 Jenkins使用 sonar-scanner配置</h4><ul>
 <li>需要给Jenkins安装sonarQube插件，我下面的图片是安装好的</li>
 </ul>
@@ -847,14 +838,13 @@ INFO: ------------------------------------------------------------------------
 <p><img src="/../images/sqsee.png"></p>
 <h2 id="八、集成harbor"><a href="#八、集成harbor" class="headerlink" title="八、集成harbor"></a>八、集成harbor</h2><h3 id="8-1-安装harbor"><a href="#8-1-安装harbor" class="headerlink" title="8.1 安装harbor"></a>8.1 安装harbor</h3><ul>
 <li><p>下载harbor安装包,在github网站上搜索harbor，回去下载链接</p>
-<pre class=" language-shell"><code class="language-shell">wget https://github.com/goharbor/harbor/releases/download/v2.8.2/harbor-offline-installer-v2.8.2.tgz
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">wget https:&#x2F;&#x2F;github.com&#x2F;goharbor&#x2F;harbor&#x2F;releases&#x2F;download&#x2F;v2.8.2&#x2F;harbor-offline-installer-v2.8.2.tgz</code></pre>
 </li>
 <li><p>修改harbor配置文件</p>
-<pre class=" language-shell"><code class="language-shell">#解压harbor
-tar -xvf harbor-offline-installer-v2.8.2.tgz -C /usr/local
+<pre class="language-bash" data-language="bash"><code class="language-bash">#解压harbor
+tar -xvf harbor-offline-installer-v2.8.2.tgz -C &#x2F;usr&#x2F;local
 #进入harbor目录修改配置文件
-cd  /usr/local/harbor
+cd  &#x2F;usr&#x2F;local&#x2F;harbor
 cp harbor.yml.tmpl harbor.yml
 vim harbor.yml
 hostname: 192.168.75.102 #修改服务器IP
@@ -863,17 +853,15 @@ hostname: 192.168.75.102 #修改服务器IP
 #  # https port for harbor, default is 443  #注释无效配置
 #  port: 443
 #  # The path of cert and key files for nginx
-#  certificate: /your/certificate/path
-#  private_key: /your/private/key/path
-</code></pre>
+#  certificate: &#x2F;your&#x2F;certificate&#x2F;path
+#  private_key: &#x2F;your&#x2F;private&#x2F;key&#x2F;path</code></pre>
 </li>
 <li><p>安装harbor，前提条件是服务器安装了docker和docker-compose</p>
-<pre class=" language-shell"><code class="language-shell">#需要耐心等待
+<pre class="language-bash" data-language="bash"><code class="language-bash">#需要耐心等待
 bash install.sh
 ……………………
 
-✔ ----Harbor has been installed and started successfully.----
-</code></pre>
+✔ ----Harbor has been installed and started successfully.----</code></pre>
 </li>
 <li><p>验证harbor服务的，服务效果浏览器访问192.168.75.102，默认账号和密码是admin和Harbor12345</p>
 </li>
@@ -886,26 +874,26 @@ bash install.sh
 <li><p>镜像上传harbor测试结果</p>
 </li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">#修改镜像仓库
-[root@jenkins ~]# vim  /etc/docker/daemon.json
+<pre class="language-bash" data-language="bash"><code class="language-bash">#修改镜像仓库
+[root@jenkins ~]# vim  &#x2F;etc&#x2F;docker&#x2F;daemon.json
 &#123;
-  "insecure-registries":["192.168.11.102:80"]
+  &quot;insecure-registries&quot;:[&quot;192.168.11.102:80&quot;]
 &#125;
 #重新启动服务，在这里重新启动镜像后，其他容器需要重新启动
 [root@jenkins ~]# systemctl  restart docker
 #给镜像重新打上标签
-[root@jenkins ~]# docker tag 2ea870b320a0 192.168.75.102:80/jenkinstest/demohello:v1.0.0
+[root@jenkins ~]# docker tag 2ea870b320a0 192.168.75.102:80&#x2F;jenkinstest&#x2F;demohello:v1.0.0
 #查看结果
 [root@jenkins ~]# docker images
 REPOSITORY                                TAG             IMAGE ID       CREATED         SIZE
-192.168.75.102:80/jenkinstest/demohello   v1.0.0          2ea870b320a0   17 hours ago    846MB
-docker login -u admin --password Harbor12345 http://192.168.75.102:80
+192.168.75.102:80&#x2F;jenkinstest&#x2F;demohello   v1.0.0          2ea870b320a0   17 hours ago    846MB
+docker login -u admin --password Harbor12345 http:&#x2F;&#x2F;192.168.75.102:80
 #登陆harbor仓库
-[root@jenkins ~]#  docker login -u admin --password Harbor12345 http://192.168.75.102:80
+[root@jenkins ~]#  docker login -u admin --password Harbor12345 http:&#x2F;&#x2F;192.168.75.102:80
 #上传镜像到harbor
-[root@jenkins ~]# docker push 192.168.75.102:80/jenkinstest/demohello:v1.0.0
-The push refers to repository [192.168.75.102:80/jenkinstest/demohello]
-</code></pre>
+[root@jenkins ~]# docker push 192.168.75.102:80&#x2F;jenkinstest&#x2F;demohello:v1.0.0
+The push refers to repository [192.168.75.102:80&#x2F;jenkinstest&#x2F;demohello]</code></pre>
+
 <ul>
 <li><p>登陆harbor查看上传镜像结果</p>
 <p><img src="/../images/checkimages.png"></p>
@@ -913,7 +901,7 @@ The push refers to repository [192.168.75.102:80/jenkinstest/demohello]
 </ul>
 <h3 id="8-2-Jenkins构建镜像推送到harbor"><a href="#8-2-Jenkins构建镜像推送到harbor" class="headerlink" title="8.2  Jenkins构建镜像推送到harbor"></a>8.2  Jenkins构建镜像推送到harbor</h3><ul>
 <li><p>配置Jenkins容器有docker功能</p>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# cd /var/run/
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# cd &#x2F;var&#x2F;run&#x2F;
 [root@jenkins run]# ll docker.sock
 srw-rw---- 1 root docker 0 Jul 13 09:47 docker.sock
 [root@jenkins run]# chown  root:root docker.sock
@@ -921,29 +909,28 @@ srw-rw---- 1 root docker 0 Jul 13 09:47 docker.sock
 [root@jenkins run]# ll docker.sock
 srw-rw-rw- 1 root root 0 Jul 13 09:47 docker.sock
 #更改关于jenkins的docker-compose文件
-version: "3.1"
+version: &quot;3.1&quot;
 services:
   jenkins:
-    image: jenkins/jenkins:2.413-jdk11
+    image: jenkins&#x2F;jenkins:2.413-jdk11
     container_name: jenkins
     ports:
       - 8080:8080
       - 50000:50000
     volumes:
-      - ./data/:/var/jenkins_home/
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
-      - /etc/docker/daemon.json:/etc/docker/daemon.json
+      - .&#x2F;data&#x2F;:&#x2F;var&#x2F;jenkins_home&#x2F;
+      - &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock
+      - &#x2F;usr&#x2F;bin&#x2F;docker:&#x2F;usr&#x2F;bin&#x2F;docker
+      - &#x2F;etc&#x2F;docker&#x2F;daemon.json:&#x2F;etc&#x2F;docker&#x2F;daemon.json
  #重新启动Jenkins容器
  [root@jenkins ~]# docker-compose  up -d
-[+] Running 1/1
+[+] Running 1&#x2F;1
  ✔ Container jenkins  Started 
  #检查Jenkins容器里面是否有docker环境
  [root@jenkins ~]# docker exec -it jenkins docker version
 Client: Docker Engine - Community
  Version:           24.0.4
-……………………
-</code></pre>
+……………………</code></pre>
 </li>
 <li><p>配置构建任务自动构建镜像并推送到harbor仓库，执行构建任务，并查看harbor仓库</p>
 </li>
@@ -956,33 +943,33 @@ Client: Docker Engine - Community
 <h3 id="8-3-服务部署"><a href="#8-3-服务部署" class="headerlink" title="8.3 服务部署"></a>8.3 服务部署</h3><ul>
 <li>在目标服务器编写部署代码</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins ~]# vim /usr/bin/deploy.sh
-#!/bin/bash
-horbar_addr=$1
-horbar_repo=$2
-project=$3
-version=$4
-port=$5
-imageName=$horbar_addr/$horbar_repo/$project:$version
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins ~]# vim &#x2F;usr&#x2F;bin&#x2F;deploy.sh
+#!&#x2F;bin&#x2F;bash
+horbar_addr&#x3D;$1
+horbar_repo&#x3D;$2
+project&#x3D;$3
+version&#x3D;$4
+port&#x3D;$5
+imageName&#x3D;$horbar_addr&#x2F;$horbar_repo&#x2F;$project:$version
 echo $imageName
-containerId=`docker ps -a |grep $&#123;project&#125;|awk '&#123;print $1&#125;'`
+containerId&#x3D;&#96;docker ps -a |grep $&#123;project&#125;|awk &#39;&#123;print $1&#125;&#39;&#96;
 echo $containerId
-if [ "$containerId" != "" ];then
+if [ &quot;$containerId&quot; !&#x3D; &quot;&quot; ];then
 docker stop $containerId
 docker rm -f $containerId
 fi
-tag=`docker images |grep $&#123;project&#125; |awk '&#123;print $2&#125;'`
+tag&#x3D;&#96;docker images |grep $&#123;project&#125; |awk &#39;&#123;print $2&#125;&#39;&#96;
 echo $tag
-if [[ "$tag" =~ "$version" ]];then
+if [[ &quot;$tag&quot; &#x3D;~ &quot;$version&quot; ]];then
 docker rmi -f $imageName
 fi
 docker login -u admin -p Harbor12345 $horbar_addr
 docker pull $imageName
 docker run -d -p $port:$port --name $project $imageName
-echo "SUCCESS"
+echo &quot;SUCCESS&quot;
 #给脚本赋予执行权限
-[root@jenkins ~]# chmod  a+x /usr/bin/deploy.sh
-</code></pre>
+[root@jenkins ~]# chmod  a+x &#x2F;usr&#x2F;bin&#x2F;deploy.sh</code></pre>
+
 <ul>
 <li>修改构建任务信息</li>
 </ul>
@@ -999,48 +986,48 @@ echo "SUCCESS"
 <ul>
 <li>编写Pipeline脚本，构建任务</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">//所有代码都放到pipeline
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;所有代码都放到pipeline
 pipeline &#123;
-    //指定任务在那个集群节点中执行
+    &#x2F;&#x2F;指定任务在那个集群节点中执行
     agent any
-    //声明全局变量，方便后面使用
+    &#x2F;&#x2F;声明全局变量，方便后面使用
     environment &#123;
-        key = "value"
+        key &#x3D; &quot;value&quot;
     &#125;
     stages &#123;
-        stage('拉取git仓库代码') &#123;
+        stage(&#39;拉取git仓库代码&#39;) &#123;
             steps &#123;
-                echo '拉取git仓库代码 - SUCCESS'
+                echo &#39;拉取git仓库代码 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过maven构建项目') &#123;
+        stage(&#39;通过maven构建项目&#39;) &#123;
             steps &#123;
-                echo '通过maven构建项目 - SUCCESS'
+                echo &#39;通过maven构建项目 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过SonarQube做代码质量检查') &#123;
+        stage(&#39;通过SonarQube做代码质量检查&#39;) &#123;
             steps &#123;
-                echo '通过SonarQube做代码质量检查 - SUCCESS'
+                echo &#39;通过SonarQube做代码质量检查 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过Docker制作自定义镜像') &#123;
+        stage(&#39;通过Docker制作自定义镜像&#39;) &#123;
             steps &#123;
-                echo '通过Docker制作自定义镜像 - SUCCESS'
+                echo &#39;通过Docker制作自定义镜像 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('将自定义镜像推送到Harbor') &#123;
+        stage(&#39;将自定义镜像推送到Harbor&#39;) &#123;
             steps &#123;
-                echo '将自定义镜像推送到Harbor - SUCCESS'
+                echo &#39;将自定义镜像推送到Harbor - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过Publish Over SSH通知目标服务器') &#123;
+        stage(&#39;通过Publish Over SSH通知目标服务器&#39;) &#123;
             steps &#123;
-                echo '通过Publish Over SSH通知目标服务器 - SUCCESS'
+                echo &#39;通过Publish Over SSH通知目标服务器 - SUCCESS&#39;
             &#125;
         &#125;
     &#125;
-&#125;
-</code></pre>
+&#125;</code></pre>
+
 <p><img src="/../images/crlog.png"></p>
 <ul>
 <li><p>pipeline 集成构建任务编写语法</p>
@@ -1060,66 +1047,67 @@ pipeline &#123;
 <p><img src="/../images/em2.png"></p>
 </li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">//所有代码都放到pipeline
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;所有代码都放到pipeline
 pipeline &#123;
-    //指定任务在那个集群节点中执行
+    &#x2F;&#x2F;指定任务在那个集群节点中执行
     agent any
-    //声明全局变量，方便后面使用
+    &#x2F;&#x2F;声明全局变量，方便后面使用
     environment &#123;
-        harborUser = 'admin'
-        harborPasswd = 'Harbor12345'
-        harborAddress = '192.168.75.102:80'
-        harborRepo = 'jenkinstest'
+        harborUser &#x3D; &#39;admin&#39;
+        harborPasswd &#x3D; &#39;Harbor12345&#39;
+        harborAddress &#x3D; &#39;192.168.75.102:80&#39;
+        harborRepo &#x3D; &#39;jenkinstest&#39;
     &#125;
     stages &#123;
-        stage('拉取git仓库代码') &#123;
+        stage(&#39;拉取git仓库代码&#39;) &#123;
             steps &#123;
-               checkout scmGit(branches: [[name: '$&#123;tag&#125;']], extensions: [], userRemoteConfigs: [[url: 'http://192.168.75.100:8929/root/demoHello.git']])
+               checkout scmGit(branches: [[name: &#39;$&#123;tag&#125;&#39;]], extensions: [], userRemoteConfigs: [[url: &#39;http:&#x2F;&#x2F;192.168.75.100:8929&#x2F;root&#x2F;demoHello.git&#39;]])
             &#125;
         &#125;
-        stage('通过maven构建项目') &#123;
+        stage(&#39;通过maven构建项目&#39;) &#123;
             steps &#123;
-                sh '/var/jenkins_home/maven/bin/mvn clean package -DskipTests'
-                echo '通过maven构建项目 - SUCCESS'
+                sh &#39;&#x2F;var&#x2F;jenkins_home&#x2F;maven&#x2F;bin&#x2F;mvn clean package -DskipTests&#39;
+                echo &#39;通过maven构建项目 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过SonarQube做代码质量检查') &#123;
+        stage(&#39;通过SonarQube做代码质量检查&#39;) &#123;
             steps &#123;
-                sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner   -Dsonar.projectname=$&#123;JOB_NAME&#125;   -Dsonar.projectKey=$&#123;JOB_NAME&#125;  -Dsonar.source=./   -Dsonar.java.binaries=target -Dsonar.login=a0277c64b7c5f6c1e03700fdd9f881eb48c98633'
-                echo '通过SonarQube做代码质量检查 - SUCCESS'
+                sh &#39;&#x2F;var&#x2F;jenkins_home&#x2F;sonar-scanner&#x2F;bin&#x2F;sonar-scanner   -Dsonar.projectname&#x3D;$&#123;JOB_NAME&#125;   -Dsonar.projectKey&#x3D;$&#123;JOB_NAME&#125;  -Dsonar.source&#x3D;.&#x2F;   -Dsonar.java.binaries&#x3D;target -Dsonar.login&#x3D;a0277c64b7c5f6c1e03700fdd9f881eb48c98633&#39;
+                echo &#39;通过SonarQube做代码质量检查 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过Docker制作自定义镜像') &#123;
+        stage(&#39;通过Docker制作自定义镜像&#39;) &#123;
             steps &#123;
-                sh '''mv ./target/*.jar docker/
-docker build -t 192.168.75.102:80/jenkinstest/$&#123;JOB_NAME&#125;:$tag docker/
-docker image prune -f'''
+                sh &#39;&#39;&#39;mv .&#x2F;target&#x2F;*.jar docker&#x2F;
+docker build -t 192.168.75.102:80&#x2F;jenkinstest&#x2F;$&#123;JOB_NAME&#125;:$tag docker&#x2F;
+docker image prune -f&#39;&#39;&#39;
             &#125;
         &#125;
-        stage('将自定义镜像推送到Harbor') &#123;
+        stage(&#39;将自定义镜像推送到Harbor&#39;) &#123;
             steps &#123;
-                sh '''docker login -u $&#123;harborUser&#125; -p $&#123;harborPasswd&#125; $&#123;harborAddress&#125;
-docker push $&#123;harborAddress&#125;/$&#123;harborRepo&#125;/$&#123;JOB_NAME&#125;:$tag'''
+                sh &#39;&#39;&#39;docker login -u $&#123;harborUser&#125; -p $&#123;harborPasswd&#125; $&#123;harborAddress&#125;
+docker push $&#123;harborAddress&#125;&#x2F;$&#123;harborRepo&#125;&#x2F;$&#123;JOB_NAME&#125;:$tag&#39;&#39;&#39;
             &#125;
         &#125;
-        stage('通过Publish Over SSH通知目标服务器') &#123;
+        stage(&#39;通过Publish Over SSH通知目标服务器&#39;) &#123;
             steps &#123;
-                //这边有个坑，默认生成的脚步命令是单引号需要改成双引号
-sshPublisher(publishers: [sshPublisherDesc(configName: 'test', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "deploy.sh  $&#123;harborAddress&#125;  $&#123;harborRepo&#125;  $&#123;JOB_NAME&#125;  $tag  $port", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                &#x2F;&#x2F;这边有个坑，默认生成的脚步命令是单引号需要改成双引号
+sshPublisher(publishers: [sshPublisherDesc(configName: &#39;test&#39;, transfers: [sshTransfer(cleanRemote: false, excludes: &#39;&#39;, execCommand: &quot;deploy.sh  $&#123;harborAddress&#125;  $&#123;harborRepo&#125;  $&#123;JOB_NAME&#125;  $tag  $port&quot;, execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: &#39;[, ]+&#39;, remoteDirectory: &#39;&#39;, remoteDirectorySDF: false, removePrefix: &#39;&#39;, sourceFiles: &#39;&#39;)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
             &#125;
         &#125;
         &#125;
-        //需要配置jenkin邮箱服务
+        &#x2F;&#x2F;需要配置jenkin邮箱服务
     post&#123;
         success &#123;
-            emailext body: '构建成功', subject: '构建成功', to: '1626395559@qq.com'
+            emailext body: &#39;构建成功&#39;, subject: &#39;构建成功&#39;, to: &#39;1626395559@qq.com&#39;
         &#125;
         failure&#123;
-            emailext body: '构建失败', subject: '构建失败', to: '1626395559@qq.com'
+            emailext body: &#39;构建失败&#39;, subject: &#39;构建失败&#39;, to: &#39;1626395559@qq.com&#39;
         &#125;
     &#125;
 &#125;
 </code></pre>
+
 <h2 id="十、-Kubernetes持续集成和持续交付"><a href="#十、-Kubernetes持续集成和持续交付" class="headerlink" title="十、 Kubernetes持续集成和持续交付"></a>十、 Kubernetes持续集成和持续交付</h2><h3 id="10-1-搭建-Kubernetes集群"><a href="#10-1-搭建-Kubernetes集群" class="headerlink" title="10.1 搭建 Kubernetes集群"></a>10.1 搭建 Kubernetes集群</h3><ul>
 <li>搭建方式使用开源的kuboard进行简单的k8s搭建<a target="_blank" rel="noopener" href="https://kuboard.cn/">https://kuboard.cn/</a></li>
 <li>安装v1.19.5版本的k8s集群</li>
@@ -1131,140 +1119,140 @@ sshPublisher(publishers: [sshPublisherDesc(configName: 'test', transfers: [sshTr
 <h3 id="10-2-构建-Kubernetes持续集成和持续交付任务"><a href="#10-2-构建-Kubernetes持续集成和持续交付任务" class="headerlink" title="10.2  构建 Kubernetes持续集成和持续交付任务"></a>10.2  构建 Kubernetes持续集成和持续交付任务</h3><h4 id="10-2-1-持续交付任务"><a href="#10-2-1-持续交付任务" class="headerlink" title="10.2.1 持续交付任务"></a>10.2.1 持续交付任务</h4><ul>
 <li>编写k8s使用的编排文件pipeline.yml放到gitlab仓库</li>
 </ul>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pipeline<span class="token punctuation">-</span>deployment
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> test
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> pipeline
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
-  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
-    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
-      <span class="token key atrule">app</span><span class="token punctuation">:</span> pipeline
-  <span class="token key atrule">template</span><span class="token punctuation">:</span>
-    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-        <span class="token key atrule">app</span><span class="token punctuation">:</span> pipeline
-    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> pipeline
-        <span class="token key atrule">image</span><span class="token punctuation">:</span> 192.168.75.102<span class="token punctuation">:</span>80/jenkinstest/pipeline<span class="token punctuation">:</span>v6
-        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">8081</span>
-<span class="token punctuation">---</span>
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> test
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pipeline<span class="token punctuation">-</span>deployment
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> pipeline<span class="token punctuation">-</span>deployment
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> pipeline
-  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8888</span>
-    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">8081</span>
-  <span class="token key atrule">type</span><span class="token punctuation">:</span> NodePort
-<span class="token punctuation">---</span>
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Ingress
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> test
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pipeline<span class="token punctuation">-</span>ingress
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">ingressClassName</span><span class="token punctuation">:</span> ingress
-  <span class="token key atrule">rules</span><span class="token punctuation">:</span>
-  <span class="token punctuation">-</span> <span class="token key atrule">host</span><span class="token punctuation">:</span> bobo.nginx.com
-    <span class="token key atrule">http</span><span class="token punctuation">:</span>
-      <span class="token key atrule">paths</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> /
-        <span class="token key atrule">pathType</span><span class="token punctuation">:</span> Prefix
-        <span class="token key atrule">backend</span><span class="token punctuation">:</span>
-          <span class="token key atrule">service</span><span class="token punctuation">:</span>
-            <span class="token key atrule">name</span><span class="token punctuation">:</span> pipeline<span class="token punctuation">-</span>deployment
-            <span class="token key atrule">port</span><span class="token punctuation">:</span>
-              <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">8888</span>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml">apiVersion: apps&#x2F;v1
+kind: Deployment
+metadata:
+  name: pipeline-deployment
+  namespace: test
+  labels:
+    app: pipeline
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pipeline
+  template:
+    metadata:
+      labels:
+        app: pipeline
+    spec:
+      containers:
+      - name: pipeline
+        image: 192.168.75.102:80&#x2F;jenkinstest&#x2F;pipeline:v6
+        ports:
+        - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: test
+  name: pipeline-deployment
+  labels:
+    app: pipeline-deployment
+spec:
+  selector:
+    app: pipeline
+  ports:
+  - port: 8888
+    targetPort: 8081
+  type: NodePort
+---
+apiVersion: networking.k8s.io&#x2F;v1
+kind: Ingress
+metadata:
+  namespace: test
+  name: pipeline-ingress
+spec:
+  ingressClassName: ingress
+  rules:
+  - host: bobo.nginx.com
+    http:
+      paths:
+      - path: &#x2F;
+        pathType: Prefix
+        backend:
+          service:
+            name: pipeline-deployment
+            port:
+              number: 8888
 </code></pre>
+
 <p>修改Jenkinsfile文件，删除ssh推送任务，</p>
-<pre class=" language-shell"><code class="language-shell">//所有代码都放到pipeline
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;所有代码都放到pipeline
 pipeline &#123;
-    //指定任务在那个集群节点中执行
+    &#x2F;&#x2F;指定任务在那个集群节点中执行
     agent any
-    //声明全局变量，方便后面使用
+    &#x2F;&#x2F;声明全局变量，方便后面使用
     environment &#123;
-        harborUser = 'admin'
-        harborPasswd = 'Harbor12345'
-        harborAddress = '192.168.75.102:80'
-        harborRepo = 'jenkinstest'
+        harborUser &#x3D; &#39;admin&#39;
+        harborPasswd &#x3D; &#39;Harbor12345&#39;
+        harborAddress &#x3D; &#39;192.168.75.102:80&#39;
+        harborRepo &#x3D; &#39;jenkinstest&#39;
     &#125;
     stages &#123;
-        stage('拉取git仓库代码') &#123;
+        stage(&#39;拉取git仓库代码&#39;) &#123;
             steps &#123;
-               checkout scmGit(branches: [[name: '$&#123;tag&#125;']], extensions: [], userRemoteConfigs: [[url: 'http://192.168.75.100:8929/root/demoHello.git']])
+               checkout scmGit(branches: [[name: &#39;$&#123;tag&#125;&#39;]], extensions: [], userRemoteConfigs: [[url: &#39;http:&#x2F;&#x2F;192.168.75.100:8929&#x2F;root&#x2F;demoHello.git&#39;]])
             &#125;
         &#125;
-        stage('通过maven构建项目') &#123;
+        stage(&#39;通过maven构建项目&#39;) &#123;
             steps &#123;
-                sh '/var/jenkins_home/maven/bin/mvn clean package -DskipTests'
-                echo '通过maven构建项目 - SUCCESS'
+                sh &#39;&#x2F;var&#x2F;jenkins_home&#x2F;maven&#x2F;bin&#x2F;mvn clean package -DskipTests&#39;
+                echo &#39;通过maven构建项目 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过SonarQube做代码质量检查') &#123;
+        stage(&#39;通过SonarQube做代码质量检查&#39;) &#123;
             steps &#123;
-                sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner   -Dsonar.projectname=$&#123;JOB_NAME&#125;   -Dsonar.projectKey=$&#123;JOB_NAME&#125;  -Dsonar.source=./   -Dsonar.java.binaries=target -Dsonar.login=a0277c64b7c5f6c1e03700fdd9f881eb48c98633'
-                echo '通过SonarQube做代码质量检查 - SUCCESS'
+                sh &#39;&#x2F;var&#x2F;jenkins_home&#x2F;sonar-scanner&#x2F;bin&#x2F;sonar-scanner   -Dsonar.projectname&#x3D;$&#123;JOB_NAME&#125;   -Dsonar.projectKey&#x3D;$&#123;JOB_NAME&#125;  -Dsonar.source&#x3D;.&#x2F;   -Dsonar.java.binaries&#x3D;target -Dsonar.login&#x3D;a0277c64b7c5f6c1e03700fdd9f881eb48c98633&#39;
+                echo &#39;通过SonarQube做代码质量检查 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过Docker制作自定义镜像') &#123;
+        stage(&#39;通过Docker制作自定义镜像&#39;) &#123;
             steps &#123;
-                sh '''mv ./target/*.jar docker/
-docker build -t 192.168.75.102:80/jenkinstest/$&#123;JOB_NAME&#125;:$tag docker/
-docker image prune -f'''
+                sh &#39;&#39;&#39;mv .&#x2F;target&#x2F;*.jar docker&#x2F;
+docker build -t 192.168.75.102:80&#x2F;jenkinstest&#x2F;$&#123;JOB_NAME&#125;:$tag docker&#x2F;
+docker image prune -f&#39;&#39;&#39;
             &#125;
         &#125;
-        stage('将自定义镜像推送到Harbor') &#123;
+        stage(&#39;将自定义镜像推送到Harbor&#39;) &#123;
             steps &#123;
-                sh '''docker login -u $&#123;harborUser&#125; -p $&#123;harborPasswd&#125; $&#123;harborAddress&#125;
-docker push $&#123;harborAddress&#125;/$&#123;harborRepo&#125;/$&#123;JOB_NAME&#125;:$tag'''
+                sh &#39;&#39;&#39;docker login -u $&#123;harborUser&#125; -p $&#123;harborPasswd&#125; $&#123;harborAddress&#125;
+docker push $&#123;harborAddress&#125;&#x2F;$&#123;harborRepo&#125;&#x2F;$&#123;JOB_NAME&#125;:$tag&#39;&#39;&#39;
             &#125;
         &#125;
-        stage('复制pipeline.yml文件到 masternode') &#123;
+        stage(&#39;复制pipeline.yml文件到 masternode&#39;) &#123;
             steps &#123;
-               sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'pipeline.yml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+               sshPublisher(publishers: [sshPublisherDesc(configName: &#39;k8s&#39;, transfers: [sshTransfer(cleanRemote: false, excludes: &#39;&#39;, execCommand: &#39;&#39;, execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: &#39;[, ]+&#39;, remoteDirectory: &#39;&#39;, remoteDirectorySDF: false, removePrefix: &#39;&#39;, sourceFiles: &#39;pipeline.yml&#39;)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             &#125;
         &#125;
         &#125;
     post&#123;
         success &#123;
-            emailext body: '构建成功', subject: '构建成功', to: '1626395559@qq.com'
+            emailext body: &#39;构建成功&#39;, subject: &#39;构建成功&#39;, to: &#39;1626395559@qq.com&#39;
         &#125;
         failure&#123;
-            emailext body: '构建失败', subject: '构建失败', to: '1626395559@qq.com'
+            emailext body: &#39;构建失败&#39;, subject: &#39;构建失败&#39;, to: &#39;1626395559@qq.com&#39;
         &#125;
     &#125;
-&#125;
-</code></pre>
+&#125;</code></pre>
+
 <ul>
 <li><p>配置新主机在系统配置里面</p>
 <p><img src="/../images/sshk8s.png"></p>
 </li>
 <li><p>由于jenkins无法自动输入服务器的密码信息，需要给Jenkins容器添加服务器的免没有登陆</p>
-<pre class=" language-shell"><code class="language-shell">[root@jenkins controller]# docker exec -it  jenkins /bin/bash
-jenkins@0a06591b1a48:/$ ssh-keygen #一直回车处理
-jenkins@0a06591b1a48:/$ ssh-copy-id root@192.168.75.103 #需要输入服务器密码账号
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@jenkins controller]# docker exec -it  jenkins &#x2F;bin&#x2F;bash
+jenkins@0a06591b1a48:&#x2F;$ ssh-keygen #一直回车处理
+jenkins@0a06591b1a48:&#x2F;$ ssh-copy-id root@192.168.75.103 #需要输入服务器密码账号</code></pre>
+
+
 </li>
 <li><p>给新代码打上v6标签，并构建v6版本任务</p>
-<pre class=" language-shell"><code class="language-shell">[root@masternode ~]# kubectl  get svc -n test
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@masternode ~]# kubectl  get svc -n test
 NAME                  TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
-pipeline-deployment   NodePort   10.96.85.191   <none>        8888:32460/TCP   3h5m
-[root@masternode ~]# curl  10.96.85.191:8888/hello
-Hello World v6.0.0
-</code></pre>
-</li>
+pipeline-deployment   NodePort   10.96.85.191   &lt;none&gt;        8888:32460&#x2F;TCP   3h5m
+[root@masternode ~]# curl  10.96.85.191:8888&#x2F;hello
+Hello World v6.0.0</code></pre></li>
 </ul>
 <h4 id="10-2-2-配置持续集成任务"><a href="#10-2-2-配置持续集成任务" class="headerlink" title="10.2.2 配置持续集成任务"></a>10.2.2 配置持续集成任务</h4><ul>
 <li>Jenkins项目配置</li>
@@ -1289,87 +1277,89 @@ Hello World v6.0.0
 <ul>
 <li>编写构建任务的Jenkinsfile文件，将tag变量改成相关参数，*&#x2F;master和latest</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">//所有代码都放到pipeline
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;所有代码都放到pipeline
 pipeline &#123;
-    //指定任务在那个集群节点中执行
+    &#x2F;&#x2F;指定任务在那个集群节点中执行
     agent any
-    //声明全局变量，方便后面使用
+    &#x2F;&#x2F;声明全局变量，方便后面使用
     environment &#123;
-        harborUser = 'admin'
-        harborPasswd = 'Harbor12345'
-        harborAddress = '192.168.75.102:80'
-        harborRepo = 'jenkinstest'
+        harborUser &#x3D; &#39;admin&#39;
+        harborPasswd &#x3D; &#39;Harbor12345&#39;
+        harborAddress &#x3D; &#39;192.168.75.102:80&#39;
+        harborRepo &#x3D; &#39;jenkinstest&#39;
     &#125;
     stages &#123;
-        stage('拉取git仓库代码') &#123;
+        stage(&#39;拉取git仓库代码&#39;) &#123;
             steps &#123;
-               checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'http://192.168.75.100:8929/root/demoHello.git']])
+               checkout scmGit(branches: [[name: &#39;*&#x2F;master&#39;]], extensions: [], userRemoteConfigs: [[url: &#39;http:&#x2F;&#x2F;192.168.75.100:8929&#x2F;root&#x2F;demoHello.git&#39;]])
             &#125;
         &#125;
-        stage('通过maven构建项目') &#123;
+        stage(&#39;通过maven构建项目&#39;) &#123;
             steps &#123;
-                sh '/var/jenkins_home/maven/bin/mvn clean package -DskipTests'
-                echo '通过maven构建项目 - SUCCESS'
+                sh &#39;&#x2F;var&#x2F;jenkins_home&#x2F;maven&#x2F;bin&#x2F;mvn clean package -DskipTests&#39;
+                echo &#39;通过maven构建项目 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过SonarQube做代码质量检查') &#123;
+        stage(&#39;通过SonarQube做代码质量检查&#39;) &#123;
             steps &#123;
-                sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner   -Dsonar.projectname=$&#123;JOB_NAME&#125;   -Dsonar.projectKey=$&#123;JOB_NAME&#125;  -Dsonar.source=./   -Dsonar.java.binaries=target -Dsonar.login=a0277c64b7c5f6c1e03700fdd9f881eb48c98633'
-                echo '通过SonarQube做代码质量检查 - SUCCESS'
+                sh &#39;&#x2F;var&#x2F;jenkins_home&#x2F;sonar-scanner&#x2F;bin&#x2F;sonar-scanner   -Dsonar.projectname&#x3D;$&#123;JOB_NAME&#125;   -Dsonar.projectKey&#x3D;$&#123;JOB_NAME&#125;  -Dsonar.source&#x3D;.&#x2F;   -Dsonar.java.binaries&#x3D;target -Dsonar.login&#x3D;a0277c64b7c5f6c1e03700fdd9f881eb48c98633&#39;
+                echo &#39;通过SonarQube做代码质量检查 - SUCCESS&#39;
             &#125;
         &#125;
-        stage('通过Docker制作自定义镜像') &#123;
+        stage(&#39;通过Docker制作自定义镜像&#39;) &#123;
             steps &#123;
-                sh '''mv ./target/*.jar docker/
-docker build -t 192.168.75.102:80/jenkinstest/$&#123;JOB_NAME&#125;:latest docker/
-docker image prune -f'''
+                sh &#39;&#39;&#39;mv .&#x2F;target&#x2F;*.jar docker&#x2F;
+docker build -t 192.168.75.102:80&#x2F;jenkinstest&#x2F;$&#123;JOB_NAME&#125;:latest docker&#x2F;
+docker image prune -f&#39;&#39;&#39;
             &#125;
         &#125;
-        stage('将自定义镜像推送到Harbor') &#123;
+        stage(&#39;将自定义镜像推送到Harbor&#39;) &#123;
             steps &#123;
-                sh '''docker login -u $&#123;harborUser&#125; -p $&#123;harborPasswd&#125; $&#123;harborAddress&#125;
-docker push $&#123;harborAddress&#125;/$&#123;harborRepo&#125;/$&#123;JOB_NAME&#125;:latest'''
+                sh &#39;&#39;&#39;docker login -u $&#123;harborUser&#125; -p $&#123;harborPasswd&#125; $&#123;harborAddress&#125;
+docker push $&#123;harborAddress&#125;&#x2F;$&#123;harborRepo&#125;&#x2F;$&#123;JOB_NAME&#125;:latest&#39;&#39;&#39;
             &#125;
         &#125;
-        stage('复制pipeline.yml文件到 masternode') &#123;
+        stage(&#39;复制pipeline.yml文件到 masternode&#39;) &#123;
             steps &#123;
-               sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'pipeline.yml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+               sshPublisher(publishers: [sshPublisherDesc(configName: &#39;k8s&#39;, transfers: [sshTransfer(cleanRemote: false, excludes: &#39;&#39;, execCommand: &#39;&#39;, execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: &#39;[, ]+&#39;, remoteDirectory: &#39;&#39;, remoteDirectorySDF: false, removePrefix: &#39;&#39;, sourceFiles: &#39;pipeline.yml&#39;)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             &#125;
         &#125;
-    stage('构建看k8s环境任务') &#123;
+    stage(&#39;构建看k8s环境任务&#39;) &#123;
         steps &#123;
-            sh 'ssh root@192.168.75.103 kubectl apply -f /usr/local/k8s/pipeline.yml'
+            sh &#39;ssh root@192.168.75.103 kubectl apply -f &#x2F;usr&#x2F;local&#x2F;k8s&#x2F;pipeline.yml&#39;
             &#125;
         &#125;
         &#125;
     post&#123;
         success &#123;
-            emailext body: '构建成功', subject: '构建成功', to: '1626395559@qq.com'
+            emailext body: &#39;构建成功&#39;, subject: &#39;构建成功&#39;, to: &#39;1626395559@qq.com&#39;
         &#125;
         failure&#123;
-            emailext body: '构建失败', subject: '构建失败', to: '1626395559@qq.com'
+            emailext body: &#39;构建失败&#39;, subject: &#39;构建失败&#39;, to: &#39;1626395559@qq.com&#39;
         &#125;
     &#125;
 &#125;
 </code></pre>
+
 <ul>
 <li>更新pipeline.yml文件</li>
 </ul>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">image</span><span class="token punctuation">:</span> 192.168.75.102<span class="token punctuation">:</span>80/jenkinstest/pipeline<span class="token punctuation">:</span>latest <span class="token comment" spellcheck="true">#更改镜像版本号</span>
-</code></pre>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml">image: 192.168.75.102:80&#x2F;jenkinstest&#x2F;pipeline:latest #更改镜像版本号</code></pre>
+
 <ul>
 <li>更改源代码</li>
 </ul>
-<pre class=" language-java"><code class="language-java"> <span class="token keyword">public</span> String <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token string">"Hello World v7.0.0"</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<pre class="language-java" data-language="java"><code class="language-java">public String helloWorld() &#123;
+       return &quot;Hello World v7.0.0&quot;;
+   &#125;
 </code></pre>
+
 <ul>
 <li>gitlab上传更新代码,并查看结果</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell">[root@masternode ~]# curl  10.96.85.191:8888/hello
-Hello World v7.0.0
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@masternode ~]# curl  10.96.85.191:8888&#x2F;hello
+Hello World v7.0.0</code></pre>
+
 <h2 id="十一、需要本课程的资料文件，请关注微信公众号获取，回复“小张DevOps”"><a href="#十一、需要本课程的资料文件，请关注微信公众号获取，回复“小张DevOps”" class="headerlink" title="十一、需要本课程的资料文件，请关注微信公众号获取，回复“小张DevOps”"></a>十一、需要本课程的资料文件，请关注微信公众号获取，回复“小张DevOps”</h2><p><img src="/../images/pwx.png"></p>
 
     </div>

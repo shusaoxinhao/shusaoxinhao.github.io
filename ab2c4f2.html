@@ -236,111 +236,111 @@ window10专业版
 </tr>
 </tbody></table>
 <h2 id="二、配置搭建环境"><a href="#二、配置搭建环境" class="headerlink" title="二、配置搭建环境"></a>二、配置搭建环境</h2><p>1.配置网络镜像源</p>
-<pre class=" language-shell"><code class="language-shell">//备份镜像源
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;备份镜像源
 
-[root@xiaozhang ~]# mv /etc/yum.repos.d/CentOS-* /opt/
+[root@xiaozhang ~]# mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-* &#x2F;opt&#x2F;
 
-//下载阿里云网络镜像源
+&#x2F;&#x2F;下载阿里云网络镜像源
 
-[root@xiaozhang ~]# curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+[root@xiaozhang ~]# curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo
 
-//清除缓存安装包
+&#x2F;&#x2F;清除缓存安装包
 
 [root@xiaozhang ~]# yum clena all
 
-//刷新网络镜像源
+&#x2F;&#x2F;刷新网络镜像源
 
-[root@xiaozhang ~]# yum repolist
-</code></pre>
+[root@xiaozhang ~]# yum repolist</code></pre>
+
 <p>2.检查是否关闭Selinux</p>
 <p>检查关闭，如果没有关闭，请关闭Selinx</p>
-<pre class=" language-shell"><code class="language-shell">[root@xiaozhang ~]# getenforce
-Disabled
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@xiaozhang ~]# getenforce
+Disabled</code></pre>
+
 <p>如何关闭Selinux</p>
-<pre class=" language-shell"><code class="language-shell">//更改配置文件
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;更改配置文件
 
-[root@xiaozhang ~]# sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+[root@xiaozhang ~]# sed -i &quot;s&#x2F;SELINUX&#x3D;enforcing&#x2F;SELINUX&#x3D;disabled&#x2F;g&quot; &#x2F;etc&#x2F;selinux&#x2F;config
 
-//关机重启
+&#x2F;&#x2F;关机重启
 
-[root@xiaozhang ~]# reboot
-</code></pre>
+[root@xiaozhang ~]# reboot</code></pre>
+
 <p>3.放行DNS端口53</p>
-<pre class=" language-shell"><code class="language-shell">//查看防火墙是否启动
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;查看防火墙是否启动
 [root@xiaozhang ~]# firewall-cmd --state
 running
-//如果不是防火墙没有启动，无需执行下面的的命令
-[root@xiaozhang ~]# firewall-cmd --zone=public --add-port=53/tcp --permanent
+&#x2F;&#x2F;如果不是防火墙没有启动，无需执行下面的的命令
+[root@xiaozhang ~]# firewall-cmd --zone&#x3D;public --add-port&#x3D;53&#x2F;tcp --permanent
 success
-[root@xiaozhang ~]# firewall-cmd --zone=public --add-port=53/udp --permanent
+[root@xiaozhang ~]# firewall-cmd --zone&#x3D;public --add-port&#x3D;53&#x2F;udp --permanent
 success
 [root@xiaozhang ~]# firewall-cmd --reload
 success
-[root@xiaozhang ~]# firewall-cmd --zone=public --list-ports
-53/tcp 53/udp
-</code></pre>
+[root@xiaozhang ~]# firewall-cmd --zone&#x3D;public --list-ports
+53&#x2F;tcp 53&#x2F;udp</code></pre>
+
 <h2 id="三、搭建DNS服务"><a href="#三、搭建DNS服务" class="headerlink" title="三、搭建DNS服务"></a>三、搭建DNS服务</h2><p>1.安装DNS软件</p>
-<pre class=" language-shell"><code class="language-shell">[root@xiaozhang ~]# yum install bind-* -y
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">[root@xiaozhang ~]# yum install bind-* -y</code></pre>
+
 <p>2.配置文件修改</p>
-<pre class=" language-shell"><code class="language-shell">//打开文件/etc/named.conf
-vim /etc/named.conf
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;打开文件&#x2F;etc&#x2F;named.conf
+vim &#x2F;etc&#x2F;named.conf
 options &#123;
-        listen-on port 53 &#123; any; &#125;; //更改了监听的IP地址，any表示允许任何IP地址连接
+        listen-on port 53 &#123; any; &#125;; &#x2F;&#x2F;更改了监听的IP地址，any表示允许任何IP地址连接
         listen-on-v6 port 53 &#123; ::1; &#125;;
-        directory       "/var/named";
-        dump-file       "/var/named/data/cache_dump.db";
-        statistics-file "/var/named/data/named_stats.txt";
-        memstatistics-file "/var/named/data/named_mem_stats.txt";
-        recursing-file  "/var/named/data/named.recursing";
-        secroots-file   "/var/named/data/named.secroots";
-        allow-query     &#123; any; &#125;; //更改了允许查询的IP地址，any表示允许任何IP地址查询
-        recursion yes; //开启了递归查询
+        directory       &quot;&#x2F;var&#x2F;named&quot;;
+        dump-file       &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;cache_dump.db&quot;;
+        statistics-file &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;named_stats.txt&quot;;
+        memstatistics-file &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;named_mem_stats.txt&quot;;
+        recursing-file  &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;named.recursing&quot;;
+        secroots-file   &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;named.secroots&quot;;
+        allow-query     &#123; any; &#125;; &#x2F;&#x2F;更改了允许查询的IP地址，any表示允许任何IP地址查询
+        recursion yes; &#x2F;&#x2F;开启了递归查询
         forwarders &#123;  
-        114.114.114.114;
-        223.5.5.5;
-        &#125;;  //增加转发域名DNS服务器
-        dnssec-enable no;  //禁用了DNSSEC功能
-        dnssec-validation no;  //禁用了DNSSEC验证
-        /* Path to ISC DLV key */
-        bindkeys-file "/etc/named.root.key";
-        managed-keys-directory "/var/named/dynamic";
-        pid-file "/run/named/named.pid";
-        session-keyfile "/run/named/session.key";
+		114.114.114.114;
+		223.5.5.5;
+		&#125;;  &#x2F;&#x2F;增加转发域名DNS服务器
+        dnssec-enable no;  &#x2F;&#x2F;禁用了DNSSEC功能
+        dnssec-validation no;  &#x2F;&#x2F;禁用了DNSSEC验证
+        &#x2F;* Path to ISC DLV key *&#x2F;
+        bindkeys-file &quot;&#x2F;etc&#x2F;named.root.key&quot;;
+        managed-keys-directory &quot;&#x2F;var&#x2F;named&#x2F;dynamic&quot;;
+        pid-file &quot;&#x2F;run&#x2F;named&#x2F;named.pid&quot;;
+        session-keyfile &quot;&#x2F;run&#x2F;named&#x2F;session.key&quot;;
 &#125;;
 logging &#123;
         channel default_debug &#123;
-                file "data/named.run";
+                file &quot;data&#x2F;named.run&quot;;
                 severity dynamic;
         &#125;;
 &#125;;
 
-zone "." IN &#123;
+zone &quot;.&quot; IN &#123;
         type hint;
-        file "named.ca";
+        file &quot;named.ca&quot;;
 &#125;;
 
-include "/etc/named.rfc1912.zones";
-include "/etc/named.root.key";
-</code></pre>
+include &quot;&#x2F;etc&#x2F;named.rfc1912.zones&quot;;
+include &quot;&#x2F;etc&#x2F;named.root.key&quot;;</code></pre>
+
 <p>3.配置解析的域名</p>
 <p>解析域名</p>
-<pre class=" language-shell"><code class="language-shell">vim /etc/named.rfc1912.zones
+<pre class="language-bash" data-language="bash"><code class="language-bash">vim &#x2F;etc&#x2F;named.rfc1912.zones
 ……
-//正向解析
-zone "skillzhang.com" IN &#123;
+&#x2F;&#x2F;正向解析
+zone &quot;skillzhang.com&quot; IN &#123;
     type master;
-    file "skillzhang.com.zone";
+    file &quot;skillzhang.com.zone&quot;;
     allow-update &#123; none; &#125;;
 &#125;;
-//反向解析
-zone "127.168.192.in-addr.arpa" IN &#123;
+&#x2F;&#x2F;反向解析
+zone &quot;127.168.192.in-addr.arpa&quot; IN &#123;
         type master;
-        file "192.168.127.arpa";
+        file &quot;192.168.127.arpa&quot;;
         allow-update &#123; none; &#125;;
 &#125;;
-//正向解析文件
+&#x2F;&#x2F;正向解析文件
 vim skillzhang.com.zone
 $TTL 1D
 @    IN SOA    @ rname.invalid. (
@@ -352,7 +352,7 @@ $TTL 1D
     NS    @
     A    192.168.127.100
 www IN A 192.168.127.100
-//反向解析文件
+&#x2F;&#x2F;反向解析文件
 vim 192.168.127.arpa
 $TTL 1D
 @    IN SOA    skillzhang.com. root (
@@ -363,50 +363,50 @@ $TTL 1D
                     3H )    ; minimum
     NS    skillzhang.com.
     A     192.168.127.100
-100 IN PTR skillzhang.com. //100为ip地址
-//启动DNS服务
+100 IN PTR skillzhang.com. &#x2F;&#x2F;100为ip地址
+&#x2F;&#x2F;启动DNS服务
 [root@xiaozhang named]# systemctl  restart named
 [root@xiaozhang named]# systemctl  enable  named
-Created symlink from /etc/systemd/system/multi-user.target.wants/named.service to /usr/lib/systemd/system/named.service.
-</code></pre>
+Created symlink from &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants&#x2F;named.service to &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;named.service.</code></pre>
+
 <h2 id="四、检查验证服务"><a href="#四、检查验证服务" class="headerlink" title="四、检查验证服务"></a>四、检查验证服务</h2><p>1.Linux系统测试验证</p>
 <p>替换本地DNS服务器地址</p>
-<pre class=" language-shell"><code class="language-shell">//修改本地DNS
-[root@xiaozhang named]# vim /etc/sysconfig/network-scripts/ifcfg-ens33
-TYPE=Ethernet
-PROXY_METHOD=none
-BROWSER_ONLY=no
-BOOTPROTO=none
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=yes
-IPV6_AUTOCONF=yes
-IPV6_DEFROUTE=yes
-IPV6_FAILURE_FATAL=no
-IPV6_ADDR_GEN_MODE=stable-privacy
-NAME=ens33
-UUID=94092393-3b2d-40c4-ac97-e406ba043ad9
-DEVICE=ens33
-ONBOOT=yes
-IPADDR=192.168.127.100
-PREFIX=24
-GATEWAY=192.168.127.2
-DNS1=192.168.127.100 //修改
-IPV6_PRIVACY=no
-ZONE=public
-//重新启动网络
-[root@xiaozhang ~]# systemctl  restart network
-</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F;修改本地DNS
+[root@xiaozhang named]# vim &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33
+TYPE&#x3D;Ethernet
+PROXY_METHOD&#x3D;none
+BROWSER_ONLY&#x3D;no
+BOOTPROTO&#x3D;none
+DEFROUTE&#x3D;yes
+IPV4_FAILURE_FATAL&#x3D;no
+IPV6INIT&#x3D;yes
+IPV6_AUTOCONF&#x3D;yes
+IPV6_DEFROUTE&#x3D;yes
+IPV6_FAILURE_FATAL&#x3D;no
+IPV6_ADDR_GEN_MODE&#x3D;stable-privacy
+NAME&#x3D;ens33
+UUID&#x3D;94092393-3b2d-40c4-ac97-e406ba043ad9
+DEVICE&#x3D;ens33
+ONBOOT&#x3D;yes
+IPADDR&#x3D;192.168.127.100
+PREFIX&#x3D;24
+GATEWAY&#x3D;192.168.127.2
+DNS1&#x3D;192.168.127.100 &#x2F;&#x2F;修改
+IPV6_PRIVACY&#x3D;no
+ZONE&#x3D;public
+&#x2F;&#x2F;重新启动网络
+[root@xiaozhang ~]# systemctl  restart network</code></pre>
+
 <p>验证DNS服务解析</p>
-<pre><code>[root@xiaozhang named]# nslookup  //检查命令
-&gt; killbobo.com                     //域名正向解析检查
+<pre class="language-none"><code class="language-none">[root@xiaozhang named]# nslookup  &#x2F;&#x2F;检查命令
+&gt; killbobo.com                     &#x2F;&#x2F;域名正向解析检查
 Server:         192.168.127.100
 Address:        192.168.127.100#53
 
 ** server can&#39;t find killbobo.com: NXDOMAIN
-&gt; 192.168.127.100                  //域名反向解析检查
-100.127.168.192.in-addr.arpa    name = skillzhang.com.
-&gt; baidu.com                        //域名缓存检查
+&gt; 192.168.127.100                  &#x2F;&#x2F;域名反向解析检查
+100.127.168.192.in-addr.arpa    name &#x3D; skillzhang.com.
+&gt; baidu.com                        &#x2F;&#x2F;域名缓存检查
 Server:         192.168.127.100
 Address:        192.168.127.100#53
 
@@ -416,6 +416,7 @@ Address: 39.156.66.10
 Name:   baidu.com
 Address: 110.242.68.66
 </code></pre>
+
 <p>2.Window系统验证</p>
 <p>更改DNS配置</p>
 <p><img src="/../images/winnetwork.png" alt="更改DNS配置"></p>
