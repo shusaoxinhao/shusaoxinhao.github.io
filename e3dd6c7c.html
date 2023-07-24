@@ -19,13 +19,13 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="Linux,GitLab" />
+<meta name="keywords" content="window,PXE" />
 
 
-<meta name="description" content="一、配置主机的基本环境
-所有新Linux主机都需要完成下面的操作
+<meta name="description" content="介绍
+作用
 
-[root@localhost ~]# hostnamectl  set-hostname 主机名称         #修改主..." />
+​       简单来说，iVentoy 可以看成是一个增强版的 PXE 服务器。 使用iVentoy 你可以通过网络同时给多台机器启动、安装操作系统。iVentoy 使用极其简单..." />
 
 
 <meta name="robots" content="all" />
@@ -36,7 +36,7 @@
 
 <title>
     
-    企业级搭建Gitlab |
+    PXE安装系统iventoy |
     
     老陕小张
 </title>
@@ -164,9 +164,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="企业级搭建Gitlab">
+        <h1 id="PXE安装系统iventoy">
             
-            企业级搭建Gitlab
+            PXE安装系统iventoy
             
         </h1>
         <div class="post-meta">
@@ -181,7 +181,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-none-link" href="/tags/GitLab/" rel="tag">GitLab</a> <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a>
+            <a class="tag-none-link" href="/tags/PXE/" rel="tag">PXE</a> <a class="tag-none-link" href="/tags/window/" rel="tag">window</a>
             
         </span>
     </span>
@@ -191,7 +191,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2022/07/20</span>
+            2022/07/24</span>
     </span>
     
     
@@ -201,86 +201,24 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="一、配置主机的基本环境"><a href="#一、配置主机的基本环境" class="headerlink" title="一、配置主机的基本环境"></a>一、配置主机的基本环境</h2><ul>
-<li>所有新Linux主机都需要完成下面的操作</li>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>作用</li>
 </ul>
-<pre class="language-bash" data-language="bash"><code class="language-bash">[root@localhost ~]# hostnamectl  set-hostname 主机名称         #修改主机名
-[root@localhost ~]# bash
-[root@gitlab-server ~]# systemctl  status firewalld           #检查防火墙
-● firewalld.service - firewalld - dynamic firewall daemon
-   Loaded: loaded (&#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;firewalld.service; enabled; vendor preset: enabled)
-   Active: active (running) since Fri 2023-07-21 18:43:18 CST; 2min 16s ago
-     Docs: man:firewalld(1)
- Main PID: 698 (firewalld)
-   CGroup: &#x2F;system.slice&#x2F;firewalld.service
-           └─698 &#x2F;usr&#x2F;bin&#x2F;python -Es &#x2F;usr&#x2F;sbin&#x2F;firewalld --nofork --nopid
-
-Jul 21 18:43:18 localhost.localdomain systemd[1]: Starting firewalld - dynamic firewall daemon...
-Jul 21 18:43:18 localhost.localdomain systemd[1]: Started firewalld - dynamic firewall daemon.
-[root@gitlab-server ~]# systemctl  stop firewalld             #防火墙为running，需要关闭防火墙
-[root@gitlab-server ~]# systemctl  disable firewalld          #关闭关机自启防火墙设置
-Removed symlink &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants&#x2F;firewalld.service.
-Removed symlink &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;dbus-org.fedoraproject.FirewallD1.service.
-[root@gitlab-server ~]# getenforce                            #检查Selinux开启状态
-Enforcing                                                     #状态是开启状态
-[root@gitlab-server ~]# yum install wget vim                  #安装Linux系统工具
-[root@gitlab-server ~]# vim &#x2F;etc&#x2F;selinux&#x2F;config               #需要关闭Selinux
-SELINUX&#x3D;disabled                                              #修改配置文件
-[root@gitlab-server ~]# reboot                                #重新启动服务器让所有配置生效</code></pre>
-
-<h2 id="二、gitlab-server主机安装"><a href="#二、gitlab-server主机安装" class="headerlink" title="二、gitlab-server主机安装"></a>二、gitlab-server主机安装</h2><ul>
-<li>配置gitlab网络镜像源</li>
-</ul>
-<pre class="language-bash" data-language="bash"><code class="language-bash">[root@gitlab-server ~]# vim &#x2F;etc&#x2F;yum.repos.d&#x2F;gitlab.repo      #编写网络镜像源
-[gitlab-ce]
-name&#x3D;gitlab
-baseurl&#x3D;https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F;el7&#x2F;
-enabled&#x3D;1
-gpgcheck&#x3D;0
-[root@gitlab-server ~]# yum clean all                         #删除安装软件缓存
-[root@gitlab-server ~]# yum repolist                          #刷新网络安装源</code></pre>
-
+<p>​       简单来说，iVentoy 可以看成是一个增强版的 PXE 服务器。 使用iVentoy 你可以通过网络同时给多台机器启动、安装操作系统。<br>iVentoy 使用极其简单，无需复杂的配置，直接把 ISO 文件放到指定位置，客户机在启动时根据菜单选择要启动的ISO文件即可。<br>iVentoy 同时支持 x86 Legacy BIOS、IA32 UEFI、x86_64 UEFI 和 ARM64 UEFI 模式。</p>
 <ul>
-<li>部署gitlab服务器</li>
+<li><p>官网</p>
+<p><a target="_blank" rel="noopener" href="https://www.iventoy.com/cn/index.html">https://www.iventoy.com/cn/index.html</a></p>
+</li>
 </ul>
-<pre class="language-bash" data-language="bash"><code class="language-bash">[root@gitlab-server ~]# yum install -y gitlab-ce              #安装gitlab-ce
-[root@gitlab-server ~]# vim +32 &#x2F;etc&#x2F;gitlab&#x2F;gitlab.rb         #修改配置文件
-external_url &#39;http:&#x2F;&#x2F;192.168.127.100&#39;                         #修改成自己的客户机的IP地址
-[root@gitlab-server ~]# gitlab-ctl  reconfigure               #初始化gitlab环境,需要的时间比较长，请耐心等待
-[root@gitlab-server ~]# gitlab-ctl  status                    #查看gitlab服务组件状态，都是run说明服务组件运行正常
-run: alertmanager: (pid 9666) 9s; run: log: (pid 9346) 41s
-run: gitaly: (pid 9546) 19s; run: log: (pid 8285) 138s
-run: gitlab-exporter: (pid 9631) 10s; run: log: (pid 9167) 57s
-run: gitlab-kas: (pid 9603) 12s; run: log: (pid 8517) 127s
-run: gitlab-workhorse: (pid 9612) 11s; run: log: (pid 8948) 76s
-run: logrotate: (pid 8117) 153s; run: log: (pid 8131) 152s
-run: nginx: (pid 8987) 73s; run: log: (pid 9028) 70s
-run: node-exporter: (pid 9626) 11s; run: log: (pid 9077) 63s
-run: postgres-exporter: (pid 9674) 8s; run: log: (pid 9404) 35s
-run: postgresql: (pid 8340) 134s; run: log: (pid 8422) 131s
-run: prometheus: (pid 9645) 10s; run: log: (pid 9292) 47s
-run: puma: (pid 8783) 91s; run: log: (pid 8816) 88s
-run: redis: (pid 8182) 147s; run: log: (pid 8197) 146s
-run: redis-exporter: (pid 9633) 10s; run: log: (pid 9223) 51s
-run: sidekiq: (pid 8841) 85s; run: log: (pid 8880) 81s</code></pre>
-
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>参考手册</li>
+</ul>
+<p>​       <a target="_blank" rel="noopener" href="https://www.iventoy.com/cn/doc_news.html">https://www.iventoy.com/cn/doc_news.html</a></p>
 <ul>
-<li>检查gitlab服务是否正常使用，访问<a target="_blank" rel="noopener" href="http://192.168.127.100/">http://192.168.127.100/</a></li>
+<li><p>下载地址</p>
+<p><a target="_blank" rel="noopener" href="https://www.iventoy.com/cn/download.html">https://www.iventoy.com/cn/download.html</a></p>
+</li>
 </ul>
-<p><img src="/../images/gitlab%E5%AE%89%E8%A3%85%E4%BC%81%E4%B8%9A.png"></p>
-<p>登录gitlab服务，默认生成用户名和密码,默认的用户名是root</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">[root@gitlab-server ~]# cat &#x2F;etc&#x2F;gitlab&#x2F;initial_root_password
-# WARNING: This value is valid only in the following conditions
-#          1. If provided manually (either via &#96;GITLAB_ROOT_PASSWORD&#96; environment variable or via &#96;gitlab_rails[&#39;initial_root_password&#39;]&#96; setting in &#96;gitlab.rb&#96;, it was provided before database was seeded for the first time (usually, the first reconfigure run).
-#          2. Password hasn&#39;t been changed manually, either via UI or via command line.
-#
-#          If the password shown here doesn&#39;t work, you must reset the admin password following https:&#x2F;&#x2F;docs.gitlab.com&#x2F;ee&#x2F;security&#x2F;reset_user_password.html#reset-your-root-password.
-
-Password: jN9OAFsPgqOaPEbBDR2qW7CrF2JKOmT4lxca8JHQloo&#x3D;
-
-# NOTE: This file will be automatically deleted in the first reconfigure run after 24 hours.</code></pre>
-
-<p><img src="/../images/gitlablogin%E7%99%BB%E5%BD%95.png"></p>
 
     </div>
     
@@ -319,17 +257,17 @@ Password: jN9OAFsPgqOaPEbBDR2qW7CrF2JKOmT4lxca8JHQloo&#x3D;
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/e3dd6c7c.html" class="pre-post btn btn-default" title='PXE安装系统iventoy'>
+    <a href="/36c4f4bb.html" class="pre-post btn btn-default" title='ChatGPT使用'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            PXE安装系统iventoy</span>
+            ChatGPT使用</span>
     </a>
     
     
-    <a href="/7d4ff147.html" class="next-post btn btn-default" title='老陕小张的技能介绍'>
+    <a href="/dded7b2a.html" class="next-post btn btn-default" title='企业级搭建Gitlab'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            老陕小张的技能介绍</span><i class="fa fa-angle-right fa-fw"></i>
+            企业级搭建Gitlab</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -348,7 +286,7 @@ Password: jN9OAFsPgqOaPEbBDR2qW7CrF2JKOmT4lxca8JHQloo&#x3D;
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83"><span class="toc-text">一、配置主机的基本环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81gitlab-server%E4%B8%BB%E6%9C%BA%E5%AE%89%E8%A3%85"><span class="toc-text">二、gitlab-server主机安装</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li></ol>
         
     </div>
 </aside>
