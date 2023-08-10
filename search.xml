@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>python堆栈和队列</title>
+      <link href="/143ac943.html"/>
+      <url>/143ac943.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-队列Queue"><a href="#1-队列Queue" class="headerlink" title="1.队列Queue"></a>1.队列Queue</h2><p>1.FIFO (first in frst out先进先出)</p><p>2.可以存储不同的数据类型，例如整数、字符串、字典</p><p>3.使用put放数据</p><p>4.使用get取数据 (如果当前队列中没有数据，此时会堵塞)</p><h2 id="2-堆栈Queue"><a href="#2-堆栈Queue" class="headerlink" title="2.堆栈Queue"></a>2.堆栈Queue</h2><p>1.LIFO(last in first out后进先出)</p><p>2.可以存储不同的数据类型，例如整数、字符串、字典</p><p>3.使用put放数据</p><p>4.使用get取数据(如果当前队列中没有数据，此时会堵塞)</p><h2 id="3-优先圾Queue"><a href="#3-优先圾Queue" class="headerlink" title="3.优先圾Queue"></a>3.优先圾Queue</h2><p>1.根据优先级来确定当前要获取的数据</p><p>2.使用put存放</p><ol><li>将一个元组放到里面</li><li>第1个元素是:优先级，数字小优先级越高</li><li>第2个元素是:要存放的据</li></ol><p>3.使用get来获取 (如果当前队列中没有数据，此时会堵塞</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>制作纯净PE</title>
       <link href="/d391b6d2.html"/>
       <url>/d391b6d2.html</url>
@@ -329,9 +354,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ansible </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
