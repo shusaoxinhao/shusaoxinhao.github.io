@@ -103,9 +103,9 @@
       
         <tags>
             
-            <tag> window </tag>
-            
             <tag> 系统优化 </tag>
+            
+            <tag> window </tag>
             
         </tags>
       
@@ -354,9 +354,9 @@
       
         <tags>
             
-            <tag> Ansible </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ansible </tag>
             
         </tags>
       
@@ -382,6 +382,31 @@
         <tags>
             
             <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git代码更新报错</title>
+      <link href="/9bf068a.html"/>
+      <url>/9bf068a.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>git同步代码出现错误的原因有多种多样，本章给大家介绍一个window系统的git仓库权限问题,由于win10重装系统后，文件夹所有者变了，导致git pull等都出现了该问题。</p><pre class="language-bash" data-language="bash"><code class="language-bash">PS D:\小萌计划\liberty\微信小程序&gt; git pullfatal: detected dubious ownership in repository at &#39;D:&#x2F;小萌计划&#x2F;liberty&#39;&#39;D:&#x2F;小萌计划&#x2F;liberty&#39; is owned by:        &#39;S-1-5-21-1352026588-2545222877-778235115-1001&#39;but the current user is:        &#39;S-1-5-21-2042668658-433506434-3672517647-1001&#39;To add an exception for this directory, call:        git config --global --add safe.directory &#39;D:&#x2F;小萌计划&#x2F;liberty&#39;</code></pre><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>更改文件权限</p><p><img src="/../images/8862c8a8736247d9ac64f68e7b9ff865.jpeg"></p><p><img src="/../images/f26342fd6f6b43b7aa1cdec2c7fd7e46.jpeg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常用工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
             
         </tags>
       

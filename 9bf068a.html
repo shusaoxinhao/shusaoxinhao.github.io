@@ -19,10 +19,11 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="Linux" />
+<meta name="keywords" content="Git" />
 
 
-<meta name="description" content="Linux内核中有一个md(multiple devices)模块在底层管理RAID设备，它会在应用层给我们提供一个应用程序的工具mdadm ，mdadm是linux下用于创建和管理软件RAID..." />
+<meta name="description" content="错误描述git同步代码出现错误的原因有多种多样，本章给大家介绍一个window系统的git仓库权限问题,由于win10重装系统后，文件夹所有者变了，导致git pull等都出现了该问题。
+PS ..." />
 
 
 <meta name="robots" content="all" />
@@ -33,7 +34,7 @@
 
 <title>
     
-    Mdadm命令详解 |
+    Git代码更新报错 |
     
     老陕小张
 </title>
@@ -171,9 +172,9 @@ var _hmt = _hmt || [];
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Mdadm命令详解">
+        <h1 id="Git代码更新报错">
             
-            Mdadm命令详解
+            Git代码更新报错
             
         </h1>
         <div class="post-meta">
@@ -188,7 +189,7 @@ var _hmt = _hmt || [];
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a>
+            <a class="tag-none-link" href="/tags/Git/" rel="tag">Git</a>
             
         </span>
     </span>
@@ -198,7 +199,7 @@ var _hmt = _hmt || [];
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2023/05/06</span>
+            2023/05/01</span>
     </span>
     
     
@@ -208,157 +209,22 @@ var _hmt = _hmt || [];
     </div>
     
     <div class="post-body post-content">
-        <p>Linux内核中有一个md(multiple devices)模块在底层管理RAID设备，它会在应用层给我们提供一个应用程序的工具mdadm ，mdadm是linux下用于创建和管理软件RAID的命令。</p>
-<h2 id="mdadm命令常见参数解释："><a href="#mdadm命令常见参数解释：" class="headerlink" title="mdadm命令常见参数解释："></a>mdadm命令常见参数解释：</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-a</td>
-<td>检测设备名称，添加磁盘</td>
-</tr>
-<tr>
-<td>-n</td>
-<td>指定设备数量</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>指定RAID级别</td>
-</tr>
-<tr>
-<td>-C</td>
-<td>创建</td>
-</tr>
-<tr>
-<td>-v</td>
-<td>显示过程</td>
-</tr>
-<tr>
-<td>-f</td>
-<td>模拟设备损坏</td>
-</tr>
-<tr>
-<td>-r</td>
-<td>移除设备</td>
-</tr>
-<tr>
-<td>-Q</td>
-<td>查看摘要信息</td>
-</tr>
-<tr>
-<td>-D</td>
-<td>查看详细信息</td>
-</tr>
-<tr>
-<td>-S</td>
-<td>停止RAID磁盘阵列</td>
-</tr>
-</tbody></table>
-<h2 id="搭建raid10阵列"><a href="#搭建raid10阵列" class="headerlink" title="搭建raid10阵列"></a>搭建raid10阵列</h2><ol>
-<li>新添加4块硬盘——在centos关机的情况下添加4块新的硬盘。</li>
-</ol>
-<pre class="language-none"><code class="language-none"># ls &#x2F;dev&#x2F;sd*</code></pre>
+        <h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>git同步代码出现错误的原因有多种多样，本章给大家介绍一个window系统的git仓库权限问题,由于win10重装系统后，文件夹所有者变了，导致git pull等都出现了该问题。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">PS D:\小萌计划\liberty\微信小程序&gt; git pull
+fatal: detected dubious ownership in repository at &#39;D:&#x2F;小萌计划&#x2F;liberty&#39;
+&#39;D:&#x2F;小萌计划&#x2F;liberty&#39; is owned by:
+        &#39;S-1-5-21-1352026588-2545222877-778235115-1001&#39;
+but the current user is:
+        &#39;S-1-5-21-2042668658-433506434-3672517647-1001&#39;
+To add an exception for this directory, call:
 
-<ol start="2">
-<li>下载mdadm</li>
-</ol>
-<pre class="language-none"><code class="language-none"># yum install mdadm -y</code></pre>
+        git config --global --add safe.directory &#39;D:&#x2F;小萌计划&#x2F;liberty&#39;</code></pre>
 
-<ol start="3">
-<li>创建RAID10阵列</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mdadm -C -v &#x2F;dev&#x2F;md10 -l 10 -n 4 &#x2F;dev&#x2F;sd&#123;b,c,d,e&#125;</code></pre>
 
-<p>这里的选项是多个，对照上表查看。磁盘阵列名需要以md开头，这里创建的是md10。</p>
-<ol start="4">
-<li>查看阵列信息</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mdadm -D &#x2F;dev&#x2F;md10</code></pre>
 
-<ol start="5">
-<li>格式化</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mkfs.xfs &#x2F;dev&#x2F;md10</code></pre>
-
-<ol start="6">
-<li>挂载使用</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mount &#x2F;dev&#x2F;md10 &#x2F;ken</code></pre>
-
-<ol start="7">
-<li>写入到文件</li>
-</ol>
-<p>方法一、</p>
-<pre class="language-none"><code class="language-none"># echo “mount &#x2F;dev&#x2F;md10 &#x2F;ken” &gt;&gt; &#x2F;etc&#x2F;rc.local</code></pre>
-
-<p>方法二、</p>
-<pre class="language-none"><code class="language-none"># echo “&#x2F;dev&#x2F;md10 &#x2F;ken xfs defaults 0 0 ” &gt;&gt; &#x2F;etc&#x2F;fstab</code></pre>
-
-<h2 id="mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式"><a href="#mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式" class="headerlink" title="mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式"></a>mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式</h2><ol>
-<li>模拟损坏磁盘</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mdadm &#x2F;dev&#x2F;md10 -f &#x2F;dev&#x2F;sdd</code></pre>
-
-<p>选项f是用于模拟磁盘损坏。</p>
-<pre class="language-none"><code class="language-none"># mdadm -D &#x2F;dev&#x2F;md10</code></pre>
-
-<p>查看详细信息，这时候已经显示磁盘损坏了。</p>
-<ol start="2">
-<li><p>重启</p>
-</li>
-<li><p>添加磁盘</p>
-</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mdadm &#x2F;dev&#x2F;md10 -a &#x2F;dev&#x2F;sdd</code></pre>
-
-<p>选项a是用于添加磁盘。</p>
-<pre class="language-none"><code class="language-none"># mdadm -D &#x2F;dev&#x2F;md10</code></pre>
-
-<p>添加成功，然后照常使用。</p>
-<h2 id="mdadm创建RAID阵列–RAID5-热备盘"><a href="#mdadm创建RAID阵列–RAID5-热备盘" class="headerlink" title="mdadm创建RAID阵列–RAID5+热备盘"></a>mdadm创建RAID阵列–RAID5+热备盘</h2><ol>
-<li>添加四块磁盘并查看。</li>
-</ol>
-<pre class="language-none"><code class="language-none"># ls &#x2F;dev&#x2F;sd*</code></pre>
-
-<ol start="2">
-<li>创建磁盘阵列RAID5</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mdadm -C &#x2F;dev&#x2F;md5 -l 5 -n 3 -x 1 &#x2F;dev&#x2F;sd&#123;b,c,d,e&#125;</code></pre>
-
-<ol start="3">
-<li>查看阵列信息</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mdadm -D &#x2F;dev&#x2F;md5</code></pre>
-
-<ol start="4">
-<li>格式化</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mkfs.xfs &#x2F;dev&#x2F;md5</code></pre>
-
-<ol start="5">
-<li>挂载</li>
-</ol>
-<pre class="language-none"><code class="language-none"># mkdir &#x2F;ken
-# mount &#x2F;dev&#x2F;md5 &#x2F;ken</code></pre>
-
-<ol start="6">
-<li>补充</li>
-</ol>
-<p>在使用mdadm命令创建RAID阵列时，需要先将磁盘分区并格式化，然后再将分区设备加入到RAID阵列中。如果RAID阵列中的磁盘出现故障，可以使用mdadm命令进行磁盘的移除和添加，以及磁盘阵列的重建。</p>
-<p>在创建RAID阵列时，需要注意以下几点：</p>
-<ol>
-<li><p>磁盘数量必须是偶数，且至少需要两个磁盘。</p>
-</li>
-<li><p>磁盘容量应该相同，否则会浪费磁盘空间。</p>
-</li>
-<li><p>RAID级别的选择应该根据实际需求进行，不同的RAID级别有不同的优缺点。</p>
-</li>
-<li><p>在创建RAID阵列时，可以使用-x选项指</p>
-</li>
-</ol>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>更改文件权限</p>
+<p><img src="/../images/8862c8a8736247d9ac64f68e7b9ff865.jpeg"></p>
+<p><img src="/../images/f26342fd6f6b43b7aa1cdec2c7fd7e46.jpeg"></p>
 
     </div>
     
@@ -397,17 +263,17 @@ var _hmt = _hmt || [];
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/4f3a6d14.html" class="pre-post btn btn-default" title='入门Ansible'>
+    <a href="/c901ebd9.html" class="pre-post btn btn-default" title='Mdadm命令详解'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            入门Ansible</span>
+            Mdadm命令详解</span>
     </a>
     
     
-    <a href="/9bf068a.html" class="next-post btn btn-default" title='Git代码更新报错'>
+    <a href="/36c4f4bb.html" class="next-post btn btn-default" title='ChatGPT使用'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            Git代码更新报错</span><i class="fa fa-angle-right fa-fw"></i>
+            ChatGPT使用</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -420,7 +286,7 @@ var _hmt = _hmt || [];
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mdadm%E5%91%BD%E4%BB%A4%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="toc-text">mdadm命令常见参数解释：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BAraid10%E9%98%B5%E5%88%97"><span class="toc-text">搭建raid10阵列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mdadm%E7%AE%A1%E7%90%86RAID10%E9%98%B5%E5%88%97%E2%80%93%E6%A8%A1%E6%8B%9F%E7%A3%81%E7%9B%98%E6%8D%9F%E5%9D%8F%E5%90%8E%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-text">mdadm管理RAID10阵列–模拟磁盘损坏后的处理方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mdadm%E5%88%9B%E5%BB%BARAID%E9%98%B5%E5%88%97%E2%80%93RAID5-%E7%83%AD%E5%A4%87%E7%9B%98"><span class="toc-text">mdadm创建RAID阵列–RAID5+热备盘</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%8F%8F%E8%BF%B0"><span class="toc-text">错误描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">解决办法</span></a></li></ol>
         
     </div>
 </aside>
