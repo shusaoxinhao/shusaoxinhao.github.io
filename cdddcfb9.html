@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="老陕小张">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.4.38">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://skillixx.com">
+    <!--SEO-->
+
+<meta name="keywords" content="Linux" />
+
+
+<meta name="description" content="一、iotop介绍iotop：iotop是一个交互式的工具，可以显示当前系统中磁盘I/O最高的进程。您可以使用以下命令安装和运行iotop，运行iotop后，按下O键可以按照磁盘I/O进行排序，..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Linux查看程序IO读写进程查看 |
+    
+    老陕小张
+</title>
+
+<link rel="alternate" href="/atom.xml" title="老陕小张" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?37f0e5d206d22395472b1674d2556a40";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+    
+<meta name="baidu-site-verification" content="codeva-ncXCwmrnef" />
+
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /../img/bj.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='老陕小张'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive life-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                老陕小张学技术接地气
+            </h2>
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://skillixx.com">
+                        老陕小张</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/IT科技/"><i class="fa "></i>
+                                IT科技</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/编程教程/"><i class="fa "></i>
+                                编程教程</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/常用工具/"><i class="fa "></i>
+                                常用工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/AI话题/"><i class="fa "></i>
+                                AI话题</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/关于我们/"><i class="fa "></i>
+                                关于我们</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux查看程序IO读写进程查看">
+            
+            Linux查看程序IO读写进程查看
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2023/08/28</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、iotop介绍"><a href="#一、iotop介绍" class="headerlink" title="一、iotop介绍"></a>一、iotop介绍</h2><p><code>iotop</code>：<code>iotop</code>是一个交互式的工具，可以显示当前系统中磁盘<code>I/O</code>最高的进程。您可以使用以下命令安装和运行<code>iotop</code>，运行<code>iotop</code>后，按下<code>O</code>键可以按照磁盘<code>I/O</code>进行排序，以显示使用磁盘<code>I/O</code>最高的进程。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">sudo apt-get install iotop  # 对于基于Debian的系统，如Ubuntu
+sudo yum install iotop      # 对于基于Red Hat的系统，如CentOS
+sudo iotop</code></pre>
+
+<p><img src="/../images/linux%E5%91%BD%E4%BB%A4iotop.png"></p>
+<h2 id="二、htop介绍"><a href="#二、htop介绍" class="headerlink" title="二、htop介绍"></a>二、htop介绍</h2><p><code>htop</code>是一个交互式的系统监视工具，可以显示系统中各个进程的资源使用情况，包括磁盘<code>I/O</code>。您可以使用以下命令安装和运行<code>htop</code>，运行<code>htop</code>后，在<code>htop</code>界面中，按下F2键进入设置，选择”Columns”，然后将磁盘<code>I/O</code>相关的列（如<code>IO_READ_RATE</code>和<code>IO_WRITE_RATE</code>）添加到显示中。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">sudo apt-get install htop  # 对于基于Debian的系统，如Ubuntu
+sudo yum install htop      # 对于基于Red Hat的系统，如CentOS
+sudo htop</code></pre>
+
+<p><img src="/../images/linux%E5%91%BD%E4%BB%A4htop.png"></p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/../images/alypay.png"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/../images/wxpay.png"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://skillixxx.com" target="_blank">老陕小张</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/420f3e4b.html" class="next-post btn btn-default" title='win10系统安装'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            win10系统安装</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81iotop%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、iotop介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81htop%E4%BB%8B%E7%BB%8D"><span class="toc-text">二、htop介绍</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2020
+                    
+                </span> |
+                <span>
+                    Powered by <a href="" class="copyright-links" target="_blank" rel="nofollow">老陕小张</a>
+                </span> 
+                <!-- <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow"></a>
+                </span> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
