@@ -272,20 +272,6 @@
 
   
   <url>
-    <loc>https://skillixx.com/tags/Ansible/</loc>
-    <lastmod>2023-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://skillixx.com/tags/Linux/</loc>
-    <lastmod>2023-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://skillixx.com/tags/window/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -294,6 +280,20 @@
   
   <url>
     <loc>https://skillixx.com/tags/win%E8%BD%AF%E4%BB%B6/</loc>
+    <lastmod>2023-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://skillixx.com/tags/Ansible/</loc>
+    <lastmod>2023-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://skillixx.com/tags/Linux/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -356,6 +356,20 @@
   </url>
   
   <url>
+    <loc>https://skillixx.com/tags/Git/</loc>
+    <lastmod>2023-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://skillixx.com/tags/ChatGPT/</loc>
+    <lastmod>2023-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://skillixx.com/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -377,27 +391,6 @@
   </url>
   
   <url>
-    <loc>https://skillixx.com/tags/Git/</loc>
-    <lastmod>2023-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://skillixx.com/tags/ChatGPT/</loc>
-    <lastmod>2023-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://skillixx.com/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC/</loc>
-    <lastmod>2023-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://skillixx.com/tags/Python/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -406,6 +399,13 @@
   
   <url>
     <loc>https://skillixx.com/tags/Podman/</loc>
+    <lastmod>2023-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://skillixx.com/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -456,14 +456,14 @@
 
   
   <url>
-    <loc>https://skillixx.com/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://skillixx.com/categories/IT%E7%A7%91%E6%8A%80/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://skillixx.com/categories/IT%E7%A7%91%E6%8A%80/</loc>
+    <loc>https://skillixx.com/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -477,14 +477,14 @@
   </url>
   
   <url>
-    <loc>https://skillixx.com/categories/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC/</loc>
+    <loc>https://skillixx.com/categories/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://skillixx.com/categories/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</loc>
+    <loc>https://skillixx.com/categories/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
