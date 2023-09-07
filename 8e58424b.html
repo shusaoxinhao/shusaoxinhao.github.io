@@ -1,0 +1,525 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="老陕小张">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.4.38">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://skillixx.com">
+    <!--SEO-->
+
+<meta name="keywords" content="Linux,Ansible" />
+
+
+<meta name="description" content="一、系统基础配置1、主机硬件配置
+
+
+系统版本
+系统配置
+IP
+
+
+
+CentOS7.9.2009
+2vCPU8G
+192.168.75.100
+
+
+2、系统基础配置配置软件源
+mv &#x2F..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    docker搭建elk8.9.1 |
+    
+    老陕小张
+</title>
+
+<link rel="alternate" href="/atom.xml" title="老陕小张" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?37f0e5d206d22395472b1674d2556a40";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+    
+<meta name="baidu-site-verification" content="codeva-ncXCwmrnef" />
+
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /../img/bj.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='老陕小张'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive life-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                老陕小张学技术接地气
+            </h2>
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://skillixx.com">
+                        老陕小张</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/IT科技/"><i class="fa "></i>
+                                IT科技</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/编程教程/"><i class="fa "></i>
+                                编程教程</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/常用工具/"><i class="fa "></i>
+                                常用工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/AI话题/"><i class="fa "></i>
+                                AI话题</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/关于我们/"><i class="fa "></i>
+                                关于我们</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="docker搭建elk8.9.1">
+            
+            docker搭建elk8.9.1
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Ansible/" rel="tag">Ansible</a> <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2023/09/06</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、系统基础配置"><a href="#一、系统基础配置" class="headerlink" title="一、系统基础配置"></a>一、系统基础配置</h2><h3 id="1、主机硬件配置"><a href="#1、主机硬件配置" class="headerlink" title="1、主机硬件配置"></a>1、主机硬件配置</h3><table>
+<thead>
+<tr>
+<th align="center">系统版本</th>
+<th>系统配置</th>
+<th align="center">IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CentOS7.9.2009</td>
+<td>2vCPU8G</td>
+<td align="center">192.168.75.100</td>
+</tr>
+</tbody></table>
+<h3 id="2、系统基础配置"><a href="#2、系统基础配置" class="headerlink" title="2、系统基础配置"></a>2、系统基础配置</h3><p><strong>配置软件源</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">mv &#x2F;etc&#x2F;yum.repos.d&#x2F;* &#x2F;tmp&#x2F;  #备份系统软件园
+curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo  #配置阿里云软件源
+yum clean all #清除环境
+yum repolist #刷新软件源</code></pre>
+
+<p><strong>关闭seLinux</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">sed -i &quot;s&#x2F;&#x3D;enforcing&#x2F;&#x3D;disabled&#x2F;g&quot; &#x2F;etc&#x2F;selinux&#x2F;config  #修改selinx配置</code></pre>
+
+<p><strong>关闭防火墙</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">systemctl  stop firewalld  #关闭防火墙
+systemctl  disable firewalld #开机关闭，防火墙不自启</code></pre>
+
+<p><strong>清除环境</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">reboot #关键重新启动</code></pre>
+
+<h2 id="二、架构解读"><a href="#二、架构解读" class="headerlink" title="二、架构解读"></a>二、架构解读</h2><p>ELK（Elasticsearch、Logstash、Kibana）与Filebeat是一个常用的日志和事件管理堆栈，用于实时收集、处理、分析和可视化大规模数据。它们一起提供了强大的工具和平台，用于监控系统、分析应用程序性能、进行安全分析以及探索和理解各种数据。搭建教程可以同访问<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/index.html%EF%BC%8C%E6%9F%A5%E6%89%BE%E5%90%84%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%E3%80%82">https://www.elastic.co/guide/index.html，查找各组件安装教程。</a></p>
+<p><img src="/../images/ELKimg/aHR0cHM6Ly9kZXZlbG9wZXIuaWJtLmNvbS9kZXZlbG9wZXIvYXJ0aWNsZXMvb3MtY24tZWxrLWZpbGViZWF0L25sL3poL2ltYWdlcy9pbWFnZTAwNS5wbmc.png"></p>
+<p>以下是ELK与Filebeat的详细介绍和如何整合它们的基本概述：</p>
+<ol>
+<li><p><strong>Elasticsearch</strong>（ES）：</p>
+<ul>
+<li>Elasticsearch是一个分布式、实时的搜索和分析引擎，专用于高效地存储、索引和检索数据。</li>
+<li>它支持全文搜索、结构化查询和复杂的分析。</li>
+<li>Elasticsearch以分布式方式运行，提供高可用性和可扩展性。</li>
+</ul>
+</li>
+<li><p><strong>Logstash</strong>：</p>
+<ul>
+<li>Logstash是一个数据收集、转换和传输管道。</li>
+<li>它可以从各种数据源（如日志文件、消息队列、数据库等）收集数据。</li>
+<li>Logstash可以对数据进行转换和清洗，以确保数据的一致性和结构。</li>
+<li>它还可以将数据发送到Elasticsearch或其他目标存储或分析工具。</li>
+</ul>
+</li>
+<li><p><strong>Kibana</strong>：</p>
+<ul>
+<li>Kibana是一个用于可视化和分析数据的开源工具。</li>
+<li>它提供了直观的用户界面，用于创建仪表板、图表和可视化，以便用户可以轻松地探索和理解数据。</li>
+<li>Kibana还允许用户执行高级查询和构建自定义仪表板。</li>
+</ul>
+</li>
+<li><p><strong>Filebeat</strong>：</p>
+<ul>
+<li>Filebeat是一个轻量级的数据收集代理，用于实时监控、收集和发送日志和事件数据。</li>
+<li>它可以监视指定的日志文件、系统日志、容器日志等，然后将其发送到Logstash或Elasticsearch进行进一步处理和存储。</li>
+<li>Filebeat支持多种输入和输出插件，使其易于与各种数据源和目标集成。</li>
+</ul>
+</li>
+</ol>
+<p>整合ELK与Filebeat的工作流程通常如下：</p>
+<ol>
+<li>Filebeat部署在数据源服务器上，监视日志文件或事件源。</li>
+<li>Filebeat收集数据，并可以对数据进行简单的结构化处理。</li>
+<li>Filebeat将数据发送到Logstash用于进一步处理（可选）。</li>
+<li>Logstash可以执行高级数据转换、过滤和增强，并将数据发送到Elasticsearch进行索引。</li>
+<li>Elasticsearch存储和索引数据，使其可以进行快速搜索和分析。</li>
+<li>Kibana提供用户界面，允许用户查询、可视化和分析数据，创建仪表板以监控系统性能、故障排除问题和进行安全分析。</li>
+</ol>
+<p>ELK与Filebeat的整合使你能够实时处理和可视化各种数据，从而支持日志分析、应用程序性能监控、安全事件管理等多种用途。这个堆栈提供了一个强大的解决方案，可以帮助组织更好地理解其数据并做出更明智的决策。</p>
+<h2 id="三、搭建教程"><a href="#三、搭建教程" class="headerlink" title="三、搭建教程"></a>三、搭建教程</h2><h3 id="1、安装docker环境"><a href="#1、安装docker环境" class="headerlink" title="1、安装docker环境"></a>1、安装docker环境</h3><pre class="language-bash" data-language="bash"><code class="language-bash">yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2   #安装依赖
+yum-config-manager \
+    --add-repo \
+    https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;docker-ce&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo #添加镜像源
+yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin #安装软件
+# 更换阿里云镜像仓库
+ mkdir &#x2F;etc&#x2F;docker&#x2F;
+vim  &#x2F;etc&#x2F;docker&#x2F;daemon.json
+&#123;&quot;registry-mirrors&quot;:[&quot;https:&#x2F;&#x2F;reg-mirror.qiniu.com&#x2F;&quot;]&#125;
+#重新启动docker服务
+ systemctl daemon-reload
+ systemctl restart docker
+ systemctl enable docker</code></pre>
+
+<h3 id="2、安装Elasticsearch"><a href="#2、安装Elasticsearch" class="headerlink" title="2、安装Elasticsearch"></a>2、安装Elasticsearch</h3><pre class="language-bash" data-language="bash"><code class="language-bash">mkdir -p &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;  #创建环境
+docker pull docker.elastic.co&#x2F;elasticsearch&#x2F;elasticsearch:8.9.1 #拉取镜像
+docker run -itd --restart&#x3D;always --name es01 -p 9200:9200 -p 9300:9300 --privileged&#x3D;true --net host    -e &quot;discovery.type&#x3D;single-node&quot;  -e &quot;ES_JAVA_OPTS&#x3D;-Xms512m -Xmx512m&quot; docker.elastic.co&#x2F;elasticsearch&#x2F;elasticsearch:8.9.1
+docker logs -f es01 #查看用户账号，需要保存</code></pre>
+
+<p><img src="/../images/ELKimg/sk.png"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">docker cp es01:&#x2F;usr&#x2F;share&#x2F;elasticsearch   &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;  #复制挂载资源
+chmod -R 777  &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;elasticsearch                   #资源授权
+chmod rm -f es01  #删除容器
+ docker run -itd --restart&#x3D;always --name es01 -p 9200:9200 -p 9300:9300 --privileged&#x3D;true --net host    -v &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;elasticsearch:&#x2F;usr&#x2F;share&#x2F;elasticsearch -e &quot;discovery.type&#x3D;single-node&quot;  -e &quot;ES_JAVA_OPTS&#x3D;-Xms512m -Xmx512m&quot; docker.elastic.co&#x2F;elasticsearch&#x2F;elasticsearch:8.9.1</code></pre>
+
+<p><strong>检查elasticsearch状态</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">curl --cacert &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;elasticsearch&#x2F;config&#x2F;certs&#x2F;http_ca.crt -u elastic:x4lJ73ZLdDr+qPJUvbZV https:&#x2F;&#x2F;192.168.75.100:9200  #检查命令
+&#123;
+  &quot;name&quot; : &quot;elk&quot;,
+  &quot;cluster_name&quot; : &quot;docker-cluster&quot;,
+  &quot;cluster_uuid&quot; : &quot;l485S3D2RJmqzCJ5znFFFw&quot;,
+  &quot;version&quot; : &#123;
+    &quot;number&quot; : &quot;8.9.1&quot;,
+    &quot;build_flavor&quot; : &quot;default&quot;,
+    &quot;build_type&quot; : &quot;docker&quot;,
+    &quot;build_hash&quot; : &quot;a813d015ef1826148d9d389bd1c0d781c6e349f0&quot;,
+    &quot;build_date&quot; : &quot;2023-08-10T05:02:32.517455352Z&quot;,
+    &quot;build_snapshot&quot; : false,
+    &quot;lucene_version&quot; : &quot;9.7.0&quot;,
+    &quot;minimum_wire_compatibility_version&quot; : &quot;7.17.0&quot;,
+    &quot;minimum_index_compatibility_version&quot; : &quot;7.0.0&quot;
+  &#125;,
+  &quot;tagline&quot; : &quot;You Know, for Search&quot;
+&#125;
+</code></pre>
+
+
+
+<h3 id="3、安装Kibana"><a href="#3、安装Kibana" class="headerlink" title="3、安装Kibana"></a>3、安装Kibana</h3><pre class="language-bash" data-language="bash"><code class="language-bash">docker pull docker.elastic.co&#x2F;kibana&#x2F;kibana:8.9.1 #拉取镜像
+docker run -itd --restart&#x3D;always --name kib-01 -p 5601:5601 --net host docker.elastic.co&#x2F;kibana&#x2F;kibana:8.9.1  #启动容器
+docker logs -f kib-01 #查看容器日志</code></pre>
+
+<p><img src="/../images/ELKimg/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20230907111105.png"></p>
+<p><strong>访问本地的地址<a target="_blank" rel="noopener" href="http://192.168.75.100:5601/?code=076601">http://192.168.75.100:5601/?code=076601</a></strong> </p>
+<p><img src="/../images/ELKimg/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20230907111700.png"></p>
+<p><img src="/../images/ELKimg/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20230907111808.png"></p>
+<p><strong>点击configure elastic</strong></p>
+<p><strong>Kibana汉化</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">docker cp kib-01:&#x2F;usr&#x2F;share&#x2F;kibana&#x2F;config&#x2F;kibana.yml .   #将容器的配置文件复制到本地
+echo &#39;i18n.locale: &quot;zh-CN&quot;&#39; &gt;&gt; kibana.yml                #添加汉化插件
+docker restart  kib-01                                   #重新启动容器</code></pre>
+
+
+
+<h3 id="4、安装Logstash"><a href="#4、安装Logstash" class="headerlink" title="4、安装Logstash"></a>4、安装Logstash</h3><pre class="language-bash" data-language="bash"><code class="language-bash">docker pull  docker.elastic.co&#x2F;logstash&#x2F;logstash:8.9.1  #拉取镜像
+docker run -it -d -p 5044:5044  --name logstash    --net host  docker.elastic.co&#x2F;logstash&#x2F;logstash:8.9.1  #启动容器
+docker cp logstash:&#x2F;usr&#x2F;share&#x2F;logstash  &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;logstash   #复制挂载资源
+chmod -R 777 &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;logstash   #授权
+docker rm -f logstash #删除容器
+docker run -it -d -p 5044:5044  --name logstash  --net  host -v &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;logstash:&#x2F;usr&#x2F;share&#x2F;logstash    docker.elastic.co&#x2F;logstash&#x2F;logstash:8.9.1  #启动容器
+cp &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;elasticsearch&#x2F;config&#x2F;certs&#x2F;http_ca.crt &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;logstash&#x2F;   #复制访问的证书
+vim &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;logstash&#x2F;config&#x2F;logstash.yml #修改配置文件
+http.host: &quot;0.0.0.0&quot;
+#xpack.monitoring.elasticsearch.hosts: [ &quot;http:&#x2F;&#x2F;elasticsearch:9200&quot; ]</code></pre>
+
+<p><strong>修改logstash.conf</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">vim &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;logstash&#x2F;pipeline&#x2F;logstash.conf
+input&#123;
+  beats&#123;
+    port &#x3D;&gt; 5044
+  &#125;
+&#125;
+output&#123;
+     elasticsearch &#123;
+        hosts &#x3D;&gt; [&quot;https:&#x2F;&#x2F;192.168.75.100:9200&quot;]   #es主机ip
+        index &#x3D;&gt; &quot;ecs-logstash-%&#123;+YYYY.MM.dd&#125;&quot;  #索引名称
+        user &#x3D;&gt; &quot;elastic&quot;                     #es账号
+        password &#x3D;&gt; &quot;oc1K_+YvPPx1c3FM6Zak&quot;    #es密码
+        ssl &#x3D;&gt; true                           #开启ssl
+        cacert &#x3D;&gt; &quot;&#x2F;usr&#x2F;share&#x2F;logstash&#x2F;http_ca.crt&quot;  #ssl证书
+  &#125;
+&#125;</code></pre>
+
+<p><strong>查看容器ip密码账号</strong></p>
+<p><img src="/../images/ELKimg/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20230907114212.png"></p>
+<p><strong>重新启动logstash容器</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">docker restart logstash</code></pre>
+
+
+
+<h3 id="5、安装Filebeat"><a href="#5、安装Filebeat" class="headerlink" title="5、安装Filebeat"></a>5、安装Filebeat</h3><p>访问下载地址：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/beats/filebeat">https://www.elastic.co/cn/downloads/beats/filebeat</a></p>
+<p><img src="/../images/ELKimg/20230907114838.png"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">wget https:&#x2F;&#x2F;artifacts.elastic.co&#x2F;downloads&#x2F;beats&#x2F;filebeat&#x2F;filebeat-8.9.1-x86_64.rpm #复制链接
+rpm -ivh filebeat-8.9.1-x86_64.rpm </code></pre>
+
+<p><strong>配置filebeat的文件</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">cp  &#x2F;etc&#x2F;filebeat&#x2F;filebeat.yml &#x2F;etc&#x2F;filebeat&#x2F;filebeat.yml.bak
+vim &#x2F;etc&#x2F;filebeat&#x2F;filebeat.yml
+filebeat.inputs:
+- type: log
+  paths:
+    - &#x2F;var&#x2F;log&#x2F;*.log
+output.logstash:
+  hosts: [&quot;192.168.75.100:5044&quot;]
+systemctl  restart filebeat #启动
+systemctl  enable filebeat  #开机自启</code></pre>
+
+<h2 id="四、测试ELK集群架构"><a href="#四、测试ELK集群架构" class="headerlink" title="四、测试ELK集群架构"></a>四、测试ELK集群架构</h2><p><strong>创建索引日志</strong></p>
+<p><img src="/../images/ELKimg/es_20230907151103.png"></p>
+<p><strong>验证elk集群状态</strong></p>
+<p><img src="/../images/ELKimg/es_20230907151103.png"></p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/../images/alypay.png"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/../images/wxpay.png"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://skillixxx.com" target="_blank">老陕小张</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/cdddcfb9.html" class="next-post btn btn-default" title='Linux查看程序IO读写进程查看'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Linux查看程序IO读写进程查看</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">一、系统基础配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%BB%E6%9C%BA%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">1、主机硬件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">2、系统基础配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9E%B6%E6%9E%84%E8%A7%A3%E8%AF%BB"><span class="toc-text">二、架构解读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B"><span class="toc-text">三、搭建教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85docker%E7%8E%AF%E5%A2%83"><span class="toc-text">1、安装docker环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85Elasticsearch"><span class="toc-text">2、安装Elasticsearch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85Kibana"><span class="toc-text">3、安装Kibana</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85Logstash"><span class="toc-text">4、安装Logstash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%AE%89%E8%A3%85Filebeat"><span class="toc-text">5、安装Filebeat</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B5%8B%E8%AF%95ELK%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84"><span class="toc-text">四、测试ELK集群架构</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2020
+                    
+                </span> |
+                <span>
+                    Powered by <a href="" class="copyright-links" target="_blank" rel="nofollow">老陕小张</a>
+                </span> 
+                <!-- <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow"></a>
+                </span> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
