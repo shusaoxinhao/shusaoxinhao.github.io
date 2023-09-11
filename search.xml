@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Prometheus基于文件的服务发现</title>
+      <link href="/4f4be595.html"/>
+      <url>/4f4be595.html</url>
+      
+        <content type="html"><![CDATA[<p>Prometheus提供两种方式来添加被监控的目标：</p><ol><li><p><strong>静态配置（手动配置）</strong>：这种方式需要手动编辑配置文件，将监控目标的信息添加进去。</p></li><li><p><strong>服务发现</strong>：使用服务发现机制，动态地发现需要监控的目标实例。</p></li></ol><p>当我们需要向Prometheus添加新的监控目标时，如果采用手动修改配置文件的方式，每次都需要编辑文件并重启Prometheus，这种方法既繁琐又容易出错，特别是在监控目标数量较多的情况下。此时，我们可以利用服务发现机制，动态地发现和添加需要监控的目标，无需手动干预。</p><p>通过使用服务发现，Prometheus能够自动发现并添加新的监控目标，大大简化了监控配置的管理过程。</p><h2 id="1、Prometheus静态配置"><a href="#1、Prometheus静态配置" class="headerlink" title="1、Prometheus静态配置"></a>1、Prometheus静态配置</h2><pre class="language-bash" data-language="bash"><code class="language-bash">scrape_configs:  - job_name: &#39;prometheus&#39;    static_configs:      - targets: [&#39;localhost:9090&#39;]  # 采集node exporter监控数据  - job_name: &#39;node&#39;    static_configs:      - targets: [&#39;192.168.2.186:8080&#39;]</code></pre><p>在监控配置中，目标列表和相关标签通常需要以手动服务发现的方式添加。然而，对于许多环境的动态特性以及监控主机、应用程序和服务的规模来说，这种方法显得相当受限。</p><p>为了克服这种限制，我们需要寻求更成熟的服务发现解决方案。接下来，我们将深入探讨更为灵活和自动化的服务发现方式，以更好地适应不断变化的监控需求和大规模环境。</p><h2 id="2、Prometheus服务发现"><a href="#2、Prometheus服务发现" class="headerlink" title="2、Prometheus服务发现"></a>2、Prometheus服务发现</h2><p>服务发现通过自动化的机制来检测、分类和识别新的和变更的监控目标。服务发现可以通过以下几种机制来实现：</p><ol><li><p><strong>基于文件的方式</strong>：从配置管理工具生成的文件中接收目标列表。</p></li><li><p><strong>基于云的方式</strong>：通过查询云服务提供商的API来获取目标列表。</p></li><li><p><strong>基于DNS的方式</strong>：使用DNS记录来获取目标列表。</p></li></ol><p>在Prometheus的作业中，您可以选择多种服务发现技术来指定监控目标。</p><p>以下是一些支持的服务发现来源：</p><ul><li><code>azure_sd_configs</code></li><li><code>consul_sd_configs</code></li><li><code>dns_sd_configs</code></li><li><code>ec2_sd_configs</code></li><li><code>openstack_sd_configs</code></li><li><code>file_sd_configs</code></li><li><code>gce_sd_configs</code></li><li><code>kubernetes_sd_configs</code></li><li><code>marathon_sd_configs</code></li><li><code>nerve_sd_configs</code></li><li><code>serverset_sd_configs</code></li><li><code>triton_sd_configs</code></li></ul><p>这些服务发现机制使Prometheus能够更灵活地发现和监控目标，从而适应各种不同的环境和需求。</p><h3 id="2-1-基于文件的服务发现"><a href="#2-1-基于文件的服务发现" class="headerlink" title="2.1 基于文件的服务发现"></a>2.1 基于文件的服务发现</h3><p>基于文件的服务发现是一个比静态配置更进一步的方法，它特别适合与配置管理工具集成。通过基于文件的服务发现，Prometheus可以使用预定义的文件中列出的监控目标。这些文件通常由其他系统生成，例如 Puppet、Ansible 或 Chef 等配置管理系统，或者通过查询其他源（例如CMDB）获得。您可以定期执行脚本或查询，以重新生成这些文件。Prometheus按照指定的时间表自动重新加载这些目标，使配置变得简单明了。</p><p>这些文件通常采用YAML或JSON格式，包含了要监控的目标列表，就像我们在静态配置中定义的一样。让我们从将现有的监控作业迁移到基于文件的服务发现开始。</p><p>基于文件的服务发现：</p><pre class="language-bash" data-language="bash"><code class="language-bash">- job_name: &#39;file_sd&#39;  file_sd_configs:    - files: [&#39;&#x2F;usr&#x2F;local&#x2F;prometheus&#x2F;sd_config&#x2F;*.yml&#39;]      refresh_interval: 5s  # 每隔5秒检查一次# 或者- job_name: &#39;file_sd&#39;  file_sd_configs:    - files:       - &#39;&#x2F;usr&#x2F;local&#x2F;prometheus&#x2F;sd_config&#x2F;*.yml&#39;      refresh_interval: 5s  # 每隔5秒检查一次</code></pre><h2 id="使用-file-sd-configs-实现灵活的服务发现"><a href="#使用-file-sd-configs-实现灵活的服务发现" class="headerlink" title="使用 file_sd_configs 实现灵活的服务发现"></a>使用 <code>file_sd_configs</code> 实现灵活的服务发现</h2><p>要实现更灵活的服务发现，我们可以通过用 <code>file_sd_configs</code> 替换 <code>prometheus.yml</code> 文件中的 <code>static_configs</code> 块来指定文件列表。在 <code>file_sd_configs</code> 块中，我们明确指定了文件的位置，并将这些文件包含在 <code>files</code> 列表中。您可以根据需要创建适合您的目录结构，通常我们会为每个作业创建一个子目录，然后使用 *.json 的通配符样式来指定文件。每当这些文件发生更改时，Prometheus都会自动重新加载这些文件中的目标。</p><p>每次作业运行或这些文件发生变化时，Prometheus都会重新加载文件的内容。为了进一步确保目标的及时更新，我们还可以指定 <code>refresh_interval</code> 选项，该选项定义了在每个间隔结束时重新加载文件列表中的目标。这种方式允许我们更加灵活地管理监控目标，使得系统能够自动适应不断变化的监控需求。</p><p>下面演示一个示例：</p><pre class="language-bash" data-language="bash"><code class="language-bash">$ cd &#x2F;usr&#x2F;local&#x2F;prometheus&#x2F;sd_config&#x2F;$ vim node.yml- targets: [&#39;192.168.2.186:8080&#39;]# 也可以是带标签的- labels:    service: prometheus    idc: su    project: monitor  targets:  - 192.168.2.186:8080# 也可以是带分组的- labels:    service: prometheus1  targets:  - 192.168.2.187:8080  - 192.168.2.188:8080- labels:    service: prometheus2  targets:  - 192.168.2.185:8080  - 192.168.2.186:8080</code></pre><pre class="language-bash" data-language="bash"><code class="language-bash">&#x2F;&#x2F; 也可以编写json文件[  &#123;    &quot;targets&quot;:  [&quot;10.161.4.63:9091&quot;,&quot;10.161.4.61:9100&quot;]  &#125;]</code></pre><p>如果需要认证可以使用：</p><pre class="language-bash" data-language="bash"><code class="language-bash">- job_name: &#39;file_sd&#39;  basic_auth:    username: prometheus    password: 123456  file_sd_configs:    - files: [&#39;&#x2F;usr&#x2F;local&#x2F;prometheus&#x2F;sd_config&#x2F;*.yml&#39;]      refresh_interval: 5s  # 每隔5秒检查一次</code></pre><p>当您在指定的路径下创建或更新YAML文件时，Prometheus会自动检测并加载这些文件，而无需手动重启。这意味着只需生成YAML配置文件，而无需担心配置更改后的繁琐操作。</p><p>这种自动加载和更新配置的机制使得管理监控目标变得更加便捷，您可以专注于配置文件的维护，而不必担心Prometheus的重启或手动操作。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常用工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> elk </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>docker搭建elk8.9.1</title>
       <link href="/8e58424b.html"/>
       <url>/8e58424b.html</url>
