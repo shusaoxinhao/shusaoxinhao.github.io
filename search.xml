@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Docker中安装redis_exporter和mysql-exporter</title>
+      <link href="/224a31c4.html"/>
+      <url>/224a31c4.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="一、安装redis-exporter"><a href="#一、安装redis-exporter" class="headerlink" title="一、安装redis-exporter"></a><strong>一、安装redis-exporter</strong></h3><p>在Docker Hub中选择oliver006版本的redis-exporter镜像：</p><p><img src="/../images/prom_20230911135304.png"></p><p>使用下述命令下载稍微靠后一个版本的redis-exporter镜像：</p><pre class="language-bash" data-language="bash"><code class="language-bash">docker pull oliver006&#x2F;redis_exporter:v1.45.0</code></pre><p>使用下述命令启动redis_exporter服务监控的本地服务： </p><pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd --name redis_exporter \--restart&#x3D;always \-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro-p 9121:9121 oliver006&#x2F;redis_exporter:v1.45.0 \--redis.addr redis:&#x2F;&#x2F;192.168.1.108:6379 \--redis.password &quot;&quot;</code></pre><p>通过访问<a href="http://192.168.1.100/metrics%E6%A3%80%E6%9F%A5%E7%9B%91%E6%8E%A7%E7%8A%B6%E6%80%81">http://192.168.1.100/metrics检查监控状态</a></p><h2 id="二、安装mysql-exporter"><a href="#二、安装mysql-exporter" class="headerlink" title="二、安装mysql-exporter"></a><strong>二、安装mysql-exporter</strong></h2><p>下载mysqld-exporter镜像：</p><pre class="language-bash" data-language="bash"><code class="language-bash">docker pull prom&#x2F;mysqld-exporter</code></pre><p>根据自己配置的数据库用户名和密码进行启动</p><pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd --name mysqld_exporter \-p 9104:9104 \--restart&#x3D;always \-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro \-e DATA_SOURCE_NAME&#x3D;&quot;root:Newmysql55..(127.0.0.1:3306)&#x2F;&quot; prom&#x2F;mysqld-exporter</code></pre><p>登录prometheus进行查看：<a href="http://192.168.75.100:9090/">http://192.168.75.100:9090/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常用工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> prom </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Prometheus基于文件的服务发现</title>
       <link href="/4f4be595.html"/>
       <url>/4f4be595.html</url>
@@ -409,9 +436,9 @@
       
         <tags>
             
-            <tag> window </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> window </tag>
             
             <tag> 网络 </tag>
             
