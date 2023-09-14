@@ -19,12 +19,11 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="Linux,系统优化,Window" />
+<meta name="keywords" content="Linux,GitLab" />
 
 
-<meta name="description" content="电脑卡的原因和优化方法电脑卡的原因可能有很多，比如系统过于老旧、软件冲突、病毒感染等等。以下是一些电脑优化的基本方法：
-
-清理垃圾文件：使用系统自带的磁盘清理工具或第三方清理软件，清理系统中的垃..." />
+<meta name="description" content="1.首先登录gitlab服务器执行以下命令：# 切换到gitlab安装目录
+docker exec -it gitlab-容器名称 &#x2F;bin&#x2F;bash  #docker容器修..." />
 
 
 <meta name="robots" content="all" />
@@ -35,7 +34,7 @@
 
 <title>
     
-    电脑优化的方法 |
+    gitlab忘记密码重置 |
     
     老陕小张
 </title>
@@ -173,16 +172,16 @@ var _hmt = _hmt || [];
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="电脑优化的方法">
+        <h1 id="gitlab忘记密码重置">
             
-            电脑优化的方法
+            gitlab忘记密码重置
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/IT%E7%A7%91%E6%8A%80/">IT科技</a>
+        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
     </span>
     
     
@@ -190,7 +189,7 @@ var _hmt = _hmt || [];
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a> <a class="tag-none-link" href="/tags/Window/" rel="tag">Window</a> <a class="tag-none-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96/" rel="tag">系统优化</a>
+            <a class="tag-none-link" href="/tags/GitLab/" rel="tag">GitLab</a> <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a>
             
         </span>
     </span>
@@ -200,7 +199,7 @@ var _hmt = _hmt || [];
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2023/05/16</span>
+            2023/06/12</span>
     </span>
     
     
@@ -210,29 +209,28 @@ var _hmt = _hmt || [];
     </div>
     
     <div class="post-body post-content">
-        <h1 id="电脑卡的原因和优化方法"><a href="#电脑卡的原因和优化方法" class="headerlink" title="电脑卡的原因和优化方法"></a>电脑卡的原因和优化方法</h1><p>电脑卡的原因可能有很多，比如系统过于老旧、软件冲突、病毒感染等等。以下是一些电脑优化的基本方法：</p>
-<ol>
-<li><p>清理垃圾文件：使用系统自带的磁盘清理工具或第三方清理软件，清理系统中的垃圾文件，释放硬盘空间。</p>
-</li>
-<li><p>卸载不必要的软件：卸载不常用或不必要的软件，减少系统负担。</p>
-</li>
-<li><p>更新系统和驱动程序：更新系统和驱动程序可以修复一些已知的问题和漏洞，提高系统的稳定性和性能。</p>
-</li>
-<li><p>关闭不必要的启动项：在系统启动时，关闭不必要的启动项，减少系统启动时间和资源占用。</p>
-</li>
-<li><p>安装杀毒软件：安装杀毒软件可以保护系统免受病毒和恶意软件的攻击，提高系统的安全性和稳定性。</p>
-</li>
-<li><p>清理注册表：使用注册表清理工具清理系统中的无效注册表项，提高系统的稳定性和性能。</p>
-</li>
-<li><p>增加内存：如果电脑配置较低，可以考虑增加内存，提高系统的运行速度和稳定性。</p>
-</li>
-<li><p>优化硬盘：使用硬盘优化工具对硬盘进行优化，提高硬盘读写速度和稳定性。</p>
-</li>
-<li><p>关闭特效：关闭系统特效可以减少系统资源占用，提高系统的运行速度和稳定性。</p>
-</li>
-<li><p>定期清理系统：定期清理系统中的临时文件、缓存文件等，保持系统的清洁和稳定。</p>
-</li>
-</ol>
+        <h4 id="1-首先登录gitlab服务器执行以下命令："><a href="#1-首先登录gitlab服务器执行以下命令：" class="headerlink" title="1.首先登录gitlab服务器执行以下命令："></a>1.<strong>首先登录gitlab服务器执行以下命令：</strong></h4><pre class="language-bash" data-language="bash"><code class="language-bash"># 切换到gitlab安装目录
+docker exec -it gitlab-容器名称 &#x2F;bin&#x2F;bash  #docker容器修改gitlab密码
+cd &#x2F;opt&#x2F;gitlab&#x2F;bin
+sudo  gitlab-rails console -e production</code></pre>
+
+<h4 id="2-通过命令查找，确定用户为“root”"><a href="#2-通过命令查找，确定用户为“root”" class="headerlink" title="2.通过命令查找，确定用户为“root”"></a>2.通过命令查找，确定用户为“root”</h4><pre class="language-bash" data-language="bash"><code class="language-bash"># 以下这两个命令都可以，随便输入一个
+user &#x3D; User.where(id: 1).first 
+user &#x3D; User.where(name: &quot;root&quot;).first</code></pre>
+
+<h4 id="3-将root用户密码重置为admin123"><a href="#3-将root用户密码重置为admin123" class="headerlink" title="3.将root用户密码重置为admin123"></a>3.将root用户密码重置为admin123</h4><pre class="language-bash" data-language="bash"><code class="language-bash"># 输入重置密码命令
+user.password&#x3D;&quot;admin123&quot;
+# 再次确认密码
+user.password_confirmation&#x3D;&quot;admin123&quot;</code></pre>
+
+<h4 id="4-保存重置信息，并结束"><a href="#4-保存重置信息，并结束" class="headerlink" title="4.保存重置信息，并结束"></a>4.保存重置信息，并结束</h4><pre class="language-bash" data-language="bash"><code class="language-bash"># 输入保存命令，以便使更改信息生效
+user.save
+# 退出修改窗口
+exit</code></pre>
+
+<p><img src="/../images/gitlab_20230914144304.png"></p>
+<p>如果看到上面截图中的true ，恭喜你已经成功了，执行 exit 或quit退出当前设置流程。</p>
+<p>返回到gitlab ,可以通过 root&#x2F;admin123 这一超级管理员账号登录了</p>
 
     </div>
     
@@ -271,19 +269,25 @@ var _hmt = _hmt || [];
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/c74dd02.html" class="pre-post btn btn-default" title='区分机械、固态和M2'>
+    <a href="/30edc0d5.html" class="pre-post btn btn-default" title='Devops从入门到实战'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            区分机械、固态和M2</span>
+            Devops从入门到实战</span>
     </a>
     
     
-    <a href="/c6b2fb66.html" class="next-post btn btn-default" title='docker搭建gitlab'>
+    <a href="/9a299a77.html" class="next-post btn btn-default" title='磁盘优化工具spacesniffer'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            docker搭建gitlab</span><i class="fa fa-angle-right fa-fw"></i>
+            磁盘优化工具spacesniffer</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
 </div>
 
                 </main>
@@ -294,7 +298,7 @@ var _hmt = _hmt || [];
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%B5%E8%84%91%E5%8D%A1%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">电脑卡的原因和优化方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A6%96%E5%85%88%E7%99%BB%E5%BD%95gitlab%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">1.首先登录gitlab服务器执行以下命令：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%EF%BC%8C%E7%A1%AE%E5%AE%9A%E7%94%A8%E6%88%B7%E4%B8%BA%E2%80%9Croot%E2%80%9D"><span class="toc-text">2.通过命令查找，确定用户为“root”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B0%86root%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E4%B8%BAadmin123"><span class="toc-text">3.将root用户密码重置为admin123</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E4%BF%9D%E5%AD%98%E9%87%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%B9%B6%E7%BB%93%E6%9D%9F"><span class="toc-text">4.保存重置信息，并结束</span></a></li></ol>
         
     </div>
 </aside>

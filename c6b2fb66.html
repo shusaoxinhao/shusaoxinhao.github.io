@@ -19,12 +19,25 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="Linux,系统优化,Window" />
+<meta name="keywords" content="GitLab,Docker" />
 
 
-<meta name="description" content="电脑卡的原因和优化方法电脑卡的原因可能有很多，比如系统过于老旧、软件冲突、病毒感染等等。以下是一些电脑优化的基本方法：
+<meta name="description" content="一、系统基础配置1、主机硬件配置
 
-清理垃圾文件：使用系统自带的磁盘清理工具或第三方清理软件，清理系统中的垃..." />
+
+系统版本
+系统配置
+IP
+
+
+
+CentOS7.9.2009
+2vCPU8G
+192.168.100.200
+
+
+2、系统基础配置配置软件源
+mv &#x2..." />
 
 
 <meta name="robots" content="all" />
@@ -35,7 +48,7 @@
 
 <title>
     
-    电脑优化的方法 |
+    docker搭建gitlab |
     
     老陕小张
 </title>
@@ -173,16 +186,16 @@ var _hmt = _hmt || [];
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="电脑优化的方法">
+        <h1 id="docker搭建gitlab">
             
-            电脑优化的方法
+            docker搭建gitlab
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/IT%E7%A7%91%E6%8A%80/">IT科技</a>
+        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
     </span>
     
     
@@ -190,7 +203,7 @@ var _hmt = _hmt || [];
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a> <a class="tag-none-link" href="/tags/Window/" rel="tag">Window</a> <a class="tag-none-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96/" rel="tag">系统优化</a>
+            <a class="tag-none-link" href="/tags/Docker/" rel="tag">Docker</a> <a class="tag-none-link" href="/tags/GitLab/" rel="tag">GitLab</a>
             
         </span>
     </span>
@@ -200,7 +213,7 @@ var _hmt = _hmt || [];
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2023/05/16</span>
+            2023/05/14</span>
     </span>
     
     
@@ -210,29 +223,80 @@ var _hmt = _hmt || [];
     </div>
     
     <div class="post-body post-content">
-        <h1 id="电脑卡的原因和优化方法"><a href="#电脑卡的原因和优化方法" class="headerlink" title="电脑卡的原因和优化方法"></a>电脑卡的原因和优化方法</h1><p>电脑卡的原因可能有很多，比如系统过于老旧、软件冲突、病毒感染等等。以下是一些电脑优化的基本方法：</p>
-<ol>
-<li><p>清理垃圾文件：使用系统自带的磁盘清理工具或第三方清理软件，清理系统中的垃圾文件，释放硬盘空间。</p>
-</li>
-<li><p>卸载不必要的软件：卸载不常用或不必要的软件，减少系统负担。</p>
-</li>
-<li><p>更新系统和驱动程序：更新系统和驱动程序可以修复一些已知的问题和漏洞，提高系统的稳定性和性能。</p>
-</li>
-<li><p>关闭不必要的启动项：在系统启动时，关闭不必要的启动项，减少系统启动时间和资源占用。</p>
-</li>
-<li><p>安装杀毒软件：安装杀毒软件可以保护系统免受病毒和恶意软件的攻击，提高系统的安全性和稳定性。</p>
-</li>
-<li><p>清理注册表：使用注册表清理工具清理系统中的无效注册表项，提高系统的稳定性和性能。</p>
-</li>
-<li><p>增加内存：如果电脑配置较低，可以考虑增加内存，提高系统的运行速度和稳定性。</p>
-</li>
-<li><p>优化硬盘：使用硬盘优化工具对硬盘进行优化，提高硬盘读写速度和稳定性。</p>
-</li>
-<li><p>关闭特效：关闭系统特效可以减少系统资源占用，提高系统的运行速度和稳定性。</p>
-</li>
-<li><p>定期清理系统：定期清理系统中的临时文件、缓存文件等，保持系统的清洁和稳定。</p>
-</li>
-</ol>
+        <h2 id="一、系统基础配置"><a href="#一、系统基础配置" class="headerlink" title="一、系统基础配置"></a>一、系统基础配置</h2><h3 id="1、主机硬件配置"><a href="#1、主机硬件配置" class="headerlink" title="1、主机硬件配置"></a>1、主机硬件配置</h3><table>
+<thead>
+<tr>
+<th align="center">系统版本</th>
+<th>系统配置</th>
+<th align="center">IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CentOS7.9.2009</td>
+<td>2vCPU8G</td>
+<td align="center">192.168.100.200</td>
+</tr>
+</tbody></table>
+<h3 id="2、系统基础配置"><a href="#2、系统基础配置" class="headerlink" title="2、系统基础配置"></a>2、系统基础配置</h3><p><strong>配置软件源</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">mv &#x2F;etc&#x2F;yum.repos.d&#x2F;* &#x2F;tmp&#x2F;  #备份系统软件园
+curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo  #配置阿里云软件源
+yum clean all #清除环境
+yum repolist #刷新软件源</code></pre>
+
+<p><strong>关闭seLinux</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">sed -i &quot;s&#x2F;&#x3D;enforcing&#x2F;&#x3D;disabled&#x2F;g&quot; &#x2F;etc&#x2F;selinux&#x2F;config  #修改selinx配置</code></pre>
+
+<p><strong>关闭防火墙</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">systemctl  stop firewalld  #关闭防火墙
+systemctl  disable firewalld #开机关闭，防火墙不自启</code></pre>
+
+<p><strong>清除环境</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">reboot #关键重新启动</code></pre>
+
+<h2 id="二、搭建教程"><a href="#二、搭建教程" class="headerlink" title="二、搭建教程"></a>二、搭建教程</h2><h3 id="1、安装docker环境"><a href="#1、安装docker环境" class="headerlink" title="1、安装docker环境"></a>1、安装docker环境</h3><pre class="language-bash" data-language="bash"><code class="language-bash">yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2   #安装依赖
+yum-config-manager \
+    --add-repo \
+    https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;docker-ce&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo #添加镜像源
+yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin #安装软件
+# 更换阿里云镜像仓库
+ mkdir &#x2F;etc&#x2F;docker&#x2F;
+vim  &#x2F;etc&#x2F;docker&#x2F;daemon.json
+&#123;&quot;registry-mirrors&quot;:[&quot;https:&#x2F;&#x2F;reg-mirror.qiniu.com&#x2F;&quot;]&#125;
+#重新启动docker服务
+ systemctl daemon-reload
+ systemctl restart docker
+ systemctl enable docker</code></pre>
+
+<h3 id="2、安装gitlab-ce"><a href="#2、安装gitlab-ce" class="headerlink" title="2、安装gitlab-ce"></a>2、安装gitlab-ce</h3><h4 id="2-1-容器启动命令"><a href="#2-1-容器启动命令" class="headerlink" title="2.1 容器启动命令"></a>2.1 容器启动命令</h4><pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd \
+  --hostname 192.168.100.200 \
+   --publish 8380:8380 --publish 8322:8322 \
+   -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime \
+  --name gitlab-ce \
+  --restart always \
+  --volume &#x2F;srv&#x2F;gitlab&#x2F;config:&#x2F;etc&#x2F;gitlab \
+  --volume &#x2F;srv&#x2F;gitlab&#x2F;logs:&#x2F;var&#x2F;log&#x2F;gitlab \
+  --volume &#x2F;srv&#x2F;gitlab&#x2F;data:&#x2F;var&#x2F;opt&#x2F;gitlab \
+  gitlab&#x2F;gitlab-ce:latest
+docker logs -f gitlab-ce #查看服务日志</code></pre>
+
+<h4 id="2-2-修改配置文件"><a href="#2-2-修改配置文件" class="headerlink" title="2.2 修改配置文件"></a>2.2 修改配置文件</h4><pre class="language-bash" data-language="bash"><code class="language-bash">docker exec -it gitlab-ce &#x2F;bin&#x2F;bash
+vi  &#x2F;etc&#x2F;gitlab&#x2F;gitlab.rb
+gitlab_rails[&#39;gitlab_shell_ssh_port&#39;] &#x3D; 8322
+external_url &#39;http:&#x2F;&#x2F;192.168.100.200:8380&#39;
+vi &#x2F;assets&#x2F;sshd_config
+Port 8322</code></pre>
+
+<h4 id="2-3-重新启动Gitlab服务"><a href="#2-3-重新启动Gitlab服务" class="headerlink" title="2.3 重新启动Gitlab服务"></a>2.3 重新启动Gitlab服务</h4><pre class="language-bash" data-language="bash"><code class="language-bash">docker restart gitlab-ce #重新启动容器
+docker logs -f gitlab-ce #查看服务日志</code></pre>
+
+<h4 id="2-4-登录gitlab服务"><a href="#2-4-登录gitlab服务" class="headerlink" title="2.4 登录gitlab服务"></a>2.4 登录gitlab服务</h4><pre class="language-bash" data-language="bash"><code class="language-bash">http:&#x2F;&#x2F;192.168.100.200:8380  #浏览器访问地址
+# gitlab默认账号是root密码在cat &#x2F;srv&#x2F;gitlab&#x2F;config&#x2F;initial_root_password</code></pre>
+
+<p><img src="/../images/gitlab_20230914150012.png"></p>
+<h4 id="2-5-常见问题，账号认证问题"><a href="#2-5-常见问题，账号认证问题" class="headerlink" title="2.5 常见问题，账号认证问题"></a>2.5 常见问题，账号认证问题</h4><p><img src="/../images/gitlab_20230914150045.png"></p>
+<p>可以参考gitlab重置密码教学：<a href="https://skillixx.com/">https://skillixx.com</a> 解决问题</p>
 
     </div>
     
@@ -271,19 +335,25 @@ var _hmt = _hmt || [];
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/c74dd02.html" class="pre-post btn btn-default" title='区分机械、固态和M2'>
+    <a href="/85378675.html" class="pre-post btn btn-default" title='电脑优化的方法'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            区分机械、固态和M2</span>
+            电脑优化的方法</span>
     </a>
     
     
-    <a href="/c6b2fb66.html" class="next-post btn btn-default" title='docker搭建gitlab'>
+    <a href="/74b57a6d.html" class="next-post btn btn-default" title='Python基础环境安装教程'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            docker搭建gitlab</span><i class="fa fa-angle-right fa-fw"></i>
+            Python基础环境安装教程</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
 </div>
 
                 </main>
@@ -294,7 +364,7 @@ var _hmt = _hmt || [];
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%B5%E8%84%91%E5%8D%A1%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">电脑卡的原因和优化方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">一、系统基础配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%BB%E6%9C%BA%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">1、主机硬件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">2、系统基础配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B"><span class="toc-text">二、搭建教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85docker%E7%8E%AF%E5%A2%83"><span class="toc-text">1、安装docker环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85gitlab-ce"><span class="toc-text">2、安装gitlab-ce</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">2.1 容器启动命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">2.2 修改配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8Gitlab%E6%9C%8D%E5%8A%A1"><span class="toc-text">2.3 重新启动Gitlab服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E7%99%BB%E5%BD%95gitlab%E6%9C%8D%E5%8A%A1"><span class="toc-text">2.4 登录gitlab服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%8C%E8%B4%A6%E5%8F%B7%E8%AE%A4%E8%AF%81%E9%97%AE%E9%A2%98"><span class="toc-text">2.5 常见问题，账号认证问题</span></a></li></ol></li></ol></li></ol>
         
     </div>
 </aside>
