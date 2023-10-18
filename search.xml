@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>python打包离线依赖whl</title>
+      <link href="/5e157802.html"/>
+      <url>/5e157802.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、生成离线依赖whl"><a href="#一、生成离线依赖whl" class="headerlink" title="一、生成离线依赖whl"></a>一、生成离线依赖whl</h2><h3 id="1-有网的服务器"><a href="#1-有网的服务器" class="headerlink" title="1.有网的服务器"></a>1.有网的服务器</h3><p>1). 生成requirement.txt文件</p><pre class="language-bash" data-language="bash"><code class="language-bash"># 在项目根目录下, 会把当前环境下面的pip安装包名，都放到文件中# 方法一pip freeze &gt;&#x2F;tmp&#x2F;wheel_pip&#x2F;requirements.txt# 方法二pipreqs . --encoding&#x3D;utf8 --force# 方法三 conda虚拟环境导出conda list --export &gt; requirements.txt</code></pre><p>2).打包pip和wheel的whl文件</p><pre class="language-bash" data-language="bash"><code class="language-bash">pip wheel --wheel-dir&#x3D;&#x2F;tmp&#x2F;wheel_pip pip pip wheel --wheel-dir&#x3D;&#x2F;tmp&#x2F;wheel_pip wheel</code></pre><p>3). 打包所有依赖包的whl文件</p><pre class="language-bash" data-language="bash"><code class="language-bash">pip wheel --wheel-dir&#x3D;&#x2F;tmp&#x2F;wheel_pip -r requirements.txt </code></pre><p>4). 添加到压缩包</p><pre class="language-bash" data-language="bash"><code class="language-bash">tar zcvf  wheel_pip.tar.gz &#x2F;tmp&#x2F;wheel_pip </code></pre><h2 id="二、安装离线依赖whl"><a href="#二、安装离线依赖whl" class="headerlink" title="二、安装离线依赖whl"></a>二、安装离线依赖whl</h2><p>1). 解压压缩包</p><p>把<code>wheel_pip.tar</code>复制到离线的服务器，解压</p><pre class="language-bash" data-language="bash"><code class="language-bash">cd &#x2F;tmp&#x2F; &amp; tar xvf wheel_pip.tar.gz .&#x2F;</code></pre><p>2). 安装wheel</p><pre class="language-bash" data-language="bash"><code class="language-bash">pip install --no-index --find-links&#x3D;&#x2F;tmp&#x2F;wheel_pip wheel</code></pre><p>3). 安装其他包</p><pre class="language-bash" data-language="bash"><code class="language-bash">pip install --no-index --find-links&#x3D;&#x2F;tmp&#x2F;wheel_pip -r requirements.txt pip install --no-index --find-links&#x3D;&#x2F;data1&#x2F;upload&#x2F;wheel_pip -r &#x2F;data1&#x2F;upload&#x2F;wheel_pip&#x2F;requirements.txt </code></pre><h2 id="三、安装单个包"><a href="#三、安装单个包" class="headerlink" title="三、安装单个包"></a>三、安装单个包</h2><p>1).有网的服务器打包</p><pre class="language-bash" data-language="bash"><code class="language-bash">pip wheel --wheel-dir&#x3D;&#x2F;data1&#x2F;anchor&#x2F;lujianxing&#x2F;  celery #指定包的版本pip wheel --wheel-dir&#x3D;&#x2F;data1&#x2F;anchor&#x2F;lujianxing&#x2F;  celery&#x3D;&#x3D;3.1.18 </code></pre><pre class="language-bash" data-language="bash"><code class="language-bash">x ll &#x2F;data1&#x2F;anchor&#x2F;lujianxing&#x2F;celery-3.1.18-py2.py3-none-any.whl </code></pre><p>2).同步文件到正式环境</p><p>3). 无网的服务器安装</p><pre class="language-bash" data-language="bash"><code class="language-bash">cd &#x2F;data1&#x2F;upload&#x2F;pip install celery-3.1.18-py2.py3-none-any.whl</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>打包离线的 Conda 依赖</title>
+      <link href="/4f70e10.html"/>
+      <url>/4f70e10.html</url>
+      
+        <content type="html"><![CDATA[<p>要打包离线的 Conda 依赖，您可以使用 <code>conda-pack</code> 工具，这个工具可以帮助您将 Conda 环境及其所有依赖打包为一个可离线使用的 tar 归档文件。以下是如何使用 <code>conda-pack</code> 进行操作的步骤：</p><h2 id="一、方法一"><a href="#一、方法一" class="headerlink" title="一、方法一"></a>一、方法一</h2><ol><li><p>首先，确保您已经安装了 <code>conda-pack</code> 工具。您可以使用以下命令进行安装：</p><pre class="language-bash" data-language="bash"><code class="language-bash">copy codeconda install conda-pack</code></pre></li><li><p>创建一个 Conda 环境并安装您需要的软件包和依赖项。例如，创建一个名为 <code>myenv</code> 的 Conda 环境并安装您的依赖项：</p><pre class="language-bash" data-language="bash"><code class="language-bash">copy codeconda create -n myenv python&#x3D;3.8conda activate myenvconda install package1 package2 ...</code></pre></li><li><p>激活您的 Conda 环境：</p><pre class="language-bash" data-language="bash"><code class="language-bash">copy codeconda activate myenv</code></pre></li><li><p>使用 <code>conda-pack</code> 打包 Conda 环境。在激活环境的情况下，运行以下命令：</p><pre class="language-bash" data-language="bash"><code class="language-bash">copy codeconda-pack -n myenv -o myenv.tar.gz</code></pre><p>这将创建名为 <code>myenv.tar.gz</code> 的 tar 归档文件，其中包含了您的 Conda 环境和其所有依赖项。</p></li><li><p>将 <code>myenv.tar.gz</code> 文件传输到您希望离线使用 Conda 环境的目标计算机。</p></li><li><p>在目标计算机上，解压缩 <code>myenv.tar.gz</code> 文件：</p><pre class="language-bash" data-language="bash"><code class="language-bash">copy codetar -xzf myenv.tar.gz</code></pre></li><li><p>激活解压后的 Conda 环境：</p><pre class="language-bash" data-language="bash"><code class="language-bash">copy codeconda activate &#x2F;path&#x2F;to&#x2F;unpacked&#x2F;environment</code></pre></li></ol><p>现在，您的 Conda 环境已在目标计算机上离线安装，包括所有依赖项。您可以在目标计算机上运行 Conda 环境中的软件包，而无需连接到互联网以下载依赖项。</p><p>请注意，<code>conda-pack</code> 可以在 Windows、Linux 和 macOS 上使用，使离线部署 Conda 环境变得更容易。</p><h2 id="二、方法二"><a href="#二、方法二" class="headerlink" title="二、方法二"></a>二、方法二</h2><p>最简单的方法将环境直接复制给离线服务器：</p><pre class="language-bash" data-language="bash"><code class="language-bash">cd anaconda&#x2F;envscp skillixx root@ip:&#x2F;root&#x2F;anaconda&#x2F;env</code></pre><p>检查虚拟环境</p><pre class="language-bash" data-language="bash"><code class="language-bash">conda env list</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker中安装redis_exporter和mysql-exporter</title>
       <link href="/224a31c4.html"/>
       <url>/224a31c4.html</url>
@@ -463,9 +513,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> window </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 网络 </tag>
             
@@ -714,9 +764,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ansible </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       

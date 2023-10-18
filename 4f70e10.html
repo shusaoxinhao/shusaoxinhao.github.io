@@ -19,12 +19,10 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="Linux,prom" />
+<meta name="keywords" content="Python" />
 
 
-<meta name="description" content="一、安装redis-exporter在Docker Hub中选择oliver006版本的redis-exporter镜像：
-
-使用下述命令下载稍微靠后一个版本的redis-exporter镜像：..." />
+<meta name="description" content="要打包离线的 Conda 依赖，您可以使用 conda-pack 工具，这个工具可以帮助您将 Conda 环境及其所有依赖打包为一个可离线使用的 tar 归档文件。以下是如何使用 conda-p..." />
 
 
 <meta name="robots" content="all" />
@@ -35,7 +33,7 @@
 
 <title>
     
-    Docker中安装redis_exporter和mysql-exporter |
+    打包离线的 Conda 依赖 |
     
     老陕小张
 </title>
@@ -173,16 +171,16 @@ var _hmt = _hmt || [];
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Docker中安装redis_exporter和mysql-exporter">
+        <h1 id="打包离线的 Conda 依赖">
             
-            Docker中安装redis_exporter和mysql-exporter
+            打包离线的 Conda 依赖
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+        <a class="category-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/">编程教程</a>
     </span>
     
     
@@ -190,7 +188,7 @@ var _hmt = _hmt || [];
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a> <a class="tag-none-link" href="/tags/prom/" rel="tag">prom</a>
+            <a class="tag-none-link" href="/tags/Python/" rel="tag">Python</a>
             
         </span>
     </span>
@@ -200,7 +198,7 @@ var _hmt = _hmt || [];
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2023/09/11</span>
+            2023/10/16</span>
     </span>
     
     
@@ -210,31 +208,46 @@ var _hmt = _hmt || [];
     </div>
     
     <div class="post-body post-content">
-        <h3 id="一、安装redis-exporter"><a href="#一、安装redis-exporter" class="headerlink" title="一、安装redis-exporter"></a><strong>一、安装redis-exporter</strong></h3><p>在Docker Hub中选择oliver006版本的redis-exporter镜像：</p>
-<p><img src="/../images/prom_20230911135304.png"></p>
-<p>使用下述命令下载稍微靠后一个版本的redis-exporter镜像：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker pull oliver006&#x2F;redis_exporter:v1.45.0</code></pre>
+        <p>要打包离线的 Conda 依赖，您可以使用 <code>conda-pack</code> 工具，这个工具可以帮助您将 Conda 环境及其所有依赖打包为一个可离线使用的 tar 归档文件。以下是如何使用 <code>conda-pack</code> 进行操作的步骤：</p>
+<h2 id="一、方法一"><a href="#一、方法一" class="headerlink" title="一、方法一"></a>一、方法一</h2><ol>
+<li><p>首先，确保您已经安装了 <code>conda-pack</code> 工具。您可以使用以下命令进行安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">copy code
+conda install conda-pack</code></pre>
+</li>
+<li><p>创建一个 Conda 环境并安装您需要的软件包和依赖项。例如，创建一个名为 <code>myenv</code> 的 Conda 环境并安装您的依赖项：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">copy codeconda create -n myenv python&#x3D;3.8
+conda activate myenv
+conda install package1 package2 ...</code></pre>
+</li>
+<li><p>激活您的 Conda 环境：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">copy code
+conda activate myenv</code></pre>
+</li>
+<li><p>使用 <code>conda-pack</code> 打包 Conda 环境。在激活环境的情况下，运行以下命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">copy code
+conda-pack -n myenv -o myenv.tar.gz</code></pre>
 
-<p>使用下述命令启动redis_exporter服务监控的本地服务： </p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd --name redis_exporter \
---restart&#x3D;always \
--v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro
--p 9121:9121 oliver006&#x2F;redis_exporter:v1.45.0 \
---redis.addr redis:&#x2F;&#x2F;192.168.1.108:6379 \
---redis.password &quot;&quot;</code></pre>
+<p>这将创建名为 <code>myenv.tar.gz</code> 的 tar 归档文件，其中包含了您的 Conda 环境和其所有依赖项。</p>
+</li>
+<li><p>将 <code>myenv.tar.gz</code> 文件传输到您希望离线使用 Conda 环境的目标计算机。</p>
+</li>
+<li><p>在目标计算机上，解压缩 <code>myenv.tar.gz</code> 文件：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">copy code
+tar -xzf myenv.tar.gz</code></pre>
+</li>
+<li><p>激活解压后的 Conda 环境：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">copy code
+conda activate &#x2F;path&#x2F;to&#x2F;unpacked&#x2F;environment</code></pre></li>
+</ol>
+<p>现在，您的 Conda 环境已在目标计算机上离线安装，包括所有依赖项。您可以在目标计算机上运行 Conda 环境中的软件包，而无需连接到互联网以下载依赖项。</p>
+<p>请注意，<code>conda-pack</code> 可以在 Windows、Linux 和 macOS 上使用，使离线部署 Conda 环境变得更容易。</p>
+<h2 id="二、方法二"><a href="#二、方法二" class="headerlink" title="二、方法二"></a>二、方法二</h2><p>最简单的方法将环境直接复制给离线服务器：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">cd anaconda&#x2F;env
+scp skillixx root@ip:&#x2F;root&#x2F;anaconda&#x2F;env</code></pre>
 
-<p>通过访问<a target="_blank" rel="noopener" href="http://192.168.1.100/metrics%E6%A3%80%E6%9F%A5%E7%9B%91%E6%8E%A7%E7%8A%B6%E6%80%81">http://192.168.1.100/metrics检查监控状态</a></p>
-<h2 id="二、安装mysql-exporter"><a href="#二、安装mysql-exporter" class="headerlink" title="二、安装mysql-exporter"></a><strong>二、安装mysql-exporter</strong></h2><p>下载mysqld-exporter镜像：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker pull prom&#x2F;mysqld-exporter</code></pre>
+<p>检查虚拟环境</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">conda env list</code></pre>
 
-<p>根据自己配置的数据库用户名和密码进行启动</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd --name mysqld_exporter \
--p 9104:9104 \
---restart&#x3D;always \
--v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro \
--e DATA_SOURCE_NAME&#x3D;&quot;root:Newmysql55..(127.0.0.1:3306)&#x2F;&quot; prom&#x2F;mysqld-exporter</code></pre>
-
-<p>登录prometheus进行查看：<a target="_blank" rel="noopener" href="http://192.168.75.100:9090/">http://192.168.75.100:9090/</a></p>
 
     </div>
     
@@ -273,17 +286,17 @@ var _hmt = _hmt || [];
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/4f70e10.html" class="pre-post btn btn-default" title='打包离线的 Conda 依赖'>
+    <a href="/5e157802.html" class="pre-post btn btn-default" title='python打包离线依赖whl'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            打包离线的 Conda 依赖</span>
+            python打包离线依赖whl</span>
     </a>
     
     
-    <a href="/4f4be595.html" class="next-post btn btn-default" title='Prometheus基于文件的服务发现'>
+    <a href="/224a31c4.html" class="next-post btn btn-default" title='Docker中安装redis_exporter和mysql-exporter'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            Prometheus基于文件的服务发现</span><i class="fa fa-angle-right fa-fw"></i>
+            Docker中安装redis_exporter和mysql-exporter</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -296,7 +309,7 @@ var _hmt = _hmt || [];
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85redis-exporter"><span class="toc-text">一、安装redis-exporter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85mysql-exporter"><span class="toc-text">二、安装mysql-exporter</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">一、方法一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">二、方法二</span></a></li></ol>
         
     </div>
 </aside>

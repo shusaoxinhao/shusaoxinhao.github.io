@@ -19,12 +19,13 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="Linux,prom" />
+<meta name="keywords" content="Python" />
 
 
-<meta name="description" content="一、安装redis-exporter在Docker Hub中选择oliver006版本的redis-exporter镜像：
-
-使用下述命令下载稍微靠后一个版本的redis-exporter镜像：..." />
+<meta name="description" content="一、生成离线依赖whl1.有网的服务器1). 生成requirement.txt文件
+# 在项目根目录下, 会把当前环境下面的pip安装包名，都放到文件中
+# 方法一
+pip freeze &g..." />
 
 
 <meta name="robots" content="all" />
@@ -35,7 +36,7 @@
 
 <title>
     
-    Docker中安装redis_exporter和mysql-exporter |
+    python打包离线依赖whl |
     
     老陕小张
 </title>
@@ -173,16 +174,16 @@ var _hmt = _hmt || [];
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Docker中安装redis_exporter和mysql-exporter">
+        <h1 id="python打包离线依赖whl">
             
-            Docker中安装redis_exporter和mysql-exporter
+            python打包离线依赖whl
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+        <a class="category-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/">编程教程</a>
     </span>
     
     
@@ -190,7 +191,7 @@ var _hmt = _hmt || [];
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a> <a class="tag-none-link" href="/tags/prom/" rel="tag">prom</a>
+            <a class="tag-none-link" href="/tags/Python/" rel="tag">Python</a>
             
         </span>
     </span>
@@ -200,7 +201,7 @@ var _hmt = _hmt || [];
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2023/09/11</span>
+            2023/10/18</span>
     </span>
     
     
@@ -210,32 +211,47 @@ var _hmt = _hmt || [];
     </div>
     
     <div class="post-body post-content">
-        <h3 id="一、安装redis-exporter"><a href="#一、安装redis-exporter" class="headerlink" title="一、安装redis-exporter"></a><strong>一、安装redis-exporter</strong></h3><p>在Docker Hub中选择oliver006版本的redis-exporter镜像：</p>
-<p><img src="/../images/prom_20230911135304.png"></p>
-<p>使用下述命令下载稍微靠后一个版本的redis-exporter镜像：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker pull oliver006&#x2F;redis_exporter:v1.45.0</code></pre>
+        <h2 id="一、生成离线依赖whl"><a href="#一、生成离线依赖whl" class="headerlink" title="一、生成离线依赖whl"></a>一、生成离线依赖whl</h2><h3 id="1-有网的服务器"><a href="#1-有网的服务器" class="headerlink" title="1.有网的服务器"></a>1.有网的服务器</h3><p>1). 生成requirement.txt文件</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"># 在项目根目录下, 会把当前环境下面的pip安装包名，都放到文件中
+# 方法一
+pip freeze &gt;&#x2F;tmp&#x2F;wheel_pip&#x2F;requirements.txt
+# 方法二
+pipreqs . --encoding&#x3D;utf8 --force
+# 方法三 conda虚拟环境导出
+conda list --export &gt; requirements.txt</code></pre>
 
-<p>使用下述命令启动redis_exporter服务监控的本地服务： </p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd --name redis_exporter \
---restart&#x3D;always \
--v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro
--p 9121:9121 oliver006&#x2F;redis_exporter:v1.45.0 \
---redis.addr redis:&#x2F;&#x2F;192.168.1.108:6379 \
---redis.password &quot;&quot;</code></pre>
+<p>2).打包pip和wheel的whl文件</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pip wheel --wheel-dir&#x3D;&#x2F;tmp&#x2F;wheel_pip pip 
+pip wheel --wheel-dir&#x3D;&#x2F;tmp&#x2F;wheel_pip wheel</code></pre>
 
-<p>通过访问<a target="_blank" rel="noopener" href="http://192.168.1.100/metrics%E6%A3%80%E6%9F%A5%E7%9B%91%E6%8E%A7%E7%8A%B6%E6%80%81">http://192.168.1.100/metrics检查监控状态</a></p>
-<h2 id="二、安装mysql-exporter"><a href="#二、安装mysql-exporter" class="headerlink" title="二、安装mysql-exporter"></a><strong>二、安装mysql-exporter</strong></h2><p>下载mysqld-exporter镜像：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker pull prom&#x2F;mysqld-exporter</code></pre>
+<p>3). 打包所有依赖包的whl文件</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pip wheel --wheel-dir&#x3D;&#x2F;tmp&#x2F;wheel_pip -r requirements.txt </code></pre>
 
-<p>根据自己配置的数据库用户名和密码进行启动</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd --name mysqld_exporter \
--p 9104:9104 \
---restart&#x3D;always \
--v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro \
--e DATA_SOURCE_NAME&#x3D;&quot;root:Newmysql55..(127.0.0.1:3306)&#x2F;&quot; prom&#x2F;mysqld-exporter</code></pre>
+<p>4). 添加到压缩包</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">tar zcvf  wheel_pip.tar.gz &#x2F;tmp&#x2F;wheel_pip </code></pre>
 
-<p>登录prometheus进行查看：<a target="_blank" rel="noopener" href="http://192.168.75.100:9090/">http://192.168.75.100:9090/</a></p>
+<h2 id="二、安装离线依赖whl"><a href="#二、安装离线依赖whl" class="headerlink" title="二、安装离线依赖whl"></a>二、安装离线依赖whl</h2><p>1). 解压压缩包</p>
+<p>把<code>wheel_pip.tar</code>复制到离线的服务器，解压</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">cd &#x2F;tmp&#x2F; &amp; tar xvf wheel_pip.tar.gz .&#x2F;</code></pre>
 
+<p>2). 安装wheel</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pip install --no-index --find-links&#x3D;&#x2F;tmp&#x2F;wheel_pip wheel</code></pre>
+
+<p>3). 安装其他包</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pip install --no-index --find-links&#x3D;&#x2F;tmp&#x2F;wheel_pip -r requirements.txt 
+pip install --no-index --find-links&#x3D;&#x2F;data1&#x2F;upload&#x2F;wheel_pip -r &#x2F;data1&#x2F;upload&#x2F;wheel_pip&#x2F;requirements.txt </code></pre>
+
+<h2 id="三、安装单个包"><a href="#三、安装单个包" class="headerlink" title="三、安装单个包"></a>三、安装单个包</h2><p>1).有网的服务器打包</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pip wheel --wheel-dir&#x3D;&#x2F;data1&#x2F;anchor&#x2F;lujianxing&#x2F;  celery 
+#指定包的版本
+pip wheel --wheel-dir&#x3D;&#x2F;data1&#x2F;anchor&#x2F;lujianxing&#x2F;  celery&#x3D;&#x3D;3.1.18 </code></pre>
+
+<pre class="language-bash" data-language="bash"><code class="language-bash">x ll &#x2F;data1&#x2F;anchor&#x2F;lujianxing&#x2F;celery-3.1.18-py2.py3-none-any.whl </code></pre>
+
+<p>2).同步文件到正式环境</p>
+<p>3). 无网的服务器安装</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">cd &#x2F;data1&#x2F;upload&#x2F;
+pip install celery-3.1.18-py2.py3-none-any.whl</code></pre>
     </div>
     
     <div class="reward" ontouchstart>
@@ -273,17 +289,11 @@ var _hmt = _hmt || [];
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/4f70e10.html" class="pre-post btn btn-default" title='打包离线的 Conda 依赖'>
-        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-        <span class="hidden-xs">
-            打包离线的 Conda 依赖</span>
-    </a>
     
-    
-    <a href="/4f4be595.html" class="next-post btn btn-default" title='Prometheus基于文件的服务发现'>
+    <a href="/4f70e10.html" class="next-post btn btn-default" title='打包离线的 Conda 依赖'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            Prometheus基于文件的服务发现</span><i class="fa fa-angle-right fa-fw"></i>
+            打包离线的 Conda 依赖</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -296,7 +306,7 @@ var _hmt = _hmt || [];
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85redis-exporter"><span class="toc-text">一、安装redis-exporter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85mysql-exporter"><span class="toc-text">二、安装mysql-exporter</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%94%9F%E6%88%90%E7%A6%BB%E7%BA%BF%E4%BE%9D%E8%B5%96whl"><span class="toc-text">一、生成离线依赖whl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9C%89%E7%BD%91%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.有网的服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E7%A6%BB%E7%BA%BF%E4%BE%9D%E8%B5%96whl"><span class="toc-text">二、安装离线依赖whl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85%E5%8D%95%E4%B8%AA%E5%8C%85"><span class="toc-text">三、安装单个包</span></a></li></ol>
         
     </div>
 </aside>
