@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>jenkins上传文件</title>
+      <link href="/711633be.html"/>
+      <url>/711633be.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、安装jenkins"><a href="#一、安装jenkins" class="headerlink" title="一、安装jenkins"></a>一、安装jenkins</h2><p><strong>条件：</strong></p><p>安装docker服务平台的服务器</p><p>参考：<a href="https://www.runoob.com/docker/centos-docker-install.html%EF%BC%88%E6%A0%B9%E6%8D%AE%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B3%E5%8F%B0%E9%80%89%E6%8B%A9%EF%BC%89">https://www.runoob.com/docker/centos-docker-install.html（根据自己的服务器平台选择）</a></p><p><strong>安装命令：</strong></p><pre class="language-bash" data-language="bash"><code class="language-bash">docker pull jenkins&#x2F;jenkins:2.426-jdk21  #获取jenkins镜像docker run -itd --name jenkins --restart&#x3D;always -p 8080:8080 -p 50000:50000 -v &#x2F;var&#x2F;jenkins:&#x2F;var&#x2F;jenkins_home -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime  jenkins&#x2F;jenkins:2.426-jdk21  #启动容器chmod  -R 777  &#x2F;var&#x2F;jenkins&#x2F;    #对jenkins目录进行授权docker restart jenkins  #重新启动jenkins容器docker ps -a  #查看jenkins服务状态</code></pre><p><strong>初始化jenkins：</strong></p><p>通过浏览器访问：http:&#x2F;&#x2F;服务器ip:8080</p><pre class="language-bash" data-language="bash"><code class="language-bash">[root@master ~]# cat &#x2F;var&#x2F;jenkins&#x2F;secrets&#x2F;initialAdminPassword7c03d06799a64580b559fdce38299e6c</code></pre><p><img src="/../images/js20231010105512.png"></p><p><img src="/../images/js20231010110107.png"></p><p><img src="/../images/js20231010110156.png"></p><p><img src="/../images/js20231010110737.png"></p><p><img src="/../images/js20231010110912.png"></p><p><img src="/../images/js20231010111026.png"></p><p><img src="/../images/js20231010111253.png"></p><h2 id="二、实现文件上传到workspace"><a href="#二、实现文件上传到workspace" class="headerlink" title="二、实现文件上传到workspace"></a>二、实现文件上传到workspace</h2><h3 id="1-新建任务"><a href="#1-新建任务" class="headerlink" title="1.新建任务"></a>1.新建任务</h3><p><img src="/../images/js20231010111519.png"></p><p><img src="/../images/js20231010111731.png"></p><p><img src="/../images/js20231010112522.png"></p><h3 id="2-验证文件上传workspace"><a href="#2-验证文件上传workspace" class="headerlink" title="2.验证文件上传workspace"></a>2.验证文件上传workspace</h3><p><img src="/../images/js20231010113203.png"></p><p><img src="/../images/js20231010113320.png"></p><p><img src="/../images/js20231010113529.png"></p><p><img src="/../images/js20231010113655.png"></p><p><img src="/../images/js20231010113903.png"></p><p><img src="/../images/js20231010114054.png"></p><p><img src="/../images/js20231010114251.png"></p><p><img src="/../images/js20231010114448.png"></p><h2 id="三、实现文件同步到服务器"><a href="#三、实现文件同步到服务器" class="headerlink" title="三、实现文件同步到服务器"></a>三、实现文件同步到服务器</h2><h3 id="1-安装需求插件"><a href="#1-安装需求插件" class="headerlink" title="1.安装需求插件"></a>1.安装需求插件</h3><p><img src="/../images/js20231010114853.png"></p><p><em><strong>需要刷新网页</strong></em></p><p><img src="/../images/js20231010115339.png"></p><h3 id="2-配置同步文件"><a href="#2-配置同步文件" class="headerlink" title="2.配置同步文件"></a>2.配置同步文件</h3><p><strong>2.1 配置同步文件的服务器</strong></p><p><img src="/../images/js20231010120107.png"></p><p><img src="/../images/js20231010133744.png"></p><p><img src="/../images/js20231010134242.png"></p><p><img src="/../images/js20231010135003.png"></p><p><img src="/../images/js20231010140209.png"></p><p><img src="/../images/js20231010140447.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常用工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Docker </tag>
+            
+            <tag> 云计算 </tag>
+            
+            <tag> Devops </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>搭建efk(Elasticsearch+Fleet+Kibana)</title>
       <link href="/52538a60.html"/>
       <url>/52538a60.html</url>
@@ -810,9 +841,9 @@
       
         <tags>
             
-            <tag> Ansible </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ansible </tag>
             
         </tags>
       
