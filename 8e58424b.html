@@ -321,8 +321,8 @@ docker logs -f es01 #查看用户账号，需要保存</code></pre>
 <p><img src="/../images/ELKimg/sk.png"></p>
 <pre class="language-bash" data-language="bash"><code class="language-bash">docker cp es01:&#x2F;usr&#x2F;share&#x2F;elasticsearch   &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;  #复制挂载资源
 chmod -R 777  &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;elasticsearch                   #资源授权
-chmod rm -f es01  #删除容器
- docker run -itd --restart&#x3D;always --name es01 -p 9200:9200 -p 9300:9300 --privileged&#x3D;true --net host    -v &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;elasticsearch:&#x2F;usr&#x2F;share&#x2F;elasticsearch -e &quot;discovery.type&#x3D;single-node&quot;  -e &quot;ES_JAVA_OPTS&#x3D;-Xms512m -Xmx512m&quot; docker.elastic.co&#x2F;elasticsearch&#x2F;elasticsearch:8.9.1</code></pre>
+docker rm -f es01  #删除容器
+docker run -itd --restart&#x3D;always --name es01 -p 9200:9200 -p 9300:9300 --privileged&#x3D;true --net host    -v &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;elasticsearch:&#x2F;usr&#x2F;share&#x2F;elasticsearch -e &quot;discovery.type&#x3D;single-node&quot;  -e &quot;ES_JAVA_OPTS&#x3D;-Xms512m -Xmx512m&quot; docker.elastic.co&#x2F;elasticsearch&#x2F;elasticsearch:8.9.1</code></pre>
 
 <p><strong>检查elasticsearch状态</strong></p>
 <pre class="language-bash" data-language="bash"><code class="language-bash">curl --cacert &#x2F;usr&#x2F;local&#x2F;data-docker&#x2F;elasticsearch&#x2F;config&#x2F;certs&#x2F;http_ca.crt -u elastic:x4lJ73ZLdDr+qPJUvbZV https:&#x2F;&#x2F;192.168.75.100:9200  #检查命令
