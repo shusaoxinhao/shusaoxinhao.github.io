@@ -19,12 +19,10 @@
     <link rel="dns-prefetch" href="https://skillixx.com">
     <!--SEO-->
 
-<meta name="keywords" content="Linux,prom" />
+<meta name="keywords" content="ChatGLM" />
 
 
-<meta name="description" content="一、安装redis-exporter在Docker Hub中选择oliver006版本的redis-exporter镜像：
-
-使用下述命令下载稍微靠后一个版本的redis-exporter镜像：..." />
+<meta name="description" content="介绍ChatGLM2-6B 是 ChatGLM-6B 的第二代版本，一款强大的自然语言处理模型，具有许多出色的特性，同时引入了新特性，使其成为一款卓越的开源中英双语对话模型。开源地址是：http..." />
 
 
 <meta name="robots" content="all" />
@@ -35,7 +33,7 @@
 
 <title>
     
-    Docker中安装redis_exporter和mysql-exporter |
+    ChatGLM2-6B介绍 |
     
     老陕小张
 </title>
@@ -173,16 +171,16 @@ var _hmt = _hmt || [];
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Docker中安装redis_exporter和mysql-exporter">
+        <h1 id="ChatGLM2-6B介绍">
             
-            Docker中安装redis_exporter和mysql-exporter
+            ChatGLM2-6B介绍
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+        <a class="category-link" href="/categories/AI%E8%AF%9D%E9%A2%98/">AI话题</a>
     </span>
     
     
@@ -190,7 +188,7 @@ var _hmt = _hmt || [];
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a> <a class="tag-none-link" href="/tags/prom/" rel="tag">prom</a>
+            <a class="tag-none-link" href="/tags/ChatGLM/" rel="tag">ChatGLM</a>
             
         </span>
     </span>
@@ -200,7 +198,7 @@ var _hmt = _hmt || [];
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2023/09/11</span>
+            2023/10/03</span>
     </span>
     
     
@@ -210,31 +208,19 @@ var _hmt = _hmt || [];
     </div>
     
     <div class="post-body post-content">
-        <h3 id="一、安装redis-exporter"><a href="#一、安装redis-exporter" class="headerlink" title="一、安装redis-exporter"></a><strong>一、安装redis-exporter</strong></h3><p>在Docker Hub中选择oliver006版本的redis-exporter镜像：</p>
-<p><img src="/../images/prom_20230911135304.png"></p>
-<p>使用下述命令下载稍微靠后一个版本的redis-exporter镜像：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker pull oliver006&#x2F;redis_exporter:v1.45.0</code></pre>
-
-<p>使用下述命令启动redis_exporter服务监控的本地服务： </p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd --name redis_exporter \
---restart&#x3D;always \
--v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro
--p 9121:9121 oliver006&#x2F;redis_exporter:v1.45.0 \
---redis.addr redis:&#x2F;&#x2F;192.168.1.108:6379 \
---redis.password &quot;&quot;</code></pre>
-
-<p>通过访问<a target="_blank" rel="noopener" href="http://192.168.1.100/metrics%E6%A3%80%E6%9F%A5%E7%9B%91%E6%8E%A7%E7%8A%B6%E6%80%81">http://192.168.1.100/metrics检查监控状态</a></p>
-<h2 id="二、安装mysql-exporter"><a href="#二、安装mysql-exporter" class="headerlink" title="二、安装mysql-exporter"></a><strong>二、安装mysql-exporter</strong></h2><p>下载mysqld-exporter镜像：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker pull prom&#x2F;mysqld-exporter</code></pre>
-
-<p>根据自己配置的数据库用户名和密码进行启动</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">docker run -itd --name mysqld_exporter \
--p 9104:9104 \
---restart&#x3D;always \
--v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro \
--e DATA_SOURCE_NAME&#x3D;&quot;root:Newmysql55..(127.0.0.1:3306)&#x2F;&quot; prom&#x2F;mysqld-exporter</code></pre>
-
-<p>登录prometheus进行查看：<a target="_blank" rel="noopener" href="http://192.168.75.100:9090/">http://192.168.75.100:9090/</a></p>
+        <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>ChatGLM2-6B 是 ChatGLM-6B 的第二代版本，一款强大的自然语言处理模型，具有许多出色的特性，同时引入了新特性，使其成为一款卓越的开源中英双语对话模型。<br>开源地址是：<a target="_blank" rel="noopener" href="https://github.com/THUDM/ChatGLM2-6B">https://github.com/THUDM/ChatGLM2-6B</a><br><img src="/../images/chat_20231031180530.png" alt="image"></p>
+<h4 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h4><p>ChatGLM2-6B 提供了以下引人注目的特点：</p>
+<ol>
+<li><p><strong>更强大的性能</strong>：ChatGLM2-6B 的基座模型经过了全面的升级，采用了 GLM 的混合目标函数。它经过了大规模的中英标识符预训练和人类偏好对齐训练。相比于初代模型，ChatGLM2-6B 在多个数据集上的性能得到了大幅度提升，包括 MMLU（+23%）、CEval（+33%）、GSM8K（+571%）、BBH（+60%）等。在同尺寸的开源模型中，它表现出强大的竞争力。</p>
+</li>
+<li><p><strong>更长的上下文</strong>：采用 FlashAttention 技术，ChatGLM2-6B 将上下文长度（Context Length）从 ChatGLM-6B 的 2K 扩展到了 32K。此外，在对话阶段，使用 8K 的上下文长度进行训练。ChatGLM2-6B-32K 模型在 LongBench 的测试中显示出较明显的竞争优势。</p>
+</li>
+<li><p><strong>更高效的推理</strong>：基于 Multi-Query Attention 技术，ChatGLM2-6B 实现了更高效的推理速度和更低的显存占用。在官方的模型实现下，推理速度相比初代提高了 42%。在 INT4 量化下，6G 显存支持的对话长度从 1K 提升到了 8K。</p>
+</li>
+<li><p><strong>更开放的协议</strong>：ChatGLM2-6B 的权重对学术研究完全开放，而且在填写问卷并进行登记后，也允许免费商业使用。</p>
+</li>
+</ol>
+<p>这些令人印象深刻的新特性使 ChatGLM2-6B 成为了一款多用途的自然语言处理工具，适用于各种应用领域。</p>
 
     </div>
     
@@ -273,17 +259,17 @@ var _hmt = _hmt || [];
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/aad5001.html" class="pre-post btn btn-default" title='ChatGLM2-6B介绍'>
+    <a href="/ac57b16b.html" class="pre-post btn btn-default" title='StableDiffusion介绍'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            ChatGLM2-6B介绍</span>
+            StableDiffusion介绍</span>
     </a>
     
     
-    <a href="/4f4be595.html" class="next-post btn btn-default" title='Prometheus基于文件的服务发现'>
+    <a href="/224a31c4.html" class="next-post btn btn-default" title='Docker中安装redis_exporter和mysql-exporter'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            Prometheus基于文件的服务发现</span><i class="fa fa-angle-right fa-fw"></i>
+            Docker中安装redis_exporter和mysql-exporter</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -296,7 +282,7 @@ var _hmt = _hmt || [];
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85redis-exporter"><span class="toc-text">一、安装redis-exporter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85mysql-exporter"><span class="toc-text">二、安装mysql-exporter</span></a>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-text">主要特点</span></a></li></ol>
         
     </div>
 </aside>
